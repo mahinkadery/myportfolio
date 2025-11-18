@@ -12,6 +12,7 @@
     let currentFile = null;
     let resultUrl = null;
     let resultName = null;
+    let resultBlob = null;
     const dragActiveClass = 'is-dragging';
 
     if (convertBtn) {
@@ -40,6 +41,7 @@
         resultUrl = null;
         resultName = null;
       }
+      resultBlob = null;
       if (downloadBtn) {
         downloadBtn.disabled = true;
       }
@@ -86,8 +88,50 @@
       fileInput.addEventListener('change', (event) => handleFiles(event.target.files));
     }
 
+    const buildDefaultName = () => {
+      const baseNameMatch = currentFile.name.includes('.')
+        ? currentFile.name.replace(/\.[^.]+$/, '')
+        : currentFile.name;
+      return `${baseNameMatch}${outputExt.startsWith('.') ? outputExt : `.${outputExt}`}`;
+    };
+
+    const getConversionType = () => flow.getAttribute('data-conversion-type');
+    const getUnsupportedMessage = () =>
+      flow.getAttribute('data-unsupported-message') ||
+      'This conversion is not available yet. Please try another workflow.';
+
+    const parseFilenameFromHeader = (header) => {
+      if (!header) return null;
+      const utfMatch = header.match(/filename\*=UTF-8''([^;]+)/i);
+      if (utfMatch?.[1]) {
+        return decodeURIComponent(utfMatch[1]);
+      }
+      const quotedMatch = header.match(/filename=\"?([^\";]+)\"?/i);
+      if (quotedMatch?.[1]) {
+        return quotedMatch[1];
+      }
+      return null;
+    };
+
+    const fetchErrorMessage = async (response) => {
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        try {
+          const payload = await response.json();
+          return payload?.error || payload?.message || JSON.stringify(payload);
+        } catch (error) {
+          return 'Conversion failed.';
+        }
+      }
+      try {
+        return (await response.text()) || 'Conversion failed.';
+      } catch (error) {
+        return 'Conversion failed.';
+      }
+    };
+
     if (convertBtn) {
-      convertBtn.addEventListener('click', () => {
+      convertBtn.addEventListener('click', async () => {
         if (!currentFile) {
           showStatus('Please add a file before converting.', 'error');
           return;
@@ -98,26 +142,52 @@
         toggleSpinner(true);
         showStatus(`Processing ${currentFile.name}…`);
 
-        setTimeout(() => {
-          const baseNameMatch = currentFile.name.includes('.')
-            ? currentFile.name.replace(/\.[^.]+$/, '')
-            : currentFile.name;
-          resultName = `${baseNameMatch}${outputExt}`;
-          const simulatedContent = [
-            `${toolName} placeholder output`,
-            `Source file: ${currentFile.name}`,
-            'This is a demo artifact. Connect your backend to replace it.',
-            `Generated at: ${new Date().toISOString()}`
-          ].join('\n');
-          const blob = new Blob([simulatedContent], { type: 'text/plain' });
+        const conversionType = getConversionType();
+        if (!conversionType) {
+          showStatus(getUnsupportedMessage(), 'error');
+          toggleSpinner(false);
+          convertBtn.disabled = false;
+          return;
+        }
+
+        try {
+          const formData = new FormData();
+          formData.append('file', currentFile);
+          formData.append('conversionType', conversionType);
+
+          const response = await fetch('/api/convert', {
+            method: 'POST',
+            body: formData
+          });
+
+          if (!response.ok) {
+            const message = await fetchErrorMessage(response);
+            throw new Error(message || 'Conversion failed.');
+          }
+
+          const blob = await response.blob();
+          const contentDisposition = response.headers.get('content-disposition');
+          const suggestedName = parseFilenameFromHeader(contentDisposition);
+
+          resultBlob = blob;
+          if (resultUrl) {
+            URL.revokeObjectURL(resultUrl);
+          }
           resultUrl = URL.createObjectURL(blob);
+          resultName = suggestedName || buildDefaultName();
+
           if (downloadBtn) {
             downloadBtn.disabled = false;
           }
           showStatus('Conversion complete. Download your result to continue.', 'success');
+        } catch (error) {
+          console.error(error);
+          showStatus(error.message || 'Conversion failed. Please try again.', 'error');
+          revokeResult();
+        } finally {
           toggleSpinner(false);
           convertBtn.disabled = false;
-        }, 900);
+        }
       });
     }
 
