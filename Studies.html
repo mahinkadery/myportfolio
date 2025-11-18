@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Mahin's educational journey - Bachelor of Information Technology and academic achievements."/>
+<title>Studies - Visual Illusionist</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="styles.css" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        body {
+            background: linear-gradient(180deg, #FDFDFD, #F5F5F5);
+            background-image: radial-gradient(#1111111a 0.5px, transparent 0.5px);
+            background-size: 16px 16px;
+        }
+        .dark body {
+            background: #101622;
+            background-image: radial-gradient(#ffffff1a 0.5px, transparent 0.5px);
+            background-size: 16px 16px;
+        }
+        .glass-tag {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glass-tag {
+            background-color: rgba(30, 41, 59, 0.25); /* slate-800/25 */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(51, 65, 85, 0.5); /* slate-700/50 */
+        }
+        .card-hover {
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+        .card-hover:hover {
+            transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) scale(1.02);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.1);
+        }
+        .dark .card-hover:hover {
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="font-display">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2b6cee",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden text-[#111111] dark:text-gray-200">
+<!-- Blurred background shapes -->
+<div class="absolute top-0 left-0 w-96 h-96 bg-primary/10 dark:bg-primary/20 rounded-full blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400/10 dark:bg-cyan-400/20 rounded-full blur-3xl opacity-30 translate-x-1/2 translate-y-1/2"></div>
+<!-- Sticky TopNavBar -->
+<div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
+<header class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg">
+<a href="index.html" class="flex items-center gap-3">
+<div class="flex items-center">
+<img src="logo.png" alt="Visual Illusionist" class="h-8 md:h-10 w-auto object-contain dark:hidden">
+<img src="darkmodelogo.png" alt="Visual Illusionist" class="h-8 md:h-10 w-auto object-contain hidden dark:block">
+</div>
+<span class="brand-title text-[10px] sm:text-xs md:text-sm text-[#111111] dark:text-gray-200 whitespace-nowrap">Visual Illusionist</span>
+</a>
+<div class="hidden sm:flex items-center justify-end gap-6">
+<a class="text-[#111111] dark:text-gray-300 text-sm font-medium hover:text-primary dark:hover:text-white transition-colors" href="index.html">Home</a>
+<a class="text-[#111111] dark:text-gray-300 text-sm font-medium hover:text-primary dark:hover:text-white transition-colors" href="about.html">About</a>
+<a class="text-[#111111] dark:text-gray-300 text-sm font-medium hover:text-primary dark:hover:text-white transition-colors" href="Studies.html">Studies</a>
+<a class="text-[#111111] dark:text-gray-300 text-sm font-medium hover:text-primary dark:hover:text-white transition-colors" href="projects.html">Projects</a>
+<div class="relative" data-dropdown>
+<button type="button" class="flex items-center gap-1 text-[#111111] dark:text-gray-300 text-sm font-medium hover:text-primary dark:hover:text-white transition-colors" data-dropdown-toggle>
+<span>Tools</span>
+<span class="material-symbols-outlined text-xs transition-transform duration-200" data-dropdown-icon>expand_more</span>
+</button>
+<div data-dropdown-menu class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
+<a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors" href="tools.html">All Tools</a>
+<a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors" href="pdf-suite.html">PDF Suite</a>
+<div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu></div>
+</div>
+</div>
+<a class="text-[#111111] dark:text-gray-300 text-sm font-medium hover:text-primary dark:hover:text-white transition-colors" href="contact.html">Contact</a>
+<button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+</button>
+</div>
+<button id="mobileMenuBtn" class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#111111] dark:text-white">menu</span>
+</button>
+</header>
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+<div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+<div class="flex justify-end">
+<button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+<span class="material-symbols-outlined text-[#111111] dark:text-white">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-4">
+<a class="text-[#111111] dark:text-gray-300 text-base font-medium hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="text-[#111111] dark:text-gray-300 text-base font-medium hover:text-primary transition-colors" href="about.html">About</a>
+<a class="text-[#111111] dark:text-gray-300 text-base font-medium hover:text-primary transition-colors" href="Studies.html">Studies</a>
+<a class="text-[#111111] dark:text-gray-300 text-base font-medium hover:text-primary transition-colors" href="projects.html">Projects</a>
+<a class="text-[#111111] dark:text-gray-300 text-base font-medium hover:text-primary transition-colors" href="tools.html">Tools</a>
+<a class="text-[#111111] dark:text-gray-300 text-base font-medium hover:text-primary transition-colors pl-3" href="pdf-suite.html">PDF Suite</a>
+<a class="text-[#111111] dark:text-gray-300 text-base font-medium hover:text-primary transition-colors" href="contact.html">Contact</a>
+<div class="pt-4 border-t border-black/10 dark:border-white/10">
+<p class="text-xs uppercase tracking-[0.3em] text-[#555] dark:text-gray-400">PDF Suite tools</p>
+<div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
+</div>
+</nav>
+<button id="darkModeToggleMobile" class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+<span class="text-[#111111] dark:text-white text-sm font-medium">Toggle Theme</span>
+</button>
+</div>
+</div>
+</div>
+<div class="layout-container flex h-full grow flex-col pt-32 sm:pt-36">
+<div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<main class="flex-grow pt-16 sm:pt-24">
+<!-- PageHeading -->
+<div class="flex flex-col items-center justify-center gap-4 p-4 text-center">
+<p class="text-[#111111] dark:text-white text-4xl sm:text-5xl font-bold tracking-tighter max-w-2xl">My Academic Journey</p>
+<p class="text-[#888888] dark:text-gray-400 text-base font-normal leading-normal max-w-lg">A timeline of my educational background, key areas of study, and technologies I've mastered along the way.</p>
+</div>
+<!-- Timeline -->
+<div class="relative mt-16 px-4">
+<!-- Vertical Timeline Axis -->
+<div class="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-gray-200 dark:bg-gray-700/50"></div>
+<!-- Timeline Entry 1 -->
+<div class="relative mb-12 flex w-full items-center justify-between md:odd:flex-row-reverse">
+<div class="hidden md:block w-5/12"></div>
+<!-- Timeline Node -->
+<div class="absolute left-1/2 z-10 -translate-x-1/2">
+<div class="grid h-8 w-8 place-items-center rounded-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
+<span class="material-symbols-outlined text-base text-[#888888] dark:text-gray-400">school</span>
+</div>
+</div>
+<!-- Education Card -->
+<div class="w-full md:w-5/12">
+<div class="card-hover p-6 bg-white dark:bg-background-dark/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-lg shadow-sm">
+<div class="flex items-start gap-4">
+<div class="grid place-items-center size-10 rounded-full bg-gray-100 dark:bg-gray-800 text-[#888888] dark:text-gray-400">
+<span class="material-symbols-outlined text-xl">account_balance</span>
+</div>
+<div>
+<p class="text-[#111111] dark:text-white text-lg font-bold">University Name</p>
+<p class="text-[#888888] dark:text-gray-400 text-sm font-normal">Bachelor of Information Technology | 2021 - Present</p>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Software Development</span>
+<span class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Databases</span>
+<span class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Cybersecurity</span>
+<span class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Project Management</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Entry 2 -->
+<div class="relative mb-12 flex w-full items-center justify-between md:odd:flex-row-reverse">
+<div class="w-full md:w-5/12">
+<div class="card-hover p-6 bg-white dark:bg-background-dark/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-lg shadow-sm">
+<div class="flex items-start gap-4">
+<div class="grid place-items-center size-10 rounded-full bg-gray-100 dark:bg-gray-800 text-[#888888] dark:text-gray-400">
+<span class="material-symbols-outlined text-xl">code_blocks</span>
+</div>
+<div>
+<p class="text-[#111111] dark:text-white text-lg font-bold">College/High School Name</p>
+<p class="text-[#888888] dark:text-gray-400 text-sm font-normal">Diploma of IT | 2019 - 2021</p>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Networking Fundamentals</span>
+<span class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Programming Basics</span>
+<span class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Web Design</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Node -->
+<div class="absolute left-1/2 z-10 -translate-x-1/2">
+<div class="grid h-8 w-8 place-items-center rounded-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
+<span class="material-symbols-outlined text-base text-[#888888] dark:text-gray-400">history_edu</span>
+</div>
+</div>
+<div class="hidden md:block w-5/12"></div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="flex flex-col gap-8 px-5 py-16 text-center @container border-t border-gray-200/50 dark:border-gray-700/50 mt-16">
+<div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+<a class="text-[#888888] dark:text-gray-400 hover:text-[#111111] dark:hover:text-white text-base font-normal leading-normal min-w-40 transition-colors" href="index.html">Home</a>
+<a class="text-[#888888] dark:text-gray-400 hover:text-[#111111] dark:hover:text-white text-base font-normal leading-normal min-w-40 transition-colors" href="about.html">About</a>
+<a class="text-[#888888] dark:text-gray-400 hover:text-[#111111] dark:hover:text-white text-base font-normal leading-normal min-w-40 transition-colors" href="projects.html">Projects</a>
+<a class="text-[#888888] dark:text-gray-400 hover:text-[#111111] dark:hover:text-white text-base font-normal leading-normal min-w-40 transition-colors" href="Studies.html">Studies</a>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-[#888888] dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors" href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.388 0-1.601 1.01-1.601 2.206v4.248H8.014V8.588h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.128 0c0 1.14-.931 2.065-2.065 2.065z" fill-rule="evenodd"></path><path d="M6.613 16.338H4.068V8.588h2.545v7.75z"></path></svg>
+</a>
+<a class="text-[#888888] dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors" href="https://github.com" target="_blank" rel="noopener noreferrer" title="GitHub">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="text-[#888888] dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors" href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+</a>
+</div>
+<div class="flex items-center justify-center gap-3 mb-4">
+<a href="index.html">
+<img src="logo.png" alt="Visual Illusionist" class="h-12 md:h-14 w-auto object-contain dark:hidden">
+<img src="darkmodelogo.png" alt="Visual Illusionist" class="h-12 md:h-14 w-auto object-contain hidden dark:block">
+</a>
+</div>
+<p class="text-[#888888] dark:text-gray-500 text-sm font-normal leading-normal">© 2024 Visual Illusionist. All Rights Reserved.</p>
+</footer>
+<script src="script.js"></script>
+</div>
+</div>
+</div>
+</div>
+</body></html>

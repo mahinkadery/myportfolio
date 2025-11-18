@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Mahin - Bachelor of Information Technology student portfolio. Showcasing projects, skills, and educational journey."/>
+<meta name="keywords" content="portfolio, IT student, web development, programming, Mahin"/>
+<title>Visual Illusionist - Creative Portfolio</title>
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2b6cee",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101622",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-image:
+        radial-gradient(circle at top left, rgba(204, 204, 204, 0.1) 0%, rgba(204, 204, 204, 0) 20%),
+        radial-gradient(circle at bottom right, rgba(204, 204, 204, 0.1) 0%, rgba(204, 204, 204, 0) 20%);
+    }
+
+    .dark body {
+      background-image:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 20%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 20%);
+    }
+
+    .glass-effect {
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glass-effect {
+      background-color: rgba(26, 36, 55, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111111] dark:text-gray-200 font-display">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Sticky TopNavBar -->
+<div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
+<header class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg">
+<a href="index.html" class="flex items-center gap-3">
+<div class="flex items-center">
+<img src="logo.png" alt="Visual Illusionist" class="h-8 md:h-10 w-auto object-contain dark:hidden">
+<img src="darkmodelogo.png" alt="Visual Illusionist" class="h-8 md:h-10 w-auto object-contain hidden dark:block">
+</div>
+<span class="brand-title text-[10px] sm:text-xs md:text-sm text-[#111111] dark:text-white whitespace-nowrap">Visual Illusionist</span>
+</a>
+<div class="hidden sm:flex items-center justify-end gap-6">
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="index.html">Home</a>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="about.html">About</a>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="Studies.html">Studies</a>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="projects.html">Projects</a>
+<div class="relative" data-dropdown>
+<button type="button" class="flex items-center gap-1 text-[#111111] dark:text-gray-300 text-sm font-medium transition-colors hover:text-primary dark:hover:text-white" data-dropdown-toggle>
+<span>Tools</span>
+<span class="material-symbols-outlined text-xs transition-transform duration-200" data-dropdown-icon>expand_more</span>
+</button>
+<div data-dropdown-menu class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
+<a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors" href="tools.html">All Tools</a>
+<a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors" href="pdf-suite.html">PDF Suite</a>
+<div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu></div>
+</div>
+</div>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="contact.html">Contact</a>
+<button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+</button>
+</div>
+<button id="mobileMenuBtn" class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#111111] dark:text-white">menu</span>
+</button>
+</header>
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+<div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+<div class="flex justify-end">
+<button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+<span class="material-symbols-outlined text-[#111111] dark:text-white">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-4">
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="index.html">Home</a>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="about.html">About</a>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="Studies.html">Studies</a>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="projects.html">Projects</a>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="tools.html">Tools</a>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors pl-3" href="pdf-suite.html">PDF Suite</a>
+<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="contact.html">Contact</a>
+<div class="pt-4 border-t border-black/10 dark:border-white/10">
+<p class="text-xs uppercase tracking-[0.3em] text-[#555] dark:text-gray-400">PDF Suite tools</p>
+<div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
+</div>
+</nav>
+<button id="darkModeToggleMobile" class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+<span class="text-[#111111] dark:text-white text-sm font-medium">Toggle Theme</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex h-full grow flex-col justify-center">
+<div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- HeroSection -->
+<section class="@container flex items-center min-h-screen py-24 md:py-32">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+<!-- Left Column: Content -->
+<div class="flex flex-col gap-8 text-center md:text-left">
+<div class="flex flex-col gap-4">
+<h1 class="text-[#111111] dark:text-white text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter">
+                  Visual Illusionist
+                </h1>
+<h2 class="text-primary text-lg font-medium">
+                  Creative Digital Solutions & Visual Design
+                </h2>
+<p class="text-gray-600 dark:text-gray-400 max-w-lg mx-auto md:mx-0">
+                  A dedicated IT student with a passion for creating elegant and effective solutions. My work focuses on clean code, intuitive design, and leveraging technology to solve real-world problems.
+                </p>
+</div>
+<div class="flex flex-wrap gap-4 justify-center md:justify-start">
+<a href="projects.html" class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-[#111111] text-white dark:bg-white dark:text-[#111111] text-sm font-bold shadow-lg hover:shadow-xl transition-shadow">
+<span>View My Work</span>
+</a>
+<a href="#" download class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-transparent text-[#111111] dark:text-white border border-[#CCCCCC] dark:border-gray-700 hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-sm font-bold">
+<span>Download CV</span>
+</a>
+</div>
+</div>
+<!-- Right Column: Visual -->
+<div class="w-full aspect-square flex items-center justify-center">
+<img class="w-full h-full object-cover rounded-xl" data-alt="Abstract 3D rendering of floating geometric shapes in monochrome, with cubes, spheres, and lines creating a sense of depth and space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx29Sk57aKCXIE9l5GQtc8nOhlBWTRZGVkuqskYt2ktgTsKjw3HkTxYhGEhFR7KTnTPKwEE8dotRWog__H7KlCsHDSCEyUxc8qYSWtALI4h3PKSH1Dshyj1qfetZPCFgfpP8D2COokSYUhbMicJePE_bR4_M86L7PX1Lc2tF45bpUrle9U6Hx8lAigLpiDb9ZfQek7wzWcmh8bxJLPr6fPwL17oWs8iD6uuHGfqrkplLZkz2ynqLQiTzlRGNCyc5D8cM0oQr4aFy0"/>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<script src="script.js"></script>
+</body></html>

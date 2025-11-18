@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free PDF Suite – Convert Word to PDF, PDF to PPT, PDF to DOC, PPT to PDF &amp; More</title>
+  <meta name="description" content="A complete free PDF Suite Tools page that lets you convert Word to PDF, PDF to PPT, PPT to PDF, DOC to PDF, RTF to PDF, DWG to PDF, PSD to PDF, and many more conversions instantly using free tools."/>
+  <meta name="keywords" content="convert word to pdf, convert pdf to ppt, doc to pdf converter, convert ppt to pdf, convert xps to pdf, pdf to doc converter, convert dwg to pdf, convert rtf to pdf, pdf to psd converter, shree lipi converter, youtube to mp3 converter 320 kbps, pnr converter, bin to pdf converter, pdf to corel draw converter, pdf to dxf converter, jfif to pdf converter, convert ipynb to pdf, convert rar to pdf, convert prn to pdf, pdf to audio converter"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="tailwind-theme.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "How can I convert Word to PDF for free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can convert Word to PDF using free tools like LibreOffice, which supports direct export to PDF format. Simply open your Word document in LibreOffice Writer and use File > Export as PDF. Many browsers also support printing to PDF from Word documents."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Are there free alternatives to paid PDF converters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, there are many excellent free alternatives including LibreOffice for document conversions, GIMP for image editing and conversions, Inkscape for vector graphics, and pdf.js for browser-based PDF manipulation. These open-source tools provide professional-quality results without any cost."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Can I convert PDF to PPT without installing software?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can use browser-based tools built with pdf.js and other open-source libraries to convert PDF to PPT format. Many free online tools are available that work entirely in your browser without requiring downloads or installations."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Is it safe to convert files using free tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When using reputable open-source tools from trusted sources like GitHub, LibreOffice, or Mozilla projects, conversion tools are generally safe. For maximum privacy, choose client-side converters that process files locally in your browser rather than uploading to external servers."
+      }
+    }]
+  }
+  </script>
+  <style>
+    .suite-wrapper {
+      font-family: 'Inter', 'Space Grotesk', sans-serif;
+    }
+    .suite-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .suite-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 80px 0;
+      text-align: center;
+      border-radius: 32px;
+      margin: 0 16px 40px;
+    }
+    .suite-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .suite-hero p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.95;
+    }
+    .suite-tools {
+      padding: 60px 0;
+    }
+    .suite-section-title {
+      font-size: clamp(2rem, 4vw, 2.4rem);
+      text-align: center;
+      color: #2d3748;
+      font-weight: 700;
+    }
+    .suite-section-subtitle {
+      text-align: center;
+      color: #718096;
+      margin-top: 12px;
+      margin-bottom: 40px;
+    }
+    .suite-info-alert {
+      background: #bee3f8;
+      border-left: 4px solid #3182ce;
+      padding: 24px;
+      border-radius: 16px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      color: #1a365d;
+      line-height: 1.7;
+    }
+    .suite-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .suite-tool-card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 15px 30px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .suite-tool-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    }
+    .suite-tool-icon {
+      font-size: 2rem;
+      color: #667eea;
+      margin-bottom: 14px;
+    }
+    .suite-tool-card h3 {
+      font-size: 1.25rem;
+      color: #1a202c;
+      font-weight: 600;
+    }
+    .suite-tool-card p {
+      color: #4a5568;
+      line-height: 1.6;
+    }
+    .suite-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .suite-btn:hover {
+      opacity: 0.9;
+    }
+    .suite-article {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 60px 0;
+    }
+    .suite-article .article-content {
+      background: #fff;
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      line-height: 1.8;
+      color: #4a5568;
+    }
+    .suite-article h1,
+    .suite-article h2,
+    .suite-article h3 {
+      color: #2d3748;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 16px;
+    }
+    .suite-article ul,
+    .suite-article ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+    .suite-highlight {
+      background: #edf2f7;
+      border-left: 4px solid #667eea;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    .suite-tip {
+      background: #c6f6d5;
+      border-left: 4px solid #48bb78;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    .suite-info-block {
+      background: #bee3f8;
+      border-left: 4px solid #3182ce;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    .suite-comparison table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 5px 20px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      border-radius: 18px;
+    }
+    .suite-comparison th {
+      background: #667eea;
+      color: #fff;
+      text-align: left;
+      padding: 16px;
+    }
+    .suite-comparison td {
+      padding: 16px;
+      border-bottom: 1px solid #e2e8f0;
+      background: rgba(255, 255, 255, 0.95);
+    }
+    .suite-faq {
+      background: #f8f9fa;
+      padding: 60px 0;
+    }
+    .suite-faq-item {
+      background: #fff;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+      margin-bottom: 20px;
+    }
+    .suite-faq-item h3 {
+      font-size: 1.2rem;
+      color: #2d3748;
+      margin-bottom: 10px;
+    }
+    .suite-cta {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 70px 0;
+      text-align: center;
+      border-radius: 32px;
+      margin: 0 16px 60px;
+    }
+    .suite-cta h2 {
+      font-size: clamp(2rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .suite-cta p {
+      max-width: 720px;
+      margin: 0 auto 24px;
+      font-size: 1.1rem;
+    }
+    @media (max-width: 768px) {
+      .suite-hero,
+      .suite-cta {
+        margin: 0 12px 40px;
+        padding: 48px 0;
+      }
+      .suite-article .article-content {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="relative flex min-h-screen w-full flex-col overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute top-[-20%] left-[-10%] h-96 w-96 rounded-full bg-primary/10 blur-[140px]"></div>
+      <div class="absolute bottom-[-10%] right-[-10%] h-96 w-96 rounded-full bg-primary/20 blur-[160px]"></div>
+    </div>
+
+    <div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
+      <header class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="flex items-center">
+            <img src="logo.png" alt="Visual Illusionist" class="h-8 md:h-10 w-auto object-contain dark:hidden">
+            <img src="darkmodelogo.png" alt="Visual Illusionist" class="h-8 md:h-10 w-auto object-contain hidden dark:block">
+          </div>
+          <span class="brand-title text-[10px] sm:text-xs md:text-sm text-text-light dark:text-text-dark whitespace-nowrap">Visual Illusionist</span>
+        </a>
+        <nav class="hidden sm:flex items-center justify-end gap-6">
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="index.html">Home</a>
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="about.html">About</a>
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="Studies.html">Studies</a>
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="projects.html">Projects</a>
+          <div class="relative" data-dropdown>
+            <button type="button" class="flex items-center gap-1 text-primary text-sm font-bold transition-colors" data-dropdown-toggle>
+              <span>Tools</span>
+              <span class="material-symbols-outlined text-xs transition-transform duration-200" data-dropdown-icon>expand_more</span>
+            </button>
+            <div data-dropdown-menu class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
+              <a class="block px-3 py-2 text-sm text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="tools.html">All Tools</a>
+              <a class="block px-3 py-2 text-sm text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="pdf-suite.html">PDF Suite</a>
+              <div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu></div>
+            </div>
+          </div>
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="contact.html">Contact</a>
+          <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+          </button>
+        </nav>
+        <button id="mobileMenuBtn" class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">menu</span>
+        </button>
+      </header>
+    </div>
+
+    <div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+      <div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+        <div class="flex justify-end">
+          <button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+            <span class="material-symbols-outlined text-text-light dark:text-text-dark">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-4">
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="index.html">Home</a>
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="about.html">About</a>
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="Studies.html">Studies</a>
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="projects.html">Projects</a>
+          <a class="text-primary text-base font-bold" href="tools.html">Tools</a>
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors pl-3" href="pdf-suite.html">PDF Suite</a>
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="contact.html">Contact</a>
+          <div class="pt-4 border-t border-black/10 dark:border-white/10">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">PDF Suite tools</p>
+            <div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
+          </div>
+        </nav>
+        <button id="darkModeToggleMobile" class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+          <span class="text-text-light dark:text-text-dark text-sm font-medium">Toggle Theme</span>
+        </button>
+      </div>
+    </div>
+
+    <main class="suite-wrapper pt-24">
+      <section class="suite-hero" id="home">
+        <div class="suite-container">
+          <h1>Free PDF Suite &ndash; Complete Conversion Workflow</h1>
+          <p>Convert Word to PDF, PDF to PPT, DOC to PDF, PPT to PDF, and 20+ more formats using battle-tested open-source stacks. No accounts, no uploads, and no licensing drama.</p>
+        </div>
+      </section>
+
+      <section class="suite-tools" id="tools">
+        <div class="suite-container">
+          <h2 class="suite-section-title">Free Conversion Tools</h2>
+          <p class="suite-section-subtitle">Every module points to a dedicated tool page where you can connect LibreOffice, Ghostscript, FFmpeg, Inkscape, pdf.js, and more&mdash;all 100% free.</p>
+          <div class="suite-info-alert">
+            <h3>🎯 Which tools are ready today?</h3>
+            <p><strong>✅ Client-side right now:</strong> The JFIF/Image to PDF and PDF to Audio flows run fully in-browser using jsPDF, pdf.js, and the Web Speech API. They never leave your device.</p>
+            <p><strong>⚙️ Everything else:</strong> Each card jumps into its own page with upload UI, convert + download buttons, and the exact CLI recipe (LibreOffice, yt-dlp, FFmpeg, Ghostscript, Inkscape, etc.). Wire it to your backend or keep it offline&mdash;your choice.</p>
+          </div>
+          <div class="suite-tools-grid">
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Convert Word to PDF</h3>
+                        <p>Transform DOC and DOCX files into press-ready PDFs with free LibreOffice automations.</p>
+                    </div>
+                    <a class="suite-btn" href="word-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Convert PDF to PPT</h3>
+                        <p>Rebuild static PDFs as editable presentations without uploading anything sensitive.</p>
+                    </div>
+                    <a class="suite-btn" href="pdf-to-ppt.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>DOC to PDF Converter</h3>
+                        <p>Update legacy .doc files to modern, shareable PDFs in one click.</p>
+                    </div>
+                    <a class="suite-btn" href="doc-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Convert PPT to PDF</h3>
+                        <p>Lock in your slides for distribution by exporting to lightweight PDF decks.</p>
+                    </div>
+                    <a class="suite-btn" href="ppt-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Convert XPS to PDF</h3>
+                        <p>Normalize Microsoft XPS paperwork into universally viewable PDFs.</p>
+                    </div>
+                    <a class="suite-btn" href="xps-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>PDF to DOC Converter</h3>
+                        <p>Bring PDF content back into editable Word format for quick revisions.</p>
+                    </div>
+                    <a class="suite-btn" href="pdf-to-doc.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Convert DWG to PDF</h3>
+                        <p>Share CAD drawings with stakeholders by exporting DWG views to PDF.</p>
+                    </div>
+                    <a class="suite-btn" href="dwg-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Convert RTF to PDF</h3>
+                        <p>Preserve rich-text layouts by wrapping them in reliable PDF containers.</p>
+                    </div>
+                    <a class="suite-btn" href="rtf-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>PDF to PSD Converter</h3>
+                        <p>Send PDF artwork straight into layered PSDs for fine-grain editing.</p>
+                    </div>
+                    <a class="suite-btn" href="pdf-to-psd.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Shree Lipi Converter</h3>
+                        <p>Convert ShreeLipi encoded text into Unicode PDFs for modern workflows.</p>
+                    </div>
+                    <a class="suite-btn" href="shree-lipi-converter.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>YouTube to MP3 320 kbps</h3>
+                        <p>Plan yt-dlp + FFmpeg exports for studio-grade audio extractions.</p>
+                    </div>
+                    <a class="suite-btn" href="youtube-to-mp3-320.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>PNR Converter</h3>
+                        <p>Turn Passenger Name Records into PDFs or CSVs for field teams.</p>
+                    </div>
+                    <a class="suite-btn" href="pnr-converter.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>BIN to PDF Converter</h3>
+                        <p>Document binary dumps by wrapping them inside searchable PDF reports.</p>
+                    </div>
+                    <a class="suite-btn" href="bin-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>PDF to CorelDRAW Converter</h3>
+                        <p>Prep PDF dielines for Corel workflows with open-source tooling.</p>
+                    </div>
+                    <a class="suite-btn" href="pdf-to-corel.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>PDF to DXF Converter</h3>
+                        <p>Extract CAD-ready DXF vectors straight from annotated PDFs.</p>
+                    </div>
+                    <a class="suite-btn" href="pdf-to-dxf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>JFIF to PDF Converter</h3>
+                        <p>Archive campaign imagery by batching JFIF/JPEG assets into PDFs.</p>
+                    </div>
+                    <a class="suite-btn" href="jfif-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Convert IPYNB to PDF</h3>
+                        <p>Publish Jupyter notebooks as polished PDFs for stakeholders.</p>
+                    </div>
+                    <a class="suite-btn" href="ipynb-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Convert RAR to PDF</h3>
+                        <p>Unpack vendor archives and repackage the deliverables as PDFs.</p>
+                    </div>
+                    <a class="suite-btn" href="rar-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>Convert PRN to PDF</h3>
+                        <p>Recover printer spool files by converting PRN output into PDFs.</p>
+                    </div>
+                    <a class="suite-btn" href="prn-to-pdf.html">Open Tool</a>
+                </div>
+                <div class="suite-tool-card">
+                    <div>
+                        <div class="suite-tool-icon"><i class="fas fa-circle-check"></i></div>
+                        <h3>PDF to Audio Converter</h3>
+                        <p>Create instant narration tracks from any research PDF.</p>
+                    </div>
+                    <a class="suite-btn" href="pdf-to-audio.html">Open Tool</a>
+                </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="suite-article" id="guide">
+        <div class="suite-container">
+          <div class="article-content">
+            <h1>The Complete Guide to Free PDF Suite Tools: Convert Word to PDF, PDF to PPT, and 20+ More Formats</h1>
+            <h2>Introduction to the Free PDF Suite</h2>
+            <p>In today's digital workspace, the ability to convert documents between different formats is essential. Whether you need to convert word to pdf for professional documentation, transform pdf to ppt for presentations, or handle specialized conversions like pdf to psd converter, having access to reliable, free conversion tools is invaluable. This guide stitches together open-source applications such as LibreOffice, pdf.js, ImageMagick, Inkscape, FFmpeg, eSpeak NG, and yt-dlp so your team never has to pay for basic conversions again.</p>
+            <div class="suite-highlight">
+              <strong>Key Benefits of Our Free PDF Suite:</strong>
+              <ul>
+                <li>100% free forever – no hidden costs or premium tiers</li>
+                <li>Privacy-focused – client-side processing whenever possible</li>
+                <li>Open-source technology – transparent and trustworthy</li>
+                <li>No registration required – immediate access to every tool</li>
+                <li>Cross-platform compatibility – works on any device</li>
+              </ul>
+            </div>
+            <h2>Why Free PDF Tools Matter</h2>
+            <p>Licensing-heavy converters often break procurement policies, especially for public institutions. Using libre tooling ensures long-term access, consistent scripting, and reproducibility. The doc to pdf converter cards rely on LibreOffice headless runs that produce deterministic PDFs, while command snippets cite official manuals. For privacy, the convert pdf to ppt module renders locally with pdf.js and PptxGenJS so intellectual property never leaves your machine.</p>
+            <h2>How to Convert Word to PDF Using Free Methods</h2>
+            <h3>Method 1: LibreOffice Writer</h3>
+            <ol>
+              <li>Download LibreOffice (libreoffice.org) and open Writer.</li>
+              <li>Load your DOC/DOCX file and choose File &gt; Export as PDF.</li>
+              <li>Configure compression, accessibility, and security settings.</li>
+              <li>Export a press-ready PDF in seconds.</li>
+            </ol>
+            <h3>Method 2: Browser Print-to-PDF</h3>
+            <p>Open the document in Office Online or Google Docs and print to PDF from your browser. It works on any OS and requires zero installs.</p>
+            <div class="suite-tip">
+              <strong>Pro Tip:</strong> Automate bulk conversions with <code>soffice --headless --convert-to pdf *.docx</code> to batch every file inside a folder.</div>
+            <h2>How to Convert PDF to PPT Using Free Tools</h2>
+            <p>The in-browser convert pdf to ppt engine combines pdf.js (Mozilla) with PptxGenJS (GitHub community). pdf.js renders each page to an offscreen canvas; our dedicated tool pages include page-range handling, metadata toggles, and instant downloads. Prefer desktop workflows? LibreOffice Impress can import PDF slides and export native PPTX without extra licensing.</p>
+            <h2>DOC to PDF Converter Features</h2>
+            <p>Legacy .doc files still appear across government and NGO ecosystems. The doc to pdf converter card generates scripts using LibreOffice or unoconv, both of which convert macros, linked images, and footnotes. Users can extend the script with <code>--convert-to pdf:writer_pdf_Export --outdir ./pdf</code> to direct output folders.</p>
+            <h2>PPT to PDF Conversion Explained</h2>
+            <p>PowerPoint exports also leverage LibreOffice. The convert ppt to pdf script calls <code>libreoffice --headless --convert-to pdf *.pptx</code>, ensuring slide numbers, animation states, and speaker notes are captured.</p>
+            <h2>Converting XPS to PDF</h2>
+            <p>Ghostscript's GhostXPS or LibreOffice Draw can render XPS into PDF using <code>gxps -sOutputFile=out.pdf -sDEVICE=pdfwrite input.xps</code>. It's fast, repeatable, and open source.</p>
+            <h2>Converting PDF to DOC Using Free Resources</h2>
+            <p>LibreOffice Writer imports PDFs with vector fidelity, while Google Docs offers quick conversions for text-heavy PDFs. For developer workflows, combine <code>pdftotext</code> with <code>pandoc</code> (<code>pdftotext -layout file.pdf - | pandoc -f markdown -t docx</code>).</p>
+            <h2>Detailed Guide to DWG to PDF Conversion</h2>
+            <p>Engineering teams can rely on LibreCAD or FreeCAD to open DWG files, adjust layers, and print to PDF. When dealing with brand-new DWG specs, convert to DXF first using the Open Design Alliance tools, then export to PDF.</p>
+            <div class="suite-info-block">
+              <strong>Technical Note:</strong> DWG is proprietary. Free stacks often convert DWG → DXF → PDF to guarantee fidelity.</div>
+            <h2>RTF to PDF Free Conversion</h2>
+            <p>Rich Text Format files maintain styling across platforms. LibreOffice Writer imports RTF perfectly and exports to PDF with embedded fonts and metadata intact.</p>
+            <h2>PDF to PSD Converter (open-source graphic tools)</h2>
+            <p>Need layered PSD assets? Use GIMP or ImageMagick to rasterize PDFs at 300 DPI, then export as PSD. The pdf to psd converter page links directly to those instructions plus sample scripts.</p>
+            <h2>Shree Lipi Converter (free font/encoding tools)</h2>
+            <p>ShreeLipi → Unicode conversions rely on open-source mapping tables (GitHub communities like <code>shree-lipi-unicode</code>). Once transliterated, LibreOffice Writer can export polished PDFs with universal fonts.</p>
+            <h2>YouTube to MP3 Converter 320 Kbps (open-source FFmpeg instructions)</h2>
+            <p>Researchers curate interviews using yt-dlp + FFmpeg. The dedicated page provides scripts such as <code>yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 320K URL</code>, followed by FFmpeg normalization.</p>
+            <h2>PNR Converter</h2>
+            <p>Operations teams convert Passenger Name Records to CSV/PDF for field teams. The PNR converter card generates Python scripts leveraging Pandoc for final PDF manifests.</p>
+            <h2>BIN to PDF Converter</h2>
+            <p>Binary firmware dumps often need to be reviewed by stakeholders. Combine <code>xxd</code> + <code>enscript</code> + <code>ps2pdf</code> to create hex listings inside PDFs.</p>
+            <h2>PDF to Corel Draw Converter</h2>
+            <p>Use Inkscape or pstoedit to export PDF vectors into CMX/ SVG for CorelDRAW. Our tool page links to the exact commands.</p>
+            <h2>PDF to DXF Converter</h2>
+            <p>pstoedit converts PDF paths into DXF polylines (<code>pstoedit -f "dxf:-polyaslines" file.pdf file.dxf</code>), perfect for CNC routing.</p>
+            <h2>JFIF to PDF Converter</h2>
+            <p>The jfif to pdf converter runs entirely in-browser using jsPDF so no assets ever leave your device.</p>
+            <h2>Convert IPYNB to PDF Using Free Tools</h2>
+            <p>Jupyter nbconvert takes <code>ipynb</code> to PDF (<code>jupyter nbconvert --to pdf notebook.ipynb</code>). Install TeX Live or Tectonic for best results.</p>
+            <h2>Convert RAR to PDF</h2>
+            <p>Extract archives with 7-Zip, then recombine images via <code>img2pdf</code> or <code>convert</code> for consolidated PDFs.</p>
+            <h2>Convert PRN to PDF</h2>
+            <p>Use Ghostscript (<code>gs -sDEVICE=pdfwrite -o file.pdf file.prn</code>) to reinterpret spool files.</p>
+            <h2>PDF to Audio Converter (text-to-speech using free libraries)</h2>
+            <p>Accessibility workflows combine <code>pdftotext</code> with eSpeak NG or the Web Speech API. Our tool page streams narration directly in-browser while also surfacing CLI scripts.</p>
+            <h2>Tool Comparison: Free vs. Paid Solutions</h2>
+            <div class="suite-comparison">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Free Open-Source Tools</th>
+                    <th>Typical Paid Services</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Cost</td><td>$0 forever</td><td>$10-30/month subscriptions</td></tr>
+                  <tr><td>Privacy</td><td>Local processing, no uploads</td><td>Often requires cloud upload</td></tr>
+                  <tr><td>Quality</td><td>Professional-grade results</td><td>Similar quality, proprietary algorithms</td></tr>
+                  <tr><td>Format Support</td><td>Community-driven breadth</td><td>Often limited to popular formats</td></tr>
+                  <tr><td>Customization</td><td>Scriptable &amp; automatable</td><td>Restricted to UI options</td></tr>
+                  <tr><td>File Size Limits</td><td>No artificial caps</td><td>Bound by plan tier</td></tr>
+                  <tr><td>Batch Processing</td><td>Bash/PowerShell ready</td><td>Usually premium</td></tr>
+                  <tr><td>Updates</td><td>Continuous community releases</td><td>Vendor schedule</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h2>Step-by-Step Guide: Setting Up Your Free Conversion Environment</h2>
+            <ol>
+              <li><strong>LibreOffice Suite</strong> &ndash; install Writer/Calc/Impress to cover DOC, XLS, PPT, and Draw conversions.</li>
+              <li><strong>GIMP + Inkscape</strong> &ndash; handle raster and vector graphics without licensing headaches.</li>
+              <li><strong>FFmpeg + yt-dlp</strong> &ndash; automate audio/video extraction with studio-grade codecs.</li>
+              <li><strong>ImageMagick</strong> &ndash; batch images into PDFs, add watermarks, or resize in seconds.</li>
+              <li><strong>7-Zip</strong> &ndash; unpack every archive type before feeding assets back into LibreOffice or ImageMagick.</li>
+            </ol>
+            <h2>Best Practices for Document Conversion</h2>
+            <div class="suite-highlight">
+              <ul>
+                <li>Use 300 DPI for print deliverables, 150 DPI for screens.</li>
+                <li>Embed fonts to maintain branding.</li>
+                <li>Automate metadata scrubbing for privacy.</li>
+                <li>Keep CLI presets for recurring workflows.</li>
+              </ul>
+            </div>
+            <h2>Advanced Techniques for Power Users</h2>
+            <p>Batch convert with <code>for file in *.pptx; do soffice --headless --convert-to pdf "$file"; done</code>. Build FFmpeg filters (<code>ffmpeg -i input.mp4 -vn -af loudnorm -b:a 320k output.mp3</code>). Harness ImageMagick (<code>convert *.jpg -resize 595x842 -quality 90 booklet.pdf</code>).</p>
+            <h2>Troubleshooting Common Conversion Issues</h2>
+            <div class="suite-info-block"><strong>Font issues?</strong> Embed fonts or convert text to outlines before exporting.</div>
+            <div class="suite-info-block"><strong>Layout shifts?</strong> Align page sizes between source and destination.</div>
+            <div class="suite-info-block"><strong>Image quality?</strong> Increase DPI or switch to lossless workflows.</div>
+            <h2>Final Thoughts on Free Conversion Tools</h2>
+            <p>The open-source ecosystem covers every routine conversion. Pair our tool pages with LibreOffice, Ghostscript, ImageMagick, Inkscape, pdf.js, FFmpeg, or eSpeak NG and you have enterprise-grade capability without recurring fees.</p>
+            <h2>Citations &amp; Sources</h2>
+            <div class="suite-tip">
+              <ul>
+                <li><a class="text-primary" href="https://www.libreoffice.org" target="_blank" rel="noopener">LibreOffice</a></li>
+                <li><a class="text-primary" href="https://github.com/mozilla/pdf.js" target="_blank" rel="noopener">pdf.js</a></li>
+                <li><a class="text-primary" href="https://gimp.org" target="_blank" rel="noopener">GIMP</a></li>
+                <li><a class="text-primary" href="https://inkscape.org" target="_blank" rel="noopener">Inkscape</a></li>
+                <li><a class="text-primary" href="https://ffmpeg.org" target="_blank" rel="noopener">FFmpeg</a></li>
+                <li><a class="text-primary" href="https://ghostscript.com" target="_blank" rel="noopener">Ghostscript / GhostXPS</a></li>
+                <li><a class="text-primary" href="https://yt-dlp.org" target="_blank" rel="noopener">yt-dlp</a></li>
+                <li><a class="text-primary" href="https://imagemagick.org" target="_blank" rel="noopener">ImageMagick</a></li>
+                <li><a class="text-primary" href="https://jupyter.org" target="_blank" rel="noopener">Jupyter nbconvert</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="suite-faq" id="faq">
+        <div class="suite-container">
+          <h2 class="suite-section-title">Frequently Asked Questions</h2>
+          <p class="suite-section-subtitle">Common questions about free PDF conversion tools</p>
+          <div class="suite-faq-item">
+            <h3><i class="fas fa-question-circle mr-2"></i>How can I convert Word to PDF for free?</h3>
+            <p>You can convert Word to PDF using LibreOffice, Google Docs, or browser print-to-PDF. All of them are free and keep your formatting intact.</p>
+          </div>
+          <div class="suite-faq-item">
+            <h3><i class="fas fa-question-circle mr-2"></i>Are there free alternatives to paid PDF converters?</h3>
+            <p>Yes. LibreOffice, GIMP, Inkscape, pdf.js, ImageMagick, FFmpeg, and Ghostscript cover virtually every conversion for zero dollars.</p>
+          </div>
+          <div class="suite-faq-item">
+            <h3><i class="fas fa-question-circle mr-2"></i>Can I convert PDF to PPT without installing software?</h3>
+            <p>Our dedicated PDF → PPT page shows a browser-based flow using pdf.js + PptxGenJS, so you stay local and private.</p>
+          </div>
+          <div class="suite-faq-item">
+            <h3><i class="fas fa-question-circle mr-2"></i>Is it safe to convert files using free tools?</h3>
+            <p>When you stay with reputable open-source projects, you control the entire pipeline. For sensitive material, run everything offline.</p>
+          </div>
+          <div class="suite-faq-item">
+            <h3><i class="fas fa-question-circle mr-2"></i>What's the best free tool for converting DWG to PDF?</h3>
+            <p>LibreCAD handles DWG ⇄ PDF for 2D drawings, while FreeCAD covers 3D contexts. Both are MIT/GPL licensed.</p>
+          </div>
+          <div class="suite-faq-item">
+            <h3><i class="fas fa-question-circle mr-2"></i>How do I convert IPYNB (Jupyter Notebook) to PDF?</h3>
+            <p>Use <code>jupyter nbconvert --to pdf notebook.ipynb</code> with TeX Live installed, or print from your browser.</p>
+          </div>
+          <div class="suite-faq-item">
+            <h3><i class="fas fa-question-circle mr-2"></i>Can I batch convert multiple files at once?</h3>
+            <p>Absolutely. LibreOffice, ImageMagick, FFmpeg, and Ghostscript all expose batch-friendly CLI interfaces.</p>
+          </div>
+          <div class="suite-faq-item">
+            <h3><i class="fas fa-question-circle mr-2"></i>What's the difference between free and paid converters?</h3>
+            <p>Free tools keep everything local, offer unlimited conversions, and are scriptable. Paid SaaS mostly resells the same open-source engines with a price tag.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="suite-cta">
+        <div class="suite-container">
+          <h2>Start Converting Your Files Today</h2>
+          <p>Join thousands of teams who trust Visual Illusionist PDF Suite for zero-cost conversions. No registration, no hidden fees, no waiting.</p>
+          <a href="#tools" class="suite-btn" style="background:#fff;color:#667eea;">Browse the Tool Catalog</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-auto bg-white/80 py-6 text-center text-sm text-muted-light shadow-inner dark:bg-background-dark/70 dark:text-muted-dark">
+      <div class="flex flex-wrap justify-center gap-4 font-semibold">
+        <a href="index.html" class="hover:text-primary">Home</a>
+        <a href="about.html" class="hover:text-primary">About</a>
+        <a href="projects.html" class="hover:text-primary">Projects</a>
+        <a href="tools.html" class="hover:text-primary">Tools</a>
+        <a href="contact.html" class="hover:text-primary">Contact</a>
+      </div>
+      <p class="mt-3 text-xs">© <span id="yearSpan"></span> Visual Illusionist. Built entirely with free resources.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

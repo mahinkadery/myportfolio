@@ -1,0 +1,202 @@
+/* Common Styles for Portfolio */
+
+@font-face {
+    font-family: "FoundationOne";
+    src: url("fonts/FoundationOne-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Background Patterns - Standardized */
+body {
+    background: linear-gradient(180deg, #FDFDFD, #F5F5F5);
+    background-image: 
+        radial-gradient(circle at top left, rgba(43, 108, 238, 0.08) 0%, transparent 30%),
+        radial-gradient(circle at bottom right, rgba(43, 108, 238, 0.08) 0%, transparent 30%),
+        radial-gradient(#1111111a 0.5px, transparent 0.5px);
+    background-size: 100% 100%, 100% 100%, 16px 16px;
+}
+
+.dark body {
+    background: #101622;
+    background-image: 
+        radial-gradient(circle at top left, rgba(43, 108, 238, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at bottom right, rgba(43, 108, 238, 0.1) 0%, transparent 30%),
+        radial-gradient(#ffffff1a 0.5px, transparent 0.5px);
+    background-size: 100% 100%, 100% 100%, 16px 16px;
+}
+
+.font-display {
+    font-family: "Space Grotesk", "Inter", "system-ui", sans-serif;
+}
+
+.dotted-bg {
+    background-color: #f5f5f7;
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.04) 1px, transparent 0),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
+    background-size: 20px 20px, auto;
+}
+
+.dark .dotted-bg {
+    background-color: #050712;
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0),
+        linear-gradient(180deg, rgba(5, 7, 18, 0.9), rgba(5, 7, 18, 1));
+}
+
+/* Glassmorphism Effect - Standardized */
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glassmorphism {
+    background: rgba(26, 36, 55, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glass Effect Alternative */
+.glass-effect {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+    background-color: rgba(26, 36, 55, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Shadows */
+.soft-shadow {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+.dark .soft-shadow {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Card Hover Effects */
+.card-hover {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.card-hover:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) scale(1.02);
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dark .card-hover:hover {
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Project Cards */
+.project-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.project-card:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.dark .project-card:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* Form Inputs */
+.form-input {
+    transition: all 0.2s ease-in-out;
+}
+
+.form-input:focus {
+    box-shadow: 0 0 0 2px #2b6cee;
+    border-color: #2b6cee;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 20px;
+}
+
+.brand-title {
+    font-family: "FoundationOne", "Space Grotesk", sans-serif;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+}
+
+.dropdown-menu {
+    width: min(22rem, 80vw);
+    max-height: 22rem;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.dropdown-menu > a:first-child,
+.dropdown-menu > a:nth-child(2),
+.dropdown-menu > div[data-tools-menu] {
+    grid-column: span 2;
+}
+
+.dropdown-menu [data-tools-menu] {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.3rem;
+    padding-top: 0.4rem;
+}
+
+/* Glass Tags */
+.glass-tag {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-tag {
+    background-color: rgba(30, 41, 59, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+/* Mobile Menu */
+#mobileMenu {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Smooth transitions */
+* {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+    outline: 2px solid #2b6cee;
+    outline-offset: 2px;
+}
+
+/* Selection colors */
+::selection {
+    background-color: rgba(43, 108, 238, 0.2);
+    color: #2b6cee;
+}
+
+[data-drop-zone].is-dragging {
+    border-color: rgba(43, 108, 238, 0.5) !important;
+    background-color: rgba(43, 108, 238, 0.05) !important;
+}
+

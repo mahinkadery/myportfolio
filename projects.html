@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="View Mahin's IT projects - AI chatbots, data visualization platforms, and mobile applications."/>
+<title>Projects - Visual Illusionist</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-image:
+                radial-gradient(circle at 15% 15%, rgba(43, 108, 238, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 85% 85%, rgba(43, 108, 238, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 90% 10%, rgba(43, 108, 238, 0.08) 0%, transparent 25%);
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.5);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glassmorphism {
+            background: rgba(16, 22, 34, 0.5);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .project-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .project-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        .dark .project-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2b6cee",
+              "background-light": "#f5f5f7",
+              "background-dark": "#0A0A0A",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#0A0A0A] dark:text-[#E1E1E1] selection:bg-primary/20 selection:text-primary">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Sticky TopNavBar -->
+<div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
+<header class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg">
+<a href="index.html" class="flex items-center gap-3">
+<div class="flex items-center">
+<img src="logo.png" alt="Visual Illusionist" class="h-8 md:h-10 w-auto object-contain dark:hidden">
+<img src="darkmodelogo.png" alt="Visual Illusionist" class="h-8 md:h-10 w-auto object-contain hidden dark:block">
+</div>
+<span class="brand-title text-[10px] sm:text-xs md:text-sm text-[#0A0A0A] dark:text-[#E1E1E1] whitespace-nowrap">Visual Illusionist</span>
+</a>
+<div class="hidden sm:flex items-center justify-end gap-6">
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-sm font-medium hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-sm font-medium hover:text-primary transition-colors" href="about.html">About</a>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-sm font-medium hover:text-primary transition-colors" href="Studies.html">Studies</a>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-sm font-medium hover:text-primary transition-colors" href="projects.html">Projects</a>
+<div class="relative" data-dropdown>
+<button type="button" class="flex items-center gap-1 text-[#0A0A0A] dark:text-[#E1E1E1] text-sm font-medium hover:text-primary transition-colors" data-dropdown-toggle>
+<span>Tools</span>
+<span class="material-symbols-outlined text-xs transition-transform duration-200" data-dropdown-icon>expand_more</span>
+</button>
+<div data-dropdown-menu class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
+<a class="block px-3 py-2 text-sm text-[#0A0A0A] dark:text-[#E1E1E1] hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors" href="tools.html">All Tools</a>
+<a class="block px-3 py-2 text-sm text-[#0A0A0A] dark:text-[#E1E1E1] hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors" href="pdf-suite.html">PDF Suite</a>
+<div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu></div>
+</div>
+</div>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-sm font-medium hover:text-primary transition-colors" href="contact.html">Contact</a>
+<button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#0A0A0A] dark:text-[#E1E1E1]">dark_mode</span>
+</button>
+</div>
+<button id="mobileMenuBtn" class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#0A0A0A] dark:text-[#E1E1E1]">menu</span>
+</button>
+</header>
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+<div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+<div class="flex justify-end">
+<button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+<span class="material-symbols-outlined text-[#0A0A0A] dark:text-[#E1E1E1]">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-4">
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-base font-medium hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-base font-medium hover:text-primary transition-colors" href="about.html">About</a>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-base font-medium hover:text-primary transition-colors" href="Studies.html">Studies</a>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-base font-medium hover:text-primary transition-colors" href="projects.html">Projects</a>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-base font-medium hover:text-primary transition-colors" href="tools.html">Tools</a>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-base font-medium hover:text-primary transition-colors pl-3" href="pdf-suite.html">PDF Suite</a>
+<a class="text-[#0A0A0A] dark:text-[#E1E1E1] text-base font-medium hover:text-primary transition-colors" href="contact.html">Contact</a>
+<div class="pt-4 border-t border-black/10 dark:border-white/10">
+<p class="text-xs uppercase tracking-[0.3em] text-[#555] dark:text-gray-400">PDF Suite tools</p>
+<div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
+</div>
+</nav>
+<button id="darkModeToggleMobile" class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[#0A0A0A] dark:text-[#E1E1E1]">dark_mode</span>
+<span class="text-[#0A0A0A] dark:text-[#E1E1E1] text-sm font-medium">Toggle Theme</span>
+</button>
+</div>
+</div>
+</div>
+<div class="layout-container flex h-full grow flex-col pt-32 sm:pt-36">
+<div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-[1200px] flex-1">
+<main class="flex flex-col gap-10 py-10">
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<div class="flex min-w-72 flex-col gap-3">
+<p class="text-5xl font-black leading-tight tracking-[-0.033em] text-[#0A0A0A] dark:text-white">My Work</p>
+<p class="text-lg font-normal leading-normal text-[#B0B0B0]">A collection of my projects in Information Technology.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+<!-- Card 1 -->
+<div class="project-card">
+<div class="flex h-full flex-col items-stretch justify-start rounded-lg glassmorphism shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.2)]">
+<div class="flex h-full flex-col items-stretch justify-between gap-4 p-6">
+<div class="flex flex-col gap-3">
+<p class="text-xl font-bold leading-tight tracking-[-0.015em] text-[#0A0A0A] dark:text-white">AI-Powered Chatbot</p>
+<p class="text-base font-normal leading-normal text-[#B0B0B0]">A conversational AI designed to assist users with real-time information and support.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">React</span>
+<span class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Node.js</span>
+<span class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Three.js</span>
+</div>
+</div>
+<button class="mt-4 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 glassmorphism text-[#0A0A0A] dark:text-white text-sm font-medium leading-normal group hover:bg-primary/80 dark:hover:bg-primary/80 hover:text-white dark:hover:text-white transition-all duration-300">
+<span class="truncate">View Details</span>
+<span class="material-symbols-outlined ml-1 text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="project-card">
+<div class="flex h-full flex-col items-stretch justify-start rounded-lg glassmorphism shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.2)]">
+<div class="flex h-full flex-col items-stretch justify-between gap-4 p-6">
+<div class="flex flex-col gap-3">
+<p class="text-xl font-bold leading-tight tracking-[-0.015em] text-[#0A0A0A] dark:text-white">Data Visualization Platform</p>
+<p class="text-base font-normal leading-normal text-[#B0B0B0]">An interactive dashboard for visualizing complex datasets with dynamic charts and graphs.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">D3.js</span>
+<span class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Python</span>
+<span class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Flask</span>
+</div>
+</div>
+<button class="mt-4 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 glassmorphism text-[#0A0A0A] dark:text-white text-sm font-medium leading-normal group hover:bg-primary/80 dark:hover:bg-primary/80 hover:text-white dark:hover:text-white transition-all duration-300">
+<span class="truncate">View Details</span>
+<span class="material-symbols-outlined ml-1 text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="project-card">
+<div class="flex h-full flex-col items-stretch justify-start rounded-lg glassmorphism shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.2)]">
+<div class="flex h-full flex-col items-stretch justify-between gap-4 p-6">
+<div class="flex flex-col gap-3">
+<p class="text-xl font-bold leading-tight tracking-[-0.015em] text-[#0A0A0A] dark:text-white">Mobile Task Manager</p>
+<p class="text-base font-normal leading-normal text-[#B0B0B0]">A productivity app for iOS and Android to help users organize their daily tasks efficiently.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">SwiftUI</span>
+<span class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Kotlin</span>
+<span class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Firebase</span>
+</div>
+</div>
+<button class="mt-4 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 glassmorphism text-[#0A0A0A] dark:text-white text-sm font-medium leading-normal group hover:bg-primary/80 dark:hover:bg-primary/80 hover:text-white dark:hover:text-white transition-all duration-300">
+<span class="truncate">View Details</span>
+<span class="material-symbols-outlined ml-1 text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+<script src="script.js"></script>
+</body></html>
