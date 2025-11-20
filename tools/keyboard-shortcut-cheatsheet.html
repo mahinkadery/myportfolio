@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keyboard Shortcut Cheat Sheet – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div class="text-center">
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Study Tools</p>
+          <h1 class="mt-2 text-3xl font-bold">Keyboard Shortcut Cheat Sheet</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Filter shortcuts for VS Code, macOS, or Windows to work faster.</p>
+        </div>
+
+        <input id="shortcutSearch" placeholder="Search (e.g. copy, terminal)" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+
+        <div id="shortcutList" class="space-y-3"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const shortcuts = [
+      { keys: '⌘ + C / Ctrl + C', desc: 'Copy selection' },
+      { keys: '⌘ + V / Ctrl + V', desc: 'Paste clipboard' },
+      { keys: '⌘ + Shift + P / Ctrl + Shift + P', desc: 'Command palette (VS Code)' },
+      { keys: '⌘ + B / Ctrl + B', desc: 'Toggle sidebar in VS Code' },
+      { keys: '⌘ + Space', desc: 'Spotlight search (macOS)' },
+      { keys: 'Alt + Tab', desc: 'Switch between open apps (Windows)' },
+      { keys: '⌘ + Option + Esc / Ctrl + Shift + Esc', desc: 'Force quit / Task manager' },
+      { keys: '⌘ + Shift + 4 / Win + Shift + S', desc: 'Screenshot area selection' },
+      { keys: '⌘ + L / Ctrl + L', desc: 'Focus browser address bar' },
+      { keys: '⌘ + T / Ctrl + T', desc: 'Open new browser tab' }
+    ];
+
+    const listEl = document.getElementById('shortcutList');
+    const render = (filter='') => {
+      listEl.innerHTML = '';
+      shortcuts
+        .filter(item => item.keys.toLowerCase().includes(filter.toLowerCase()) || item.desc.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 flex justify-between gap-4';
+          card.innerHTML = `<span class="font-semibold">${item.desc}</span><span class="text-sm text-muted-light dark:text-muted-dark">${item.keys}</span>`;
+          listEl.appendChild(card);
+        });
+      if (!listEl.children.length) {
+        listEl.innerHTML = '<p class="text-sm text-muted-light dark:text-muted-dark text-center">No shortcuts match your search.</p>';
+      }
+    };
+
+    document.getElementById('shortcutSearch').addEventListener('input', (e) => render(e.target.value));
+    render();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

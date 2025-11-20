@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tech Stack Compatibility Quiz – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:720px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div class="text-center">
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Portfolio Tools</p>
+          <h1 class="mt-2 text-3xl font-bold">Tech Stack Compatibility Quiz</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Answer a few quick questions to get a recommended tech stack.</p>
+        </div>
+
+        <form id="techQuiz" class="space-y-5">
+          <div>
+            <p class="font-semibold mb-2">Preferred platform?</p>
+            <label class="block"><input type="radio" name="platform" value="web" checked> Web apps</label>
+            <label class="block"><input type="radio" name="platform" value="mobile"> Mobile</label>
+            <label class="block"><input type="radio" name="platform" value="data"> Data / ML</label>
+          </div>
+          <div>
+            <p class="font-semibold mb-2">Team size?</p>
+            <label class="block"><input type="radio" name="team" value="solo" checked> Solo builder</label>
+            <label class="block"><input type="radio" name="team" value="small"> Small squad</label>
+            <label class="block"><input type="radio" name="team" value="enterprise"> Enterprise scale</label>
+          </div>
+          <div>
+            <p class="font-semibold mb-2">Speed vs robustness?</p>
+            <label class="block"><input type="radio" name="style" value="rapid" checked> Rapid prototyping</label>
+            <label class="block"><input type="radio" name="style" value="balanced"> Balanced</label>
+            <label class="block"><input type="radio" name="style" value="robust"> Robust & scalable</label>
+          </div>
+        </form>
+
+        <button id="quizBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Show my stack</button>
+        <p id="quizResult" class="text-lg font-semibold text-center">Your recommendation will appear here.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const recommendations = {
+      web: {
+        rapid: 'React + Tailwind + Firebase',
+        balanced: 'Next.js + TypeScript + Supabase',
+        robust: 'Angular + NX + AWS'
+      },
+      mobile: {
+        rapid: 'React Native + Expo',
+        balanced: 'Flutter + Firebase',
+        robust: 'Kotlin Multiplatform + AWS Amplify'
+      },
+      data: {
+        rapid: 'Python + Jupyter + Streamlit',
+        balanced: 'FastAPI + PostgreSQL + Docker',
+        robust: 'Spark + Kafka + Kubernetes'
+      }
+    };
+
+    document.getElementById('quizBtn').addEventListener('click', () => {
+      const answers = new FormData(document.getElementById('techQuiz'));
+      const platform = answers.get('platform');
+      const style = answers.get('style');
+      const result = recommendations[platform][style];
+      document.getElementById('quizResult').textContent = `Recommended stack: ${result}`;
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

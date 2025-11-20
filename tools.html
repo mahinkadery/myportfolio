@@ -45,6 +45,49 @@
     .dark .dotted-bg {
         background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
     }
+
+    /* Search Bar with Neon Animation */
+    .search-container {
+        position: relative;
+        padding: 2px;
+        border-radius: 1rem;
+    }
+
+    .neon-ring {
+        position: absolute;
+        inset: -2px;
+        border-radius: 1rem;
+        background: linear-gradient(45deg, #2b6cee, #00d9ff, #2b6cee);
+        background-size: 300% 300%;
+        opacity: 0.6;
+        filter: blur(8px);
+        animation: neon-glow 3s ease-in-out infinite;
+        z-index: -1;
+    }
+
+    @keyframes neon-glow {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+    /* Open Button Glow Effect */
+    .open-btn-glow {
+        transition: all 0.3s ease;
+    }
+
+    .open-btn-glow:hover {
+        box-shadow: 0 0 20px rgba(43, 108, 238, 0.6), 0 0 40px rgba(43, 108, 238, 0.4), 0 0 60px rgba(43, 108, 238, 0.2);
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+    }
+
+    .dark .open-btn-glow:hover {
+        box-shadow: 0 0 20px rgba(43, 108, 238, 0.8), 0 0 40px rgba(43, 108, 238, 0.6), 0 0 60px rgba(0, 217, 255, 0.4);
+    }
   </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display dotted-bg">
@@ -73,7 +116,7 @@
 </button>
 <div data-dropdown-menu class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
 <a class="block px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="tools.html">All Tools</a>
-<a class="block px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="pdf-suite.html">PDF Suite</a>
+
 <div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu></div>
 </div>
 </div>
@@ -120,11 +163,28 @@
 <!-- Page Heading -->
 <div class="flex flex-col gap-3">
 <h1 class="text-4xl font-bold tracking-tighter text-text-light dark:text-text-dark sm:text-5xl md:text-6xl">Free Tools</h1>
-<p class="text-base text-text-muted-light dark:text-text-muted-dark md:text-lg">A collection of PDF and media utilities available for free.</p>
+<p class="text-base text-text-muted-light dark:text-text-muted-dark md:text-lg">Browse mini apps by category—writing helpers, converters, developer utilities, and more.</p>
 </div>
-<!-- Text Grid -->
+
+    <!-- Search Bar -->
+    <div class="relative w-full max-w-2xl">
+      <div class="search-container relative">
+        <div class="neon-ring"></div>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search tools by name or description..." 
+          class="search-input w-full rounded-2xl border border-white/40 bg-white/70 dark:border-white/10 dark:bg-background-dark/60 px-6 py-4 text-sm text-text-light dark:text-text-dark placeholder:text-muted-light dark:placeholder:text-muted-dark focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+        />
+        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-muted-light dark:text-muted-dark pointer-events-none">search</span>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div id="toolsFilters" class="flex w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/40 bg-white/70 px-4 py-3 text-sm font-semibold shadow-inner dark:border-white/10 dark:bg-background-dark/60"></div>
+
+    <!-- Text Grid -->
       <div id="toolsHubGrid" class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
-      <p class="mt-8 max-w-3xl text-sm text-text-muted-light dark:text-text-muted-dark">Browse every Visual Illusionist workflow from one screen—launch convert pdf to ppt, convert word to pdf, convert ppt to pdf, convert dwg to pdf, pdf to audio converter, and the full PDF Suite of desktop-friendly recipes built entirely on free tooling.</p>
 </div>
 </section>
 </main>

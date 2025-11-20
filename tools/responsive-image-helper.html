@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Image Helper – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Responsive Image Helper</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Generate &lt;img srcset&gt; and &lt;picture&gt; examples for responsive images.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Base Image URL:</label>
+            <input id="baseUrl" type="text" placeholder="image.jpg" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 font-mono text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Alt Text:</label>
+            <input id="altText" type="text" placeholder="Descriptive alt text" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Image Sizes (comma-separated, e.g., 320,640,1024,1920):</label>
+          <input id="imageSizes" type="text" placeholder="320,640,1024,1920" value="320,640,1024,1920" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 font-mono text-sm">
+        </div>
+
+        <div class="flex gap-3">
+          <button id="generateSrcset" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Generate srcset</button>
+          <button id="generatePicture" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Generate picture</button>
+        </div>
+
+        <div id="outputBox" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4">
+          <p class="text-muted-light dark:text-muted-dark">Generated code will appear here.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const baseUrl = document.getElementById('baseUrl');
+    const altText = document.getElementById('altText');
+    const imageSizes = document.getElementById('imageSizes');
+    const generateSrcset = document.getElementById('generateSrcset');
+    const generatePicture = document.getElementById('generatePicture');
+    const outputBox = document.getElementById('outputBox');
+
+    function getFileName(url) {
+      const parts = url.split('/');
+      const fileName = parts[parts.length - 1];
+      const extMatch = fileName.match(/\.(\w+)$/);
+      const ext = extMatch ? extMatch[1] : 'jpg';
+      const nameWithoutExt = fileName.replace(/\.\w+$/, '');
+      return { name: nameWithoutExt, ext };
+    }
+
+    generateSrcset.addEventListener('click', () => {
+      const url = baseUrl.value.trim() || 'image.jpg';
+      const alt = altText.value.trim() || 'Responsive image';
+      const sizesStr = imageSizes.value.trim() || '320,640,1024,1920';
+      const sizes = sizesStr.split(',').map(s => parseInt(s.trim(), 10)).filter(s => !isNaN(s)).sort((a, b) => a - b);
+
+      if (sizes.length === 0) {
+        outputBox.innerHTML = '<p class="text-red-500">Please enter valid image sizes.</p>';
+        return;
+      }
+
+      const { name, ext } = getFileName(url);
+      const srcset = sizes.map(size => `${name}-${size}w.${ext} ${size}w`).join(',\n    ');
+      const maxSize = sizes[sizes.length - 1];
+
+      const html = `<img
+  src="${name}-${maxSize}w.${ext}"
+  srcset="${srcset}"
+  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+  alt="${alt}"
+  loading="lazy"
+>`;
+
+      outputBox.innerHTML = `
+        <div class="space-y-3">
+          <p class="text-sm font-semibold text-text-light dark:text-text-dark">Generated &lt;img srcset&gt; Code:</p>
+          <pre class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4 font-mono text-xs overflow-auto"><code>${html}</code></pre>
+          <button id="copyCodeBtn" class="rounded-full border border-white/40 px-4 py-2 text-xs font-semibold text-text-light dark:text-text-dark">Copy Code</button>
+        </div>
+      `;
+
+      document.getElementById('copyCodeBtn').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(html);
+          const btn = document.getElementById('copyCodeBtn');
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = 'Copy Code'; }, 2000);
+        } catch (error) {
+          alert('Failed to copy: ' + error.message);
+        }
+      });
+    });
+
+    generatePicture.addEventListener('click', () => {
+      const url = baseUrl.value.trim() || 'image.jpg';
+      const alt = altText.value.trim() || 'Responsive image';
+      const sizesStr = imageSizes.value.trim() || '320,640,1024,1920';
+      const sizes = sizesStr.split(',').map(s => parseInt(s.trim(), 10)).filter(s => !isNaN(s)).sort((a, b) => a - b);
+
+      if (sizes.length === 0) {
+        outputBox.innerHTML = '<p class="text-red-500">Please enter valid image sizes.</p>';
+        return;
+      }
+
+      const { name, ext } = getFileName(url);
+      const srcset = sizes.map(size => `${name}-${size}w.${ext} ${size}w`).join(',\n      ');
+      const maxSize = sizes[sizes.length - 1];
+
+      const html = `<picture>
+  <source
+    media="(max-width: 640px)"
+    srcset="${sizes.filter(s => s <= 640).map(size => `${name}-${size}w.${ext} ${size}w`).join(', ')}"
+  >
+  <source
+    media="(max-width: 1024px)"
+    srcset="${sizes.filter(s => s > 640 && s <= 1024).map(size => `${name}-${size}w.${ext} ${size}w`).join(', ')}"
+  >
+  <img
+    src="${name}-${maxSize}w.${ext}"
+    srcset="${srcset}"
+    alt="${alt}"
+    loading="lazy"
+  >
+</picture>`;
+
+      outputBox.innerHTML = `
+        <div class="space-y-3">
+          <p class="text-sm font-semibold text-text-light dark:text-text-dark">Generated &lt;picture&gt; Code:</p>
+          <pre class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4 font-mono text-xs overflow-auto"><code>${html}</code></pre>
+          <button id="copyCodeBtn" class="rounded-full border border-white/40 px-4 py-2 text-xs font-semibold text-text-light dark:text-text-dark">Copy Code</button>
+        </div>
+      `;
+
+      document.getElementById('copyCodeBtn').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(html);
+          const btn = document.getElementById('copyCodeBtn');
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = 'Copy Code'; }, 2000);
+        } catch (error) {
+          alert('Failed to copy: ' + error.message);
+        }
+      });
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

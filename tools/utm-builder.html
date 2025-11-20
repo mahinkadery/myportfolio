@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>URL Builder for UTM Tags – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">URL Builder for UTM Tags</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Build URLs with UTM parameters for tracking campaign performance.</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Base URL:</label>
+          <input id="baseUrl" type="text" placeholder="https://example.com/page" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 font-mono text-sm">
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">UTM Source:</label>
+            <input id="utmSource" type="text" placeholder="google, newsletter, social" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">UTM Medium:</label>
+            <input id="utmMedium" type="text" placeholder="email, cpc, social" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">UTM Campaign:</label>
+            <input id="utmCampaign" type="text" placeholder="summer_sale, product_launch" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">UTM Term (optional):</label>
+            <input id="utmTerm" type="text" placeholder="keywords for paid search" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">UTM Content (optional):</label>
+            <input id="utmContent" type="text" placeholder="logolink, textlink" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+        </div>
+
+        <button id="buildBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Build URL</button>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Generated URL with UTM Tags:</label>
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4">
+            <code id="urlOutput" class="font-mono text-xs break-all text-text-light dark:text-text-dark">Generated URL will appear here...</code>
+          </div>
+        </div>
+
+        <button id="copyBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Copy URL</button>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
+          <p class="text-sm font-semibold mb-2 text-text-light dark:text-text-dark">UTM Parameter Guide:</p>
+          <ul class="text-xs space-y-1 text-blue-800 dark:text-blue-200">
+            <li><strong>Source (utm_source):</strong> The referrer (e.g., google, newsletter, facebook)</li>
+            <li><strong>Medium (utm_medium):</strong> Marketing medium (e.g., email, cpc, social, organic)</li>
+            <li><strong>Campaign (utm_campaign):</strong> Product, promo code, or slogan (e.g., spring_sale)</li>
+            <li><strong>Term (utm_term):</strong> Paid search keywords (usually for paid campaigns)</li>
+            <li><strong>Content (utm_content):</strong> Differentiates similar content (e.g., logolink vs textlink)</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const baseUrl = document.getElementById('baseUrl');
+    const utmSource = document.getElementById('utmSource');
+    const utmMedium = document.getElementById('utmMedium');
+    const utmCampaign = document.getElementById('utmCampaign');
+    const utmTerm = document.getElementById('utmTerm');
+    const utmContent = document.getElementById('utmContent');
+    const buildBtn = document.getElementById('buildBtn');
+    const urlOutput = document.getElementById('urlOutput');
+    const copyBtn = document.getElementById('copyBtn');
+
+    function buildUrl() {
+      const base = baseUrl.value.trim();
+      if (!base) {
+        urlOutput.textContent = 'Please enter a base URL.';
+        return;
+      }
+
+      const params = [];
+      if (utmSource.value.trim()) params.push(`utm_source=${encodeURIComponent(utmSource.value.trim())}`);
+      if (utmMedium.value.trim()) params.push(`utm_medium=${encodeURIComponent(utmMedium.value.trim())}`);
+      if (utmCampaign.value.trim()) params.push(`utm_campaign=${encodeURIComponent(utmCampaign.value.trim())}`);
+      if (utmTerm.value.trim()) params.push(`utm_term=${encodeURIComponent(utmTerm.value.trim())}`);
+      if (utmContent.value.trim()) params.push(`utm_content=${encodeURIComponent(utmContent.value.trim())}`);
+
+      const url = base + (params.length > 0 ? (base.includes('?') ? '&' : '?') + params.join('&') : '');
+      urlOutput.textContent = url;
+    }
+
+    buildBtn.addEventListener('click', buildUrl);
+
+    // Auto-update on input
+    [baseUrl, utmSource, utmMedium, utmCampaign, utmTerm, utmContent].forEach(input => {
+      input.addEventListener('input', buildUrl);
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const url = urlOutput.textContent;
+      if (!url || url.includes('will appear here')) {
+        alert('Please build a URL first.');
+        return;
+      }
+      
+      try {
+        await navigator.clipboard.writeText(url);
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => { copyBtn.textContent = 'Copy URL'; }, 2000);
+      } catch (error) {
+        alert('Failed to copy: ' + error.message);
+      }
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

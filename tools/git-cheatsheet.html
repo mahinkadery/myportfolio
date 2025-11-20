@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Git Command Cheat Sheet – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Git Command Cheat Sheet</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Searchable reference for common Git commands and explanations.</p>
+        </div>
+
+        <input id="gitSearch" type="text" placeholder="Search Git commands (e.g., commit, push, branch)..." class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+
+        <div class="flex gap-2 flex-wrap">
+          <button data-filter="all" class="filter-btn active rounded-full px-4 py-2 text-sm font-semibold bg-primary text-white">All</button>
+          <button data-filter="Basic" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">Basic</button>
+          <button data-filter="Branch" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">Branch</button>
+          <button data-filter="Remote" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">Remote</button>
+          <button data-filter="History" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">History</button>
+          <button data-filter="Merge" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">Merge</button>
+        </div>
+
+        <div id="gitResults" class="space-y-3">
+          <!-- Git commands will be injected here -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const gitCommands = [
+      { command: 'git init', category: 'Basic', description: 'Initialize a new Git repository in the current directory.' },
+      { command: 'git clone <url>', category: 'Basic', description: 'Clone a repository from a remote URL.' },
+      { command: 'git status', category: 'Basic', description: 'Show the working tree status.' },
+      { command: 'git add <file>', category: 'Basic', description: 'Stage a file for commit.' },
+      { command: 'git add .', category: 'Basic', description: 'Stage all changes in the current directory.' },
+      { command: 'git commit -m "message"', category: 'Basic', description: 'Commit staged changes with a message.' },
+      { command: 'git push', category: 'Basic', description: 'Push commits to the remote repository.' },
+      { command: 'git pull', category: 'Basic', description: 'Fetch and merge changes from remote.' },
+      { command: 'git log', category: 'History', description: 'Show commit history.' },
+      { command: 'git log --oneline', category: 'History', description: 'Show compact commit history.' },
+      { command: 'git log --graph', category: 'History', description: 'Show commit history with branch graph.' },
+      { command: 'git diff', category: 'History', description: 'Show changes between working directory and staging area.' },
+      { command: 'git diff HEAD', category: 'History', description: 'Show changes between working directory and last commit.' },
+      { command: 'git branch', category: 'Branch', description: 'List all local branches.' },
+      { command: 'git branch <name>', category: 'Branch', description: 'Create a new branch.' },
+      { command: 'git checkout <branch>', category: 'Branch', description: 'Switch to a different branch.' },
+      { command: 'git checkout -b <name>', category: 'Branch', description: 'Create and switch to a new branch.' },
+      { command: 'git merge <branch>', category: 'Merge', description: 'Merge a branch into the current branch.' },
+      { command: 'git rebase <branch>', category: 'Merge', description: 'Rebase current branch onto another branch.' },
+      { command: 'git remote -v', category: 'Remote', description: 'List remote repositories.' },
+      { command: 'git remote add <name> <url>', category: 'Remote', description: 'Add a remote repository.' },
+      { command: 'git fetch', category: 'Remote', description: 'Download objects from remote without merging.' },
+      { command: 'git reset HEAD <file>', category: 'Basic', description: 'Unstage a file.' },
+      { command: 'git reset --soft HEAD^', category: 'History', description: 'Undo last commit, keep changes staged.' },
+      { command: 'git reset --hard HEAD^', category: 'History', description: 'Undo last commit and discard changes.' },
+      { command: 'git stash', category: 'Basic', description: 'Temporarily save uncommitted changes.' },
+      { command: 'git stash pop', category: 'Basic', description: 'Apply and remove the most recent stash.' },
+      { command: 'git tag <name>', category: 'Basic', description: 'Create a lightweight tag.' },
+      { command: 'git tag -a <name> -m "message"', category: 'Basic', description: 'Create an annotated tag with a message.' }
+    ];
+
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    function renderCommands() {
+      const container = document.getElementById('gitResults');
+      container.innerHTML = '';
+
+      const filtered = gitCommands.filter(cmd => {
+        const matchesFilter = activeFilter === 'all' || cmd.category === activeFilter;
+        const matchesSearch = !searchQuery || 
+          cmd.command.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          cmd.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          cmd.category.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="text-center text-muted-light dark:text-muted-dark">No commands found.</p>';
+        return;
+      }
+
+      filtered.forEach(cmd => {
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow';
+        card.innerHTML = `
+          <div class="flex items-start justify-between mb-2">
+            <code class="font-mono font-semibold text-sm text-primary break-all">${cmd.command}</code>
+            <span class="text-xs px-2 py-1 rounded-full bg-white/80 dark:bg-background-dark/80 text-muted-light dark:text-muted-dark ml-2 whitespace-nowrap">${cmd.category}</span>
+          </div>
+          <p class="text-sm text-muted-light dark:text-muted-dark">${cmd.description}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById('gitSearch').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderCommands();
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('active', 'bg-primary', 'text-white');
+          b.classList.add('border', 'border-white/40', 'text-text-light', 'dark:text-text-dark');
+        });
+        btn.classList.add('active', 'bg-primary', 'text-white');
+        btn.classList.remove('border', 'border-white/40', 'text-text-light', 'dark:text-text-dark');
+        activeFilter = btn.dataset.filter;
+        renderCommands();
+      });
+    });
+
+    renderCommands();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

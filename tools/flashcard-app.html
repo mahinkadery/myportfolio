@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcard App – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:960px;margin:0 auto;}
+    .card{min-height:160px;border-radius:1.5rem;background:rgba(255,255,255,0.8);backface-visibility:hidden;display:flex;align-items:center;justify-content:center;padding:2rem;font-size:1.1rem;cursor:pointer;transition:transform .4s;}
+    .card.flipped{transform:rotateY(180deg);}
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div class="text-center">
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Study Tools</p>
+          <h1 class="mt-2 text-3xl font-bold">Flashcard App</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Create Q/A cards, flip to reveal answers, and store them locally.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <input id="flashQuestion" placeholder="Question" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          <input id="flashAnswer" placeholder="Answer" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+        </div>
+        <button id="flashAdd" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Add flashcard</button>
+
+        <div id="flashList" class="grid gap-4 sm:grid-cols-2"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'vi.flashcards';
+    const listEl = document.getElementById('flashList');
+    let cards = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+    const save = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
+
+    const render = () => {
+      listEl.innerHTML = '';
+      cards.forEach((card, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'relative';
+        wrapper.innerHTML = `
+          <button class="absolute top-2 right-2 text-xs text-red-500">Delete</button>
+          <div class="card shadow-lg" data-index="${index}">
+            <span>${card.question}</span>
+          </div>
+        `;
+        wrapper.querySelector('button').addEventListener('click', () => {
+          cards.splice(index, 1);
+          save(); render();
+        });
+        const cardEl = wrapper.querySelector('.card');
+        cardEl.addEventListener('click', () => {
+          cardEl.classList.toggle('flipped');
+          cardEl.innerHTML = `<span>${cardEl.classList.contains('flipped') ? card.answer : card.question}</span>`;
+        });
+        listEl.appendChild(wrapper);
+      });
+    };
+
+    document.getElementById('flashAdd').addEventListener('click', () => {
+      const q = document.getElementById('flashQuestion').value.trim();
+      const a = document.getElementById('flashAnswer').value.trim();
+      if (!q || !a) return;
+      cards.unshift({ question: q, answer: a });
+      document.getElementById('flashQuestion').value = '';
+      document.getElementById('flashAnswer').value = '';
+      save(); render();
+    });
+
+    render();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

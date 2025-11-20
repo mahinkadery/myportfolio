@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Breakpoint Preview – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:1200px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Responsive Breakpoint Preview</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Load any URL in an iframe and quickly switch between device widths.</p>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <input id="previewUrl" placeholder="https://example.com" class="flex-1 rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          <button id="previewLoad" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Load</button>
+        </div>
+
+        <div class="flex flex-wrap gap-3 text-sm font-semibold">
+          <button data-width="375" class="rounded-full border border-white/40 px-4 py-2">Mobile (375px)</button>
+          <button data-width="768" class="rounded-full border border-white/40 px-4 py-2">Tablet (768px)</button>
+          <button data-width="1024" class="rounded-full border border-white/40 px-4 py-2">Desktop (1024px)</button>
+          <button data-width="1440" class="rounded-full border border-white/40 px-4 py-2">Wide (1440px)</button>
+          <button data-width="100%" class="rounded-full border border-white/40 px-4 py-2">Full</button>
+        </div>
+
+        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-4 overflow-hidden">
+          <iframe id="previewFrame" class="w-full h-[600px] rounded-2xl bg-white" title="Responsive preview"></iframe>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const iframe = document.getElementById('previewFrame');
+    const urlInput = document.getElementById('previewUrl');
+
+    document.getElementById('previewLoad').addEventListener('click', () => {
+      const url = urlInput.value.trim();
+      iframe.src = url.startsWith('http') ? url : `https://${url}`;
+    });
+
+    document.querySelectorAll('button[data-width]').forEach(button => {
+      button.addEventListener('click', () => {
+        const width = button.dataset.width;
+        iframe.style.width = width === '100%' ? '100%' : width + 'px';
+      });
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

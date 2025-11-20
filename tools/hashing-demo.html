@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hashing Demo – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Security</p>
+          <h1 class="mt-2 text-3xl font-bold">Hashing Demo: Avalanche Effect</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Compare hashes side-by-side to see how tiny input changes completely change the hash output.</p>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
+          <p class="text-sm text-blue-800 dark:text-blue-200">
+            <strong>💡 Learning:</strong> The "avalanche effect" means that changing even a single character in the input produces a completely different hash. This property is crucial for security.
+          </p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Input 1</label>
+            <textarea id="input1" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[120px]" placeholder="Enter first text..."></textarea>
+            <div class="mt-3 rounded-xl bg-white/70 dark:bg-background-dark/70 p-4">
+              <p class="text-xs font-semibold text-muted-light dark:text-muted-dark mb-2">SHA-256 Hash:</p>
+              <code id="hash1" class="font-mono text-xs break-all text-text-light dark:text-text-dark">—</code>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Input 2</label>
+            <textarea id="input2" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[120px]" placeholder="Enter second text..."></textarea>
+            <div class="mt-3 rounded-xl bg-white/70 dark:bg-background-dark/70 p-4">
+              <p class="text-xs font-semibold text-muted-light dark:text-muted-dark mb-2">SHA-256 Hash:</p>
+              <code id="hash2" class="font-mono text-xs break-all text-text-light dark:text-text-dark">—</code>
+            </div>
+          </div>
+        </div>
+
+        <div id="comparisonBox" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 hidden">
+          <p class="text-sm font-semibold text-text-light dark:text-text-dark mb-3">Comparison:</p>
+          <div id="comparisonResult" class="space-y-2"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const input1 = document.getElementById('input1');
+    const input2 = document.getElementById('input2');
+    const hash1El = document.getElementById('hash1');
+    const hash2El = document.getElementById('hash2');
+    const comparisonBox = document.getElementById('comparisonBox');
+    const comparisonResult = document.getElementById('comparisonResult');
+
+    async function calculateHash(text) {
+      if (!text.trim()) return null;
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function updateHashes() {
+      const text1 = input1.value;
+      const text2 = input2.value;
+
+      if (text1.trim()) {
+        const hash1 = await calculateHash(text1);
+        hash1El.textContent = hash1 || '—';
+      } else {
+        hash1El.textContent = '—';
+      }
+
+      if (text2.trim()) {
+        const hash2 = await calculateHash(text2);
+        hash2El.textContent = hash2 || '—';
+      } else {
+        hash2El.textContent = '—';
+      }
+
+      if (text1.trim() && text2.trim()) {
+        const hash1 = hash1El.textContent;
+        const hash2 = hash2El.textContent;
+        const identical = hash1 === hash2;
+        const diff = hash1.split('').reduce((acc, char, idx) => {
+          return acc + (char !== hash2[idx] ? 1 : 0);
+        }, 0);
+        const diffPercent = ((diff / 64) * 100).toFixed(1);
+
+        comparisonBox.classList.remove('hidden');
+        comparisonResult.innerHTML = `
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-semibold text-text-light dark:text-text-dark">Hashes are:</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold ${identical ? 'bg-green-500/20 text-green-600 dark:text-green-400' : 'bg-red-500/20 text-red-600 dark:text-red-400'}">
+                ${identical ? 'IDENTICAL' : 'DIFFERENT'}
+              </span>
+            </div>
+            ${!identical ? `
+              <div class="text-sm text-muted-light dark:text-muted-dark">
+                <p>Different characters: <strong>${diff}</strong> out of 64 (${diffPercent}%)</p>
+                <p class="mt-1 text-xs">Even a tiny change in input produces a completely different hash!</p>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      } else {
+        comparisonBox.classList.add('hidden');
+      }
+    }
+
+    input1.addEventListener('input', updateHashes);
+    input2.addEventListener('input', updateHashes);
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

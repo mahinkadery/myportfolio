@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Memory Card Game – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:720px;margin:0 auto;}
+    .grid{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:1rem;}
+    .card{height:90px;border-radius:1rem;background:#1f2937;color:white;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;transform-style:preserve-3d;transition:transform .3s;}
+    .card.flipped{background:#14b8a6;}
+    .card.matched{background:#22c55e;pointer-events:none;}
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 text-center">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Fun & Games</p>
+          <h1 class="mt-2 text-3xl font-bold">Memory Card Flip</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Flip two cards at a time to find all matching pairs.</p>
+        </div>
+
+        <div id="memoryGrid" class="grid"></div>
+        <p id="memoryStatus" class="text-lg font-semibold">Moves: 0</p>
+        <button id="memoryReset" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Restart</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const symbols = ['🍕','🚀','🎧','🌈','🔥','📸','🎮','🧊'];
+    let cards = [];
+    let flipped = [];
+    let moves = 0;
+    const grid = document.getElementById('memoryGrid');
+
+    const shuffle = (array) => array.sort(() => Math.random() - 0.5);
+
+    const render = () => {
+      grid.innerHTML = '';
+      cards.forEach((symbol, idx) => {
+        const button = document.createElement('button');
+        button.className = 'card';
+        button.dataset.index = idx;
+        button.textContent = '';
+        button.addEventListener('click', () => flipCard(button, symbol));
+        grid.appendChild(button);
+      });
+    };
+
+    const updateStatus = () => {
+      document.getElementById('memoryStatus').textContent = `Moves: ${moves}`;
+    };
+
+    const flipCard = (button, symbol) => {
+      if (button.classList.contains('flipped') || flipped.length === 2) return;
+      button.classList.add('flipped');
+      button.textContent = symbol;
+      flipped.push({ button, symbol });
+      if (flipped.length === 2) {
+        moves++;
+        updateStatus();
+        if (flipped[0].symbol === flipped[1].symbol) {
+          flipped.forEach(card => card.button.classList.add('matched'));
+          flipped = [];
+          if (document.querySelectorAll('.card.matched').length === cards.length) {
+            document.getElementById('memoryStatus').textContent = `You won in ${moves} moves!`;
+          }
+        } else {
+          setTimeout(() => {
+            flipped.forEach(card => {
+              card.button.classList.remove('flipped');
+              card.button.textContent = '';
+            });
+            flipped = [];
+          }, 800);
+        }
+      }
+    };
+
+    const resetGame = () => {
+      cards = shuffle([...symbols, ...symbols]);
+      moves = 0;
+      flipped = [];
+      render();
+      updateStatus();
+    };
+
+    document.getElementById('memoryReset').addEventListener('click', resetGame);
+    resetGame();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

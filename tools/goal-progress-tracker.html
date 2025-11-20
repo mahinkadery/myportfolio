@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Goal Progress Tracker – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:680px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Productivity</p>
+          <h1 class="mt-2 text-3xl font-bold">Goal Progress Tracker</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Visualize progress toward any goal using a smooth progress bar.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-3">
+          <input id="goalName" placeholder="Goal name" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          <input id="goalCurrent" type="number" placeholder="Current progress" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          <input id="goalTarget" type="number" placeholder="Target" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+        </div>
+
+        <button id="goalBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Update progress</button>
+
+        <div class="space-y-2">
+          <div class="flex justify-between text-sm text-muted-light dark:text-muted-dark">
+            <span id="goalLabel">Goal progress</span>
+            <span id="goalPercent">0%</span>
+          </div>
+          <div class="h-4 rounded-full bg-white/40 dark:bg-background-dark/50 overflow-hidden">
+            <div id="goalProgress" class="h-full bg-primary rounded-full transition-all duration-300" style="width:0%"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const goalBtn = document.getElementById('goalBtn');
+    goalBtn.addEventListener('click', () => {
+      const name = document.getElementById('goalName').value || 'Goal progress';
+      const current = parseFloat(document.getElementById('goalCurrent').value || '0');
+      const target = Math.max(1, parseFloat(document.getElementById('goalTarget').value || '1'));
+      const pct = Math.min(100, Math.max(0, (current / target) * 100));
+      document.getElementById('goalLabel').textContent = name;
+      document.getElementById('goalPercent').textContent = `${pct.toFixed(1)}%`;
+      document.getElementById('goalProgress').style.width = `${pct}%`;
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Tag Cheat Sheet – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div class="text-center">
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Study Tools</p>
+          <h1 class="mt-2 text-3xl font-bold">HTML Tag Cheat Sheet</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Search the most common tags and skim their usage on a single screen.</p>
+        </div>
+
+        <input id="tagSearch" placeholder="Search tags (e.g., table)" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+
+        <div id="tagList" class="grid gap-3 md:grid-cols-2"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const tags = [
+      { name: '<a>', desc: 'Defines a hyperlink to other pages or resources.' },
+      { name: '<p>', desc: 'Represents a paragraph of text.' },
+      { name: '<section>', desc: 'Semantic grouping for sections of related content.' },
+      { name: '<article>', desc: 'Independent piece of content such as a blog post.' },
+      { name: '<header>', desc: 'Introductory content or navigational aids.' },
+      { name: '<footer>', desc: 'Footer content for a section or page.' },
+      { name: '<nav>', desc: 'Contains navigation links.' },
+      { name: '<img>', desc: 'Embeds images; requires src and alt attributes.' },
+      { name: '<ul>', desc: 'Defines unordered lists (bullets).' },
+      { name: '<ol>', desc: 'Defines ordered lists (numbers).' },
+      { name: '<li>', desc: 'List item inside <ul> or <ol>.' },
+      { name: '<table>', desc: 'Defines tabular data.' },
+      { name: '<tr>', desc: 'Table row.' },
+      { name: '<td>', desc: 'Table cell data.' },
+      { name: '<th>', desc: 'Table header cell.' },
+      { name: '<form>', desc: 'Wraps interactive controls for user input.' },
+      { name: '<input>', desc: 'Captures user input fields.' },
+      { name: '<button>', desc: 'Clickable button element.' },
+      { name: '<span>', desc: 'Inline container for styling text segments.' },
+      { name: '<div>', desc: 'Generic block-level container.' }
+    ];
+
+    const listEl = document.getElementById('tagList');
+    const renderTags = (filter = '') => {
+      listEl.innerHTML = '';
+      tags
+        .filter(tag => tag.name.includes(filter) || tag.desc.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(tag => {
+          const card = document.createElement('div');
+          card.className = 'rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow';
+          card.innerHTML = `<p class="text-lg font-semibold">${tag.name}</p><p class="text-sm text-muted-light dark:text-muted-dark">${tag.desc}</p>`;
+          listEl.appendChild(card);
+        });
+      if (!listEl.children.length) {
+        listEl.innerHTML = '<p class="text-sm text-muted-light dark:text-muted-dark col-span-full text-center">No tags match your search.</p>';
+      }
+    };
+
+    document.getElementById('tagSearch').addEventListener('input', (e) => renderTags(e.target.value.trim()));
+    renderTags();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

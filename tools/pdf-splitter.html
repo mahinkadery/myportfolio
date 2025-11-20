@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PDF Splitter – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">PDF Tools</p>
+          <h1 class="mt-2 text-3xl font-bold">PDF Splitter</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Split a PDF into individual pages. All pages will be downloaded as a ZIP file.</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Select PDF File:</label>
+          <input id="pdfFile" type="file" accept=".pdf" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+        </div>
+
+        <button id="splitBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold disabled:opacity-50" disabled>Split PDF</button>
+
+        <div id="statusBox" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 hidden">
+          <p id="statusText" class="text-sm text-text-light dark:text-text-dark"></p>
+          <div id="progressBar" class="mt-2 h-2 bg-white/60 dark:bg-background-dark/40 rounded-full overflow-hidden hidden">
+            <div id="progressFill" class="h-full bg-primary transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <button id="downloadBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark hidden">Download ZIP</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const pdfFile = document.getElementById('pdfFile');
+    const splitBtn = document.getElementById('splitBtn');
+    const statusBox = document.getElementById('statusBox');
+    const statusText = document.getElementById('statusText');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    let zipBlob = null;
+
+    pdfFile.addEventListener('change', (e) => {
+      splitBtn.disabled = !e.target.files.length;
+    });
+
+    splitBtn.addEventListener('click', async () => {
+      const file = pdfFile.files[0];
+      
+      if (!file) {
+        alert('Please select a PDF file.');
+        return;
+      }
+
+      splitBtn.disabled = true;
+      statusBox.classList.remove('hidden');
+      progressBar.classList.remove('hidden');
+      statusText.textContent = 'Splitting PDF...';
+      progressFill.style.width = '0%';
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+        const pageCount = pdf.getPageCount();
+        const baseName = file.name.replace(/\.pdf$/i, '');
+
+        const zip = new JSZip();
+
+        for (let i = 0; i < pageCount; i++) {
+          const newPdf = await PDFLib.PDFDocument.create();
+          const [page] = await newPdf.copyPages(pdf, [i]);
+          newPdf.addPage(page);
+          
+          const pdfBytes = await newPdf.save();
+          zip.file(`${baseName}_page_${i + 1}.pdf`, pdfBytes);
+
+          progressFill.style.width = `${((i + 1) / pageCount) * 100}%`;
+        }
+
+        zipBlob = await zip.generateAsync({ type: 'blob' });
+        
+        statusText.textContent = `Successfully split PDF into ${pageCount} pages!`;
+        statusText.className = 'text-sm text-green-600 dark:text-green-400';
+        progressBar.classList.add('hidden');
+        downloadBtn.classList.remove('hidden');
+      } catch (error) {
+        statusText.textContent = `Error: ${error.message}`;
+        statusText.className = 'text-sm text-red-600 dark:text-red-400';
+        progressBar.classList.add('hidden');
+      } finally {
+        splitBtn.disabled = false;
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!zipBlob) return;
+      
+      const baseName = pdfFile.files[0]?.name.replace(/\.pdf$/i, '') || 'split';
+      saveAs(zipBlob, `${baseName}_split.zip`);
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

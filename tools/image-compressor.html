@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Compressor – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Design & Color</p>
+          <h1 class="mt-2 text-3xl font-bold">Image Compressor</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Compress images to reduce file size while maintaining quality.</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Select Image:</label>
+          <input id="imageFile" type="file" accept="image/*" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Quality (0.1 - 1.0):</label>
+            <input id="quality" type="range" min="0.1" max="1" step="0.1" value="0.7" class="w-full">
+            <span id="qualityValue" class="text-xs text-muted-light dark:text-muted-dark">70%</span>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Max Width (px):</label>
+            <input id="maxWidth" type="number" value="1920" min="100" max="5000" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+        </div>
+
+        <div id="imagePreview" class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4">
+            <p class="text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Original:</p>
+            <img id="originalImg" src="" alt="Original" class="max-w-full h-auto rounded-xl hidden">
+            <p id="originalSize" class="text-xs text-muted-light dark:text-muted-dark mt-2">—</p>
+          </div>
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4">
+            <p class="text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Compressed:</p>
+            <img id="compressedImg" src="" alt="Compressed" class="max-w-full h-auto rounded-xl hidden">
+            <p id="compressedSize" class="text-xs text-muted-light dark:text-muted-dark mt-2">—</p>
+          </div>
+        </div>
+
+        <button id="compressBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold disabled:opacity-50" disabled>Compress Image</button>
+
+        <div id="statusBox" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 hidden">
+          <p id="statusText" class="text-sm text-text-light dark:text-text-dark"></p>
+        </div>
+
+        <button id="downloadBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark hidden">Download Compressed Image</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const imageFile = document.getElementById('imageFile');
+    const quality = document.getElementById('quality');
+    const qualityValue = document.getElementById('qualityValue');
+    const maxWidth = document.getElementById('maxWidth');
+    const originalImg = document.getElementById('originalImg');
+    const compressedImg = document.getElementById('compressedImg');
+    const originalSize = document.getElementById('originalSize');
+    const compressedSize = document.getElementById('compressedSize');
+    const compressBtn = document.getElementById('compressBtn');
+    const statusBox = document.getElementById('statusBox');
+    const statusText = document.getElementById('statusText');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    let originalFileSize = 0;
+    let compressedBlob = null;
+
+    quality.addEventListener('input', () => {
+      qualityValue.textContent = `${Math.round(quality.value * 100)}%`;
+    });
+
+    imageFile.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) {
+        originalImg.classList.add('hidden');
+        originalSize.textContent = '—';
+        compressBtn.disabled = true;
+        return;
+      }
+
+      originalFileSize = file.size;
+      originalSize.textContent = `Size: ${(file.size / 1024).toFixed(2)} KB`;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        originalImg.src = event.target.result;
+        originalImg.classList.remove('hidden');
+        compressBtn.disabled = false;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    compressBtn.addEventListener('click', async () => {
+      const file = imageFile.files[0];
+      
+      if (!file) {
+        alert('Please select an image.');
+        return;
+      }
+
+      compressBtn.disabled = true;
+      statusBox.classList.remove('hidden');
+      statusText.textContent = 'Compressing image...';
+      statusText.className = 'text-sm text-text-light dark:text-text-dark';
+
+      try {
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+
+        await new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = reject;
+        });
+
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+        const maxW = parseInt(maxWidth.value);
+
+        if (width > maxW) {
+          height = (height * maxW) / width;
+          width = maxW;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const qualityValue = parseFloat(quality.value);
+        const format = file.type.startsWith('image/png') ? 'image/png' : 'image/jpeg';
+
+        canvas.toBlob((blob) => {
+          compressedBlob = blob;
+          const compressedUrl = URL.createObjectURL(blob);
+          
+          compressedImg.src = compressedUrl;
+          compressedImg.classList.remove('hidden');
+          compressedSize.textContent = `Size: ${(blob.size / 1024).toFixed(2)} KB (${((1 - blob.size / originalFileSize) * 100).toFixed(1)}% reduction)`;
+          
+          statusText.textContent = `Compression complete! Reduced from ${(originalFileSize / 1024).toFixed(2)} KB to ${(blob.size / 1024).toFixed(2)} KB.`;
+          statusText.className = 'text-sm text-green-600 dark:text-green-400';
+          downloadBtn.classList.remove('hidden');
+          compressBtn.disabled = false;
+        }, format, qualityValue);
+
+        URL.revokeObjectURL(img.src);
+      } catch (error) {
+        statusText.textContent = `Error: ${error.message}`;
+        statusText.className = 'text-sm text-red-600 dark:text-red-400';
+        compressBtn.disabled = false;
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!compressedBlob) return;
+      
+      const baseName = imageFile.files[0]?.name.replace(/\.[^/.]+$/, '') || 'compressed';
+      const url = URL.createObjectURL(compressedBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${baseName}_compressed.jpg`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

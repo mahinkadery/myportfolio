@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Time Zone Difference Helper – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:860px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Planner</p>
+          <h1 class="mt-2 text-3xl font-bold">Time Zone Difference Helper</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Choose two time zones to see the offset and convert meeting times.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <select id="tzA" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3"></select>
+          <select id="tzB" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3"></select>
+        </div>
+        <p id="tzDiff" class="text-lg font-semibold text-primary">Difference: —</p>
+
+        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-5 space-y-4">
+          <h2 class="text-xl font-semibold">Meeting Time Conversion</h2>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Your time</label>
+              <input type="datetime-local" id="meetingTime" class="mt-2 rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+            </div>
+            <div>
+              <label class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Other time</label>
+              <input readonly id="convertedTime" class="mt-2 rounded-2xl border border-white/40 bg-white/60 dark:border-white/10 dark:bg-background-dark/50 p-3" placeholder="—">
+            </div>
+          </div>
+          <button id="convertMeeting" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Convert Time</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const TIMEZONES = [
+      { label: 'UTC−08:00 (Los Angeles)', offset: -8 },
+      { label: 'UTC−05:00 (New York)', offset: -5 },
+      { label: 'UTC±00:00 (London)', offset: 0 },
+      { label: 'UTC+01:00 (Berlin)', offset: 1 },
+      { label: 'UTC+05:30 (New Delhi)', offset: 5.5 },
+      { label: 'UTC+08:00 (Singapore)', offset: 8 },
+      { label: 'UTC+10:00 (Sydney)', offset: 10 }
+    ];
+
+    const tzA = document.getElementById('tzA');
+    const tzB = document.getElementById('tzB');
+    const tzDiff = document.getElementById('tzDiff');
+
+    const populateTimezones = () => {
+      const options = TIMEZONES.map((tz, index) => `<option value="${index}">${tz.label}</option>`).join('');
+      tzA.innerHTML = options;
+      tzB.innerHTML = options;
+      tzB.selectedIndex = 2;
+    };
+
+    const updateDifference = () => {
+      const offset = TIMEZONES[tzB.value].offset - TIMEZONES[tzA.value].offset;
+      tzDiff.textContent = `Difference: ${offset >= 0 ? '+' : ''}${offset} hours`;
+    };
+
+    document.getElementById('convertMeeting').addEventListener('click', () => {
+      const input = document.getElementById('meetingTime').value;
+      const output = document.getElementById('convertedTime');
+      if (!input) {
+        output.value = 'Pick a time first.';
+        return;
+      }
+      const date = new Date(input);
+      const diff = (TIMEZONES[tzB.value].offset - TIMEZONES[tzA.value].offset) * 60;
+      const converted = new Date(date.getTime() + diff * 60 * 1000);
+      output.value = converted.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
+    });
+
+    tzA.addEventListener('change', updateDifference);
+    tzB.addEventListener('change', updateDifference);
+
+    populateTimezones();
+    updateDifference();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Viewport & Breakpoint Tester – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:960px;margin:0 auto;}
+    .demo-box {
+      width: 200px;
+      height: 150px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Viewport & Breakpoint Tester</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">View current viewport dimensions in real-time and preview typical breakpoints.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 text-center shadow">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-1">Width</p>
+            <p id="viewportWidth" class="text-2xl font-bold text-text-light dark:text-text-dark">—</p>
+          </div>
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 text-center shadow">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-1">Height</p>
+            <p id="viewportHeight" class="text-2xl font-bold text-text-light dark:text-text-dark">—</p>
+          </div>
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 text-center shadow">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-1">Ratio</p>
+            <p id="viewportRatio" class="text-2xl font-bold text-text-light dark:text-text-dark">—</p>
+          </div>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
+          <p class="text-sm font-semibold mb-3 text-text-light dark:text-text-dark">Preview Breakpoints:</p>
+          <div class="flex flex-wrap gap-3">
+            <button data-breakpoint="mobile" data-width="375" class="breakpoint-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">Mobile (375px)</button>
+            <button data-breakpoint="tablet" data-width="768" class="breakpoint-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">Tablet (768px)</button>
+            <button data-breakpoint="laptop" data-width="1024" class="breakpoint-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">Laptop (1024px)</button>
+            <button data-breakpoint="desktop" data-width="1440" class="breakpoint-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">Desktop (1440px)</button>
+            <button data-breakpoint="reset" class="breakpoint-btn rounded-full px-4 py-2 text-sm font-semibold border border-primary text-primary">Reset</button>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 text-center">
+          <p class="text-sm font-semibold mb-4 text-text-light dark:text-text-dark">Demo Box Preview:</p>
+          <div id="demoBox" class="demo-box">
+            Demo Box
+          </div>
+          <p id="currentBreakpoint" class="text-xs text-muted-light dark:text-muted-dark mt-4">Current: Original size</p>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
+          <p class="text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Common Breakpoints:</p>
+          <ul class="text-xs space-y-1 text-blue-800 dark:text-blue-200">
+            <li><strong>Mobile:</strong> 320px - 767px (phones)</li>
+            <li><strong>Tablet:</strong> 768px - 1023px (tablets, small laptops)</li>
+            <li><strong>Desktop:</strong> 1024px - 1439px (laptops, desktops)</li>
+            <li><strong>Large Desktop:</strong> 1440px+ (large monitors)</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const viewportWidth = document.getElementById('viewportWidth');
+    const viewportHeight = document.getElementById('viewportHeight');
+    const viewportRatio = document.getElementById('viewportRatio');
+    const demoBox = document.getElementById('demoBox');
+    const currentBreakpoint = document.getElementById('currentBreakpoint');
+    const breakpointBtns = document.querySelectorAll('.breakpoint-btn');
+    
+    let currentPreviewWidth = null;
+
+    function updateViewport() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const ratio = (width / height).toFixed(2);
+      
+      viewportWidth.textContent = `${width}px`;
+      viewportHeight.textContent = `${height}px`;
+      viewportRatio.textContent = `${ratio}:1`;
+    }
+
+    breakpointBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        breakpointBtns.forEach(b => {
+          b.classList.remove('bg-primary', 'text-white');
+          b.classList.add('border', 'border-white/40', 'text-text-light', 'dark:text-text-dark');
+        });
+        
+        if (btn.dataset.breakpoint === 'reset') {
+          currentPreviewWidth = null;
+          demoBox.style.transform = 'scale(1)';
+          currentBreakpoint.textContent = 'Current: Original size';
+          btn.classList.remove('border', 'border-white/40', 'text-text-light', 'dark:text-text-dark');
+          btn.classList.add('border', 'border-primary', 'text-primary');
+        } else {
+          const width = parseInt(btn.dataset.width, 10);
+          currentPreviewWidth = width;
+          const scale = width / 200;
+          demoBox.style.transform = `scale(${scale})`;
+          currentBreakpoint.textContent = `Current: ${btn.dataset.breakpoint.charAt(0).toUpperCase() + btn.dataset.breakpoint.slice(1)} (${width}px)`;
+          btn.classList.remove('border', 'border-white/40', 'text-text-light', 'dark:text-text-dark');
+          btn.classList.add('bg-primary', 'text-white');
+        }
+      });
+    });
+
+    window.addEventListener('resize', updateViewport);
+    updateViewport();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

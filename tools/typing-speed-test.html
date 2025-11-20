@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Typing Speed Test – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:720px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Fun & Games</p>
+          <h1 class="mt-2 text-3xl font-bold">Typing Speed Test</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Type the prompt as quickly and accurately as possible.</p>
+        </div>
+
+        <div id="typingPrompt" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 text-lg font-semibold"></div>
+        <textarea id="typingInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[140px]" placeholder="Start typing here..."></textarea>
+
+        <div class="grid gap-4 sm:grid-cols-3 text-center">
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Time (s)</p>
+            <p id="typingTime" class="text-2xl font-semibold">0</p>
+          </div>
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">WPM</p>
+            <p id="typingWpm" class="text-2xl font-semibold">0</p>
+          </div>
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Errors</p>
+            <p id="typingErrors" class="text-2xl font-semibold">0</p>
+          </div>
+        </div>
+
+        <button id="typingReset" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">New Prompt</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const prompts = [
+      'Creativity is intelligence having fun.',
+      'Stay curious and keep shipping prototypes.',
+      'Simplicity is the soul of efficiency.',
+      'The best way to predict the future is to invent it.'
+    ];
+
+    const promptEl = document.getElementById('typingPrompt');
+    const inputEl = document.getElementById('typingInput');
+    const timeEl = document.getElementById('typingTime');
+    const wpmEl = document.getElementById('typingWpm');
+    const errorEl = document.getElementById('typingErrors');
+
+    let startTime = null;
+    let interval = null;
+    let currentPrompt = '';
+
+    const pickPrompt = () => {
+      currentPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+      promptEl.textContent = currentPrompt;
+      inputEl.value = '';
+      clearInterval(interval);
+      interval = null;
+      startTime = null;
+      timeEl.textContent = wpmEl.textContent = errorEl.textContent = '0';
+    };
+
+    pickPrompt();
+
+    inputEl.addEventListener('input', () => {
+      if (!startTime) {
+        startTime = Date.now();
+        interval = setInterval(() => {
+          timeEl.textContent = ((Date.now() - startTime) / 1000).toFixed(1);
+        }, 100);
+      }
+      const typed = inputEl.value;
+      let errors = 0;
+      for (let i = 0; i < typed.length; i++) {
+        if (typed[i] !== currentPrompt[i]) errors++;
+      }
+      errorEl.textContent = errors;
+      if (typed === currentPrompt) {
+        clearInterval(interval);
+        const timeMinutes = (Date.now() - startTime) / 60000;
+        const words = currentPrompt.split(' ').length;
+        wpmEl.textContent = Math.round(words / timeMinutes);
+      }
+    });
+
+    document.getElementById('typingReset').addEventListener('click', pickPrompt);
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unit Converter – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:860px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-8">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Converter</p>
+          <h1 class="mt-2 text-3xl font-bold">Unit Converter</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Length, weight, and temperature conversions in one place.</p>
+        </div>
+
+        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4">
+          <div class="grid gap-4 sm:grid-cols-3">
+            <select id="unitCategory" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+              <option value="length">Length (km ↔ m ↔ cm)</option>
+              <option value="weight">Weight (kg ↔ g)</option>
+              <option value="temperature">Temperature (°C ↔ °F)</option>
+            </select>
+            <input id="unitValue" type="number" placeholder="Value" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+            <select id="unitFrom" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3"></select>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-[auto_auto_1fr] items-center">
+            <span class="text-center">→</span>
+            <select id="unitTo" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3"></select>
+            <input id="unitResult" readonly class="rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-3" placeholder="Result">
+          </div>
+          <button id="unitConvertBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Convert</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const CATEGORY_UNITS = {
+      length: [
+        { label: 'Kilometers', value: 'km' },
+        { label: 'Meters', value: 'm' },
+        { label: 'Centimeters', value: 'cm' }
+      ],
+      weight: [
+        { label: 'Kilograms', value: 'kg' },
+        { label: 'Grams', value: 'g' }
+      ],
+      temperature: [
+        { label: 'Celsius (°C)', value: 'C' },
+        { label: 'Fahrenheit (°F)', value: 'F' }
+      ]
+    };
+
+    const categorySelect = document.getElementById('unitCategory');
+    const fromSelect = document.getElementById('unitFrom');
+    const toSelect = document.getElementById('unitTo');
+    const valueInput = document.getElementById('unitValue');
+    const resultInput = document.getElementById('unitResult');
+
+    const populateUnits = () => {
+      const units = CATEGORY_UNITS[categorySelect.value];
+      fromSelect.innerHTML = units.map(u => `<option value="${u.value}">${u.label}</option>`).join('');
+      toSelect.innerHTML = units.map(u => `<option value="${u.value}">${u.label}</option>`).join('');
+      if (units.length > 1) toSelect.selectedIndex = 1;
+    };
+
+    const convert = () => {
+      const category = categorySelect.value;
+      const from = fromSelect.value;
+      const to = toSelect.value;
+      const value = parseFloat(valueInput.value);
+      if (isNaN(value)) {
+        resultInput.value = 'Enter a number';
+        return;
+      }
+      let result = value;
+
+      if (category === 'length') {
+        const toMeters = from === 'km' ? value * 1000 : from === 'cm' ? value / 100 : value;
+        result = to === 'km' ? toMeters / 1000 : to === 'cm' ? toMeters * 100 : toMeters;
+      } else if (category === 'weight') {
+        const toGrams = from === 'kg' ? value * 1000 : value;
+        result = to === 'kg' ? toGrams / 1000 : toGrams;
+      } else if (category === 'temperature') {
+        result = from === to ? value
+          : from === 'C' ? (value * 9/5) + 32
+          : (value - 32) * 5/9;
+      }
+
+      resultInput.value = Number.isFinite(result) ? result.toFixed(4).replace(/\.?0+$/, '') : 'NaN';
+    };
+
+    categorySelect.addEventListener('change', populateUnits);
+    document.getElementById('unitConvertBtn').addEventListener('click', convert);
+    populateUnits();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

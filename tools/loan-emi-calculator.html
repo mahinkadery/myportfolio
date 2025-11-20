@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loan / EMI Calculator – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:760px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Calculator</p>
+          <h1 class="mt-2 text-3xl font-bold">Loan / EMI Calculator</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Uses the standard EMI formula to compute monthly payments.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <input id="loanAmount" type="number" placeholder="Loan amount" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          <input id="loanRate" type="number" placeholder="Interest rate (%) per year" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          <input id="loanTenure" type="number" placeholder="Tenure (months)" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+        </div>
+
+        <button id="loanBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Calculate EMI</button>
+
+        <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-5 space-y-2">
+          <p id="emiResult" class="text-lg font-semibold">Monthly EMI: —</p>
+          <p id="totalInterest" class="text-sm text-muted-light dark:text-muted-dark">Total interest: —</p>
+          <p id="totalPayable" class="text-sm text-muted-light dark:text-muted-dark">Total payable: —</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const P = document.getElementById('loanAmount');
+    const rate = document.getElementById('loanRate');
+    const tenure = document.getElementById('loanTenure');
+    const emiResult = document.getElementById('emiResult');
+    const totalInterest = document.getElementById('totalInterest');
+    const totalPayable = document.getElementById('totalPayable');
+
+    document.getElementById('loanBtn').addEventListener('click', () => {
+      const principal = parseFloat(P.value);
+      const annualRate = parseFloat(rate.value);
+      const months = parseInt(tenure.value, 10);
+      if (isNaN(principal) || isNaN(annualRate) || isNaN(months) || months <= 0) {
+        emiResult.textContent = 'Monthly EMI: enter valid values.';
+        totalInterest.textContent = totalPayable.textContent = '—';
+        return;
+      }
+
+      const monthlyRate = annualRate / 12 / 100;
+      const emi = monthlyRate === 0
+        ? principal / months
+        : principal * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+
+      const totalPay = emi * months;
+      const interest = totalPay - principal;
+
+      emiResult.textContent = `Monthly EMI: ${emi.toFixed(2)}`;
+      totalInterest.textContent = `Total interest: ${interest.toFixed(2)}`;
+      totalPayable.textContent = `Total payable: ${totalPay.toFixed(2)}`;
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

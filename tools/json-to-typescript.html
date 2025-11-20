@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JSON → TypeScript Interface Generator – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">JSON → TypeScript Interface Generator</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Generate TypeScript interfaces from JSON with inferred field types.</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">JSON Input:</label>
+          <textarea id="jsonInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[200px] font-mono text-sm" placeholder='{"name": "John", "age": 30, "email": "john@example.com"}'></textarea>
+        </div>
+
+        <div class="flex gap-3">
+          <input id="interfaceName" type="text" placeholder="Interface name (e.g., User)" value="GeneratedInterface" class="flex-1 rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 font-mono text-sm">
+          <button id="generateBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Generate Interface</button>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">TypeScript Interface:</label>
+          <pre id="interfaceOutput" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 min-h-[200px] font-mono text-sm overflow-auto whitespace-pre-wrap">Generated interface will appear here...</pre>
+        </div>
+
+        <button id="copyBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Copy Interface</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const jsonInput = document.getElementById('jsonInput');
+    const interfaceName = document.getElementById('interfaceName');
+    const generateBtn = document.getElementById('generateBtn');
+    const interfaceOutput = document.getElementById('interfaceOutput');
+    const copyBtn = document.getElementById('copyBtn');
+
+    function getType(value, isOptional = false) {
+      if (value === null) return 'null';
+      if (Array.isArray(value)) {
+        if (value.length === 0) return 'any[]';
+        const itemTypes = [...new Set(value.map(v => getType(v)))];
+        return itemTypes.length === 1 ? `${itemTypes[0]}[]` : 'any[]';
+      }
+      if (typeof value === 'object') {
+        return 'object';
+      }
+      return typeof value;
+    }
+
+    function generateInterface(obj, interfaceName = 'GeneratedInterface', depth = 0) {
+      const indent = '  '.repeat(depth);
+      let result = `${indent}interface ${interfaceName} {\n`;
+      const entries = Object.entries(obj);
+
+      entries.forEach(([key, value], index) => {
+        const isOptional = value === null || value === undefined;
+        let type = getType(value);
+
+        if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+          const nestedInterfaceName = key.charAt(0).toUpperCase() + key.slice(1);
+          type = nestedInterfaceName;
+          // Generate nested interface
+          const nestedInterface = generateInterface(value, nestedInterfaceName, depth + 1);
+          result = nestedInterface + '\n' + result;
+        }
+
+        const optionalMark = isOptional ? '?' : '';
+        const comma = index < entries.length - 1 ? ',' : '';
+        result += `${indent}  ${key}${optionalMark}: ${type};${comma}\n`;
+      });
+
+      result += `${indent}}`;
+      return result;
+    }
+
+    generateBtn.addEventListener('click', () => {
+      const jsonStr = jsonInput.value.trim();
+      const name = interfaceName.value.trim() || 'GeneratedInterface';
+
+      if (!jsonStr) {
+        interfaceOutput.textContent = 'Please enter JSON.';
+        return;
+      }
+
+      try {
+        const json = JSON.parse(jsonStr);
+        const interfaceCode = generateInterface(json, name);
+        interfaceOutput.textContent = interfaceCode;
+      } catch (error) {
+        interfaceOutput.textContent = `Error: ${error.message}`;
+      }
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const text = interfaceOutput.textContent;
+      if (!text || text.includes('will appear here')) {
+        alert('Please generate an interface first.');
+        return;
+      }
+      
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => { copyBtn.textContent = 'Copy Interface'; }, 2000);
+      } catch (error) {
+        alert('Failed to copy: ' + error.message);
+      }
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

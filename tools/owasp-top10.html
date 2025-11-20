@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OWASP Top 10 Learning Cards – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:960px;margin:0 auto;}
+    .card-flip { transform-style: preserve-3d; transition: transform 0.6s; }
+    .card-flip.flipped { transform: rotateY(180deg); }
+    .card-front, .card-back { backface-visibility: hidden; }
+    .card-back { transform: rotateY(180deg); }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Security</p>
+          <h1 class="mt-2 text-3xl font-bold">OWASP Top 10 Learning Cards</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Learn about the OWASP Top 10 web application security risks. Click cards to flip.</p>
+        </div>
+
+        <div id="cardsContainer" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Cards will be injected here -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const owaspTop10 = [
+      {
+        title: 'A01: Broken Access Control',
+        description: 'Access control enforces policies preventing users from acting outside of their intended permissions.',
+        example: 'Example: A user can access another user\'s account by changing the user ID in the URL.'
+      },
+      {
+        title: 'A02: Cryptographic Failures',
+        description: 'Previously "Sensitive Data Exposure", this category focuses on failures related to cryptography.',
+        example: 'Example: Storing passwords in plain text instead of using proper hashing algorithms.'
+      },
+      {
+        title: 'A03: Injection',
+        description: 'Injection flaws occur when untrusted data is sent to an interpreter as part of a command or query.',
+        example: 'Example: SQL injection attacks where malicious SQL code is inserted into input fields.'
+      },
+      {
+        title: 'A04: Insecure Design',
+        description: 'A new category focusing on risks related to design flaws and missing security controls.',
+        example: 'Example: Building an application without considering security requirements from the start.'
+      },
+      {
+        title: 'A05: Security Misconfiguration',
+        description: 'Insecure configuration of security settings, default accounts, and unnecessary features.',
+        example: 'Example: Leaving default passwords unchanged or exposing detailed error messages in production.'
+      },
+      {
+        title: 'A06: Vulnerable Components',
+        description: 'Using components (libraries, frameworks) with known vulnerabilities.',
+        example: 'Example: Using an outdated jQuery library with known XSS vulnerabilities.'
+      },
+      {
+        title: 'A07: Identification & Authentication Failures',
+        description: 'Previously "Broken Authentication", focuses on failures in authentication mechanisms.',
+        example: 'Example: Weak password requirements or allowing automated credential stuffing attacks.'
+      },
+      {
+        title: 'A08: Software & Data Integrity Failures',
+        description: 'Failures related to code and infrastructure that do not protect against integrity violations.',
+        example: 'Example: Insecure CI/CD pipelines or using untrusted dependencies without verification.'
+      },
+      {
+        title: 'A09: Security Logging & Monitoring Failures',
+        description: 'Insufficient logging and monitoring that prevent detection of security incidents.',
+        example: 'Example: Not logging failed login attempts or security events, making breaches undetectable.'
+      },
+      {
+        title: 'A10: Server-Side Request Forgery (SSRF)',
+        description: 'Attacks where the web application fetches a remote resource without validating the URL.',
+        example: 'Example: An attacker makes the server request internal resources like localhost or private IP addresses.'
+      }
+    ];
+
+    const container = document.getElementById('cardsContainer');
+
+    owaspTop10.forEach((item, index) => {
+      const card = document.createElement('div');
+      card.className = 'card-flip cursor-pointer';
+      card.innerHTML = `
+        <div class="card-front rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 shadow h-[200px] flex flex-col justify-center items-center">
+          <div class="text-3xl font-bold text-primary mb-2">#${index + 1}</div>
+          <h3 class="text-sm font-semibold text-center text-text-light dark:text-text-dark">${item.title}</h3>
+          <p class="text-xs text-muted-light dark:text-muted-dark mt-2 text-center">Click to flip</p>
+        </div>
+        <div class="card-back rounded-2xl bg-primary/10 dark:bg-primary/20 p-6 shadow h-[200px] flex flex-col justify-center absolute inset-0">
+          <h3 class="text-sm font-semibold text-primary mb-2">${item.title}</h3>
+          <p class="text-xs text-text-light dark:text-text-dark mb-3">${item.description}</p>
+          <div class="text-xs text-muted-light dark:text-muted-dark italic">${item.example}</div>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+      container.appendChild(card);
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

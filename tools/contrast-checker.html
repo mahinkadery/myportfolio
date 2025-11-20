@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contrast Checker – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:860px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Design & Color</p>
+          <h1 class="mt-2 text-3xl font-bold">Contrast Checker</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Evaluate color contrast and see WCAG pass/fail for normal/large text.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="text-sm font-semibold">Foreground HEX</label>
+            <input id="fgColor" value="#111111" class="mt-2 w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          </div>
+          <div>
+            <label class="text-sm font-semibold">Background HEX</label>
+            <input id="bgColor" value="#f5f5f5" class="mt-2 w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          </div>
+        </div>
+
+        <button id="contrastBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Check contrast</button>
+
+        <div id="contrastPreview" class="rounded-3xl p-6 text-center text-2xl font-semibold" style="color:#111111;background:#f5f5f5;">
+          Preview text
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Contrast ratio</p>
+            <p id="contrastRatio" class="text-2xl font-semibold">—</p>
+          </div>
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 space-y-2">
+            <p><strong>Normal text:</strong> <span id="contrastNormal">—</span></p>
+            <p><strong>Large text:</strong> <span id="contrastLarge">—</span></p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const luminance = (hex) => {
+      const rgb = hex.replace('#','').match(/.{2}/g).map(v => parseInt(v,16)/255).map(c => c <= 0.03928 ? c/12.92 : Math.pow((c+0.055)/1.055, 2.4));
+      return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+    };
+
+    document.getElementById('contrastBtn').addEventListener('click', () => {
+      const fg = document.getElementById('fgColor').value;
+      const bg = document.getElementById('bgColor').value;
+      const l1 = luminance(fg);
+      const l2 = luminance(bg);
+      const ratio = ((Math.max(l1,l2) + 0.05) / (Math.min(l1,l2) + 0.05)).toFixed(2);
+      document.getElementById('contrastRatio').textContent = ratio;
+      document.getElementById('contrastNormal').textContent = ratio >= 4.5 ? 'Pass' : 'Fail';
+      document.getElementById('contrastLarge').textContent = ratio >= 3 ? 'Pass' : 'Fail';
+      const preview = document.getElementById('contrastPreview');
+      preview.style.color = fg;
+      preview.style.background = bg;
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

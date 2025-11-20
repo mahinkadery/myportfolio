@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Environment Variable Template Builder – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Environment Variable Template Builder</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Create .env-style key=value lines and download as text.</p>
+        </div>
+
+        <div id="envVarsList" class="space-y-3">
+          <div class="env-var-row rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow">
+            <div class="grid gap-3 sm:grid-cols-[1fr_1fr_auto] items-center">
+              <input type="text" placeholder="KEY" class="env-key rounded-xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-2 font-mono text-sm">
+              <input type="text" placeholder="value" class="env-value rounded-xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-2 text-sm">
+              <button class="remove-var-btn rounded-full bg-red-500 text-white px-4 py-2 text-xs font-semibold">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button id="addVarBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Add Variable</button>
+          <button id="downloadBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Download .env</button>
+          <button id="clearBtn" class="rounded-full border border-red-400 text-red-600 dark:text-red-400 px-6 py-2 text-sm font-semibold">Clear All</button>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Preview (.env format):</label>
+          <textarea id="envPreview" readonly class="w-full rounded-2xl border border-white/40 bg-white/60 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[150px] font-mono text-sm" placeholder="KEY=value&#10;ANOTHER_KEY=another_value"></textarea>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
+          <p class="text-sm font-semibold mb-2 text-text-light dark:text-text-dark">💡 Tips:</p>
+          <ul class="text-xs space-y-1 text-blue-800 dark:text-blue-200">
+            <li>• Use UPPERCASE for environment variable names</li>
+            <li>• Don't use spaces around the = sign</li>
+            <li>• Use quotes for values with spaces or special characters</li>
+            <li>• Never commit .env files to version control</li>
+            <li>• Use .env.example as a template (without sensitive values)</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const envVarsList = document.getElementById('envVarsList');
+    const addVarBtn = document.getElementById('addVarBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const envPreview = document.getElementById('envPreview');
+
+    function createVarRow() {
+      const row = document.createElement('div');
+      row.className = 'env-var-row rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow';
+      row.innerHTML = `
+        <div class="grid gap-3 sm:grid-cols-[1fr_1fr_auto] items-center">
+          <input type="text" placeholder="KEY" class="env-key rounded-xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-2 font-mono text-sm">
+          <input type="text" placeholder="value" class="env-value rounded-xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-2 text-sm">
+          <button class="remove-var-btn rounded-full bg-red-500 text-white px-4 py-2 text-xs font-semibold">Remove</button>
+        </div>
+      `;
+      
+      row.querySelector('.remove-var-btn').addEventListener('click', () => {
+        row.remove();
+        updatePreview();
+      });
+      
+      row.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', updatePreview);
+      });
+      
+      return row;
+    }
+
+    function updatePreview() {
+      const vars = [];
+      document.querySelectorAll('.env-var-row').forEach(row => {
+        const key = row.querySelector('.env-key').value.trim();
+        const value = row.querySelector('.env-value').value.trim();
+        if (key) {
+          vars.push(`${key}=${value || ''}`);
+        }
+      });
+      envPreview.value = vars.join('\n');
+    }
+
+    function downloadEnv() {
+      const content = envPreview.value;
+      if (!content.trim()) {
+        alert('No environment variables to download.');
+        return;
+      }
+      
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = '.env';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    addVarBtn.addEventListener('click', () => {
+      const row = createVarRow();
+      envVarsList.appendChild(row);
+      row.querySelector('.env-key').focus();
+    });
+
+    downloadBtn.addEventListener('click', downloadEnv);
+
+    clearBtn.addEventListener('click', () => {
+      if (confirm('Clear all environment variables?')) {
+        envVarsList.innerHTML = '';
+        envPreview.value = '';
+        const row = createVarRow();
+        envVarsList.appendChild(row);
+      }
+    });
+
+    // Initial update
+    updatePreview();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YAML/JSON Formatter & Linter – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">YAML/JSON Formatter & Linter</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Format and validate JSON and YAML. Convert between formats.</p>
+        </div>
+
+        <div class="flex gap-3">
+          <button data-mode="json" class="mode-btn active rounded-full px-4 py-2 text-sm font-semibold bg-primary text-white">JSON</button>
+          <button data-mode="yaml" class="mode-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">YAML</button>
+          <button data-mode="convert" class="mode-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">Convert</button>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Input:</label>
+          <textarea id="input" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[200px] font-mono text-sm" placeholder='{"key": "value"}'></textarea>
+        </div>
+
+        <div class="flex gap-3">
+          <button id="formatBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Format</button>
+          <button id="validateBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Validate</button>
+          <button id="copyBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Copy Output</button>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Output:</label>
+          <pre id="output" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 min-h-[200px] font-mono text-sm overflow-auto whitespace-pre-wrap">Formatted output will appear here...</pre>
+        </div>
+
+        <div id="statusBox" class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4 hidden">
+          <p id="statusText" class="text-sm text-blue-800 dark:text-blue-200"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    const formatBtn = document.getElementById('formatBtn');
+    const validateBtn = document.getElementById('validateBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const modeBtns = document.querySelectorAll('.mode-btn');
+    const statusBox = document.getElementById('statusBox');
+    const statusText = document.getElementById('statusText');
+    
+    let currentMode = 'json';
+
+    function showStatus(message, isError = false) {
+      statusText.textContent = message;
+      statusBox.className = `rounded-xl p-4 ${isError ? 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800' : 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'}`;
+      statusBox.classList.remove('hidden');
+      statusText.className = `text-sm ${isError ? 'text-red-800 dark:text-red-200' : 'text-green-800 dark:text-green-200'}`;
+      setTimeout(() => statusBox.classList.add('hidden'), 3000);
+    }
+
+    function detectFormat(text) {
+      text = text.trim();
+      if (text.startsWith('{') || text.startsWith('[')) return 'json';
+      if (text.includes(':') && text.includes('\n')) return 'yaml';
+      return 'json'; // default
+    }
+
+    modeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeBtns.forEach(b => {
+          b.classList.remove('active', 'bg-primary', 'text-white');
+          b.classList.add('border', 'border-white/40', 'text-text-light', 'dark:text-text-dark');
+        });
+        btn.classList.add('active', 'bg-primary', 'text-white');
+        btn.classList.remove('border', 'border-white/40', 'text-text-light', 'dark:text-text-dark');
+        currentMode = btn.dataset.mode;
+        
+        if (currentMode === 'convert') {
+          formatBtn.textContent = 'Convert';
+        } else {
+          formatBtn.textContent = 'Format';
+        }
+      });
+    });
+
+    formatBtn.addEventListener('click', () => {
+      const text = input.value.trim();
+      if (!text) {
+        showStatus('Please enter JSON or YAML to format.', true);
+        return;
+      }
+
+      try {
+        if (currentMode === 'convert') {
+          // Auto-detect and convert
+          const detected = detectFormat(text);
+          if (detected === 'json') {
+            // JSON to YAML
+            const parsed = JSON.parse(text);
+            const yaml = jsyaml.dump(parsed, { indent: 2 });
+            output.textContent = yaml;
+            showStatus('Converted JSON to YAML successfully!');
+          } else {
+            // YAML to JSON
+            const parsed = jsyaml.load(text);
+            const json = JSON.stringify(parsed, null, 2);
+            output.textContent = json;
+            showStatus('Converted YAML to JSON successfully!');
+          }
+        } else if (currentMode === 'json') {
+          // Format JSON
+          const parsed = JSON.parse(text);
+          const formatted = JSON.stringify(parsed, null, 2);
+          output.textContent = formatted;
+          showStatus('JSON formatted successfully!');
+        } else {
+          // Format YAML
+          const parsed = jsyaml.load(text);
+          const formatted = jsyaml.dump(parsed, { indent: 2 });
+          output.textContent = formatted;
+          showStatus('YAML formatted successfully!');
+        }
+      } catch (error) {
+        output.textContent = `Error: ${error.message}`;
+        showStatus(`Formatting failed: ${error.message}`, true);
+      }
+    });
+
+    validateBtn.addEventListener('click', () => {
+      const text = input.value.trim();
+      if (!text) {
+        showStatus('Please enter JSON or YAML to validate.', true);
+        return;
+      }
+
+      try {
+        const detected = detectFormat(text);
+        if (detected === 'json') {
+          JSON.parse(text);
+          showStatus('✓ JSON is valid!');
+        } else {
+          jsyaml.load(text);
+          showStatus('✓ YAML is valid!');
+        }
+        output.textContent = 'Valid ✓';
+      } catch (error) {
+        output.textContent = `Invalid: ${error.message}`;
+        showStatus(`Validation failed: ${error.message}`, true);
+      }
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const text = output.textContent;
+      if (!text || text.includes('will appear here') || text.includes('Error:')) {
+        showStatus('Nothing to copy.', true);
+        return;
+      }
+      
+      try {
+        await navigator.clipboard.writeText(text);
+        showStatus('Copied to clipboard!');
+      } catch (error) {
+        showStatus('Failed to copy: ' + error.message, true);
+      }
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

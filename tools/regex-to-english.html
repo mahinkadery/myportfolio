@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Regex to Plain English Helper – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Regex to Plain English Helper</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Break down simple regex patterns into human-readable descriptions.</p>
+        </div>
+
+        <input id="regexInput" type="text" placeholder="^[a-z0-9]+$" value="^[a-z0-9]+$" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 font-mono text-sm">
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
+          <p class="text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Common Examples:</p>
+          <div class="flex flex-wrap gap-2">
+            <button class="example-btn rounded-full px-3 py-1 text-xs font-semibold bg-white/80 dark:bg-background-dark/60 text-text-light dark:text-text-dark border border-white/40" data-regex="^[a-z0-9]+$">Alphanumeric</button>
+            <button class="example-btn rounded-full px-3 py-1 text-xs font-semibold bg-white/80 dark:bg-background-dark/60 text-text-light dark:text-text-dark border border-white/40" data-regex="^[A-Za-z]+$">Letters only</button>
+            <button class="example-btn rounded-full px-3 py-1 text-xs font-semibold bg-white/80 dark:bg-background-dark/60 text-text-light dark:text-text-dark border border-white/40" data-regex="^\\d+$">Digits only</button>
+            <button class="example-btn rounded-full px-3 py-1 text-xs font-semibold bg-white/80 dark:bg-background-dark/60 text-text-light dark:text-text-dark border border-white/40" data-regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$">Email</button>
+            <button class="example-btn rounded-full px-3 py-1 text-xs font-semibold bg-white/80 dark:bg-background-dark/60 text-text-light dark:text-text-dark border border-white/40" data-regex="^https?://">URL protocol</button>
+          </div>
+        </div>
+
+        <button id="explainBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Explain Regex</button>
+
+        <div id="explanationBox" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4">
+          <p class="text-muted-light dark:text-muted-dark">Explanation will appear here.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const regexInput = document.getElementById('regexInput');
+    const explainBtn = document.getElementById('explainBtn');
+    const explanationBox = document.getElementById('explanationBox');
+    const exampleBtns = document.querySelectorAll('.example-btn');
+
+    function explainRegex(pattern) {
+      const parts = [];
+      let i = 0;
+
+      // Start anchor
+      if (pattern[i] === '^') {
+        parts.push('Must start at the beginning of the string');
+        i++;
+      }
+
+      // Character classes and patterns
+      while (i < pattern.length) {
+        if (pattern[i] === '$') {
+          parts.push('Must end at the end of the string');
+          break;
+        }
+
+        if (pattern[i] === '\\') {
+          // Escape sequences
+          i++;
+          if (i < pattern.length) {
+            if (pattern[i] === 'd') parts.push('a digit (0-9)');
+            else if (pattern[i] === 'w') parts.push('a word character (letter, digit, or underscore)');
+            else if (pattern[i] === 's') parts.push('whitespace');
+            else if (pattern[i] === '.') parts.push('a literal dot');
+            else parts.push(`a literal "${pattern[i]}"`);
+          }
+          i++;
+        } else if (pattern[i] === '[') {
+          // Character class
+          i++;
+          const charClass = [];
+          let negated = false;
+          
+          if (pattern[i] === '^') {
+            negated = true;
+            i++;
+          }
+
+          while (i < pattern.length && pattern[i] !== ']') {
+            if (pattern[i] === '\\') {
+              i++;
+              if (pattern[i] === 'd') charClass.push('digits');
+              else if (pattern[i] === 'w') charClass.push('word characters');
+              else charClass.push(pattern[i]);
+            } else if (pattern[i] === '-' && i > 0 && i < pattern.length - 1) {
+              const start = pattern[i - 1];
+              const end = pattern[i + 1];
+              charClass.push(`${start} through ${end}`);
+              i += 2;
+              continue;
+            } else {
+              charClass.push(pattern[i]);
+            }
+            i++;
+          }
+
+          const description = charClass.join(', ');
+          parts.push(negated ? `NOT (${description})` : `one of: ${description}`);
+          i++;
+        } else if (pattern[i] === '.') {
+          parts.push('any character');
+          i++;
+        } else if (pattern[i] === '+') {
+          parts[parts.length - 1] += ' (one or more times)';
+          i++;
+        } else if (pattern[i] === '*') {
+          parts[parts.length - 1] += ' (zero or more times)';
+          i++;
+        } else if (pattern[i] === '?') {
+          parts[parts.length - 1] += ' (zero or one time, optional)';
+          i++;
+        } else if (pattern[i] === '{') {
+          // Quantifier
+          i++;
+          const quantifier = pattern.substring(i, pattern.indexOf('}', i));
+          i += quantifier.length + 1;
+          parts[parts.length - 1] += ` (${quantifier} times)`;
+        } else {
+          parts.push(`the character "${pattern[i]}"`);
+          i++;
+        }
+      }
+
+      return parts.filter(p => p).join('; ');
+    }
+
+    explainBtn.addEventListener('click', () => {
+      const pattern = regexInput.value.trim();
+      
+      if (!pattern) {
+        explanationBox.innerHTML = '<p class="text-red-500">Please enter a regex pattern.</p>';
+        return;
+      }
+
+      try {
+        // Validate regex
+        new RegExp(pattern);
+        
+        const explanation = explainRegex(pattern);
+        explanationBox.innerHTML = `
+          <div class="space-y-3">
+            <div>
+              <p class="text-sm font-semibold text-text-light dark:text-text-dark mb-2">Pattern:</p>
+              <code class="text-sm font-mono bg-white/80 dark:bg-background-dark/60 px-3 py-2 rounded-xl inline-block">${pattern}</code>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-text-light dark:text-text-dark mb-2">Plain English Explanation:</p>
+              <p class="text-sm text-muted-light dark:text-muted-dark">${explanation || 'Unable to explain this pattern.'}</p>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        explanationBox.innerHTML = `<p class="text-red-500">Invalid regex: ${error.message}</p>`;
+      }
+    });
+
+    exampleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        regexInput.value = btn.dataset.regex;
+        explainBtn.click();
+      });
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

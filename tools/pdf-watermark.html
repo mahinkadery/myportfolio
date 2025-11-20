@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PDF Watermark – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">PDF Tools</p>
+          <h1 class="mt-2 text-3xl font-bold">PDF Watermark</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Add a text watermark to all pages of a PDF document.</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Select PDF File:</label>
+          <input id="pdfFile" type="file" accept=".pdf" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Watermark Text:</label>
+            <input id="watermarkText" type="text" placeholder="CONFIDENTIAL" value="CONFIDENTIAL" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Font Size:</label>
+            <input id="fontSize" type="number" value="50" min="10" max="200" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Opacity (0.0 - 1.0):</label>
+            <input id="opacity" type="number" value="0.3" min="0.1" max="1" step="0.1" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Rotation Angle:</label>
+            <input id="rotation" type="number" value="45" min="0" max="360" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+          </div>
+        </div>
+
+        <button id="watermarkBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold disabled:opacity-50" disabled>Add Watermark</button>
+
+        <div id="statusBox" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 hidden">
+          <p id="statusText" class="text-sm text-text-light dark:text-text-dark"></p>
+        </div>
+
+        <button id="downloadBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark hidden">Download Watermarked PDF</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const pdfFile = document.getElementById('pdfFile');
+    const watermarkText = document.getElementById('watermarkText');
+    const fontSize = document.getElementById('fontSize');
+    const opacity = document.getElementById('opacity');
+    const rotation = document.getElementById('rotation');
+    const watermarkBtn = document.getElementById('watermarkBtn');
+    const statusBox = document.getElementById('statusBox');
+    const statusText = document.getElementById('statusText');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    let watermarkedPdfBytes = null;
+
+    pdfFile.addEventListener('change', (e) => {
+      watermarkBtn.disabled = !e.target.files.length;
+    });
+
+    watermarkBtn.addEventListener('click', async () => {
+      const file = pdfFile.files[0];
+      
+      if (!file) {
+        alert('Please select a PDF file.');
+        return;
+      }
+
+      if (!watermarkText.value.trim()) {
+        alert('Please enter watermark text.');
+        return;
+      }
+
+      watermarkBtn.disabled = true;
+      statusBox.classList.remove('hidden');
+      statusText.textContent = 'Adding watermark...';
+      statusText.className = 'text-sm text-text-light dark:text-text-dark';
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+        const pages = pdf.getPages();
+        const font = await pdf.embedFont(PDFLib.StandardFonts.HelveticaBold);
+
+        const text = watermarkText.value;
+        const size = parseInt(fontSize.value);
+        const op = parseFloat(opacity.value);
+        const rot = parseInt(rotation.value);
+
+        pages.forEach(page => {
+          const { width, height } = page.getSize();
+          page.drawText(text, {
+            x: width / 2,
+            y: height / 2,
+            size: size,
+            font: font,
+            opacity: op,
+            rotate: PDFLib.degrees(rot),
+            color: PDFLib.rgb(0.5, 0.5, 0.5),
+          });
+        });
+
+        watermarkedPdfBytes = await pdf.save();
+        
+        statusText.textContent = 'Successfully added watermark!';
+        statusText.className = 'text-sm text-green-600 dark:text-green-400';
+        downloadBtn.classList.remove('hidden');
+      } catch (error) {
+        statusText.textContent = `Error: ${error.message}`;
+        statusText.className = 'text-sm text-red-600 dark:text-red-400';
+      } finally {
+        watermarkBtn.disabled = false;
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!watermarkedPdfBytes) return;
+      
+      const blob = new Blob([watermarkedPdfBytes], { type: 'application/pdf' });
+      const baseName = pdfFile.files[0]?.name.replace(/\.pdf$/i, '') || 'watermarked';
+      saveAs(blob, `${baseName}_watermarked.pdf`);
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

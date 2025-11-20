@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color Converter – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:720px;margin:0 auto;}
+    .color-preview{width:120px;height:120px;border-radius:1.5rem;border:3px solid rgba(0,0,0,0.1);}
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Color Converter</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Convert HEX ↔ RGB ↔ HSL instantly with a live preview.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-[1fr_auto] items-center">
+          <input id="colorInput" placeholder="#2b6cee or rgb(43,108,238)" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          <button id="colorConvert" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Convert</button>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <div class="color-preview" id="colorPreview"></div>
+          <div class="space-y-2 text-sm">
+            <p id="hexOutput">HEX: —</p>
+            <p id="rgbOutput">RGB: —</p>
+            <p id="hslOutput">HSL: —</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const preview = document.getElementById('colorPreview');
+    const hexOut = document.getElementById('hexOutput');
+    const rgbOut = document.getElementById('rgbOutput');
+    const hslOut = document.getElementById('hslOutput');
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    const parseColor = (input) => {
+      input = input.trim();
+      if (input.startsWith('#')) {
+        return hexToRgb(input);
+      }
+      if (input.startsWith('rgb')) {
+        const values = input.match(/[-\d.]+/g)?.map(Number);
+        if (!values || values.length < 3) throw new Error('Invalid RGB');
+        return { r: values[0], g: values[1], b: values[2] };
+      }
+      if (input.startsWith('hsl')) {
+        const values = input.match(/[-\d.]+/g)?.map(Number);
+        if (!values || values.length < 3) throw new Error('Invalid HSL');
+        return hslToRgb(values[0], values[1], values[2]);
+      }
+      return hexToRgb('#' + input);
+    };
+
+    const hexToRgb = (hex) => {
+      let value = hex.replace('#', '');
+      if (value.length === 3) value = value.split('').map(c => c + c).join('');
+      const bigint = parseInt(value, 16);
+      return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
+    };
+
+    const rgbToHex = ({ r, g, b }) =>
+      '#' + [r, g, b].map(x => clamp(Math.round(x), 0, 255).toString(16).padStart(2, '0')).join('');
+
+    const rgbToHsl = ({ r, g, b }) => {
+      r /= 255; g /= 255; b /= 255;
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      let h, s, l = (max + min) / 2;
+      if (max === min) { h = s = 0; }
+      else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+    };
+
+    const hslToRgb = (h, s, l) => {
+      h /= 360; s /= 100; l /= 100;
+      const a = s * Math.min(l, 1 - l);
+      const f = (n) => {
+        const k = (n + h * 12) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(color * 255);
+      };
+      return { r: f(0), g: f(8), b: f(4) };
+    };
+
+    document.getElementById('colorConvert').addEventListener('click', () => {
+      try {
+        const rgb = parseColor(document.getElementById('colorInput').value);
+        const hex = rgbToHex(rgb);
+        const hsl = rgbToHsl(rgb);
+
+        preview.style.background = hex;
+        hexOut.textContent = `HEX: ${hex}`;
+        rgbOut.textContent = `RGB: rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        hslOut.textContent = `HSL: hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+      } catch (error) {
+        hexOut.textContent = `Error: ${error.message}`;
+        rgbOut.textContent = 'RGB: —';
+        hslOut.textContent = 'HSL: —';
+      }
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pomodoro Timer – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:640px;margin:0 auto;}
+    .timer-circle{width:220px;height:220px;border-radius:999px;border:8px solid rgba(43,108,238,0.25);position:relative;}
+    .timer-circle span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.35rem;font-weight:700;}
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 text-center">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Productivity</p>
+          <h1 class="mt-2 text-3xl font-bold">Pomodoro Timer</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Focus for 25 minutes, break for 5. Stay in the flow.</p>
+        </div>
+
+        <div class="mx-auto timer-circle bg-white/70 dark:bg-background-dark/70" id="timerCircle">
+          <span id="timerDisplay">25:00</span>
+        </div>
+        <p id="timerLabel" class="text-lg font-semibold">Work session</p>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          <button id="startBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Start</button>
+          <button id="pauseBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold">Pause</button>
+          <button id="resetBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold">Reset</button>
+        </div>
+
+        <label class="flex items-center justify-center gap-2 text-sm text-muted-light dark:text-muted-dark">
+          <input type="checkbox" id="soundToggle" checked> Play chime when session switches
+        </label>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const WORK_DURATION = 25 * 60;
+    const BREAK_DURATION = 5 * 60;
+    let remaining = WORK_DURATION;
+    let isWork = true;
+    let timerId = null;
+    const display = document.getElementById('timerDisplay');
+    const label = document.getElementById('timerLabel');
+    const circle = document.getElementById('timerCircle');
+    const chime = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=');
+
+    const formatTime = (seconds) => {
+      const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+      const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    };
+
+    const updateUI = () => {
+      display.textContent = formatTime(remaining);
+      label.textContent = isWork ? 'Work session' : 'Break time';
+      circle.style.borderColor = isWork ? 'rgba(43,108,238,0.35)' : 'rgba(16,185,129,0.35)';
+    };
+
+    const tick = () => {
+      if (remaining <= 0) {
+        if (document.getElementById('soundToggle').checked) {
+          chime.currentTime = 0;
+          chime.play();
+        }
+        isWork = !isWork;
+        remaining = isWork ? WORK_DURATION : BREAK_DURATION;
+      } else {
+        remaining -= 1;
+      }
+      updateUI();
+    };
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      if (timerId) return;
+      timerId = setInterval(tick, 1000);
+    });
+
+    document.getElementById('pauseBtn').addEventListener('click', () => {
+      clearInterval(timerId);
+      timerId = null;
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      clearInterval(timerId);
+      timerId = null;
+      isWork = true;
+      remaining = WORK_DURATION;
+      updateUI();
+    });
+
+    updateUI();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

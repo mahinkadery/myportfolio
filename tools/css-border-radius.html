@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS Border Radius Previewer – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:840px;margin:0 auto;}
+    .radius-preview{width:260px;height:220px;background:linear-gradient(120deg,#fdfbfb,#ebedee);}
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">CSS Border Radius Previewer</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Adjust corner radii and copy the CSS instantly.</p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[300px_auto]">
+          <div class="flex items-center justify-center">
+            <div id="radiusPreview" class="radius-preview transition-all"></div>
+          </div>
+          <div class="space-y-4">
+            <label class="block text-sm font-semibold">Top-left radius (<span id="tlVal">20</span>px)</label>
+            <input type="range" id="radiusTL" min="0" max="150" value="20" class="w-full">
+            <label class="block text-sm font-semibold">Top-right radius (<span id="trVal">20</span>px)</label>
+            <input type="range" id="radiusTR" min="0" max="150" value="20" class="w-full">
+            <label class="block text-sm font-semibold">Bottom-right radius (<span id="brVal">20</span>px)</label>
+            <input type="range" id="radiusBR" min="0" max="150" value="20" class="w-full">
+            <label class="block text-sm font-semibold">Bottom-left radius (<span id="blVal">20</span>px)</label>
+            <input type="range" id="radiusBL" min="0" max="150" value="20" class="w-full">
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-black/80 text-white p-4 text-sm font-mono overflow-auto" id="radiusCode">border-radius: 20px 20px 20px 20px;</div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const preview = document.getElementById('radiusPreview');
+    const code = document.getElementById('radiusCode');
+    const sliders = ['radiusTL', 'radiusTR', 'radiusBR', 'radiusBL'];
+    const valueMap = {
+      radiusTL: document.getElementById('tlVal'),
+      radiusTR: document.getElementById('trVal'),
+      radiusBR: document.getElementById('brVal'),
+      radiusBL: document.getElementById('blVal')
+    };
+
+    const updateRadius = () => {
+      const values = sliders.map(id => parseInt(document.getElementById(id).value, 10));
+      values.forEach((val, idx) => valueMap[sliders[idx]].textContent = val);
+      const css = `border-radius: ${values[0]}px ${values[1]}px ${values[2]}px ${values[3]}px;`;
+      preview.style.borderRadius = css.replace('border-radius: ', '');
+      code.textContent = css;
+    };
+
+    sliders.forEach(id => document.getElementById(id).addEventListener('input', updateRadius));
+    updateRadius();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

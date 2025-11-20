@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTTP Headers Explainer – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">HTTP Headers Explainer</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Learn about common HTTP headers with descriptions and examples.</p>
+        </div>
+
+        <input id="headerSearch" type="text" placeholder="Search headers (e.g., Content-Type, CORS, Cache-Control)..." class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+
+        <div id="headersList" class="space-y-3">
+          <!-- Headers will be injected here -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const headers = [
+      { name: 'Content-Type', category: 'Content', description: 'Indicates the media type of the resource.', example: 'Content-Type: application/json' },
+      { name: 'Content-Length', category: 'Content', description: 'The size of the entity-body in bytes.', example: 'Content-Length: 1024' },
+      { name: 'Content-Encoding', category: 'Content', description: 'The encoding used on the data.', example: 'Content-Encoding: gzip' },
+      { name: 'Accept', category: 'Request', description: 'What media types are acceptable for the response.', example: 'Accept: application/json, text/html' },
+      { name: 'Accept-Encoding', category: 'Request', description: 'What content encodings are acceptable.', example: 'Accept-Encoding: gzip, deflate' },
+      { name: 'Accept-Language', category: 'Request', description: 'What languages are preferred for the response.', example: 'Accept-Language: en-US, en' },
+      { name: 'Authorization', category: 'Security', description: 'Credentials for HTTP authentication.', example: 'Authorization: Bearer token123' },
+      { name: 'Cache-Control', category: 'Caching', description: 'Directives for caching mechanisms.', example: 'Cache-Control: max-age=3600' },
+      { name: 'ETag', category: 'Caching', description: 'Entity tag for cache validation.', example: 'ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"' },
+      { name: 'If-None-Match', category: 'Conditional', description: 'Request a resource only if ETag does not match.', example: 'If-None-Match: "33a64df551425fcc55e4d42a148795d9f25f89d4"' },
+      { name: 'If-Modified-Since', category: 'Conditional', description: 'Request a resource only if modified after date.', example: 'If-Modified-Since: Wed, 21 Oct 2015 07:28:00 GMT' },
+      { name: 'Location', category: 'Response', description: 'Used in redirects to indicate the new URL.', example: 'Location: /new-page' },
+      { name: 'Referer', category: 'Request', description: 'The address of the previous web page.', example: 'Referer: https://example.com/page' },
+      { name: 'User-Agent', category: 'Request', description: 'The user agent string of the client.', example: 'User-Agent: Mozilla/5.0...' },
+      { name: 'X-Requested-With', category: 'Custom', description: 'Used to identify AJAX requests.', example: 'X-Requested-With: XMLHttpRequest' },
+      { name: 'Access-Control-Allow-Origin', category: 'CORS', description: 'Specifies which origins can access the resource.', example: 'Access-Control-Allow-Origin: *' },
+      { name: 'Access-Control-Allow-Methods', category: 'CORS', description: 'Specifies allowed HTTP methods for CORS.', example: 'Access-Control-Allow-Methods: GET, POST' },
+      { name: 'Access-Control-Allow-Headers', category: 'CORS', description: 'Specifies allowed headers for CORS.', example: 'Access-Control-Allow-Headers: Content-Type' },
+      { name: 'X-Frame-Options', category: 'Security', description: 'Prevents clickjacking attacks.', example: 'X-Frame-Options: DENY' },
+      { name: 'X-Content-Type-Options', category: 'Security', description: 'Prevents MIME type sniffing.', example: 'X-Content-Type-Options: nosniff' },
+      { name: 'Strict-Transport-Security', category: 'Security', description: 'Forces HTTPS connections.', example: 'Strict-Transport-Security: max-age=31536000' },
+      { name: 'Set-Cookie', category: 'State', description: 'Sets a cookie in the browser.', example: 'Set-Cookie: sessionid=abc123; Path=/; HttpOnly' },
+      { name: 'Cookie', category: 'State', description: 'Contains stored cookies for the domain.', example: 'Cookie: sessionid=abc123; theme=dark' }
+    ];
+
+    function renderHeaders(searchQuery = '') {
+      const container = document.getElementById('headersList');
+      container.innerHTML = '';
+
+      const filtered = headers.filter(header => {
+        if (!searchQuery) return true;
+        const query = searchQuery.toLowerCase();
+        return header.name.toLowerCase().includes(query) ||
+               header.category.toLowerCase().includes(query) ||
+               header.description.toLowerCase().includes(query);
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="text-center text-muted-light dark:text-muted-dark">No headers found.</p>';
+        return;
+      }
+
+      filtered.forEach(header => {
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow';
+        card.innerHTML = `
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="font-mono font-semibold text-text-light dark:text-text-dark">${header.name}</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-primary/20 text-primary">${header.category}</span>
+          </div>
+          <p class="text-sm text-muted-light dark:text-muted-dark mb-3">${header.description}</p>
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-3">
+            <p class="text-xs text-muted-light dark:text-muted-dark mb-1">Example:</p>
+            <code class="text-xs font-mono text-text-light dark:text-text-dark break-all">${header.example}</code>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById('headerSearch').addEventListener('input', (e) => {
+      renderHeaders(e.target.value);
+    });
+
+    renderHeaders();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

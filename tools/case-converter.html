@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Case Converter – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
+          <h1 class="mt-2 text-3xl font-bold">Case Converter</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Convert text to upper, lower, title, or sentence case with a click.</p>
+        </div>
+
+        <textarea id="caseInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px]" placeholder="Paste your text here..."></textarea>
+
+        <div class="flex flex-wrap gap-3">
+          <button data-action="upper" class="rounded-full bg-primary text-white px-4 py-2 text-sm font-semibold">UPPERCASE</button>
+          <button data-action="lower" class="rounded-full border border-primary text-primary px-4 py-2 text-sm font-semibold">lowercase</button>
+          <button data-action="title" class="rounded-full bg-primary text-white px-4 py-2 text-sm font-semibold">Title Case</button>
+          <button data-action="sentence" class="rounded-full border border-primary text-primary px-4 py-2 text-sm font-semibold">Sentence case</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const input = document.getElementById('caseInput');
+    const buttons = document.querySelectorAll('button[data-action]');
+
+    const toTitleCase = (text) =>
+      text.toLowerCase().replace(/\b([\p{L}\p{N}]+)/gu, match =>
+        match.charAt(0).toUpperCase() + match.slice(1)
+      );
+
+    const toSentenceCase = (text) =>
+      text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, match => match.toUpperCase());
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.action;
+        let value = input.value;
+        if (!value) return;
+        switch (action) {
+          case 'upper':
+            value = value.toUpperCase();
+            break;
+          case 'lower':
+            value = value.toLowerCase();
+            break;
+          case 'title':
+            value = toTitleCase(value);
+            break;
+          case 'sentence':
+            value = toSentenceCase(value);
+            break;
+        }
+        input.value = value;
+      });
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

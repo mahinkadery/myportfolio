@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LocalStorage Inspector – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">LocalStorage Inspector</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">View all localStorage keys and values. Clear data to reset tools.</p>
+        </div>
+
+        <div class="flex items-center justify-between gap-3">
+          <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 px-4 py-2">
+            <p class="text-sm text-blue-800 dark:text-blue-200">
+              <strong>Total Items:</strong> <span id="itemCount">0</span>
+            </p>
+          </div>
+          <button id="refreshBtn" class="rounded-full border border-white/40 px-4 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Refresh</button>
+        </div>
+
+        <div id="localStorageList" class="space-y-3">
+          <!-- localStorage items will be injected here -->
+        </div>
+
+        <div class="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4">
+          <p class="text-sm font-semibold mb-2 text-red-800 dark:text-red-200">⚠️ Danger Zone:</p>
+          <button id="clearAllBtn" class="rounded-full bg-red-500 text-white px-6 py-2 text-sm font-semibold">Clear All LocalStorage</button>
+          <p class="text-xs text-red-700 dark:text-red-300 mt-2">This will delete ALL localStorage data for this domain. This action cannot be undone.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const itemCount = document.getElementById('itemCount');
+    const localStorageList = document.getElementById('localStorageList');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const clearAllBtn = document.getElementById('clearAllBtn');
+
+    function renderLocalStorage() {
+      localStorageList.innerHTML = '';
+      
+      const items = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        items.push({ key, value });
+      }
+
+      itemCount.textContent = items.length;
+
+      if (items.length === 0) {
+        localStorageList.innerHTML = `
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 text-center">
+            <p class="text-muted-light dark:text-muted-dark">No items in localStorage.</p>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach(({ key, value }) => {
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow';
+        
+        let displayValue = value;
+        let isJson = false;
+        try {
+          const parsed = JSON.parse(value);
+          displayValue = JSON.stringify(parsed, null, 2);
+          isJson = true;
+        } catch (e) {
+          // Not JSON, display as-is
+        }
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex-1">
+              <p class="text-sm font-semibold font-mono text-text-light dark:text-text-dark mb-1">${key}</p>
+              ${isJson ? '<span class="text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-600 dark:text-blue-400">JSON</span>' : ''}
+            </div>
+            <button class="delete-item-btn rounded-full border border-red-400 text-red-600 dark:text-red-400 px-3 py-1 text-xs font-semibold" data-key="${key}">Delete</button>
+          </div>
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-3 max-h-[200px] overflow-auto">
+            <pre class="text-xs font-mono break-all text-text-light dark:text-text-dark whitespace-pre-wrap">${displayValue.length > 500 ? displayValue.substring(0, 500) + '...' : displayValue}</pre>
+          </div>
+        `;
+
+        card.querySelector('.delete-item-btn').addEventListener('click', (e) => {
+          const keyToDelete = e.target.dataset.key;
+          if (confirm(`Delete "${keyToDelete}"?`)) {
+            localStorage.removeItem(keyToDelete);
+            renderLocalStorage();
+          }
+        });
+
+        localStorageList.appendChild(card);
+      });
+    }
+
+    refreshBtn.addEventListener('click', renderLocalStorage);
+
+    clearAllBtn.addEventListener('click', () => {
+      if (confirm('Are you sure you want to clear ALL localStorage data? This action cannot be undone.')) {
+        localStorage.clear();
+        renderLocalStorage();
+      }
+    });
+
+    // Auto-refresh every 2 seconds
+    setInterval(renderLocalStorage, 2000);
+    renderLocalStorage();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

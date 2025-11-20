@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JWT Decoder – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Security</p>
+          <h1 class="mt-2 text-3xl font-bold">JWT Inspector (Advanced)</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Decode JWT header and payload. <strong>Note: Signature is NOT verified.</strong></p>
+        </div>
+
+        <div class="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4">
+          <p class="text-sm text-red-800 dark:text-red-200">
+            <strong>⚠️ Security Warning:</strong> This tool decodes JWTs without verifying signatures. Never trust decoded data without proper signature verification on the server side.
+          </p>
+        </div>
+
+        <textarea id="jwtInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[180px]" placeholder="eyJhbGciOi..." spellcheck="false"></textarea>
+        <button id="jwtDecode" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Decode JWT</button>
+
+        <div id="jwtAnalysis" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4 hidden">
+          <!-- Analysis will appear here -->
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 text-sm">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Header</p>
+            <pre id="jwtHeader" class="whitespace-pre-wrap break-words font-mono text-xs">—</pre>
+          </div>
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 text-sm">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Payload</p>
+            <pre id="jwtPayload" class="whitespace-pre-wrap break-words font-mono text-xs">—</pre>
+          </div>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-6 space-y-3">
+          <h3 class="text-lg font-semibold text-text-light dark:text-text-dark">Understanding JWT Algorithms:</h3>
+          <ul class="text-sm space-y-2 text-blue-800 dark:text-blue-200">
+            <li><strong>HS256 (HMAC):</strong> Symmetric algorithm requiring a shared secret key. Fast and efficient.</li>
+            <li><strong>RS256 (RSA):</strong> Asymmetric algorithm using public/private key pair. More secure for distributed systems.</li>
+            <li><strong>ES256 (ECDSA):</strong> Elliptic curve digital signature algorithm. Similar to RSA but with smaller keys.</li>
+            <li><strong>None:</strong> No signature (extremely insecure). Only use in development for testing.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const decodePart = (part) => JSON.stringify(JSON.parse(atob(part.replace(/-/g, '+').replace(/_/g, '/'))), null, 2);
+
+    document.getElementById('jwtDecode').addEventListener('click', () => {
+      const token = document.getElementById('jwtInput').value.trim();
+      const parts = token.split('.');
+      const headerEl = document.getElementById('jwtHeader');
+      const payloadEl = document.getElementById('jwtPayload');
+      const analysisEl = document.getElementById('jwtAnalysis');
+      
+      try {
+        if (parts.length !== 3) throw new Error('JWT must have format: header.payload.signature');
+        
+        const header = parts[0];
+        const payload = parts[1];
+        const signature = parts[2];
+        
+        const headerObj = JSON.parse(atob(header.replace(/-/g, '+').replace(/_/g, '/')));
+        const payloadObj = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+        
+        headerEl.textContent = decodePart(header);
+        payloadEl.textContent = decodePart(payload);
+        
+        // Analysis
+        const alg = headerObj.alg || 'unknown';
+        const exp = payloadObj.exp ? new Date(payloadObj.exp * 1000) : null;
+        const iat = payloadObj.iat ? new Date(payloadObj.iat * 1000) : null;
+        const isExpired = exp && exp < new Date();
+        
+        analysisEl.classList.remove('hidden');
+        analysisEl.innerHTML = `
+          <div class="space-y-3">
+            <h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Token Analysis:</h3>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-3">
+                <p class="text-xs text-muted-light dark:text-muted-dark mb-1">Algorithm:</p>
+                <p class="text-sm font-semibold text-text-light dark:text-text-dark">${alg}</p>
+                ${alg === 'none' ? '<p class="text-xs text-red-500 mt-1">⚠️ No signature verification!</p>' : ''}
+              </div>
+              <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-3">
+                <p class="text-xs text-muted-light dark:text-muted-dark mb-1">Signature Status:</p>
+                <p class="text-sm font-semibold text-yellow-600 dark:text-yellow-400">NOT VERIFIED</p>
+                <p class="text-xs text-muted-light dark:text-muted-dark mt-1">Always verify on server</p>
+              </div>
+              ${exp ? `
+                <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-3">
+                  <p class="text-xs text-muted-light dark:text-muted-dark mb-1">Expires:</p>
+                  <p class="text-sm font-semibold ${isExpired ? 'text-red-600 dark:text-red-400' : 'text-text-light dark:text-text-dark'}">
+                    ${exp.toLocaleString()}
+                  </p>
+                  ${isExpired ? '<p class="text-xs text-red-500 mt-1">⚠️ Token is expired!</p>' : ''}
+                </div>
+              ` : ''}
+              ${iat ? `
+                <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-3">
+                  <p class="text-xs text-muted-light dark:text-muted-dark mb-1">Issued At:</p>
+                  <p class="text-sm font-semibold text-text-light dark:text-text-dark">${iat.toLocaleString()}</p>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        headerEl.textContent = payloadEl.textContent = 'Error: ' + error.message;
+        analysisEl.classList.add('hidden');
+      }
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

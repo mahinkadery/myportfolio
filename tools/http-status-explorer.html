@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTTP Status Code Explorer – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">HTTP Status Code Explorer</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Browse and search HTTP status codes (1xx–5xx) with explanations.</p>
+        </div>
+
+        <input id="statusSearch" type="text" placeholder="Search by code or description (e.g., 404, not found)..." class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+
+        <div class="flex gap-2 flex-wrap">
+          <button data-filter="all" class="filter-btn active rounded-full px-4 py-2 text-sm font-semibold bg-primary text-white">All</button>
+          <button data-filter="1xx" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">1xx Informational</button>
+          <button data-filter="2xx" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">2xx Success</button>
+          <button data-filter="3xx" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">3xx Redirection</button>
+          <button data-filter="4xx" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">4xx Client Error</button>
+          <button data-filter="5xx" class="filter-btn rounded-full px-4 py-2 text-sm font-semibold border border-white/40 text-text-light dark:text-text-dark">5xx Server Error</button>
+        </div>
+
+        <div id="statusResults" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Status codes will be injected here -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const statusCodes = [
+      // 1xx Informational
+      { code: 100, name: 'Continue', description: 'The server has received the request headers.', category: '1xx' },
+      { code: 101, name: 'Switching Protocols', description: 'The requester has asked the server to switch protocols.', category: '1xx' },
+      { code: 102, name: 'Processing', description: 'The server is processing the request.', category: '1xx' },
+      
+      // 2xx Success
+      { code: 200, name: 'OK', description: 'The request succeeded.', category: '2xx' },
+      { code: 201, name: 'Created', description: 'The request succeeded and a new resource was created.', category: '2xx' },
+      { code: 202, name: 'Accepted', description: 'The request has been accepted for processing.', category: '2xx' },
+      { code: 204, name: 'No Content', description: 'The request succeeded but has no content to return.', category: '2xx' },
+      { code: 206, name: 'Partial Content', description: 'The server is delivering only part of the resource.', category: '2xx' },
+      
+      // 3xx Redirection
+      { code: 301, name: 'Moved Permanently', description: 'The URL of the requested resource has been changed permanently.', category: '3xx' },
+      { code: 302, name: 'Found', description: 'The URL of the requested resource has been changed temporarily.', category: '3xx' },
+      { code: 304, name: 'Not Modified', description: 'The resource has not been modified since last request.', category: '3xx' },
+      { code: 307, name: 'Temporary Redirect', description: 'The server is redirecting to another URL with the same method.', category: '3xx' },
+      { code: 308, name: 'Permanent Redirect', description: 'The resource is permanently redirected to another URL.', category: '3xx' },
+      
+      // 4xx Client Error
+      { code: 400, name: 'Bad Request', description: 'The server cannot process the request due to client error.', category: '4xx' },
+      { code: 401, name: 'Unauthorized', description: 'Authentication is required and has failed or not been provided.', category: '4xx' },
+      { code: 403, name: 'Forbidden', description: 'The server understood the request but refuses to authorize it.', category: '4xx' },
+      { code: 404, name: 'Not Found', description: 'The requested resource could not be found.', category: '4xx' },
+      { code: 405, name: 'Method Not Allowed', description: 'The request method is not supported for the requested resource.', category: '4xx' },
+      { code: 408, name: 'Request Timeout', description: 'The server timed out waiting for the request.', category: '4xx' },
+      { code: 409, name: 'Conflict', description: 'The request conflicts with the current state of the resource.', category: '4xx' },
+      { code: 410, name: 'Gone', description: 'The requested resource is no longer available.', category: '4xx' },
+      { code: 413, name: 'Payload Too Large', description: 'The request entity is larger than server limits.', category: '4xx' },
+      { code: 414, name: 'URI Too Long', description: 'The URI provided was too long for the server to process.', category: '4xx' },
+      { code: 415, name: 'Unsupported Media Type', description: 'The media format is not supported by the server.', category: '4xx' },
+      { code: 429, name: 'Too Many Requests', description: 'The user has sent too many requests in a given time.', category: '4xx' },
+      
+      // 5xx Server Error
+      { code: 500, name: 'Internal Server Error', description: 'The server encountered an unexpected condition.', category: '5xx' },
+      { code: 501, name: 'Not Implemented', description: 'The server does not support the functionality required.', category: '5xx' },
+      { code: 502, name: 'Bad Gateway', description: 'The server received an invalid response from upstream.', category: '5xx' },
+      { code: 503, name: 'Service Unavailable', description: 'The server is temporarily unable to handle the request.', category: '5xx' },
+      { code: 504, name: 'Gateway Timeout', description: 'The server did not receive a timely response from upstream.', category: '5xx' },
+      { code: 505, name: 'HTTP Version Not Supported', description: 'The HTTP version used in the request is not supported.', category: '5xx' }
+    ];
+
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    function renderCodes() {
+      const container = document.getElementById('statusResults');
+      container.innerHTML = '';
+
+      const filtered = statusCodes.filter(item => {
+        const matchesFilter = activeFilter === 'all' || item.category === activeFilter;
+        const matchesSearch = !searchQuery || 
+          item.code.toString().includes(searchQuery) ||
+          item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.description.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="col-span-full text-center text-muted-light dark:text-muted-dark">No status codes found.</p>';
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow border-l-4';
+        card.style.borderLeftColor = item.category === '1xx' ? '#3b82f6' :
+                                     item.category === '2xx' ? '#10b981' :
+                                     item.category === '3xx' ? '#f59e0b' :
+                                     item.category === '4xx' ? '#ef4444' : '#dc2626';
+        card.innerHTML = `
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-2xl font-bold text-text-light dark:text-text-dark">${item.code}</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-white/80 dark:bg-background-dark/80 text-muted-light dark:text-muted-dark">${item.category}</span>
+          </div>
+          <h3 class="font-semibold text-text-light dark:text-text-dark mb-1">${item.name}</h3>
+          <p class="text-sm text-muted-light dark:text-muted-dark">${item.description}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById('statusSearch').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderCodes();
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('active', 'bg-primary', 'text-white');
+          b.classList.add('border', 'border-white/40', 'text-text-light', 'dark:text-text-dark');
+        });
+        btn.classList.add('active', 'bg-primary', 'text-white');
+        btn.classList.remove('border', 'border-white/40', 'text-text-light', 'dark:text-text-dark');
+        activeFilter = btn.dataset.filter;
+        renderCodes();
+      });
+    });
+
+    renderCodes();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

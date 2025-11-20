@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color Blindness Preview – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:960px;margin:0 auto;}
+    .demo-ui {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 16px;
+      border-radius: 12px;
+      background: white;
+    }
+    .demo-item {
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: white;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Color Blindness Preview</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Preview how colors appear to people with different types of color vision deficiency.</p>
+        </div>
+
+        <div class="rounded-xl bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-4">
+          <p class="text-sm text-yellow-800 dark:text-yellow-200">
+            <strong>⚠️ Educational Purpose:</strong> This tool uses approximate filter matrices to simulate color vision deficiencies. Results are approximations and should not be used for medical diagnosis.
+          </p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div>
+            <p class="text-sm font-semibold mb-3 text-text-light dark:text-text-dark">Original:</p>
+            <div id="originalDemo" class="demo-ui bg-white dark:bg-background-dark">
+              <div class="demo-item" style="background: #ff5733;">Error</div>
+              <div class="demo-item" style="background: #33ff57;">Success</div>
+              <div class="demo-item" style="background: #3357ff;">Info</div>
+              <div class="demo-item" style="background: #ff33f5;">Warning</div>
+            </div>
+          </div>
+          <div>
+            <p class="text-sm font-semibold mb-3 text-text-light dark:text-text-dark">Preview:</p>
+            <div id="previewDemo" class="demo-ui bg-white dark:bg-background-dark" style="filter: none;">
+              <div class="demo-item" style="background: #ff5733;">Error</div>
+              <div class="demo-item" style="background: #33ff57;">Success</div>
+              <div class="demo-item" style="background: #3357ff;">Info</div>
+              <div class="demo-item" style="background: #ff33f5;">Warning</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Select Color Vision Type:</label>
+          <select id="colorBlindnessType" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+            <option value="none">Normal Color Vision</option>
+            <option value="protanopia">Protanopia (Red-blind)</option>
+            <option value="deuteranopia">Deuteranopia (Green-blind)</option>
+            <option value="tritanopia">Tritanopia (Blue-blind)</option>
+            <option value="achromatopsia">Achromatopsia (Complete color blindness)</option>
+          </select>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-6 space-y-3">
+          <h3 class="text-lg font-semibold text-text-light dark:text-text-dark">About Color Vision Deficiencies:</h3>
+          <ul class="text-sm space-y-2 text-blue-800 dark:text-blue-200">
+            <li><strong>Protanopia:</strong> Inability to see red light. Red appears as black or dark gray.</li>
+            <li><strong>Deuteranopia:</strong> Inability to see green light. Green appears similar to red.</li>
+            <li><strong>Tritanopia:</strong> Inability to see blue light. Blue appears green, yellow appears pink.</li>
+            <li><strong>Achromatopsia:</strong> Complete color blindness. Only sees shades of gray.</li>
+          </ul>
+          <p class="text-xs text-blue-700 dark:text-blue-300 mt-3">
+            <strong>Design Tip:</strong> Always use color with additional indicators (icons, patterns, text) to ensure accessibility.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const colorBlindnessType = document.getElementById('colorBlindnessType');
+    const previewDemo = document.getElementById('previewDemo');
+
+    // Color blindness filter matrices (approximations)
+    const filters = {
+      none: 'none',
+      protanopia: 'url(#protanopia)',
+      deuteranopia: 'url(#deuteranopia)',
+      tritanopia: 'url(#tritanopia)',
+      achromatopsia: 'url(#achromatopsia)'
+    };
+
+    // Add SVG filters to the page
+    const svgFilters = `
+      <svg width="0" height="0" style="position: absolute;">
+        <defs>
+          <filter id="protanopia" color-interpolation-filters="linearRGB">
+            <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0
+                                                  0.558, 0.442, 0, 0, 0
+                                                  0, 0.242, 0.758, 0, 0
+                                                  0, 0, 0, 1, 0"/>
+          </filter>
+          <filter id="deuteranopia" color-interpolation-filters="linearRGB">
+            <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0
+                                                  0.7, 0.3, 0, 0, 0
+                                                  0, 0.3, 0.7, 0, 0
+                                                  0, 0, 0, 1, 0"/>
+          </filter>
+          <filter id="tritanopia" color-interpolation-filters="linearRGB">
+            <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0
+                                                  0, 0.433, 0.567, 0, 0
+                                                  0, 0.475, 0.525, 0, 0
+                                                  0, 0, 0, 1, 0"/>
+          </filter>
+          <filter id="achromatopsia" color-interpolation-filters="linearRGB">
+            <feColorMatrix type="matrix" values="0.299, 0.587, 0.114, 0, 0
+                                                  0.299, 0.587, 0.114, 0, 0
+                                                  0.299, 0.587, 0.114, 0, 0
+                                                  0, 0, 0, 1, 0"/>
+          </filter>
+        </defs>
+      </svg>
+    `;
+    document.body.insertAdjacentHTML('beforeend', svgFilters);
+
+    colorBlindnessType.addEventListener('change', () => {
+      const type = colorBlindnessType.value;
+      previewDemo.style.filter = filters[type] || 'none';
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

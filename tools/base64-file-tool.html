@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Base64 ↔ File Tool – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-8">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Base64 ↔ File Converter</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Encode any file as Base64 or decode Base64 back into a downloadable file.</p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div class="space-y-4 rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6">
+            <h2 class="text-lg font-semibold">File → Base64</h2>
+            <input type="file" id="b64FileInput" class="block w-full text-sm text-muted-light dark:text-muted-dark">
+            <textarea id="b64Output" readonly class="w-full rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-3 min-h-[200px]" placeholder="Base64 output"></textarea>
+            <button id="copyBase64" class="rounded-full border border-white/40 px-4 py-2 text-sm font-semibold">Copy Base64</button>
+          </div>
+
+          <div class="space-y-4 rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6">
+            <h2 class="text-lg font-semibold">Base64 → File</h2>
+            <textarea id="b64Input" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 min-h-[200px]" placeholder="Paste Base64 here"></textarea>
+            <input type="text" id="b64Filename" placeholder="Filename (e.g. output.png)" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+            <button id="downloadFile" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Download File</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('b64FileInput');
+    const b64Output = document.getElementById('b64Output');
+    const b64Input = document.getElementById('b64Input');
+    const filenameInput = document.getElementById('b64Filename');
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        b64Output.value = reader.result.split(',')[1];
+      };
+      reader.readAsDataURL(file);
+    });
+
+    document.getElementById('copyBase64').addEventListener('click', async () => {
+      await navigator.clipboard.writeText(b64Output.value);
+      alert('Copied!');
+    });
+
+    document.getElementById('downloadFile').addEventListener('click', () => {
+      const b64 = b64Input.value.trim();
+      if (!b64) return;
+      const byteString = atob(b64);
+      const array = new Uint8Array(byteString.length);
+      for (let i = 0; i < byteString.length; i++) {
+        array[i] = byteString.charCodeAt(i);
+      }
+      const blob = new Blob([array]);
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filenameInput.value || 'download.bin';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

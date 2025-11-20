@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dockerfile Layer Visualizer – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:960px;margin:0 auto;}
+    .docker-layer {
+      border-left: 4px solid;
+      padding-left: 1rem;
+      margin: 0.5rem 0;
+    }
+    .layer-FROM { border-color: #3b82f6; }
+    .layer-RUN { border-color: #10b981; }
+    .layer-COPY { border-color: #f59e0b; }
+    .layer-ADD { border-color: #ef4444; }
+    .layer-ENV { border-color: #8b5cf6; }
+    .layer-WORKDIR { border-color: #ec4899; }
+    .layer-EXPOSE { border-color: #06b6d4; }
+    .layer-CMD { border-color: #14b8a6; }
+    .layer-ENTRYPOINT { border-color: #6366f1; }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">Dockerfile Layer Visualizer</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Parse Dockerfile and visualize layers and build order.</p>
+        </div>
+
+        <textarea id="dockerfileInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[200px] font-mono text-sm" placeholder="FROM node:18&#10;WORKDIR /app&#10;COPY package*.json .&#10;RUN npm install&#10;COPY . .&#10;EXPOSE 3000&#10;CMD [&quot;npm&quot;, &quot;start&quot;]"></textarea>
+
+        <button id="parseBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Parse Dockerfile</button>
+
+        <div id="layersBox" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4">
+          <p class="text-muted-light dark:text-muted-dark">Parsed layers will appear here.</p>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-6 space-y-3">
+          <h3 class="text-lg font-semibold text-text-light dark:text-text-dark">Dockerfile Layer Types:</h3>
+          <ul class="text-sm space-y-2 text-blue-800 dark:text-blue-200">
+            <li><strong>FROM:</strong> Base image - defines the starting point for your container</li>
+            <li><strong>RUN:</strong> Executes commands during image build - creates a new layer</li>
+            <li><strong>COPY/ADD:</strong> Copies files from host to image - creates a new layer</li>
+            <li><strong>ENV:</strong> Sets environment variables - creates a new layer</li>
+            <li><strong>WORKDIR:</strong> Sets working directory for subsequent instructions</li>
+            <li><strong>EXPOSE:</strong> Documents which ports the container listens on</li>
+            <li><strong>CMD/ENTRYPOINT:</strong> Defines the default command when container starts</li>
+          </ul>
+          <p class="text-xs text-blue-700 dark:text-blue-300 mt-3">
+            <strong>Build Optimization Tip:</strong> Order matters! Place frequently changing layers (like COPY .) near the end to maximize cache efficiency.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const dockerfileInput = document.getElementById('dockerfileInput');
+    const parseBtn = document.getElementById('parseBtn');
+    const layersBox = document.getElementById('layersBox');
+
+    function parseDockerfile(content) {
+      const lines = content.split('\n');
+      const layers = [];
+      let layerNumber = 0;
+
+      lines.forEach((line, index) => {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) return;
+
+        const match = trimmed.match(/^(\w+)\s+(.*)$/);
+        if (match) {
+          const [, instruction, args] = match;
+          const upperInstruction = instruction.toUpperCase();
+          layerNumber++;
+
+          layers.push({
+            number: layerNumber,
+            instruction: upperInstruction,
+            args: args,
+            line: index + 1,
+            original: trimmed
+          });
+        }
+      });
+
+      return layers;
+    }
+
+    function getLayerDescription(instruction, args) {
+      const descriptions = {
+        'FROM': 'Base image',
+        'RUN': 'Execute command',
+        'COPY': 'Copy files from host',
+        'ADD': 'Copy files from host (with URL support)',
+        'ENV': 'Set environment variable',
+        'ARG': 'Build-time variable',
+        'WORKDIR': 'Set working directory',
+        'EXPOSE': 'Expose port',
+        'CMD': 'Default command',
+        'ENTRYPOINT': 'Entry point command',
+        'LABEL': 'Add metadata',
+        'USER': 'Set user',
+        'VOLUME': 'Create mount point',
+        'HEALTHCHECK': 'Health check command'
+      };
+      return descriptions[instruction] || 'Dockerfile instruction';
+    }
+
+    parseBtn.addEventListener('click', () => {
+      const content = dockerfileInput.value.trim();
+      
+      if (!content) {
+        layersBox.innerHTML = '<p class="text-red-500">Please enter a Dockerfile.</p>';
+        return;
+      }
+
+      try {
+        const layers = parseDockerfile(content);
+
+        if (layers.length === 0) {
+          layersBox.innerHTML = '<p class="text-muted-light dark:text-muted-dark">No valid Dockerfile instructions found.</p>';
+          return;
+        }
+
+        let html = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-semibold text-text-light dark:text-text-dark">Build Layers (${layers.length}):</p>
+              <span class="text-xs text-muted-light dark:text-muted-dark">Build order from top to bottom</span>
+            </div>
+            <div class="space-y-2">
+              ${layers.map(layer => `
+                <div class="docker-layer layer-${layer.instruction} rounded-xl bg-white/80 dark:bg-background-dark/60 p-4">
+                  <div class="flex items-start justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="px-2 py-1 rounded-full text-xs font-semibold bg-primary/20 text-primary">Layer ${layer.number}</span>
+                      <span class="px-2 py-1 rounded-full text-xs font-semibold font-mono bg-white/60 dark:bg-background-dark/40 text-text-light dark:text-text-dark">${layer.instruction}</span>
+                    </div>
+                    <span class="text-xs text-muted-light dark:text-muted-dark">Line ${layer.line}</span>
+                  </div>
+                  <p class="text-xs text-muted-light dark:text-muted-dark mb-2">${getLayerDescription(layer.instruction, layer.args)}</p>
+                  <pre class="text-xs font-mono text-text-light dark:text-text-dark break-all">${layer.original}</pre>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+
+        layersBox.innerHTML = html;
+      } catch (error) {
+        layersBox.innerHTML = `<p class="text-red-500">Error: ${error.message}</p>`;
+      }
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

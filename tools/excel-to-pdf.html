@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Excel to PDF – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">PDF Tools</p>
+          <h1 class="mt-2 text-3xl font-bold">Excel to PDF</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Convert Excel files (.xlsx, .xls) to PDF using browser print functionality.</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Select Excel File:</label>
+          <input id="excelFile" type="file" accept=".xlsx,.xls" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 text-sm">
+        </div>
+
+        <button id="convertBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold disabled:opacity-50" disabled>Convert to PDF</button>
+
+        <div id="statusBox" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 hidden">
+          <p id="statusText" class="text-sm text-text-light dark:text-text-dark"></p>
+        </div>
+
+        <div id="previewBox" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 hidden">
+          <p class="text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Preview:</p>
+          <div id="previewContent" class="overflow-auto max-h-[400px]"></div>
+          <button id="printBtn" class="mt-4 rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Print to PDF</button>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
+          <p class="text-sm text-blue-800 dark:text-blue-200">
+            <strong>💡 How it works:</strong> The Excel file is converted to HTML and displayed in a print preview. Use your browser's "Print to PDF" option (Ctrl+P / Cmd+P) to save as PDF.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const excelFile = document.getElementById('excelFile');
+    const convertBtn = document.getElementById('convertBtn');
+    const statusBox = document.getElementById('statusBox');
+    const statusText = document.getElementById('statusText');
+    const previewBox = document.getElementById('previewBox');
+    const previewContent = document.getElementById('previewContent');
+    const printBtn = document.getElementById('printBtn');
+
+    excelFile.addEventListener('change', (e) => {
+      convertBtn.disabled = !e.target.files.length;
+    });
+
+    convertBtn.addEventListener('click', async () => {
+      const file = excelFile.files[0];
+      
+      if (!file) {
+        alert('Please select an Excel file.');
+        return;
+      }
+
+      convertBtn.disabled = true;
+      statusBox.classList.remove('hidden');
+      statusText.textContent = 'Reading Excel file...';
+      statusText.className = 'text-sm text-text-light dark:text-text-dark';
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        const html = XLSX.utils.sheet_to_html(worksheet);
+
+        previewContent.innerHTML = html;
+        previewBox.classList.remove('hidden');
+        
+        statusText.textContent = 'Excel file loaded. Click "Print to PDF" and select "Save as PDF" in the print dialog.';
+        statusText.className = 'text-sm text-green-600 dark:text-green-400';
+      } catch (error) {
+        statusText.textContent = `Error: ${error.message}`;
+        statusText.className = 'text-sm text-red-600 dark:text-red-400';
+        previewBox.classList.add('hidden');
+      } finally {
+        convertBtn.disabled = false;
+      }
+    });
+
+    printBtn.addEventListener('click', () => {
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Excel to PDF - Print</title>
+            <style>
+              body { margin: 20px; font-family: Arial, sans-serif; }
+              table { border-collapse: collapse; width: 100%; }
+              td, th { border: 1px solid #ddd; padding: 8px; text-align: left; }
+              th { background-color: #f2f2f2; }
+            </style>
+          </head>
+          <body>
+            ${previewContent.innerHTML}
+            <script src="../tools-shared-script.js"></script>
+</body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => {
+        printWindow.print();
+      }, 250);
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Input Validation Playground – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Security</p>
+          <h1 class="mt-2 text-3xl font-bold">Input Validation Playground</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Compare safe vs unsafe input handling. Learn why encoding/escaping matters.</p>
+        </div>
+
+        <div class="rounded-xl bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-4">
+          <p class="text-sm text-yellow-800 dark:text-yellow-200">
+            <strong>⚠️ Educational Purpose:</strong> This tool demonstrates why proper input validation and encoding is crucial. It does not exploit real applications.
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-text-light dark:text-text-dark">Enter HTML/JavaScript code:</label>
+          <textarea id="userInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[100px] font-mono text-sm" placeholder='<script>alert("XSS")</script>'></textarea>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xl">❌</span>
+              <h3 class="text-lg font-semibold text-red-600 dark:text-red-400">Unsafe (innerHTML)</h3>
+            </div>
+            <div class="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4 min-h-[150px]">
+              <div id="unsafeOutput" class="text-sm"></div>
+            </div>
+            <p class="text-xs text-muted-light dark:text-muted-dark mt-2">
+              Using innerHTML directly renders HTML/JavaScript, allowing XSS attacks.
+            </p>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xl">✅</span>
+              <h3 class="text-lg font-semibold text-green-600 dark:text-green-400">Safe (textContent)</h3>
+            </div>
+            <div class="rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-4 min-h-[150px]">
+              <div id="safeOutput" class="text-sm"></div>
+            </div>
+            <p class="text-xs text-muted-light dark:text-muted-dark mt-2">
+              Using textContent escapes HTML, preventing XSS attacks.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-6 space-y-3">
+          <h3 class="text-lg font-semibold text-text-light dark:text-text-dark">Best Practices:</h3>
+          <ul class="text-sm space-y-2 text-blue-800 dark:text-blue-200">
+            <li><strong>✅ Use textContent:</strong> For user-generated text, always use textContent instead of innerHTML.</li>
+            <li><strong>✅ Escape HTML:</strong> If you must use HTML, escape special characters (&lt;, &gt;, &amp;, &quot;, &#39;).</li>
+            <li><strong>✅ Validate Input:</strong> Validate and sanitize all user input on both client and server side.</li>
+            <li><strong>✅ Use Trusted Libraries:</strong> Use libraries like DOMPurify to sanitize HTML before rendering.</li>
+            <li><strong>✅ Content Security Policy:</strong> Implement CSP headers to prevent XSS attacks at the browser level.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const userInput = document.getElementById('userInput');
+    const unsafeOutput = document.getElementById('unsafeOutput');
+    const safeOutput = document.getElementById('safeOutput');
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    function updateOutputs() {
+      const input = userInput.value;
+      
+      // Unsafe: innerHTML (DO NOT USE IN PRODUCTION)
+      unsafeOutput.innerHTML = input || '<em class="text-muted-light dark:text-muted-dark">Enter code above...</em>';
+      
+      // Safe: textContent (RECOMMENDED)
+      safeOutput.textContent = input || 'Enter code above...';
+    }
+
+    userInput.addEventListener('input', updateOutputs);
+    updateOutputs();
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

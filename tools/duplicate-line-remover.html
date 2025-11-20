@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Duplicate Line Remover – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
+          <h1 class="mt-2 text-3xl font-bold">Duplicate Line Remover</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Paste multi-line text—duplicate lines are removed while preserving order.</p>
+        </div>
+
+        <textarea id="dupInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px]" placeholder="Line 1&#10;Line 2&#10;Line 1"></textarea>
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <label class="flex items-center gap-2 text-sm">
+            <input type="checkbox" id="ignoreCase"> Ignore case differences
+          </label>
+          <button id="removeBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Remove duplicates</button>
+        </div>
+        <textarea id="dupOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[200px]" placeholder="Unique lines appear here"></textarea>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const input = document.getElementById('dupInput');
+    const output = document.getElementById('dupOutput');
+    const ignoreCase = document.getElementById('ignoreCase');
+
+    document.getElementById('removeBtn').addEventListener('click', () => {
+      const seen = new Set();
+      const lines = input.value.split('\n');
+      const unique = [];
+
+      lines.forEach(line => {
+        const key = ignoreCase.checked ? line.toLowerCase() : line;
+        if (!seen.has(key)) {
+          seen.add(key);
+          unique.push(line);
+        }
+      });
+
+      output.value = unique.join('\n');
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

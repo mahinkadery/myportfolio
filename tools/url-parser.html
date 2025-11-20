@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>URL Parser & Inspector – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer</p>
+          <h1 class="mt-2 text-3xl font-bold">URL Parser & Inspector</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Parse URLs to see protocol, host, path, query params, hash, and more.</p>
+        </div>
+
+        <input id="urlInput" type="text" placeholder="Enter or paste a URL (e.g., https://example.com/path?key=value#hash)" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+
+        <button id="parseBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Parse URL</button>
+
+        <div id="urlResult" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4">
+          <p class="text-muted-light dark:text-muted-dark">Parsed URL components will appear here.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const urlInput = document.getElementById('urlInput');
+    const parseBtn = document.getElementById('parseBtn');
+    const resultBox = document.getElementById('urlResult');
+
+    function parseURL(urlString) {
+      try {
+        const url = new URL(urlString);
+        const params = {};
+        url.searchParams.forEach((value, key) => {
+          params[key] = value;
+        });
+
+        return {
+          href: url.href,
+          protocol: url.protocol,
+          hostname: url.hostname,
+          port: url.port || '(default)',
+          pathname: url.pathname,
+          search: url.search || '(none)',
+          hash: url.hash || '(none)',
+          origin: url.origin,
+          host: url.host,
+          params: params
+        };
+      } catch (error) {
+        return { error: error.message };
+      }
+    }
+
+    function renderResult(data) {
+      if (data.error) {
+        resultBox.innerHTML = `<p class="text-red-500">Error: ${data.error}</p>`;
+        return;
+      }
+
+      resultBox.innerHTML = `
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4">
+            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Protocol</dt>
+            <dd class="font-mono text-sm break-all text-text-light dark:text-text-dark">${data.protocol}</dd>
+          </div>
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4">
+            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Hostname</dt>
+            <dd class="font-mono text-sm break-all text-text-light dark:text-text-dark">${data.hostname}</dd>
+          </div>
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4">
+            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Port</dt>
+            <dd class="font-mono text-sm break-all text-text-light dark:text-text-dark">${data.port}</dd>
+          </div>
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4">
+            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Origin</dt>
+            <dd class="font-mono text-sm break-all text-text-light dark:text-text-dark">${data.origin}</dd>
+          </div>
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4 sm:col-span-2">
+            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Pathname</dt>
+            <dd class="font-mono text-sm break-all text-text-light dark:text-text-dark">${data.pathname}</dd>
+          </div>
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4">
+            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Search</dt>
+            <dd class="font-mono text-sm break-all text-text-light dark:text-text-dark">${data.search}</dd>
+          </div>
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4">
+            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Hash</dt>
+            <dd class="font-mono text-sm break-all text-text-light dark:text-text-dark">${data.hash}</dd>
+          </div>
+          ${Object.keys(data.params).length > 0 ? `
+            <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4 sm:col-span-2">
+              <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-3">Query Parameters</dt>
+              <dl class="space-y-2">
+                ${Object.entries(data.params).map(([key, value]) => `
+                  <div class="flex items-start gap-2">
+                    <dt class="font-semibold text-text-light dark:text-text-dark min-w-[100px]">${key}:</dt>
+                    <dd class="font-mono text-sm break-all text-muted-light dark:text-muted-dark flex-1">${value}</dd>
+                  </div>
+                `).join('')}
+              </dl>
+            </div>
+          ` : ''}
+          <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4 sm:col-span-2">
+            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark mb-2">Full URL</dt>
+            <dd class="font-mono text-xs break-all text-text-light dark:text-text-dark">${data.href}</dd>
+          </div>
+        </div>
+      `;
+    }
+
+    parseBtn.addEventListener('click', () => {
+      const url = urlInput.value.trim();
+      if (!url) {
+        resultBox.innerHTML = '<p class="text-muted-light dark:text-muted-dark">Please enter a URL.</p>';
+        return;
+      }
+      const result = parseURL(url);
+      renderResult(result);
+    });
+
+    urlInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') parseBtn.click();
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

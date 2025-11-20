@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text Comparator – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell{max-width:1200px;margin:0 auto;}
+    .diff-line{padding:0.35rem 0.75rem;border-radius:0.75rem;margin-bottom:0.3rem;}
+    .diff-line.added{background:#34d39920;color:#10b981;}
+    .diff-line.removed{background:#f8717120;color:#ef4444;}
+    .diff-line.same{opacity:0.6;}
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
+          <h1 class="mt-2 text-3xl font-bold">Text Comparator</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Compare two blocks of text and highlight line differences.</p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+          <textarea id="textA" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[260px]" placeholder="Original text"></textarea>
+          <textarea id="textB" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[260px]" placeholder="Modified text"></textarea>
+        </div>
+
+        <button id="compareBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Compare</button>
+
+        <div id="diffOutput" class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 min-h-[180px]">
+          <p class="text-sm text-muted-light dark:text-muted-dark">Differences will appear here.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const btn = document.getElementById('compareBtn');
+    const diffOutput = document.getElementById('diffOutput');
+
+    btn.addEventListener('click', () => {
+      const linesA = document.getElementById('textA').value.split('\n');
+      const linesB = document.getElementById('textB').value.split('\n');
+      const max = Math.max(linesA.length, linesB.length);
+      diffOutput.innerHTML = '';
+
+      for (let i = 0; i < max; i++) {
+        const a = linesA[i] ?? '';
+        const b = linesB[i] ?? '';
+        const line = document.createElement('div');
+        line.classList.add('diff-line');
+
+        if (a === b) {
+          line.classList.add('same');
+          line.textContent = `Line ${i + 1}: ${a || '—'}`;
+        } else {
+          if (a) {
+            const removed = document.createElement('div');
+            removed.className = 'diff-line removed';
+            removed.textContent = `− Line ${i + 1}: ${a}`;
+            diffOutput.appendChild(removed);
+          }
+          if (b) {
+            const added = document.createElement('div');
+            added.className = 'diff-line added';
+            added.textContent = `+ Line ${i + 1}: ${b}`;
+            diffOutput.appendChild(added);
+          }
+          continue;
+        }
+        diffOutput.appendChild(line);
+      }
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+

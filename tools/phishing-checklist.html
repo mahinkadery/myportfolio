@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phishing URL Checklist – Visual Illusionist</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg">
+      <a href="../index.html" class="flex items-center gap-3">
+        <img src="../logo.png" alt="Visual Illusionist" class="h-8 w-auto dark:hidden">
+        <img src="../darkmodelogo.png" alt="Visual Illusionist" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">Visual Illusionist</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../tools.html" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 py-10">
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Security</p>
+          <h1 class="mt-2 text-3xl font-bold">Phishing URL Checklist Tool</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Analyze URLs for common phishing indicators. Always manually verify suspicious URLs.</p>
+        </div>
+
+        <input id="urlInput" type="text" placeholder="Enter URL to check..." class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 font-mono text-sm">
+
+        <button id="checkBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Check URL</button>
+
+        <div id="checklistResult" class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4">
+          <p class="text-muted-light dark:text-muted-dark">URL checklist will appear here.</p>
+        </div>
+
+        <div class="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4">
+          <p class="text-sm text-red-800 dark:text-red-200">
+            <strong>⚠️ Warning:</strong> This tool is for educational purposes only. Always verify URLs manually and use additional security measures. This tool cannot guarantee that a URL is safe.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const urlInput = document.getElementById('urlInput');
+    const checkBtn = document.getElementById('checkBtn');
+    const checklistResult = document.getElementById('checklistResult');
+
+    function checkUrl(urlString) {
+      try {
+        const url = new URL(urlString.startsWith('http') ? urlString : `https://${urlString}`);
+        const hostname = url.hostname.toLowerCase();
+        const pathname = url.pathname;
+        
+        const checks = [
+          {
+            name: 'Uses HTTPS',
+            passed: url.protocol === 'https:',
+            warning: url.protocol !== 'https:',
+            description: 'HTTPS encrypts data and verifies website identity'
+          },
+          {
+            name: 'No suspicious subdomains',
+            passed: !hostname.includes('.') || hostname.split('.').length <= 3,
+            warning: hostname.split('.').length > 4,
+            description: 'Phishers often use subdomains like login.example.com.evil.com'
+          },
+          {
+            name: 'No IP address',
+            passed: !/^\d+\.\d+\.\d+\.\d+$/.test(hostname),
+            warning: /^\d+\.\d+\.\d+\.\d+$/.test(hostname),
+            description: 'Legitimate sites rarely use IP addresses directly'
+          },
+          {
+            name: 'No common typosquatting',
+            passed: !/^(paypa1|paypai|micr0soft|go0gle|amaz0n|faceb00k|twitt3r)/i.test(hostname),
+            warning: /^(paypa1|paypai|micr0soft|go0gle|amaz0n|faceb00k|twitt3r)/i.test(hostname),
+            description: 'Watch for character substitutions (0 instead of O, 1 instead of l)'
+          },
+          {
+            name: 'No suspicious TLD',
+            passed: !/[.](tk|ml|ga|cf|gq|xyz|top)$/.test(hostname),
+            warning: /[.](tk|ml|ga|cf|gq|xyz|top)$/.test(hostname),
+            description: 'Some free TLDs are commonly used for phishing'
+          },
+          {
+            name: 'No excessive hyphens',
+            passed: (hostname.match(/-/g) || []).length <= 2,
+            warning: (hostname.match(/-/g) || []).length > 2,
+            description: 'Legitimate domains rarely have multiple hyphens'
+          },
+          {
+            name: 'No suspicious path patterns',
+            passed: !/\/(verify|login|secure|update|confirm|account)/i.test(pathname),
+            warning: /\/(verify|login|secure|update|confirm|account)/i.test(pathname) && !url.hostname.includes('example.com'),
+            description: 'Be cautious with URLs containing these common phishing keywords'
+          }
+        ];
+
+        const passedCount = checks.filter(c => c.passed).length;
+        const warningCount = checks.filter(c => c.warning).length;
+        const riskLevel = warningCount >= 3 ? 'High' : warningCount >= 1 ? 'Medium' : 'Low';
+
+        let html = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-semibold text-text-light dark:text-text-dark">Risk Level:</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold ${
+                riskLevel === 'High' ? 'bg-red-500/20 text-red-600 dark:text-red-400' :
+                riskLevel === 'Medium' ? 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400' :
+                'bg-green-500/20 text-green-600 dark:text-green-400'
+              }">
+                ${riskLevel} Risk
+              </span>
+            </div>
+            <div class="rounded-xl bg-white/80 dark:bg-background-dark/60 p-4">
+              <p class="text-xs font-semibold text-muted-light dark:text-muted-dark mb-2">URL Details:</p>
+              <p class="text-sm font-mono break-all text-text-light dark:text-text-dark">${url.href}</p>
+              <p class="text-xs text-muted-light dark:text-muted-dark mt-2">Domain: <strong>${hostname}</strong></p>
+            </div>
+            <div class="space-y-2">
+              <p class="text-sm font-semibold text-text-light dark:text-text-dark">Checks:</p>
+              ${checks.map(check => `
+                <div class="flex items-start gap-2 rounded-xl bg-white/80 dark:bg-background-dark/60 p-3">
+                  <span class="text-lg">${check.passed ? '✅' : check.warning ? '⚠️' : '❌'}</span>
+                  <div class="flex-1">
+                    <p class="text-sm font-semibold ${check.passed ? 'text-green-600 dark:text-green-400' : check.warning ? 'text-yellow-600 dark:text-yellow-400' : 'text-red-600 dark:text-red-400'}">
+                      ${check.name}
+                    </p>
+                    <p class="text-xs text-muted-light dark:text-muted-dark mt-1">${check.description}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
+              <p class="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-2">📋 Manual Verification Steps:</p>
+              <ul class="text-xs space-y-1 text-blue-700 dark:text-blue-300">
+                <li>• Hover over links to see the actual destination URL</li>
+                <li>• Check the SSL certificate details (click the lock icon)</li>
+                <li>• Verify the domain name matches the expected organization</li>
+                <li>• Look for HTTPS and a valid certificate</li>
+                <li>• Be suspicious of urgent requests or unusual requests</li>
+                <li>• When in doubt, navigate directly to the website manually</li>
+              </ul>
+            </div>
+          </div>
+        `;
+
+        checklistResult.innerHTML = html;
+      } catch (error) {
+        checklistResult.innerHTML = `<p class="text-red-500">Invalid URL: ${error.message}</p>`;
+      }
+    }
+
+    checkBtn.addEventListener('click', () => {
+      const url = urlInput.value.trim();
+      if (!url) {
+        checklistResult.innerHTML = '<p class="text-red-500">Please enter a URL.</p>';
+        return;
+      }
+      checkUrl(url);
+    });
+  </script>
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
+
