@@ -343,6 +343,13 @@ const TOOL_LINKS = [
         category: 'Developer Tools'
     },
     {
+        label: 'Download Videos in 4K',
+        href: 'tools/video-downloader.html',
+        description: 'Send a URL to an Apify actor and inspect the JSON result.',
+        difficulty: '🟠',
+        category: 'Developer Tools'
+    },
+    {
         label: 'Hash Calculator',
         href: 'tools/hash-calculator.html',
         description: 'Compute SHA-256 and SHA-1 hashes using the Web Crypto API.',
