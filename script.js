@@ -15,742 +15,742 @@ const CATEGORY_FILTERS = [
 const TOOL_LINKS = [
     {
         label: 'Word & Character Counter',
-        href: 'tools/word-character-counter.html',
+        href: '/tools/word-character-counter',
         description: 'Live word and character counts as you type.',
         difficulty: '🟢',
         category: 'Text & Writing'
     },
     {
         label: 'Case Converter',
-        href: 'tools/case-converter.html',
+        href: '/tools/case-converter',
         description: 'Switch between upper, lower, title, and sentence case instantly.',
         difficulty: '🟢',
         category: 'Text & Writing'
     },
     {
         label: 'Whitespace Cleaner',
-        href: 'tools/whitespace-cleaner.html',
+        href: '/tools/whitespace-cleaner',
         description: 'Trim leading/trailing spaces, collapse whitespace, remove blank lines.',
         difficulty: '🟢',
         category: 'Text & Writing'
     },
     {
         label: 'Text Reverser',
-        href: 'tools/text-reverser.html',
+        href: '/tools/text-reverser',
         description: 'Reverse the entire text or each word individually.',
         difficulty: '🟢',
         category: 'Text & Writing'
     },
     {
         label: 'Duplicate Line Remover',
-        href: 'tools/duplicate-line-remover.html',
+        href: '/tools/duplicate-line-remover',
         description: 'Remove duplicate lines while keeping the original order.',
         difficulty: '🟡',
         category: 'Text & Writing'
     },
     {
         label: 'Find & Replace Tool',
-        href: 'tools/find-replace-tool.html',
+        href: '/tools/find-replace-tool',
         description: 'Replace every occurrence of a target string with ease.',
         difficulty: '🟡',
         category: 'Text & Writing'
     },
     {
         label: 'URL Encoder / Decoder',
-        href: 'tools/url-encoder-decoder.html',
+        href: '/tools/url-encoder-decoder',
         description: 'encodeURIComponent / decodeURIComponent helpers for URLs.',
         difficulty: '🟡',
         category: 'Text & Writing'
     },
     {
         label: 'Base64 Encoder / Decoder',
-        href: 'tools/base64-encoder-decoder.html',
+        href: '/tools/base64-encoder-decoder',
         description: 'Unicode-safe Base64 conversions using btoa/atob.',
         difficulty: '🟡',
         category: 'Text & Writing'
     },
     {
         label: 'Markdown Previewer',
-        href: 'tools/markdown-previewer.html',
+        href: '/tools/markdown-previewer',
         description: 'Split-pane Markdown typing with live HTML preview.',
         difficulty: '🟠',
         category: 'Text & Writing'
     },
     {
         label: 'Text Comparator',
-        href: 'tools/text-comparator.html',
+        href: '/tools/text-comparator',
         description: 'Line-by-line diff highlighting additions and removals.',
         difficulty: '🟠',
         category: 'Text & Writing'
     },
     {
         label: 'Basic Calculator',
-        href: 'tools/basic-calculator.html',
+        href: '/tools/basic-calculator',
         description: 'Keyboard-friendly calculator for everyday math.',
         difficulty: '🟢',
         category: 'Calculators & Converters'
     },
     {
         label: 'Percentage Calculator',
-        href: 'tools/percentage-calculator.html',
+        href: '/tools/percentage-calculator',
         description: 'Find X% of a number and measure percent change.',
         difficulty: '🟢',
         category: 'Calculators & Converters'
     },
     {
         label: 'Discount / Sale Price Calculator',
-        href: 'tools/discount-calculator.html',
+        href: '/tools/discount-calculator',
         description: 'Compute sale price and savings from any discount.',
         difficulty: '🟢',
         category: 'Calculators & Converters'
     },
     {
         label: 'Tip Calculator',
-        href: 'tools/tip-calculator.html',
+        href: '/tools/tip-calculator',
         description: 'Split bills with tip and see per-person totals.',
         difficulty: '🟢',
         category: 'Calculators & Converters'
     },
     {
         label: 'Loan / EMI Calculator',
-        href: 'tools/loan-emi-calculator.html',
+        href: '/tools/loan-emi-calculator',
         description: 'Standard EMI formula with interest and totals.',
         difficulty: '🟡',
         category: 'Calculators & Converters'
     },
     {
         label: 'BMI Calculator',
-        href: 'tools/bmi-calculator.html',
+        href: '/tools/bmi-calculator',
         description: 'Calculate BMI in kg/m and see the category.',
         difficulty: '🟢',
         category: 'Calculators & Converters'
     },
     {
         label: 'Unit Converter',
-        href: 'tools/unit-converter.html',
+        href: '/tools/unit-converter',
         description: 'Length, weight, and temperature conversions.',
         difficulty: '🟡',
         category: 'Calculators & Converters'
     },
     {
         label: 'Age Calculator',
-        href: 'tools/age-calculator.html',
+        href: '/tools/age-calculator',
         description: 'Detailed age output in years, months, days.',
         difficulty: '🟡',
         category: 'Calculators & Converters'
     },
     {
         label: 'Time Zone Difference Helper',
-        href: 'tools/timezone-difference.html',
+        href: '/tools/timezone-difference',
         description: 'Compare time zones and convert meeting times.',
         difficulty: '🟠',
         category: 'Calculators & Converters'
     },
     {
         label: 'GPA / Grade Calculator',
-        href: 'tools/gpa-calculator.html',
+        href: '/tools/gpa-calculator',
         description: 'Weighted GPA with customizable subjects.',
         difficulty: '🟡',
         category: 'Calculators & Converters'
     },
     {
         label: 'Pomodoro Timer',
-        href: 'tools/pomodoro-timer.html',
+        href: '/tools/pomodoro-timer',
         description: 'Alternates 25 min focus / 5 min break cycles with alerts.',
         difficulty: '🟡',
         category: 'Productivity'
     },
     {
         label: 'Countdown Timer',
-        href: 'tools/countdown-timer.html',
+        href: '/tools/countdown-timer',
         description: 'Quick timer with start/pause/reset controls.',
         difficulty: '🟢',
         category: 'Productivity'
     },
     {
         label: 'Stopwatch',
-        href: 'tools/stopwatch.html',
+        href: '/tools/stopwatch',
         description: 'Track elapsed time and record lap splits.',
         difficulty: '🟢',
         category: 'Productivity'
     },
     {
         label: 'Daily To-Do List',
-        href: 'tools/daily-todo-list.html',
+        href: '/tools/daily-todo-list',
         description: 'LocalStorage-backed task list with checkboxes.',
         difficulty: '🟡',
         category: 'Productivity'
     },
     {
         label: 'Habit Tracker',
-        href: 'tools/habit-tracker.html',
+        href: '/tools/habit-tracker',
         description: 'Minimal weekly grid to tick off habits.',
         difficulty: '🟠',
         category: 'Productivity'
     },
     {
         label: 'Goal Progress Tracker',
-        href: 'tools/goal-progress-tracker.html',
+        href: '/tools/goal-progress-tracker',
         description: 'Input current vs target to see progress bars.',
         difficulty: '🟡',
         category: 'Productivity'
     },
     {
         label: 'Random Decision Picker',
-        href: 'tools/random-decision-picker.html',
+        href: '/tools/random-decision-picker',
         description: 'Paste options and let the tool choose one.',
         difficulty: '🟢',
         category: 'Productivity'
     },
     {
         label: 'Meeting Time Helper',
-        href: 'tools/meeting-time-helper.html',
+        href: '/tools/meeting-time-helper',
         description: 'Convert meeting times between time zones instantly.',
         difficulty: '🟠',
         category: 'Productivity'
     },
     {
         label: 'JSON Formatter & Validator',
-        href: 'tools/json-formatter.html',
+        href: '/tools/json-formatter',
         description: 'Validate JSON and pretty-print safely.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Regex Tester',
-        href: 'tools/regex-tester.html',
+        href: '/tools/regex-tester',
         description: 'Test patterns, flags, and view all matches.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'UUID / Random ID Generator',
-        href: 'tools/uuid-generator.html',
+        href: '/tools/uuid-generator',
         description: 'Generate UUID v4 identifiers with history.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'Base64 ↔ File Tool',
-        href: 'tools/base64-file-tool.html',
+        href: '/tools/base64-file-tool',
         description: 'Encode files to Base64 or decode Base64 back to files.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'Color Converter',
-        href: 'tools/color-converter.html',
+        href: '/tools/color-converter',
         description: 'Convert HEX, RGB, and HSL with live preview.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'JWT Decoder',
-        href: 'tools/jwt-decoder.html',
+        href: '/tools/jwt-decoder',
         description: 'Decode JWT header & payload (no signature check).',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'HTML Escape / Unescape',
-        href: 'tools/html-escape-tool.html',
+        href: '/tools/html-escape-tool',
         description: 'Safely convert between raw text and HTML entities.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'CSS Box Shadow Generator',
-        href: 'tools/css-box-shadow.html',
+        href: '/tools/css-box-shadow',
         description: 'Fine-tune shadows with sliders and copy CSS.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'CSS Border Radius Previewer',
-        href: 'tools/css-border-radius.html',
+        href: '/tools/css-border-radius',
         description: 'Adjust each corner radius and grab the CSS.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Responsive Breakpoint Preview',
-        href: 'tools/responsive-preview.html',
+        href: '/tools/responsive-preview',
         description: 'Load a URL and preview at common device widths.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'HTTP Status Code Explorer',
-        href: 'tools/http-status-explorer.html',
+        href: '/tools/http-status-explorer',
         description: 'Browse and search HTTP status codes (1xx–5xx) with explanations.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'REST API Request Builder',
-        href: 'tools/rest-api-builder.html',
+        href: '/tools/rest-api-builder',
         description: 'Build and test HTTP requests. Note: Many APIs will be blocked by CORS.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'URL Parser & Inspector',
-        href: 'tools/url-parser.html',
+        href: '/tools/url-parser',
         description: 'Parse URLs to see protocol, host, path, query params, hash, and more.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Code Snippet Highlighter',
-        href: 'tools/code-highlighter.html',
+        href: '/tools/code-highlighter',
         description: 'Paste code and choose a language to get syntax-highlighted HTML.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'JSON Schema Generator',
-        href: 'tools/json-schema-generator.html',
+        href: '/tools/json-schema-generator',
         description: 'Infer a basic JSON schema (types, required keys) from JSON input.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'JSON ↔ CSV Converter',
-        href: 'tools/json-csv-converter.html',
+        href: '/tools/json-csv-converter',
         description: 'Convert arrays of objects between JSON and CSV formats.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Git Command Cheat Sheet',
-        href: 'tools/git-cheatsheet.html',
+        href: '/tools/git-cheatsheet',
         description: 'Searchable reference for common Git commands and explanations.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'HTTP Headers Explainer',
-        href: 'tools/http-headers-explainer.html',
+        href: '/tools/http-headers-explainer',
         description: 'Learn about common HTTP headers with descriptions and examples.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'JSON Path Tester',
-        href: 'tools/json-path-tester.html',
+        href: '/tools/json-path-tester',
         description: 'Test JSONPath-like expressions or dot notation on JSON data.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'Download Videos in 4K',
-        href: 'tools/video-downloader.html',
+        href: '/tools/video-downloader',
         description: 'Send a URL to an Apify actor and inspect the JSON result.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'Hash Calculator',
-        href: 'tools/hash-calculator.html',
+        href: '/tools/hash-calculator',
         description: 'Compute SHA-256 and SHA-1 hashes using the Web Crypto API.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Hashing Demo (Avalanche Effect)',
-        href: 'tools/hashing-demo.html',
+        href: '/tools/hashing-demo',
         description: 'Compare hashes side-by-side to see how tiny input changes completely change the hash.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Password Strength Estimator',
-        href: 'tools/password-strength.html',
+        href: '/tools/password-strength',
         description: 'Check password strength, length, character classes, and common patterns.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Secure vs Insecure URL Demo',
-        href: 'tools/secure-url-demo.html',
+        href: '/tools/secure-url-demo',
         description: 'Compare HTTP vs HTTPS and understand why secure connections matter.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'OWASP Top 10 Learning Cards',
-        href: 'tools/owasp-top10.html',
+        href: '/tools/owasp-top10',
         description: 'Learn about the OWASP Top 10 web application security risks. Click cards to flip.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'Input Validation Playground',
-        href: 'tools/input-validation-playground.html',
+        href: '/tools/input-validation-playground',
         description: 'Compare safe vs unsafe input handling. Learn why encoding/escaping matters.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'CSP (Content Security Policy) Visualizer',
-        href: 'tools/csp-visualizer.html',
+        href: '/tools/csp-visualizer',
         description: 'Parse CSP directives and understand how they help mitigate XSS attacks.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'Strong Secret Generator',
-        href: 'tools/secret-generator.html',
+        href: '/tools/secret-generator',
         description: 'Generate cryptographically secure random strings for API keys, secrets, and tokens.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'Phishing URL Checklist Tool',
-        href: 'tools/phishing-checklist.html',
+        href: '/tools/phishing-checklist',
         description: 'Analyze URLs for common phishing indicators. Always manually verify suspicious URLs.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Viewport & Breakpoint Tester',
-        href: 'tools/viewport-tester.html',
+        href: '/tools/viewport-tester',
         description: 'View current viewport dimensions in real-time and preview typical breakpoints.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Responsive Image Helper',
-        href: 'tools/responsive-image-helper.html',
+        href: '/tools/responsive-image-helper',
         description: 'Generate &lt;img srcset&gt; and &lt;picture&gt; examples for responsive images.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'LocalStorage Inspector',
-        href: 'tools/localstorage-inspector.html',
+        href: '/tools/localstorage-inspector',
         description: 'View all localStorage keys and values. Clear data to reset tools.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Color Blindness Preview',
-        href: 'tools/color-blindness-preview.html',
+        href: '/tools/color-blindness-preview',
         description: 'Preview how colors appear to people with different types of color vision deficiency.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'Accessibility Contrast & Font Size Helper',
-        href: 'tools/accessibility-helper.html',
+        href: '/tools/accessibility-helper',
         description: 'Check WCAG contrast ratios and recommended font sizes for accessibility.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'Cron Expression Explainer',
-        href: 'tools/cron-explainer.html',
+        href: '/tools/cron-explainer',
         description: 'Parse cron expressions and see human-readable explanations and next run times.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'Environment Variable Template Builder',
-        href: 'tools/env-builder.html',
+        href: '/tools/env-builder',
         description: 'Create .env-style key=value lines and download as text.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'API Error Message Catalog',
-        href: 'tools/api-error-catalog.html',
+        href: '/tools/api-error-catalog',
         description: 'Searchable reference of typical JSON error formats (REST, GraphQL, etc.) with explanations.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'Dockerfile Layer Visualizer',
-        href: 'tools/dockerfile-visualizer.html',
+        href: '/tools/dockerfile-visualizer',
         description: 'Parse Dockerfile and visualize layers and build order.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'YAML/JSON Formatter & Linter',
-        href: 'tools/yaml-json-formatter.html',
+        href: '/tools/yaml-json-formatter',
         description: 'Format and validate JSON and YAML. Convert between formats.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'JSON → TypeScript Interface Generator',
-        href: 'tools/json-to-typescript.html',
+        href: '/tools/json-to-typescript',
         description: 'Generate TypeScript interfaces from JSON with inferred field types.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'TypeScript to JSDoc Converter',
-        href: 'tools/typescript-to-jsdoc.html',
+        href: '/tools/typescript-to-jsdoc',
         description: 'Convert TypeScript type annotations into JSDoc comments for JavaScript.',
         difficulty: '🟠',
         category: 'Developer Tools'
     },
     {
         label: 'Regex to Plain English Helper',
-        href: 'tools/regex-to-english.html',
+        href: '/tools/regex-to-english',
         description: 'Break down simple regex patterns into human-readable descriptions.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Slug Generator for URLs',
-        href: 'tools/slug-generator.html',
+        href: '/tools/slug-generator',
         description: 'Convert text into URL-friendly slugs: lowercase, replace spaces with hyphens.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'Commit Message Template Helper',
-        href: 'tools/commit-message-helper.html',
+        href: '/tools/commit-message-helper',
         description: 'Generate conventional commit-style messages with type and details.',
         difficulty: '🟢',
         category: 'Developer Tools'
     },
     {
         label: 'Multi-Snippet Clipboard Manager',
-        href: 'tools/multi-clipboard.html',
+        href: '/tools/multi-clipboard',
         description: 'Store multiple code snippets and copy them to your clipboard.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'URL Builder for UTM Tags',
-        href: 'tools/utm-builder.html',
+        href: '/tools/utm-builder',
         description: 'Build URLs with UTM parameters for tracking campaign performance.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Curl Command Builder',
-        href: 'tools/curl-builder.html',
+        href: '/tools/curl-builder',
         description: 'Build curl commands from URL, method, headers, and body.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Color Palette Generator',
-        href: 'tools/color-palette-generator.html',
+        href: '/tools/color-palette-generator',
         description: 'Click to copy random HEX palettes for inspiration.',
         difficulty: '🟡',
         category: 'Design & Color'
     },
     {
         label: 'Gradient Generator',
-        href: 'tools/gradient-generator.html',
+        href: '/tools/gradient-generator',
         description: 'Create linear gradients and copy the CSS.',
         difficulty: '🟠',
         category: 'Design & Color'
     },
     {
         label: 'Contrast Checker',
-        href: 'tools/contrast-checker.html',
+        href: '/tools/contrast-checker',
         description: 'Compute WCAG ratios for foreground/background colors.',
         difficulty: '🟠',
         category: 'Design & Color'
     },
     {
         label: 'Favicon Previewer',
-        href: 'tools/favicon-previewer.html',
+        href: '/tools/favicon-previewer',
         description: 'Preview uploads at 16/32/48/64px sizes for favicons.',
         difficulty: '🟠',
         category: 'Design & Color'
     },
     {
         label: 'Image Resizer',
-        href: 'tools/image-resizer.html',
+        href: '/tools/image-resizer',
         description: 'Client-side resize via canvas and download the PNG.',
         difficulty: '🟠',
         category: 'Image Tools'
     },
     {
         label: 'PDF Merger',
-        href: 'tools/pdf-merger.html',
+        href: '/tools/pdf-merger',
         description: 'Merge multiple PDF files into a single PDF document.',
         difficulty: '🟠',
         category: 'PDF Suite'
     },
     {
         label: 'PDF Splitter',
-        href: 'tools/pdf-splitter.html',
+        href: '/tools/pdf-splitter',
         description: 'Split a PDF into individual pages. All pages downloaded as ZIP.',
         difficulty: '🟠',
         category: 'PDF Suite'
     },
     {
         label: 'PDF Rotator',
-        href: 'tools/pdf-rotator.html',
+        href: '/tools/pdf-rotator',
         description: 'Rotate all pages in a PDF document by 90, 180, or 270 degrees.',
         difficulty: '🟠',
         category: 'PDF Suite'
     },
     {
         label: 'PDF Watermark',
-        href: 'tools/pdf-watermark.html',
+        href: '/tools/pdf-watermark',
         description: 'Add a text watermark to all pages of a PDF document.',
         difficulty: '🟠',
         category: 'PDF Suite'
     },
     {
         label: 'PDF Encrypt/Protect',
-        href: 'tools/pdf-encrypt.html',
+        href: '/tools/pdf-encrypt',
         description: 'Protect a PDF with a password using standard encryption.',
         difficulty: '🟠',
         category: 'PDF Suite'
     },
     {
         label: 'PDF Page Numbers',
-        href: 'tools/pdf-page-numbers.html',
+        href: '/tools/pdf-page-numbers',
         description: 'Add page numbers (1/N, 2/N, etc.) to all pages of a PDF.',
         difficulty: '🟠',
         category: 'PDF Suite'
     },
     {
         label: 'Images to PDF',
-        href: 'tools/images-to-pdf.html',
+        href: '/tools/images-to-pdf',
         description: 'Convert multiple images into a single PDF document.',
         difficulty: '🟠',
         category: 'PDF Suite'
     },
     {
         label: 'PDF to JPG',
-        href: 'tools/pdf-to-jpg.html',
+        href: '/tools/pdf-to-jpg',
         description: 'Convert each page of a PDF into JPG images. Downloaded as ZIP.',
         difficulty: '🟠',
         category: 'PDF Suite'
     },
     {
         label: 'Excel to PDF',
-        href: 'tools/excel-to-pdf.html',
+        href: '/tools/excel-to-pdf',
         description: 'Convert Excel files to PDF using browser print functionality.',
         difficulty: '🟠',
         category: 'PDF Suite'
     },
     {
         label: 'Image Converter',
-        href: 'tools/image-converter.html',
+        href: '/tools/image-converter',
         description: 'Convert images between PNG, JPG, and WEBP formats.',
         difficulty: '🟡',
         category: 'Image Tools'
     },
     {
         label: 'Image Compressor',
-        href: 'tools/image-compressor.html',
+        href: '/tools/image-compressor',
         description: 'Compress images to reduce file size while maintaining quality.',
         difficulty: '🟡',
         category: 'Image Tools'
     },
     {
         label: 'QR Code Generator',
-        href: 'tools/qr-generator.html',
+        href: '/tools/qr-generator',
         description: 'Generate QR codes for text, URLs, or any string. Download as PNG.',
         difficulty: '🟡',
         category: 'Developer Tools'
     },
     {
         label: 'Random Quote Generator',
-        href: 'tools/random-quote-generator.html',
+        href: '/tools/random-quote-generator',
         description: 'Static list of uplifting quotes/jokes on shuffle.',
         difficulty: '🟢',
         category: 'Fun & Games'
     },
     {
         label: 'Password Generator',
-        href: 'tools/password-generator.html',
+        href: '/tools/password-generator',
         description: 'Length + character sets produce strong passwords.',
         difficulty: '🟡',
         category: 'Fun & Games'
     },
     {
         label: 'Rock–Paper–Scissors',
-        href: 'tools/rock-paper-scissors.html',
+        href: '/tools/rock-paper-scissors',
         description: 'Classic showdown versus the computer.',
         difficulty: '🟢',
         category: 'Fun & Games'
     },
     {
         label: 'Guess the Number',
-        href: 'tools/guess-number-game.html',
+        href: '/tools/guess-number-game',
         description: 'Higher/lower hints until you guess the secret number.',
         difficulty: '🟢',
         category: 'Fun & Games'
     },
     {
         label: 'Typing Speed Test',
-        href: 'tools/typing-speed-test.html',
+        href: '/tools/typing-speed-test',
         description: 'Measure WPM and errors with curated prompts.',
         difficulty: '🟡',
         category: 'Fun & Games'
     },
     {
         label: 'Memory Card Game',
-        href: 'tools/memory-card-game.html',
+        href: '/tools/memory-card-game',
         description: 'Flip cards to find pairs in as few moves as possible.',
         difficulty: '🟠',
         category: 'Fun & Games'
     },
     {
         label: 'Flashcard App',
-        href: 'tools/flashcard-app.html',
+        href: '/tools/flashcard-app',
         description: 'Create, flip, and store custom flashcards locally.',
         difficulty: '🟡',
         category: 'Study Tools'
     },
     {
         label: 'Arithmetic Practice',
-        href: 'tools/arithmetic-practice.html',
+        href: '/tools/arithmetic-practice',
         description: 'Random math drills with score + attempt tracking.',
         difficulty: '🟢',
         category: 'Study Tools'
     },
     {
         label: 'Unit Circle Visualizer',
-        href: 'tools/unit-circle-visualizer.html',
+        href: '/tools/unit-circle-visualizer',
         description: 'See angle, radians, and coordinates on the unit circle.',
         difficulty: '🟠',
         category: 'Study Tools'
     },
     {
         label: 'HTML Tag Cheat Sheet',
-        href: 'tools/html-tag-cheatsheet.html',
+        href: '/tools/html-tag-cheatsheet',
         description: 'Searchable reference of common tags and descriptions.',
         difficulty: '🟢',
         category: 'Study Tools'
     },
     {
         label: 'Keyboard Shortcut Cheat Sheet',
-        href: 'tools/keyboard-shortcut-cheatsheet.html',
+        href: '/tools/keyboard-shortcut-cheatsheet',
         description: 'Quick access to popular macOS/Windows/VS Code combos.',
         difficulty: '🟢',
         category: 'Study Tools'
     },
     {
         label: 'Tech Stack Quiz',
-        href: 'tools/tech-stack-quiz.html',
+        href: '/tools/tech-stack-quiz',
         description: 'Answer three questions to get a stack recommendation.',
         difficulty: '🟢',
         category: 'Portfolio Tools'
     },
     {
         label: 'Project Idea Generator',
-        href: 'tools/project-idea-generator.html',
+        href: '/tools/project-idea-generator',
         description: 'Button-powered inspiration for side projects.',
         difficulty: '🟢',
         category: 'Portfolio Tools'
     },
     {
         label: 'Resume Score Checklist',
-        href: 'tools/resume-checklist.html',
+        href: '/tools/resume-checklist',
         description: 'Tick resume essentials and watch your completion score.',
         difficulty: '🟢',
         category: 'Portfolio Tools'
