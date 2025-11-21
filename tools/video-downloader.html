@@ -128,7 +128,17 @@
           const data = await response.json();
 
           if (!response.ok || !data.success) {
-            resultEl.textContent = 'Error: ' + (data.error || 'Unknown error');
+            let errorMsg = 'Error: ' + (data.error || 'Unknown error');
+            if (data.details) {
+              errorMsg += '\n\nDetails: ' + data.details;
+            }
+            if (data.status) {
+              errorMsg += '\nStatus: ' + data.status;
+            }
+            if (data.fullError) {
+              errorMsg += '\n\nFull Error:\n' + JSON.stringify(data.fullError, null, 2);
+            }
+            resultEl.textContent = errorMsg;
             return;
           }
 
