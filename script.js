@@ -630,6 +630,13 @@ const TOOL_LINKS = [
         category: 'PDF Suite'
     },
     {
+        label: 'PDF Editor',
+        href: '/tools/pdf-editor',
+        description: 'Upload a PDF and edit text directly on each page. Click any word to edit it inline.',
+        difficulty: '🟠',
+        category: 'PDF Suite'
+    },
+    {
         label: 'Excel to PDF',
         href: '/tools/excel-to-pdf',
         description: 'Convert Excel files to PDF using browser print functionality.',

@@ -64,6 +64,8 @@
   </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-[#111111] dark:text-gray-200 font-display">
+<!-- 3D Particle Background Canvas -->
+<canvas id="bg-canvas"></canvas>
 <div class="relative flex min-h-screen w-full flex-col">
 <!-- Sticky TopNavBar -->
 <div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
@@ -87,7 +89,6 @@
 </button>
 <div data-dropdown-menu class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
 <a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors" href="/tools">All Tools</a>
-<a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors" href="/pdf-suite">PDF Suite</a>
 <div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu></div>
 </div>
 </div>
@@ -114,7 +115,6 @@
 <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/Studies">Studies</a>
 <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/projects">Projects</a>
 <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/tools">Tools</a>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors pl-3" href="/pdf-suite">PDF Suite</a>
 <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/contact">Contact</a>
 <div class="pt-4 border-t border-black/10 dark:border-white/10">
 <p class="text-xs uppercase tracking-[0.3em] text-[#555] dark:text-gray-400">PDF Suite tools</p>
@@ -165,5 +165,9 @@
 </div>
 </main>
 </div>
+<!-- Three.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- Background Animation -->
+<script src="background.js"></script>
 <script src="script.js"></script>
 </body></html>
