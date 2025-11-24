@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="description"
+    content="Muslim Life App - Helping elderly users remember important daily tasks like medicine and prayers." />
+  <title>Muslim Life App - Mahin Kadery</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="../styles.css" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2b6cee",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101622",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .glass-effect {
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glass-effect {
+      background-color: rgba(26, 36, 55, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glassmorphism {
+      background: rgba(16, 22, 34, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-tag {
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glass-tag {
+      background-color: rgba(30, 41, 59, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(51, 65, 85, 0.5);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      scroll-margin-top: 100px;
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#111111] dark:text-gray-200 font-display">
+  <div class="relative flex min-h-screen w-full flex-col">
+    <!-- Sticky TopNavBar -->
+    <div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
+      <header
+        class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg">
+        <a href="/" class="flex items-center gap-3">
+          <div class="flex items-center">
+            <img src="../website-logos/headerlogoTFB.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain dark:hidden">
+            <img src="../website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain hidden dark:block">
+          </div>
+          <span
+            class="brand-title text-[10px] sm:text-xs md:text-sm text-[#111111] dark:text-white whitespace-nowrap">toolfoliohub</span>
+        </a>
+        <div class="hidden sm:flex items-center justify-end gap-6">
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/#home">Home</a>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/#about">About</a>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/#studies">Studies</a>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/#projects">Projects</a>
+          <div class="relative" data-dropdown>
+            <button type="button"
+              class="flex items-center gap-1 text-[#111111] dark:text-gray-300 text-sm font-medium transition-colors hover:text-primary dark:hover:text-white"
+              data-dropdown-toggle>
+              <span>Tools</span>
+              <span class="material-symbols-outlined text-xs transition-transform duration-200"
+                data-dropdown-icon>expand_more</span>
+            </button>
+            <div data-dropdown-menu
+              class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
+              <a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors"
+                href="/tools">All Tools</a>
+              <div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu>
+              </div>
+            </div>
+          </div>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/contact">Contact</a>
+          <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+          </button>
+        </div>
+        <button id="mobileMenuBtn"
+          class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-[#111111] dark:text-white">menu</span>
+        </button>
+      </header>
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+        <div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+          <div class="flex justify-end">
+            <button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+              <span class="material-symbols-outlined text-[#111111] dark:text-white">close</span>
+            </button>
+          </div>
+          <nav class="flex flex-col gap-4">
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/#home">Home</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/#about">About</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/#studies">Studies</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/#projects">Projects</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/tools">Tools</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/contact">Contact</a>
+            <div class="pt-4 border-t border-black/10 dark:border-white/10">
+              <p class="text-xs uppercase tracking-[0.3em] text-[#555] dark:text-gray-400">PDF Suite tools</p>
+              <div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
+            </div>
+          </nav>
+          <button id="darkModeToggleMobile"
+            class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+            <span class="text-[#111111] dark:text-white text-sm font-medium">Toggle Theme</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Content -->
+    <main class="flex h-full grow flex-col pt-32 pb-20">
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Hero Section -->
+        <section class="py-10 text-center">
+          <div class="flex flex-col gap-4">
+            <h1 class="text-[#111111] dark:text-white text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+              Muslim Life – Daily Routine & Wellness App
+            </h1>
+            <p class="text-primary text-lg font-medium">
+              Helping elderly users remember important daily tasks like medicine and prayers.
+            </p>
+            <div class="flex flex-wrap justify-center gap-2 mt-2">
+              <span class="glass-tag rounded-full px-3 py-1 text-sm font-medium text-[#111111] dark:text-gray-300">Mobile App</span>
+              <span class="glass-tag rounded-full px-3 py-1 text-sm font-medium text-[#111111] dark:text-gray-300">Muslim Community</span>
+              <span class="glass-tag rounded-full px-3 py-1 text-sm font-medium text-[#111111] dark:text-gray-300">Wellness</span>
+              <span class="glass-tag rounded-full px-3 py-1 text-sm font-medium text-[#111111] dark:text-gray-300">Reminders</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Project Overview -->
+        <section class="py-8 border-t border-gray-200/50 dark:border-gray-700/50">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="md:col-span-2">
+              <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">Overview</h2>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                Muslim Life is a dedicated mobile application designed to support the daily routines of the Muslim community, with a specific focus on elderly users. It simplifies self-care by providing an easy-to-use interface for managing medicine reminders, daily tasks, and prayer schedules, ensuring health and spiritual obligations are met without stress.
+              </p>
+            </div>
+            <div class="md:col-span-1 glassmorphism p-6 rounded-xl">
+              <h3 class="text-lg font-bold text-[#111111] dark:text-white mb-4">Quick Facts</h3>
+              <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+                <li class="flex justify-between">
+                  <span class="font-medium">Role:</span>
+                  <span>Designer & Developer</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="font-medium">Users:</span>
+                  <span>Muslim Community (Elderly focus)</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="font-medium">Platform:</span>
+                  <span>Mobile (iOS & Android)</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="font-medium">Main Feature:</span>
+                  <span>Medicine Reminders</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Problem & Motivation -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">Problem & Motivation</h2>
+          <div class="glassmorphism p-6 rounded-xl">
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+              Many older individuals within the community struggle to maintain independence due to forgetfulness, particularly when it comes to medication schedules. Missing a dose can have serious health implications, and complex apps often make the problem worse rather than better.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              I wanted to build a solution that wasn't just another tech demo, but a genuinely helpful tool. My motivation was to support independence and health by creating an interface that respects their needs—simple, clear, and effective.
+            </p>
+          </div>
+        </section>
+
+        <!-- Core Features -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-6">Core Features</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="glassmorphism p-5 rounded-xl">
+              <h3 class="font-bold text-[#111111] dark:text-white mb-2">Medicine Reminder System</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Customizable alarms specifically designed for medication schedules, ensuring doses are never missed.</p>
+            </div>
+            <div class="glassmorphism p-5 rounded-xl">
+              <h3 class="font-bold text-[#111111] dark:text-white mb-2">Senior-Friendly Interface</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">High-contrast text, large buttons, and simplified navigation to accommodate older eyes and less tech-savvy users.</p>
+            </div>
+            <div class="glassmorphism p-5 rounded-xl">
+              <h3 class="font-bold text-[#111111] dark:text-white mb-2">Daily Routine Tracking</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Simple checklists for daily tasks and habits to help maintain structure and well-being.</p>
+            </div>
+            <div class="glassmorphism p-5 rounded-xl">
+              <h3 class="font-bold text-[#111111] dark:text-white mb-2">Care Instructions</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Space for optional notes or instructions from doctors/family members attached to reminders.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screenshots Placeholder -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-6">App Screens & Demo</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="aspect-[9/16] bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center border border-dashed border-gray-400 dark:border-gray-600">
+              <p class="text-gray-500 dark:text-gray-400 px-4 text-center">Placeholder – Home screen screenshot</p>
+            </div>
+            <div class="aspect-[9/16] bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center border border-dashed border-gray-400 dark:border-gray-600">
+              <p class="text-gray-500 dark:text-gray-400 px-4 text-center">Placeholder – Reminder setup screen</p>
+            </div>
+            <div class="aspect-[9/16] bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center border border-dashed border-gray-400 dark:border-gray-600">
+              <p class="text-gray-500 dark:text-gray-400 px-4 text-center">Placeholder – Notification example</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- UX & Design Decisions -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">User Experience & Design</h2>
+          <div class="glassmorphism p-6 rounded-xl">
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+              The primary design philosophy was "clarity over complexity." Every screen was audited to remove unnecessary elements. Action buttons are prominent and clearly labeled.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Notifications were crafted to be gentle yet persistent, using clear language that explains exactly what needs to be done (e.g., "Time for your heart medicine") rather than generic alerts.
+            </p>
+          </div>
+        </section>
+
+        <!-- Impact & Learnings -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">Impact & Learnings</h2>
+          <div class="glassmorphism p-6 rounded-xl">
+            <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+              <li>• <strong>Community Focus:</strong> Learned the importance of designing for specific cultural and age demographics rather than a generic user base.</li>
+              <li>• <strong>Accessibility:</strong> Gained deep insights into accessibility standards and how vital they are for older users.</li>
+              <li>• <strong>Time Management:</strong> Mastered the technical challenges of handling reliable local notifications and alarms across different device states.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Future Roadmap -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">Future Roadmap</h2>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 ml-4">
+            <li>Integrating accurate prayer times based on location.</li>
+            <li>Family sharing features so children can monitor parents' adherence to medication.</li>
+            <li>Multilingual support to include native languages for better inclusivity.</li>
+            <li>Cloud synchronization to keep data safe across devices.</li>
+          </ul>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-12 text-center">
+          <p class="text-xl text-[#111111] dark:text-white font-medium mb-6">Interested in collaborating on health & wellness apps? Get in touch.</p>
+          <a href="/contact"
+            class="inline-flex items-center justify-center rounded-full h-12 px-8 bg-[#111111] text-white dark:bg-white dark:text-[#111111] text-sm font-bold shadow-lg hover:shadow-xl transition-shadow">
+            Contact Me
+          </a>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="w-full text-center py-6 text-gray-500 dark:text-gray-400 bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-700/50">
+      <div class="flex justify-center mb-6">
+        <a href="/" class="flex items-center">
+          <img src="../website-logos/headerlogoTFB.png" alt="toolfoliohub" class="h-12 md:h-14 w-auto object-contain dark:hidden">
+          <img src="../website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-12 md:h-14 w-auto object-contain hidden dark:block">
+        </a>
+      </div>
+      <div class="flex justify-center gap-5 mb-4">
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="/contact" title="Contact">
+          <span class="material-symbols-outlined">alternate_email</span>
+        </a>
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="https://linkedin.com"
+          target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <span class="material-symbols-outlined">work</span>
+        </a>
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="https://github.com" target="_blank"
+          rel="noopener noreferrer" title="GitHub">
+          <svg aria-hidden="true" class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+            <path clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z"
+              fill-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+      <p class="text-sm">© 2025 toolfoliohub. All Rights Reserved.</p>
+    </footer>
+
+    <script src="../tools-shared-script.js"></script>
+    <script src="../script.js"></script>
+  </div>
+</body>
+
+</html>

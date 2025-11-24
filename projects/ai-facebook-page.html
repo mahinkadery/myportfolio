@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="description"
+    content="AI-Powered Facebook Tech News Page - Automated daily content and engagement with zero manual posting." />
+  <title>AI-Powered Facebook Tech News Page - Mahin Kadery</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="../styles.css" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2b6cee",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101622",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .glass-effect {
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glass-effect {
+      background-color: rgba(26, 36, 55, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glassmorphism {
+      background: rgba(16, 22, 34, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-tag {
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glass-tag {
+      background-color: rgba(30, 41, 59, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(51, 65, 85, 0.5);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      scroll-margin-top: 100px;
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#111111] dark:text-gray-200 font-display">
+  <div class="relative flex min-h-screen w-full flex-col">
+    <!-- Sticky TopNavBar -->
+    <div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
+      <header
+        class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg">
+        <a href="/" class="flex items-center gap-3">
+          <div class="flex items-center">
+            <img src="../website-logos/headerlogoTFB.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain dark:hidden">
+            <img src="../website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain hidden dark:block">
+          </div>
+          <span
+            class="brand-title text-[10px] sm:text-xs md:text-sm text-[#111111] dark:text-white whitespace-nowrap">toolfoliohub</span>
+        </a>
+        <div class="hidden sm:flex items-center justify-end gap-6">
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/#home">Home</a>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/#about">About</a>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/#studies">Studies</a>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/#projects">Projects</a>
+          <div class="relative" data-dropdown>
+            <button type="button"
+              class="flex items-center gap-1 text-[#111111] dark:text-gray-300 text-sm font-medium transition-colors hover:text-primary dark:hover:text-white"
+              data-dropdown-toggle>
+              <span>Tools</span>
+              <span class="material-symbols-outlined text-xs transition-transform duration-200"
+                data-dropdown-icon>expand_more</span>
+            </button>
+            <div data-dropdown-menu
+              class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
+              <a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors"
+                href="/tools">All Tools</a>
+              <div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu>
+              </div>
+            </div>
+          </div>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/contact">Contact</a>
+          <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+          </button>
+        </div>
+        <button id="mobileMenuBtn"
+          class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-[#111111] dark:text-white">menu</span>
+        </button>
+      </header>
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+        <div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+          <div class="flex justify-end">
+            <button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+              <span class="material-symbols-outlined text-[#111111] dark:text-white">close</span>
+            </button>
+          </div>
+          <nav class="flex flex-col gap-4">
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/#home">Home</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/#about">About</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/#studies">Studies</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/#projects">Projects</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/tools">Tools</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/contact">Contact</a>
+            <div class="pt-4 border-t border-black/10 dark:border-white/10">
+              <p class="text-xs uppercase tracking-[0.3em] text-[#555] dark:text-gray-400">PDF Suite tools</p>
+              <div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
+            </div>
+          </nav>
+          <button id="darkModeToggleMobile"
+            class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+            <span class="text-[#111111] dark:text-white text-sm font-medium">Toggle Theme</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Content -->
+    <main class="flex h-full grow flex-col pt-32 pb-20">
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Hero Section -->
+        <section class="py-10 text-center">
+          <div class="flex flex-col gap-4">
+            <h1 class="text-[#111111] dark:text-white text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+              AI-Powered Facebook Tech News Page
+            </h1>
+            <p class="text-primary text-lg font-medium">
+              Automated daily content and engagement with zero manual posting.
+            </p>
+            <div class="flex flex-wrap justify-center gap-2 mt-2">
+              <span class="glass-tag rounded-full px-3 py-1 text-sm font-medium text-[#111111] dark:text-gray-300">AI</span>
+              <span class="glass-tag rounded-full px-3 py-1 text-sm font-medium text-[#111111] dark:text-gray-300">Automation</span>
+              <span class="glass-tag rounded-full px-3 py-1 text-sm font-medium text-[#111111] dark:text-gray-300">Social Media</span>
+              <span class="glass-tag rounded-full px-3 py-1 text-sm font-medium text-[#111111] dark:text-gray-300">n8n</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Project Overview -->
+        <section class="py-8 border-t border-gray-200/50 dark:border-gray-700/50">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="md:col-span-2">
+              <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">Overview</h2>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                I designed and built a fully automated Facebook page that posts daily tech news updates without any manual intervention. By leveraging AI models for content summarization and image generation, the system keeps the audience engaged with fresh, relevant content. Beyond just posting, it also handles community interaction by replying to comments and direct messages intelligently.
+              </p>
+            </div>
+            <div class="md:col-span-1 glassmorphism p-6 rounded-xl">
+              <h3 class="text-lg font-bold text-[#111111] dark:text-white mb-4">Quick Facts</h3>
+              <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+                <li class="flex justify-between">
+                  <span class="font-medium">Role:</span>
+                  <span>Automation Architect</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="font-medium">Timeline:</span>
+                  <span>Ongoing</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="font-medium">Tech Stack:</span>
+                  <span>n8n, OpenAI, Meta API</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="font-medium">Type:</span>
+                  <span>Personal Project</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Problem & Goals -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">Problem & Goals</h2>
+          <div class="glassmorphism p-6 rounded-xl">
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+              Managing a tech news page requires constant attention—finding stories, writing posts, creating visuals, and engaging with followers. Doing this manually every day is time-consuming and prone to burnout.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              My goal was to eliminate the manual grind. I wanted to create a self-sustaining system that could fetch news, process it creatively, and maintain a professional presence 24/7. It was also a perfect playground to push the limits of what current AI models can do in a live production environment.
+            </p>
+          </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">How It Works</h2>
+          <div class="glassmorphism p-6 rounded-xl">
+            <ul class="space-y-4 text-gray-600 dark:text-gray-400">
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-primary mt-1">rss_feed</span>
+                <span><strong>News Fetching:</strong> The system automatically monitors RSS feeds and news APIs for the latest trending tech stories.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-primary mt-1">psychology</span>
+                <span><strong>AI Processing:</strong> An LLM summarizes the article, rewriting it into an engaging, social-media-friendly format with appropriate hashtags.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-primary mt-1">image</span>
+                <span><strong>Visual Generation:</strong> Using the post context, an image generation model creates a relevant, eye-catching visual to accompany the text.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-primary mt-1">send</span>
+                <span><strong>Publishing:</strong> The content is scheduled and posted directly to the Facebook page via the Graph API.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-primary mt-1">forum</span>
+                <span><strong>Engagement:</strong> Webhooks trigger AI responses to comments and DMs, maintaining active engagement within safe, predefined boundaries.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Features -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-6">Key Features</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="glassmorphism p-5 rounded-xl">
+              <h3 class="font-bold text-[#111111] dark:text-white mb-2">Auto-Posting</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Delivers fresh content daily without any human input.</p>
+            </div>
+            <div class="glassmorphism p-5 rounded-xl">
+              <h3 class="font-bold text-[#111111] dark:text-white mb-2">AI Visuals</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Creates unique, context-aware images for every single post.</p>
+            </div>
+            <div class="glassmorphism p-5 rounded-xl">
+              <h3 class="font-bold text-[#111111] dark:text-white mb-2">Smart Replies</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Handles community interactions in comments and DMs automatically.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screenshots Placeholder -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-6">Screenshots & Demo</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="aspect-video bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center border border-dashed border-gray-400 dark:border-gray-600">
+              <p class="text-gray-500 dark:text-gray-400">Placeholder – Screenshot of automated post feed</p>
+            </div>
+            <div class="aspect-video bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center border border-dashed border-gray-400 dark:border-gray-600">
+              <p class="text-gray-500 dark:text-gray-400">Placeholder – n8n automation workflow</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Challenges & Learnings -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">Challenges & Learnings</h2>
+          <div class="glassmorphism p-6 rounded-xl">
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+              One of the main challenges was ensuring the AI-generated content remained accurate and safe. Early tests sometimes produced "hallucinations" or irrelevant images. I learned to implement strict prompting layers and validation steps to keep the output high-quality.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Additionally, managing the Facebook API rate limits and token expirations taught me a lot about robust backend authentication and error handling in automated systems.
+            </p>
+          </div>
+        </section>
+
+        <!-- Future Improvements -->
+        <section class="py-8">
+          <h2 class="text-2xl font-bold text-[#111111] dark:text-white mb-4">Future Improvements</h2>
+          <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 ml-4">
+            <li>Expand to Instagram and LinkedIn for cross-platform posting.</li>
+            <li>Implement a "human-in-the-loop" approval step for major news stories.</li>
+            <li>Add sentiment analysis to prioritize replying to urgent or negative comments.</li>
+          </ul>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-12 text-center">
+          <p class="text-xl text-[#111111] dark:text-white font-medium mb-6">Want something similar for your brand? Let's talk.</p>
+          <a href="/contact"
+            class="inline-flex items-center justify-center rounded-full h-12 px-8 bg-[#111111] text-white dark:bg-white dark:text-[#111111] text-sm font-bold shadow-lg hover:shadow-xl transition-shadow">
+            Get in Touch
+          </a>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="w-full text-center py-6 text-gray-500 dark:text-gray-400 bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-700/50">
+      <div class="flex justify-center mb-6">
+        <a href="/" class="flex items-center">
+          <img src="../website-logos/headerlogoTFB.png" alt="toolfoliohub" class="h-12 md:h-14 w-auto object-contain dark:hidden">
+          <img src="../website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-12 md:h-14 w-auto object-contain hidden dark:block">
+        </a>
+      </div>
+      <div class="flex justify-center gap-5 mb-4">
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="/contact" title="Contact">
+          <span class="material-symbols-outlined">alternate_email</span>
+        </a>
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="https://linkedin.com"
+          target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <span class="material-symbols-outlined">work</span>
+        </a>
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="https://github.com" target="_blank"
+          rel="noopener noreferrer" title="GitHub">
+          <svg aria-hidden="true" class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+            <path clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z"
+              fill-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+      <p class="text-sm">© 2025 toolfoliohub. All Rights Reserved.</p>
+    </footer>
+
+    <script src="../tools-shared-script.js"></script>
+    <script src="../script.js"></script>
+  </div>
+</body>
+
+</html>
