@@ -1,20 +1,28 @@
 <!DOCTYPE html>
+<html class="light" lang="en">
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="Mahin - Bachelor of Information Technology student portfolio. Showcasing projects, skills, and educational journey."/>
-<meta name="keywords" content="portfolio, IT student, web development, programming, Mahin"/>
-<title>toolfoliohub - Creative Portfolio</title>
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<link href="styles.css" rel="stylesheet"/>
-<script>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="description"
+    content="toolfoliohub - Creative Portfolio. Showcasing projects, skills, and educational journey." />
+  <meta name="keywords" content="portfolio, IT student, web development, programming" />
+  <title>toolfoliohub - Creative Portfolio</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
+
+  <script>
     tailwind.config = {
       darkMode: "class",
       theme: {
@@ -37,19 +45,7 @@
       },
     }
   </script>
-<style>
-    body {
-      background-image:
-        radial-gradient(circle at top left, rgba(204, 204, 204, 0.1) 0%, rgba(204, 204, 204, 0) 20%),
-        radial-gradient(circle at bottom right, rgba(204, 204, 204, 0.1) 0%, rgba(204, 204, 204, 0) 20%);
-    }
-
-    .dark body {
-      background-image:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 20%),
-        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 20%);
-    }
-
+  <style>
     .glass-effect {
       background-color: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(12px);
@@ -57,117 +53,523 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
+
     .dark .glass-effect {
       background-color: rgba(26, 36, 55, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
+
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glassmorphism {
+      background: rgba(16, 22, 34, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-tag {
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dark .glass-tag {
+      background-color: rgba(30, 41, 59, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(51, 65, 85, 0.5);
+    }
+
+    .card-hover {
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+
+    .card-hover:hover {
+      transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) scale(1.02);
+      box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .dark .card-hover:hover {
+      box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      transform-style: preserve-3d;
+    }
+
+    .project-card:hover {
+      transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    .dark .project-card:hover {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      scroll-margin-top: 100px;
+    }
   </style>
 </head>
+
 <body class="bg-background-light dark:bg-background-dark text-[#111111] dark:text-gray-200 font-display">
-<!-- 3D Particle Background Canvas -->
-<canvas id="bg-canvas"></canvas>
-<div class="relative flex min-h-screen w-full flex-col">
-<!-- Sticky TopNavBar -->
-<div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
-<header class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg">
-<a href="/" class="flex items-center gap-3">
-<div class="flex items-center">
-<img src="logo.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain dark:hidden">
-<img src="darkmodelogo.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain hidden dark:block">
-</div>
-<span class="brand-title text-[10px] sm:text-xs md:text-sm text-[#111111] dark:text-white whitespace-nowrap">toolfoliohub</span>
-</a>
-<div class="hidden sm:flex items-center justify-end gap-6">
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="/">Home</a>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="/about">About</a>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="/Studies">Studies</a>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="/projects">Projects</a>
-<div class="relative" data-dropdown>
-<button type="button" class="flex items-center gap-1 text-[#111111] dark:text-gray-300 text-sm font-medium transition-colors hover:text-primary dark:hover:text-white" data-dropdown-toggle>
-<span>Tools</span>
-<span class="material-symbols-outlined text-xs transition-transform duration-200" data-dropdown-icon>expand_more</span>
-</button>
-<div data-dropdown-menu class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
-<a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors" href="/tools">All Tools</a>
-<div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu></div>
-</div>
-</div>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="/contact">Contact</a>
-<button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-<span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
-</button>
-</div>
-<button id="mobileMenuBtn" class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-<span class="material-symbols-outlined text-[#111111] dark:text-white">menu</span>
-</button>
-</header>
-<!-- Mobile Menu -->
-<div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
-<div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
-<div class="flex justify-end">
-<button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
-<span class="material-symbols-outlined text-[#111111] dark:text-white">close</span>
-</button>
-</div>
-<nav class="flex flex-col gap-4">
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/">Home</a>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/about">About</a>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/Studies">Studies</a>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/projects">Projects</a>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/tools">Tools</a>
-<a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors" href="/contact">Contact</a>
-<div class="pt-4 border-t border-black/10 dark:border-white/10">
-<p class="text-xs uppercase tracking-[0.3em] text-[#555] dark:text-gray-400">PDF Suite tools</p>
-<div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
-</div>
-</nav>
-<button id="darkModeToggleMobile" class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-<span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
-<span class="text-[#111111] dark:text-white text-sm font-medium">Toggle Theme</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Main Content -->
-<main class="flex h-full grow flex-col justify-center">
-<div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-<!-- HeroSection -->
-<section class="@container flex items-center min-h-screen py-24 md:py-32">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-<!-- Left Column: Content -->
-<div class="flex flex-col gap-8 text-center md:text-left">
-<div class="flex flex-col gap-4">
-<h1 class="text-[#111111] dark:text-white text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter">
+  <div class="relative flex min-h-screen w-full flex-col">
+    <!-- Sticky TopNavBar -->
+    <div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
+      <header
+        class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg">
+        <a href="/" class="flex items-center gap-3">
+          <div class="flex items-center">
+            <img src="website-logos/headerlogoTFB.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain dark:hidden">
+            <img src="website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain hidden dark:block">
+          </div>
+          <span
+            class="brand-title text-[10px] sm:text-xs md:text-sm text-[#111111] dark:text-white whitespace-nowrap">toolfoliohub</span>
+        </a>
+        <div class="hidden sm:flex items-center justify-end gap-6">
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="#home">Home</a>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="#about">About</a>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="#studies">Studies</a>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="#projects">Projects</a>
+          <div class="relative" data-dropdown>
+            <button type="button"
+              class="flex items-center gap-1 text-[#111111] dark:text-gray-300 text-sm font-medium transition-colors hover:text-primary dark:hover:text-white"
+              data-dropdown-toggle>
+              <span>Tools</span>
+              <span class="material-symbols-outlined text-xs transition-transform duration-200"
+                data-dropdown-icon>expand_more</span>
+            </button>
+            <div data-dropdown-menu
+              class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
+              <a class="block px-3 py-2 text-sm text-[#111111] dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-colors"
+                href="/tools">All Tools</a>
+              <div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu>
+              </div>
+            </div>
+          </div>
+          <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors"
+            href="/contact">Contact</a>
+          <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+          </button>
+        </div>
+        <button id="mobileMenuBtn"
+          class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-[#111111] dark:text-white">menu</span>
+        </button>
+      </header>
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+        <div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+          <div class="flex justify-end">
+            <button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+              <span class="material-symbols-outlined text-[#111111] dark:text-white">close</span>
+            </button>
+          </div>
+          <nav class="flex flex-col gap-4">
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="#home">Home</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="#about">About</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="#studies">Studies</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="#projects">Projects</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/tools">Tools</a>
+            <a class="text-[#111111] dark:text-gray-300 hover:text-primary dark:hover:text-white text-base font-medium transition-colors"
+              href="/contact">Contact</a>
+            <div class="pt-4 border-t border-black/10 dark:border-white/10">
+              <p class="text-xs uppercase tracking-[0.3em] text-[#555] dark:text-gray-400">PDF Suite tools</p>
+              <div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
+            </div>
+          </nav>
+          <button id="darkModeToggleMobile"
+            class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <span class="material-symbols-outlined text-[#111111] dark:text-white">dark_mode</span>
+            <span class="text-[#111111] dark:text-white text-sm font-medium">Toggle Theme</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTICLE ANIMATION CONTAINER START -->
+    <!-- This is the container for the ToolFolioHub particle animation -->
+    <div id="particle-header-container">
+      <canvas id="text-canvas"></canvas>
+    </div>
+    <!-- PARTICLE ANIMATION CONTAINER END -->
+
+    <!-- Home Section -->
+    <section id="home" class="flex h-full grow flex-col justify-center pt-24 md:pt-32 pb-20">
+      <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="@container flex items-center min-h-[70vh] py-24 md:py-32">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+            <!-- Left Column: Content -->
+            <div class="flex flex-col gap-8 text-center md:text-left">
+              <div class="flex flex-col gap-4">
+                <h1 class="text-[#111111] dark:text-white text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter">
                   toolfoliohub
                 </h1>
-<h2 class="text-primary text-lg font-medium">
+                <h2 class="text-primary text-lg font-medium">
                   Creative Digital Solutions & Visual Design
                 </h2>
-<p class="text-gray-600 dark:text-gray-400 max-w-lg mx-auto md:mx-0">
-                  A dedicated IT student with a passion for creating elegant and effective solutions. My work focuses on clean code, intuitive design, and leveraging technology to solve real-world problems.
+                <p class="text-gray-600 dark:text-gray-400 max-w-lg mx-auto md:mx-0">
+                  A dedicated IT student with a passion for creating elegant and effective solutions. My work focuses on
+                  clean code, intuitive design, and leveraging technology to solve real-world problems.
                 </p>
-</div>
-<div class="flex flex-wrap gap-4 justify-center md:justify-start">
-<a href="/projects" class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-[#111111] text-white dark:bg-white dark:text-[#111111] text-sm font-bold shadow-lg hover:shadow-xl transition-shadow">
-<span>View My Work</span>
-</a>
-<a href="#" download class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-transparent text-[#111111] dark:text-white border border-[#CCCCCC] dark:border-gray-700 hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-sm font-bold">
-<span>Download CV</span>
-</a>
-</div>
-</div>
-<!-- Right Column: Visual -->
-<div class="w-full aspect-square flex items-center justify-center">
-<img class="w-full h-full object-cover rounded-xl" data-alt="Abstract 3D rendering of floating geometric shapes in monochrome, with cubes, spheres, and lines creating a sense of depth and space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx29Sk57aKCXIE9l5GQtc8nOhlBWTRZGVkuqskYt2ktgTsKjw3HkTxYhGEhFR7KTnTPKwEE8dotRWog__H7KlCsHDSCEyUxc8qYSWtALI4h3PKSH1Dshyj1qfetZPCFgfpP8D2COokSYUhbMicJePE_bR4_M86L7PX1Lc2tF45bpUrle9U6Hx8lAigLpiDb9ZfQek7wzWcmh8bxJLPr6fPwL17oWs8iD6uuHGfqrkplLZkz2ynqLQiTzlRGNCyc5D8cM0oQr4aFy0"/>
-</div>
-</div>
-</section>
-</div>
-</main>
-</div>
-<!-- Three.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<!-- Background Animation -->
-<script src="background.js"></script>
-<script src="script.js"></script>
-</body></html>
+              </div>
+              <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                <a href="#projects"
+                  class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-[#111111] text-white dark:bg-white dark:text-[#111111] text-sm font-bold shadow-lg hover:shadow-xl transition-shadow">
+                  <span>View My Work</span>
+                </a>
+                <a href="#" download
+                  class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-transparent text-[#111111] dark:text-white border border-[#CCCCCC] dark:border-gray-700 hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-sm font-bold">
+                  <span>Download CV</span>
+                </a>
+              </div>
+            </div>
+            <!-- Right Column: Visual with Floating Logos -->
+            <div class="hero-visual relative mx-auto flex items-center justify-center">
+              <!-- Floating Icons -->
+               <!-- Floating Icons -->
+               <img src="3d_app_icons_for_floating_animation/chatgpt.png"
+               class="absolute w-100 h-16 md:w-20 md:h-20 object-contain z-0 floating-icon-1" alt="ChatGPT Icon"
+               style="top: 20%; left: -5%;" />
+
+             <img src="3d_app_icons_for_floating_animation/geminilogo.png"
+               class="absolute w-16 h-16 md:w-20 md:h-20 object-contain z-0 floating-icon-2" alt="Gemini Icon"
+               style="top: 20%; right: 1%;" />
+
+             <img src="3d_app_icons_for_floating_animation/Coding logo.png"
+               class="absolute w-10 h-10 md:w-20 md:h-20 object-contain z-0 floating-icon-3" alt="Coding Icon"
+               style="bottom: 10%; left: -8%;" />
+
+             <img src="3d_app_icons_for_floating_animation/Managementlogo.png"
+               class="absolute w-10 h-10 md:w-20 md:h-20 object-contain z-0 floating-icon-4" alt="Management Icon"
+               style="bottom: 15%; right: -8%;" />
+
+             <img src="3d_app_icons_for_floating_animation/Video editor logo.png"
+               class="absolute w-12 h-12 md:w-16 md:h-16 object-contain z-0 floating-icon-1" alt="Video Editor Icon"
+               style="top: 55%; left: -12%;" />
+
+             <img src="3d_app_icons_for_floating_animation/prompt engineering logo.png"
+               class="absolute w-12 h-12 md:w-16 md:h-16 object-contain z-0 floating-icon-2"
+               alt="Prompt Engineering Icon" style="top: 50%; right: -7%;" />
+
+              <!-- Character Image -->
+              <img id="character-image" class="relative z-10"
+                src="character of mahinkadery/character_ref.png"
+                alt="Mahin Kader 3D avatar">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 sm:py-32 bg-background-light dark:bg-background-dark">
+      <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-1 items-center justify-center py-10 sm:py-20">
+          <!-- Profile Card -->
+          <div
+            class="w-full max-w-4xl rounded-xl glassmorphism shadow-2xl shadow-gray-500/10 dark:shadow-black/20 p-8 sm:p-12 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 dark:hover:shadow-primary/10 hover:-translate-y-1">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div class="flex-shrink-0">
+                <div
+                  class="bg-gray-200 dark:bg-gray-700/50 bg-center bg-no-repeat aspect-square bg-cover rounded-full h-32 w-32 md:h-40 md:w-40 ring-4 ring-white/50 dark:ring-white/10"
+                  data-alt="Placeholder silhouette of a person's profile"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCCvVYbx4QQU4Z-iRUECvlkVewAp0lLiY6E094ERur8aSeCOzgqbPURGbYDd69R64zo0ZL-zNXp-HKPdKJBuQ8AIyVRr6BtiTKGaLbwzVUIG-3iV2Epwov2XUXZObfCxRdJhk-IxiZ5zOwUHxlumBbezUK2PZD1YUo9W5JI59x_6rJYXugzXIZmVqbIDLTu7P4BDst6Wziokf81bcJVZXRGJM4piB5UkW0UC76tLRZqNhgM898NTtmOs0Zfl6iqQhNHOS_CAAM7j1I");'>
+                </div>
+              </div>
+              <div class="flex flex-col text-center md:text-left">
+                <h1 class="text-[#1A1A1A] dark:text-white text-2xl sm:text-3xl font-bold tracking-tighter">toolfoliohub
+                  | Creative Technologist</h1>
+                <p class="text-[#616f89] dark:text-gray-400 text-base mt-2 max-w-prose">
+                  A passionate IT student with a focus on creating modern, user-centric web solutions. I thrive on
+                  solving complex problems and bringing innovative ideas to life through code and design.
+                </p>
+                <div class="mt-6">
+                  <h3 class="text-[#1A1A1A] dark:text-white font-semibold tracking-wide">Key Skills</h3>
+                  <ul class="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-left">
+                    <li class="flex items-center gap-2 text-[#616f89] dark:text-gray-400 text-sm">
+                      <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                      Web Development
+                    </li>
+                    <li class="flex items-center gap-2 text-[#616f89] dark:text-gray-400 text-sm">
+                      <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                      Programming
+                    </li>
+                    <li class="flex items-center gap-2 text-[#616f89] dark:text-gray-400 text-sm">
+                      <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                      Problem Solving
+                    </li>
+                    <li class="flex items-center gap-2 text-[#616f89] dark:text-gray-400 text-sm">
+                      <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                      UI/UX Design
+                    </li>
+                    <li class="flex items-center gap-2 text-[#616f89] dark:text-gray-400 text-sm">
+                      <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                      Databases
+                    </li>
+                    <li class="flex items-center gap-2 text-[#616f89] dark:text-gray-400 text-sm">
+                      <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                      Cloud Services
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studies Section -->
+    <section id="studies" class="py-20 sm:py-32 bg-background-light dark:bg-background-dark">
+      <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex-grow pt-16 sm:pt-24">
+          <!-- PageHeading -->
+          <div class="flex flex-col items-center justify-center gap-4 p-4 text-center">
+            <p class="text-[#111111] dark:text-white text-4xl sm:text-5xl font-bold tracking-tighter max-w-2xl">My
+              Academic Journey</p>
+            <p class="text-[#888888] dark:text-gray-400 text-base font-normal leading-normal max-w-lg">A timeline of my
+              educational background, key areas of study, and technologies I've mastered along the way.</p>
+          </div>
+          <!-- Timeline -->
+          <div class="relative mt-16 px-4">
+            <!-- Vertical Timeline Axis -->
+            <div class="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-gray-200 dark:bg-gray-700/50"></div>
+            <!-- Timeline Entry 1 -->
+            <div class="relative mb-12 flex w-full items-center justify-between md:odd:flex-row-reverse">
+              <div class="hidden md:block w-5/12"></div>
+              <!-- Timeline Node -->
+              <div class="absolute left-1/2 z-10 -translate-x-1/2">
+                <div
+                  class="grid h-8 w-8 place-items-center rounded-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
+                  <span class="material-symbols-outlined text-base text-[#888888] dark:text-gray-400">school</span>
+                </div>
+              </div>
+              <!-- Education Card -->
+              <div class="w-full md:w-5/12">
+                <div
+                  class="card-hover p-6 bg-white dark:bg-background-dark/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-lg shadow-sm">
+                  <div class="flex items-start gap-4">
+                    <div
+                      class="grid place-items-center size-10 rounded-full bg-gray-100 dark:bg-gray-800 text-[#888888] dark:text-gray-400">
+                      <span class="material-symbols-outlined text-xl">account_balance</span>
+                    </div>
+                    <div>
+                      <p class="text-[#111111] dark:text-white text-lg font-bold">University Name</p>
+                      <p class="text-[#888888] dark:text-gray-400 text-sm font-normal">Bachelor of Information
+                        Technology | 2021 - Present</p>
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        <span
+                          class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Software
+                          Development</span>
+                        <span
+                          class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Databases</span>
+                        <span
+                          class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Cybersecurity</span>
+                        <span
+                          class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Project
+                          Management</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Timeline Entry 2 -->
+            <div class="relative mb-12 flex w-full items-center justify-between md:odd:flex-row-reverse">
+              <div class="w-full md:w-5/12">
+                <div
+                  class="card-hover p-6 bg-white dark:bg-background-dark/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-lg shadow-sm">
+                  <div class="flex items-start gap-4">
+                    <div
+                      class="grid place-items-center size-10 rounded-full bg-gray-100 dark:bg-gray-800 text-[#888888] dark:text-gray-400">
+                      <span class="material-symbols-outlined text-xl">code_blocks</span>
+                    </div>
+                    <div>
+                      <p class="text-[#111111] dark:text-white text-lg font-bold">College/High School Name</p>
+                      <p class="text-[#888888] dark:text-gray-400 text-sm font-normal">Diploma of IT | 2019 - 2021</p>
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        <span
+                          class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Networking
+                          Fundamentals</span>
+                        <span
+                          class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Programming
+                          Basics</span>
+                        <span
+                          class="glass-tag rounded-full px-3 py-1 text-xs font-medium text-[#111111] dark:text-gray-300">Web
+                          Design</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Timeline Node -->
+              <div class="absolute left-1/2 z-10 -translate-x-1/2">
+                <div
+                  class="grid h-8 w-8 place-items-center rounded-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
+                  <span class="material-symbols-outlined text-base text-[#888888] dark:text-gray-400">history_edu</span>
+                </div>
+              </div>
+              <div class="hidden md:block w-5/12"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 sm:py-32 bg-background-light dark:bg-background-dark">
+      <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-10 py-10">
+          <div class="flex flex-wrap justify-between gap-3 p-4">
+            <div class="flex min-w-72 flex-col gap-3">
+              <p class="text-5xl font-black leading-tight tracking-[-0.033em] text-[#0A0A0A] dark:text-white">My Work
+              </p>
+              <p class="text-lg font-normal leading-normal text-[#B0B0B0]">A collection of my projects in Information
+                Technology.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+            <!-- Card 1 -->
+            <div class="project-card">
+              <div
+                class="flex h-full flex-col items-stretch justify-start rounded-lg glassmorphism shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.2)]">
+                <div class="flex h-full flex-col items-stretch justify-between gap-4 p-6">
+                  <div class="flex flex-col gap-3">
+                    <p class="text-xl font-bold leading-tight tracking-[-0.015em] text-[#0A0A0A] dark:text-white">
+                      AI-Powered Chatbot</p>
+                    <p class="text-base font-normal leading-normal text-[#B0B0B0]">A conversational AI designed to
+                      assist users with real-time information and support.</p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      <span
+                        class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">React</span>
+                      <span
+                        class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Node.js</span>
+                      <span
+                        class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Three.js</span>
+                    </div>
+                  </div>
+                  <button
+                    class="mt-4 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 glassmorphism text-[#0A0A0A] dark:text-white text-sm font-medium leading-normal group hover:bg-primary/80 dark:hover:bg-primary/80 hover:text-white dark:hover:text-white transition-all duration-300">
+                    <span class="truncate">View Details</span>
+                    <span
+                      class="material-symbols-outlined ml-1 text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="project-card">
+              <div
+                class="flex h-full flex-col items-stretch justify-start rounded-lg glassmorphism shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.2)]">
+                <div class="flex h-full flex-col items-stretch justify-between gap-4 p-6">
+                  <div class="flex flex-col gap-3">
+                    <p class="text-xl font-bold leading-tight tracking-[-0.015em] text-[#0A0A0A] dark:text-white">Data
+                      Visualization Platform</p>
+                    <p class="text-base font-normal leading-normal text-[#B0B0B0]">An interactive dashboard for
+                      visualizing complex datasets with dynamic charts and graphs.</p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      <span
+                        class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">D3.js</span>
+                      <span
+                        class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Python</span>
+                      <span
+                        class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Flask</span>
+                    </div>
+                  </div>
+                  <button
+                    class="mt-4 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 glassmorphism text-[#0A0A0A] dark:text-white text-sm font-medium leading-normal group hover:bg-primary/80 dark:hover:bg-primary/80 hover:text-white dark:hover:text-white transition-all duration-300">
+                    <span class="truncate">View Details</span>
+                    <span
+                      class="material-symbols-outlined ml-1 text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="project-card">
+              <div
+                class="flex h-full flex-col items-stretch justify-start rounded-lg glassmorphism shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.2)]">
+                <div class="flex h-full flex-col items-stretch justify-between gap-4 p-6">
+                  <div class="flex flex-col gap-3">
+                    <p class="text-xl font-bold leading-tight tracking-[-0.015em] text-[#0A0A0A] dark:text-white">Mobile
+                      Task Manager</p>
+                    <p class="text-base font-normal leading-normal text-[#B0B0B0]">A productivity app for iOS and
+                      Android to help users organize their daily tasks efficiently.</p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      <span
+                        class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">SwiftUI</span>
+                      <span
+                        class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Kotlin</span>
+                      <span
+                        class="rounded-full bg-[#E1E1E1]/50 dark:bg-[#E1E1E1]/10 px-3 py-1 text-xs font-medium text-[#0A0A0A] dark:text-[#E1E1E1]">Firebase</span>
+                    </div>
+                  </div>
+                  <button
+                    class="mt-4 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 glassmorphism text-[#0A0A0A] dark:text-white text-sm font-medium leading-normal group hover:bg-primary/80 dark:hover:bg-primary/80 hover:text-white dark:hover:text-white transition-all duration-300">
+                    <span class="truncate">View Details</span>
+                    <span
+                      class="material-symbols-outlined ml-1 text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="w-full text-center py-6 text-gray-500 dark:text-gray-400 bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-700/50">
+      <div class="flex justify-center mb-6">
+        <a href="/" class="flex items-center">
+          <img src="website-logos/headerlogoTFB.png" alt="toolfoliohub" class="h-12 md:h-14 w-auto object-contain dark:hidden">
+          <img src="website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-12 md:h-14 w-auto object-contain hidden dark:block">
+        </a>
+      </div>
+      <div class="flex justify-center gap-5 mb-4">
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="/contact" title="Contact">
+          <span class="material-symbols-outlined">alternate_email</span>
+        </a>
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="https://linkedin.com"
+          target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <span class="material-symbols-outlined">work</span>
+        </a>
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="https://github.com" target="_blank"
+          rel="noopener noreferrer" title="GitHub">
+          <svg aria-hidden="true" class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+            <path clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z"
+              fill-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+      <p class="text-sm">© 2024 toolfoliohub. All Rights Reserved.</p>
+    </footer>
+
+    <script src="text-particles.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

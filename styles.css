@@ -10,21 +10,16 @@
 
 /* Background Patterns - Standardized */
 body {
-    background: linear-gradient(180deg, #FDFDFD, #F5F5F5);
-    background-image: 
-        radial-gradient(circle at top left, rgba(43, 108, 238, 0.08) 0%, transparent 30%),
-        radial-gradient(circle at bottom right, rgba(43, 108, 238, 0.08) 0%, transparent 30%),
-        radial-gradient(#1111111a 0.5px, transparent 0.5px);
-    background-size: 100% 100%, 100% 100%, 16px 16px;
+    background: #ffffff;
+    /* Clean white background like antigravity.google */
+    background-image: none;
+    /* Remove static patterns - particles will provide the effect */
 }
 
 .dark body {
     background: #101622;
-    background-image: 
-        radial-gradient(circle at top left, rgba(43, 108, 238, 0.1) 0%, transparent 30%),
-        radial-gradient(circle at bottom right, rgba(43, 108, 238, 0.1) 0%, transparent 30%),
-        radial-gradient(#ffffff1a 0.5px, transparent 0.5px);
-    background-size: 100% 100%, 100% 100%, 16px 16px;
+    background-image: none;
+    /* Clean background - particles will provide the effect */
 }
 
 .font-display {
@@ -145,9 +140,9 @@ body {
     overflow-y: auto;
 }
 
-.dropdown-menu > a:first-child,
-.dropdown-menu > a:nth-child(2),
-.dropdown-menu > div[data-tools-menu] {
+.dropdown-menu>a:first-child,
+.dropdown-menu>a:nth-child(2),
+.dropdown-menu>div[data-tools-menu] {
     grid-column: span 2;
 }
 
@@ -200,19 +195,184 @@ body {
     background-color: rgba(43, 108, 238, 0.05) !important;
 }
 
-/* 3D Particle Background Canvas */
-#bg-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* Animation Container */
+#particle-header-container {
+    width: 100%;
+    height: 55vh;
+    /* Fixed height to ensure visibility */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Background Pattern - Light Mode */
+    background-color: #FDFDFD;
+    background-image:
+        radial-gradient(circle at 15% 15%, rgba(43, 108, 238, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 85% 85%, rgba(43, 108, 238, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(43, 108, 238, 0.08) 0%, transparent 25%);
+    background-size: 100% 100%, 100% 100%, 16px 16px, 100% 100%;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+
+    /* Blend with content below */
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    
+    /* Mobile adjustments */
+    height: 40vh;
+}
+
+/* Dark mode styles for particle container */
+.dark #particle-header-container {
+    background-color: #101622;
+    background-image:
+        radial-gradient(circle at 15% 15%, rgba(43, 108, 238, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 85% 85%, rgba(43, 108, 238, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(43, 108, 238, 0.12) 0%, transparent 25%);
+    background-size: 100% 100%, 100% 100%, 16px 16px, 100% 100%;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+}
+
+/* Desktop: larger height */
+@media (min-width: 768px) {
+    #particle-header-container {
+        height: 55vh;
+    }
+}
+
+/* Tablet: medium height */
+@media (min-width: 640px) and (max-width: 767px) {
+    #particle-header-container {
+        height: 45vh;
+    }
+}
+
+#text-canvas {
+    display: block;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.6;
 }
 
-.dark #bg-canvas {
-    opacity: 0.8;
+
+/* Floating Animation for Icons */
+@keyframes float-1 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
 }
 
+@keyframes float-2 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(-5deg);
+    }
+}
+
+.floating-icon-1 {
+    animation: float-1 6s ease-in-out infinite;
+}
+
+.floating-icon-2 {
+    animation: float-2 7s ease-in-out infinite;
+    animation-delay: 1s;
+    /* Offset animation */
+}
+
+@keyframes float-3 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-18px) rotate(3deg);
+    }
+}
+
+@keyframes float-4 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-22px) rotate(-3deg);
+    }
+}
+
+.floating-icon-3 {
+    animation: float-3 6.5s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.floating-icon-4 {
+    animation: float-4 7.5s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+/* Mobile-specific adjustments for floating icons */
+@media (max-width: 640px) {
+    .hero-visual {
+        max-width: 260px;
+        min-height: 380px;
+    }
+
+    #character-image {
+        max-width: 240px;
+    }
+
+    .hero-visual img:nth-of-type(1) {
+        top: 10% !important;
+        left: 4% !important;
+        width: 52px !important;
+        height: 52px !important;
+    }
+
+    .hero-visual img:nth-of-type(2) {
+        top: 10% !important;
+        right: 2% !important;
+        width: 54px !important;
+        height: 54px !important;
+    }
+
+    .hero-visual img:nth-of-type(3) {
+        bottom: 8% !important;
+        left: -3% !important;
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .hero-visual img:nth-of-type(4) {
+        bottom: 20% !important;
+        right: -8% !important;
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .hero-visual img:nth-of-type(5) {
+        top: 40% !important;
+        left: -5% !important;
+        width: 46px !important;
+        height: 46px !important;
+    }
+
+    .hero-visual img:nth-of-type(6) {
+        top: 40% !important;
+        right: -4% !important;
+        width: 46px !important;
+        height: 46px !important;
+    }
+}
