@@ -1277,17 +1277,81 @@ function filterStaticTools(query) {
     toolDirectory.insertBefore(searchResultsSection, toolDirectory.firstChild);
 }
 
+// Initialize Lenis Smooth Scroll
+function initLenis() {
+    // Check if Lenis is available (loaded from CDN)
+    if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+            duration: 0.8,
+            easing: (t) => 1 - Math.pow(1 - t, 3), // Simpler easing for better performance
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 0.8, // Reduced for snappier feel
+            smoothTouch: false,
+            touchMultiplier: 1.5,
+            infinite: false,
+            syncTouch: true,
+        });
+
+        // Optimized RAF with performance check
+        let lastTime = 0;
+        function raf(time) {
+            lenis.raf(time);
+            // Throttle to maintain 60fps
+            if (time - lastTime >= 16) {
+                requestAnimationFrame(raf);
+                lastTime = time;
+            } else {
+                requestAnimationFrame(raf);
+            }
+        }
+
+        requestAnimationFrame(raf);
+
+        // Handle anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    lenis.scrollTo(href, { offset: 0, duration: 1.0 });
+                }
+            });
+        });
+
+        // Expose lenis instance globally for potential external access
+        window.lenis = lenis;
+    }
+}
+
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     initDarkMode();
     initMobileMenu();
     initDropdowns();
-    initSmoothScroll();
+    // Note: Smooth scroll is now handled by Lenis
     initContactForm();
     populateToolMenus();
     renderToolFilters();
     initSearch();
     populateToolsHub();
+    
+    // Initialize Lenis Smooth Scroll (with retry if not loaded yet)
+    if (typeof Lenis !== 'undefined') {
+        initLenis();
+    } else {
+        // Retry after a short delay if Lenis hasn't loaded yet
+        setTimeout(() => {
+            if (typeof Lenis !== 'undefined') {
+                initLenis();
+            } else {
+                // Fallback to native smooth scroll if Lenis fails to load
+                initSmoothScroll();
+            }
+        }, 100);
+    }
+    
     const yearSpan = document.getElementById('yearSpan');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();

@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <link href="styles.css" rel="stylesheet"/>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <style type="text/tailwindcss">
         body {
             font-family: 'Space Grotesk', sans-serif;
@@ -35,6 +36,9 @@
         .project-card {
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             transform-style: preserve-3d;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
         .project-card:hover {
             transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);

@@ -202,11 +202,11 @@ This project is free to use for personal and educational purposes.
 
 ## 👤 Author
 
-**Mahin**
-- Portfolio: [Your Portfolio URL]
-- Email: mahin.student@email.com
-- GitHub: [Your GitHub]
-- LinkedIn: [Your LinkedIn]
+**Mahin Kadery**
+- Portfolio: https://toolfoliohub.com
+- Email: contact@toolfoliohub.com
+- GitHub: https://github.com/mahinkadery
+- LinkedIn: https://www.linkedin.com/in/mahin-kadery
 
 ## 🙏 Acknowledgments
 

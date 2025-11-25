@@ -81,6 +81,9 @@ body {
 /* Card Hover Effects */
 .card-hover {
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .card-hover:hover {
@@ -96,6 +99,9 @@ body {
 .project-card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     transform-style: preserve-3d;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .project-card:hover {
