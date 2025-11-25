@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Color Blindness Preview – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>Color Blindness Preview – Test Designs for Color Vision Accessibility | ToolfolioHub</title>
+  <meta name="description" content="Preview how your designs look to people with color vision deficiencies. Simulate protanopia, deuteranopia, tritanopia, and achromatopsia." />
+  <meta name="keywords" content="color blindness simulator, color vision deficiency, accessibility design, color blind preview, accessible colors, inclusive design, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Color Blindness Preview – Accessibility Design Tool" />
+  <meta property="og:description" content="Simulate different types of color vision deficiencies to ensure your designs are accessible to all users." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/color-blindness-preview" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -108,6 +119,125 @@
           </p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>Color Blindness Preview – Design for All Users</h2>
+        
+        <p class="lead">
+          Approximately 8% of men and 0.5% of women worldwide have some form of color vision deficiency (color blindness). That means millions of users may struggle to perceive information that relies solely on color differentiation. The <strong>Color Blindness Preview</strong> tool by ToolfolioHub helps designers and developers understand how their designs appear to users with different types of color vision deficiencies.
+        </p>
+        <p>
+          This tool uses scientifically-based filter approximations to simulate how designs look to people with protanopia, deuteranopia, tritanopia, and achromatopsia. While these simulations are approximations (not medical-grade), they provide valuable insight for creating more accessible, inclusive designs.
+        </p>
+
+        <h2>What is Color Vision Deficiency?</h2>
+        <p>
+          Color vision deficiency occurs when the cone cells in the eye that detect color are absent or malfunctioning. There are several types:
+        </p>
+        <ul>
+          <li><strong>Protanopia (Red-blind):</strong> Missing or non-functional red cones. Red appears as black or dark gray.</li>
+          <li><strong>Deuteranopia (Green-blind):</strong> Missing or non-functional green cones. Green appears similar to red.</li>
+          <li><strong>Tritanopia (Blue-blind):</strong> Missing or non-functional blue cones. Blue appears green, yellow appears pink.</li>
+          <li><strong>Achromatopsia (Complete color blindness):</strong> All color cones missing. Only sees shades of gray.</li>
+        </ul>
+        <p>
+          Understanding these differences is crucial for creating accessible designs that work for all users, not just those with typical color vision.
+        </p>
+
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Four Types of Color Vision Simulation</h3>
+        <p>
+          Preview your designs through the eyes of users with:
+        </p>
+        <ul>
+          <li><strong>Protanopia:</strong> Most common type of color blindness in men.</li>
+          <li><strong>Deuteranopia:</strong> Another common type affecting red-green perception.</li>
+          <li><strong>Tritanopia:</strong> Rare, affects blue-yellow perception.</li>
+          <li><strong>Achromatopsia:</strong> Complete color blindness (very rare).</li>
+        </ul>
+
+        <h3>2. Side-by-Side Comparison</h3>
+        <p>
+          View the original design alongside the simulated view, making it easy to identify accessibility issues and necessary improvements.
+        </p>
+
+        <h3>3. Real-Time Preview</h3>
+        <p>
+          Select a color vision type from the dropdown to instantly see how the demo UI appears to users with that condition.
+        </p>
+
+        <h3>4. Educational Information</h3>
+        <p>
+          Learn about each type of color vision deficiency and understand how they affect color perception.
+        </p>
+
+        <h2>How to Use the Color Blindness Preview</h2>
+        <ol>
+          <li><strong>View the Demo UI:</strong> The tool includes a sample interface with error, success, info, and warning colors.</li>
+          <li><strong>Select Color Vision Type:</strong> Choose a type from the dropdown (Protanopia, Deuteranopia, Tritanopia, or Achromatopsia).</li>
+          <li><strong>Compare Views:</strong> See how colors change in the preview panel compared to the original.</li>
+          <li><strong>Identify Issues:</strong> Notice if important information becomes indistinguishable or hard to read.</li>
+        </ol>
+        <p>
+          <strong>Note:</strong> This tool uses approximate filters for educational purposes. For precise testing, consult accessibility experts or use professional tools.
+        </p>
+
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Web Designers</h3>
+        <p>
+          Designers use this tool to:
+        </p>
+        <ul>
+          <li>Test color combinations for accessibility before finalizing designs.</li>
+          <li>Ensure UI elements (buttons, alerts, status indicators) are distinguishable without relying solely on color.</li>
+          <li>Create color palettes that work for all users.</li>
+        </ul>
+
+        <h3>UI/UX Professionals</h3>
+        <p>
+          UX professionals use this tool to:
+        </p>
+        <ul>
+          <li>Validate that information is accessible through multiple channels (color + icons, text, patterns).</li>
+          <li>Test accessibility of data visualizations and charts.</li>
+          <li>Ensure forms and interfaces don't rely solely on color to convey important information.</li>
+        </ul>
+
+        <h2>Design Tips for Color-Blind Accessibility</h2>
+        <ul>
+          <li><strong>Use Icons + Color:</strong> Don't rely on color alone—add icons, symbols, or text labels.</li>
+          <li><strong>High Contrast:</strong> Ensure sufficient contrast between elements even when color is removed.</li>
+          <li><strong>Patterns & Textures:</strong> Use patterns or textures to distinguish elements (especially in charts/graphs).</li>
+          <li><strong>Text Labels:</strong> Always include text labels for important information.</li>
+        </ul>
+
+        <h2>FAQs</h2>
+        
+        <h3>Are these simulations medically accurate?</h3>
+        <p>
+          These are approximations using filter matrices. They provide a good general sense of how colors might appear, but actual color vision varies between individuals. For medical diagnosis or precise accessibility testing, consult professionals.
+        </p>
+
+        <h3>What percentage of users are color blind?</h3>
+        <p>
+          Approximately 8% of men and 0.5% of women have some form of color vision deficiency. Protanopia and deuteranopia (red-green color blindness) are the most common.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Color Blindness Preview</strong> tool is an essential resource for creating inclusive designs. By understanding how colors appear to users with different types of color vision, you can create interfaces that are accessible to everyone, improving usability and demonstrating a commitment to inclusive design.
+        </p>
+      </article>
     </main>
   </div>
 

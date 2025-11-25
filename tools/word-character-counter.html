@@ -3,18 +3,37 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Word & Character Counter – toolfoliohub</title>
+  
+  <!-- 1. SEO Metadata -->
+  <title>Word & Character Counter – Free Real-Time Text Statistics Tool | ToolfolioHub</title>
+  <meta name="description" content="Instantly count words, characters, sentences, and paragraphs with our free Word & Character Counter. Perfect for writers, students, and SEO professionals. No signup required." />
+  <meta name="keywords" content="word counter, character counter, text statistics, word count tool, character count online, essay word count, social media character limit, free text analysis, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Word & Character Counter – Free Real-Time Text Statistics Tool" />
+  <meta property="og:description" content="Count words and characters instantly for essays, tweets, and SEO content. accurate, privacy-focused, and free to use." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/word-character-counter" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <style>
-    .tool-shell{max-width:960px;margin:0 auto;}
+    .tool-shell { max-width: 960px; margin: 0 auto; }
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
   </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
@@ -34,30 +53,213 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Interface -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
-          <h1 class="mt-2 text-3xl font-bold">Word &amp; Character Counter</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Type or paste text to see live word and character counts.</p>
+          <!-- 2. H1 -->
+          <h1 class="mt-2 text-3xl font-bold">Word & Character Counter – Analyze Your Text in Real-Time</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Type or paste text below to instantly check word count, character length, and more.</p>
         </div>
 
-        <textarea id="counterInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px]" placeholder="Start typing here..."></textarea>
+        <textarea id="counterInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px] focus:ring-2 focus:ring-primary outline-none transition-all font-mono text-sm" placeholder="Start typing or paste your text here..."></textarea>
 
         <dl class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow">
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow backdrop-blur-sm transition-transform hover:scale-105">
             <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Words</dt>
-            <dd id="wordCount" class="mt-1 text-3xl font-bold">0</dd>
+            <dd id="wordCount" class="mt-1 text-3xl font-bold text-primary">0</dd>
           </div>
-          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow">
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow backdrop-blur-sm transition-transform hover:scale-105">
             <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Characters</dt>
-            <dd id="charCount" class="mt-1 text-3xl font-bold">0</dd>
+            <dd id="charCount" class="mt-1 text-3xl font-bold text-primary">0</dd>
           </div>
-          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow">
-            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Chars (no spaces)</dt>
-            <dd id="charNoSpaceCount" class="mt-1 text-3xl font-bold">0</dd>
+          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-4 shadow backdrop-blur-sm transition-transform hover:scale-105">
+            <dt class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">No Spaces</dt>
+            <dd id="charNoSpaceCount" class="mt-1 text-3xl font-bold text-primary">0</dd>
           </div>
         </dl>
       </section>
+
+      <!-- 3. Comprehensive Article -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        
+        <!-- Introduction -->
+        <p class="lead">
+          In the world of digital content, precision is power. Whether you are a student striving to meet a strict essay word limit, a social media manager crafting the perfect 280-character tweet, or an SEO specialist optimizing meta descriptions, knowing the exact length of your text is non-negotiable.
+        </p>
+        <p>
+          The <strong>Word & Character Counter</strong> by ToolfolioHub is designed to solve this exact problem. It is a fast, privacy-focused, and completely free utility that gives you instant feedback on your writing. Gone are the days of pasting text into a heavy word processor just to see a number. With our tool, you get real-time analytics right in your browser, helping you edit, refine, and perfect your content with confidence.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is a Word & Character Counter?</h2>
+        <p>
+          A Word & Character Counter is an online tool that analyzes a body of text and provides statistical data about its length and composition. While standard word processors (like Microsoft Word or Google Docs) have this feature built-in, they can be slow to load or require an account. An online counter offers immediate access for quick checks.
+        </p>
+        <p>
+          This tool is essential for anyone working with text constraints. Different platforms count "length" in different ways. Some care about the number of words (academic papers, blog posts), while others care strictly about the number of characters (SMS, Twitter/X, database fields). Our tool breaks down these metrics simultaneously, ensuring you have all the data you need at a glance.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>Instant Real-Time Analysis</h3>
+        <p>
+          Speed is the core feature of our Word & Character Counter. There is no "Calculate" button to press. The moment you type a letter or paste a paragraph, the counters update immediately. This seamless feedback loop allows you to edit your text dynamically—trimming sentences or adding details until you hit your exact target.
+        </p>
+
+        <h3>Multiple Metric Tracking</h3>
+        <p>
+          We don't just give you one number. We provide a comprehensive breakdown:
+        </p>
+        <ul>
+          <li><strong>Word Count:</strong> The standard metric for essays, articles, and reports.</li>
+          <li><strong>Total Characters:</strong> The absolute length of your text, including spaces and punctuation. This is crucial for social media limits.</li>
+          <li><strong>Characters (No Spaces):</strong> A specialized metric often used in translation billing or specific database constraints where whitespace doesn't count.</li>
+        </ul>
+
+        <h3>Privacy and Security</h3>
+        <p>
+          In an era of data breaches, we take your privacy seriously. Unlike many free tools that send your data to a remote server for processing, ToolfolioHub's Word & Character Counter runs entirely <strong>client-side</strong> using JavaScript.
+        </p>
+        <p>
+          This means your text never leaves your device. Whether you are pasting a confidential business email, a private journal entry, or proprietary code, you can be 100% certain that no one else can see it.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Word & Character Counter</h2>
+        <p>
+          Using this tool is intuitive and requires no technical skills. Here is a step-by-step guide to getting the most out of it:
+        </p>
+        <ol>
+          <li>
+            <strong>Access the Tool:</strong> Navigate to the Word & Character Counter page on ToolfolioHub (you are already here!).
+          </li>
+          <li>
+            <strong>Input Your Text:</strong> Click inside the large text area at the top of the page. You can start typing directly to draft your content, or paste text from another source (Ctrl+V or Cmd+V).
+          </li>
+          <li>
+            <strong>Analyze the Data:</strong> Look at the statistics panel below the text box.
+            <ul>
+              <li>If you are writing an essay, focus on the <strong>Words</strong> card.</li>
+              <li>If you are writing a tweet, keep an eye on the <strong>Characters</strong> card.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Edit and Refine:</strong> If your text is too long, start deleting unnecessary adjectives or rephrasing sentences. Watch the numbers drop in real-time until you meet your requirements.
+          </li>
+          <li>
+            <strong>Copy and Go:</strong> Once satisfied, select your text and copy it (Ctrl+C or Cmd+C) to its final destination.
+          </li>
+        </ol>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+        <p>
+          This tool serves a wide variety of users across different industries:
+        </p>
+
+        <h3>Students and Academics</h3>
+        <p>
+          Assignments almost always come with length constraints (e.g., "Minimum 1,000 words" or "Maximum 500-word abstract"). Submitting too little can hurt your grade, while submitting too much can annoy the grader. Using our counter ensures you land in the safe zone every time.
+        </p>
+
+        <h3>Social Media Managers</h3>
+        <p>
+          Every platform has hard limits. If you exceed them, your post gets cut off or rejected.
+        </p>
+        <ul>
+          <li><strong>Twitter / X:</strong> 280 characters.</li>
+          <li><strong>Instagram Bio:</strong> 150 characters.</li>
+          <li><strong>LinkedIn Headline:</strong> 220 characters.</li>
+        </ul>
+        <p>
+          Our tool is perfect for drafting these snippets to ensure they fit perfectly before you hit "Post."
+        </p>
+
+        <h3>Content Marketers and SEOs</h3>
+        <p>
+          Search Engine Optimization (SEO) relies heavily on text length.
+        </p>
+        <ul>
+          <li><strong>Title Tags:</strong> Should be under 60 characters to avoid truncation in search results.</li>
+          <li><strong>Meta Descriptions:</strong> Should be under 160 characters to be fully visible.</li>
+          <li><strong>Blog Posts:</strong> Long-form content (1,500+ words) often ranks better for competitive keywords.</li>
+        </ul>
+        <p>
+          SEO professionals use this tool daily to optimize these specific elements.
+        </p>
+
+        <h3>Translators</h3>
+        <p>
+          Translation jobs are often billed by the character count (sometimes excluding spaces). Our "No Spaces" metric is specifically designed to help freelancers and agencies calculate quotes accurately.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <p>
+          With hundreds of word counters available online, why should you stick with ToolfolioHub?
+        </p>
+        <ul>
+          <li><strong>Zero Distractions:</strong> Many free tool sites are cluttered with aggressive pop-up ads, video auto-plays, and confusing layouts. We prioritize a clean, "glassmorphism" UI that helps you focus on your writing.</li>
+          <li><strong>Part of a Toolkit:</strong> This isn't just a standalone page. It's part of the <strong>ToolfolioHub</strong> ecosystem. After checking your word count, you might need to format your text. You can instantly switch to our <a href="/tools/case-converter">Case Converter</a> to fix capitalization or the <a href="/tools/whitespace-cleaner">Whitespace Cleaner</a> to remove accidental double spaces.</li>
+          <li><strong>Dark Mode Support:</strong> Writers often work late at night. Our fully integrated dark mode protects your eyes and reduces strain during long sessions.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Does the character count include spaces?</h3>
+        <p>
+          Yes, the main "Characters" metric includes all spaces, tabs, and punctuation. This is the standard for most platform limits. However, we also provide a "No Spaces" count for specialized needs.
+        </p>
+
+        <h3>Is there a limit on how much text I can check?</h3>
+        <p>
+          There is no hard limit imposed by our tool. You can paste entire book chapters or long reports. The only limitation is your browser's memory, but modern devices can handle hundreds of thousands of words without issue.
+        </p>
+
+        <h3>Do you save my text?</h3>
+        <p>
+          Absolutely not. We operate with a strict privacy-first policy. Your text is processed locally in your browser's temporary memory. Once you close or refresh the tab, the data is vanished. We do not store, log, or analyze your content.
+        </p>
+
+        <h3>Does this work on mobile?</h3>
+        <p>
+          Yes! ToolfolioHub is fully responsive. You can use this tool on your iPhone, Android, or tablet just as easily as on a desktop. It is perfect for checking caption lengths on the go.
+        </p>
+
+        <h3>Why is the word count different from Microsoft Word?</h3>
+        <p>
+          Word counting algorithms can vary slightly. Some count "hyphenated-words" as one, while others might count them as two. Our tool uses a standard web-based algorithm that aligns with how most online platforms count words, ensuring accuracy for digital publishing.
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Write First, Edit Later:</strong> Don't let the counter stress you out while drafting. Flow state is important. Write everything you want to say, then paste it here to trim down to your limit.</li>
+          <li><strong>Use the "No Spaces" Count for Accuracy:</strong> If you are paying a translator or copywriter, always agree on whether the fee is based on "characters with spaces" or "characters without spaces." The difference can be significant (often 15-20%).</li>
+          <li><strong>Check for Hidden Formatting:</strong> If the character count seems suspiciously high, you might have invisible line breaks or double spaces. Use our <a href="/tools/whitespace-cleaner">Whitespace Cleaner</a> to sanitize the text before counting.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Stop guessing and start measuring. Scroll up to the input box and paste your text to get instant insights. It is free, fast, and secure.
+        </p>
+        <p>
+          Need to do more with your text? Try our <a href="/tools/text-reverser">Text Reverser</a> for fun or the <a href="/tools/duplicate-line-remover">Duplicate Line Remover</a> to clean up lists.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Word & Character Counter</strong> is more than just a digital tally sheet; it is an essential instrument for precision in communication. In a world defined by character limits and attention spans, ensuring your message fits the medium is key to success.
+        </p>
+        <p>
+          ToolfolioHub is committed to providing you with the best free utilities to enhance your productivity. Bookmark this page for your next essay, tweet, or email, and experience the ease of distraction-free text analysis.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -69,17 +271,18 @@
 
     const updateCounts = () => {
       const text = textarea.value;
-      const trimmed = text.trim();
-      const words = trimmed ? trimmed.split(/\s+/).length : 0;
-      wordCountEl.textContent = words;
-      charCountEl.textContent = text.length;
-      charNoSpaceEl.textContent = text.replace(/\s+/g, '').length;
+      // Count words by splitting by whitespace, filtering out empty strings
+      const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+      
+      wordCountEl.textContent = words.toLocaleString();
+      charCountEl.textContent = text.length.toLocaleString();
+      charNoSpaceEl.textContent = text.replace(/\s+/g, '').length.toLocaleString();
     };
 
     textarea.addEventListener('input', updateCounts);
+    // Initial call
     updateCounts();
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

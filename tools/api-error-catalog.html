@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>API Error Message Catalog – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>API Error Catalog – REST & GraphQL Error Reference Guide | ToolfolioHub</title>
+  <meta name="description" content="Searchable catalog of common API error messages with explanations. Reference guide for REST, GraphQL, and HTTP error codes." />
+  <meta name="keywords" content="api error codes, rest api errors, graphql errors, http status codes, api error reference, error catalog, developer tool, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="API Error Catalog – Error Message Reference Guide" />
+  <meta property="og:description" content="Search and understand common API error messages. Essential reference for developers working with REST and GraphQL APIs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/api-error-catalog" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -52,6 +63,171 @@
           <!-- Error entries will be injected here -->
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>API Error Catalog – Your Complete Reference Guide</h2>
+        
+        <p class="lead">
+          When working with APIs, encountering errors is inevitable. The challenge isn't avoiding errors—it's understanding them quickly and resolving issues efficiently. The <strong>API Error Message Catalog</strong> by ToolfolioHub is a searchable reference guide that helps developers quickly identify, understand, and resolve common API errors across REST, GraphQL, and HTTP protocols.
+        </p>
+        <p>
+          This catalog includes error codes, example JSON responses, explanations, and practical context for each error type. Whether you're debugging a 401 authentication issue, understanding a GraphQL validation error, or troubleshooting a rate limit problem, this tool provides instant clarity.
+        </p>
+
+        <h2>What is an API Error?</h2>
+        <p>
+          API errors are responses from servers that indicate something went wrong with a request. Unlike successful responses (which typically return data), error responses contain information about what failed and why. Understanding error formats helps developers:
+        </p>
+        <ul>
+          <li>Debug integration issues faster.</li>
+          <li>Implement proper error handling in applications.</li>
+          <li>Provide better error messages to end users.</li>
+          <li>Document API behavior for team members.</li>
+        </ul>
+
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Comprehensive Error Coverage</h3>
+        <p>
+          The catalog includes errors from multiple API types:
+        </p>
+        <ul>
+          <li><strong>REST API Errors:</strong> Standard HTTP status codes (400, 401, 403, 404, 422, 429, 500).</li>
+          <li><strong>GraphQL Errors:</strong> Validation errors, authentication errors, field resolution errors.</li>
+          <li><strong>HTTP Errors:</strong> Gateway errors, service unavailable, and server errors.</li>
+        </ul>
+
+        <h3>2. Searchable Interface</h3>
+        <p>
+          Quickly find errors by searching for:
+        </p>
+        <ul>
+          <li>Error codes (e.g., "404", "UNAUTHORIZED").</li>
+          <li>Error names (e.g., "not found", "validation").</li>
+          <li>Descriptions or explanations.</li>
+        </ul>
+
+        <h3>3. Filter by Type</h3>
+        <p>
+          Filter errors by API type (REST, GraphQL, HTTP) to narrow down results and focus on relevant errors for your use case.
+        </p>
+
+        <h3>4. Example JSON Responses</h3>
+        <p>
+          Each error entry includes a complete example JSON response showing the exact format you might receive from an API. This helps you:
+        </p>
+        <ul>
+          <li>Understand the error structure.</li>
+          <li>Implement error parsing in your code.</li>
+          <li>Test error handling logic.</li>
+        </ul>
+
+        <h2>Common Error Types Explained</h2>
+        
+        <h3>REST API Errors</h3>
+        <p>
+          <strong>404 Not Found:</strong> The requested resource doesn't exist. Common causes include incorrect URLs, deleted resources, or typos in endpoint paths.
+        </p>
+        <p>
+          <strong>401 Unauthorized:</strong> Authentication is required or the provided credentials are invalid. Check your API key, token, or authentication headers.
+        </p>
+        <p>
+          <strong>403 Forbidden:</strong> You're authenticated but don't have permission. The request is valid but access is denied—check user roles and permissions.
+        </p>
+        <p>
+          <strong>400 Bad Request:</strong> The request format is invalid. Check request body, parameters, and data types.
+        </p>
+        <p>
+          <strong>422 Validation Error:</strong> The request format is valid, but data validation failed. Review validation rules and ensure all required fields meet criteria.
+        </p>
+        <p>
+          <strong>429 Too Many Requests:</strong> Rate limit exceeded. Wait before retrying or implement exponential backoff.
+        </p>
+        <p>
+          <strong>500 Internal Server Error:</strong> Server-side error. Usually indicates a bug on the server—report to API provider if it persists.
+        </p>
+
+        <h3>GraphQL Errors</h3>
+        <p>
+          <strong>GraphQL Validation Error:</strong> The query violates schema rules. Check field names, types, and required arguments.
+        </p>
+        <p>
+          <strong>GraphQL Authentication Error:</strong> The operation requires authentication. Include valid authentication headers.
+        </p>
+        <p>
+          <strong>GraphQL Field Error:</strong> A specific field failed to resolve. Other fields in the query may still succeed—check the error path.
+        </p>
+
+        <h2>How to Use the Error Catalog</h2>
+        <ol>
+          <li><strong>Search or Browse:</strong> Use the search bar to find specific errors, or browse all errors using filter buttons.</li>
+          <li><strong>Filter by Type:</strong> Click "REST", "GraphQL", or "HTTP" to filter errors by API type.</li>
+          <li><strong>Review Error Details:</strong> Each error shows:
+            <ul>
+              <li>Error name and code.</li>
+              <li>Brief description.</li>
+              <li>Example JSON response.</li>
+              <li>Detailed explanation.</li>
+            </ul>
+          </li>
+          <li><strong>Use Examples:</strong> Copy example JSON responses to test error handling in your application.</li>
+        </ol>
+
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Frontend Developers</h3>
+        <p>
+          Use this catalog to:
+        </p>
+        <ul>
+          <li>Implement proper error handling in API calls.</li>
+          <li>Display user-friendly error messages based on API responses.</li>
+          <li>Debug integration issues with backend APIs.</li>
+        </ul>
+
+        <h3>Backend Developers</h3>
+        <p>
+          Use this catalog to:
+        </p>
+        <ul>
+          <li>Design consistent error response formats.</li>
+          <li>Document API error behavior.</li>
+          <li>Ensure error responses follow industry standards.</li>
+        </ul>
+
+        <h2>FAQs</h2>
+        
+        <h3>What's the difference between 401 and 403?</h3>
+        <p>
+          <strong>401 Unauthorized:</strong> You're not authenticated (missing or invalid credentials). Log in first.
+        </p>
+        <p>
+          <strong>403 Forbidden:</strong> You're authenticated but don't have permission. Your credentials are valid, but your account lacks required permissions.
+        </p>
+
+        <h3>How should I handle rate limit errors?</h3>
+        <p>
+          When you receive a 429 error:
+        </p>
+        <ul>
+          <li>Check the `Retry-After` header (if present) to know when to retry.</li>
+          <li>Implement exponential backoff—wait progressively longer between retries.</li>
+          <li>Reduce request frequency or use batch endpoints if available.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>API Error Message Catalog</strong> is an essential reference tool for any developer working with APIs. By providing searchable, categorized error information with real examples, it accelerates debugging and helps you build better error handling into your applications.
+        </p>
+      </article>
     </main>
   </div>
 

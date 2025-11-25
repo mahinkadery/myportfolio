@@ -3,22 +3,82 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Basic Calculator – toolfoliohub</title>
+  
+  <!-- 1. SEO Metadata -->
+  <title>Basic Calculator – Free Online Math Tool | ToolfolioHub</title>
+  <meta name="description" content="Simple, keyboard-friendly online calculator. Perform addition, subtraction, multiplication, and division instantly. No ads, free forever, with full keyboard support." />
+  <meta name="keywords" content="basic calculator, online calculator, simple calculator, free math tool, calculator app, web calculator, arithmetic tool, toolfoliohub, four function calculator" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Basic Calculator – Free Online Math Tool" />
+  <meta property="og:description" content="A clean, fast, and keyboard-friendly calculator for your daily math needs. Perfect for quick calculations without leaving your browser." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/basic-calculator" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <style>
-    .tool-shell{max-width:520px;margin:0 auto;}
-    .calc-display{height:72px;border-radius:1.5rem;background:rgba(0,0,0,0.05);}
-    .calc-key{flex:1 0 25%;padding:0.85rem;border-radius:1rem;font-size:1.15rem;font-weight:600;}
-    .calc-key.op{background-color:rgba(43,108,238,0.12);color:#2b6cee;}
-    .calc-key.action{background-color:rgba(239,68,68,0.12);color:#ef4444;}
+    .tool-shell { max-width: 520px; margin: 0 auto; }
+    .calc-display {
+      height: 80px;
+      border-radius: 1.5rem;
+      background: rgba(0, 0, 0, 0.03);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .dark .calc-display {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .calc-key {
+      flex: 1 0 21%;
+      padding: 1rem 0.5rem;
+      border-radius: 1rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      transition: all 0.1s;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+    .calc-key:active {
+      transform: scale(0.95);
+    }
+    .calc-key.op {
+      background-color: rgba(43, 108, 238, 0.1);
+      color: #2b6cee;
+    }
+    .calc-key.op:hover {
+      background-color: rgba(43, 108, 238, 0.2);
+    }
+    .calc-key.action {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+    }
+    .calc-key.action:hover {
+      background-color: rgba(239, 68, 68, 0.2);
+    }
+    .calc-key.num {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .dark .calc-key.num {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+    
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
   </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
@@ -38,40 +98,219 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Calculator</p>
           <h1 class="mt-2 text-3xl font-bold">Basic Calculator</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Keyboard-friendly calculator for add, subtract, multiply, divide.</p>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Standard 4-function calculator. Click buttons or use your keyboard.</p>
         </div>
 
-        <div class="calc-display flex items-center justify-end px-6 text-3xl font-bold bg-white/70 dark:bg-background-dark/70" id="calcDisplay">0</div>
+        <div class="calc-display flex items-center justify-end px-6 text-4xl font-bold bg-white/60 dark:bg-background-dark/60 text-text-light dark:text-text-dark" id="calcDisplay">0</div>
 
-        <div class="flex flex-wrap gap-2" id="calcKeys">
+        <div class="flex flex-wrap gap-3" id="calcKeys">
           <button class="calc-key action" data-key="C">AC</button>
           <button class="calc-key action" data-key="←">⌫</button>
           <button class="calc-key op" data-key="/">÷</button>
           <button class="calc-key op" data-key="*">×</button>
 
-          <button class="calc-key" data-key="7">7</button>
-          <button class="calc-key" data-key="8">8</button>
-          <button class="calc-key" data-key="9">9</button>
+          <button class="calc-key num" data-key="7">7</button>
+          <button class="calc-key num" data-key="8">8</button>
+          <button class="calc-key num" data-key="9">9</button>
           <button class="calc-key op" data-key="-">−</button>
 
-          <button class="calc-key" data-key="4">4</button>
-          <button class="calc-key" data-key="5">5</button>
-          <button class="calc-key" data-key="6">6</button>
+          <button class="calc-key num" data-key="4">4</button>
+          <button class="calc-key num" data-key="5">5</button>
+          <button class="calc-key num" data-key="6">6</button>
           <button class="calc-key op" data-key="+">+</button>
 
-          <button class="calc-key" data-key="1">1</button>
-          <button class="calc-key" data-key="2">2</button>
-          <button class="calc-key" data-key="3">3</button>
-          <button class="calc-key action" data-key="=" style="flex-basis:48%;">=</button>
+          <button class="calc-key num" data-key="1">1</button>
+          <button class="calc-key num" data-key="2">2</button>
+          <button class="calc-key num" data-key="3">3</button>
+          <button class="calc-key action" data-key="=" style="flex-basis:22%; background-color: #2b6cee; color: white;">=</button>
 
-          <button class="calc-key" data-key="0" style="flex-basis:48%;">0</button>
-          <button class="calc-key" data-key=".">.</button>
+          <button class="calc-key num" data-key="0" style="flex-basis:46%;">0</button>
+          <button class="calc-key num" data-key=".">.</button>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Basic Calculator – Simple Math Made Easy & Instant</h2>
+        
+        <!-- 3. Intro -->
+        <p class="lead">
+          Need to split a restaurant bill? Calculate a tip? Double-check your child's homework? In a world filled with complex software and apps, sometimes the simplest tool is the best tool. The <strong>Basic Calculator</strong> by ToolfolioHub is designed for one thing: getting you accurate answers, fast.
+        </p>
+        <p>
+          While your smartphone has a calculator, switching apps breaks your workflow. Our calculator lives in your browser tab, loads instantly, and supports full keyboard input. You can crunch numbers without ever lifting your hands from the keyboard or interrupting your train of thought.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is the Basic Calculator?</h2>
+        <p>
+          A basic calculator (also called a "four-function calculator") is a digital tool that performs the four fundamental arithmetic operations: Addition (+), Subtraction (-), Multiplication (×), and Division (÷). It is the digital equivalent of the handheld calculator that has been a staple of offices, schools, and homes since the 1970s.
+        </p>
+        <p>
+          Unlike scientific calculators (which include trigonometry, logarithms, etc.) or graphing calculators (which plot functions), a basic calculator focuses purely on everyday math. This simplicity is its strength—there are no confusing buttons, no complex menus, just the operations you use every day.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Full Keyboard Support</h3>
+        <p>
+          Speed is everything when you're in the flow. Our calculator responds to every keystroke on your keyboard:
+        </p>
+        <ul>
+          <li>Use the <strong>Numpad</strong> (if you have one) or the <strong>top row numbers</strong> to input digits.</li>
+          <li>Press <strong>Enter</strong> or <strong>=</strong> to calculate.</li>
+          <li>Use <strong>Backspace</strong> to delete the last digit.</li>
+          <li>Press <strong>Escape</strong> to clear everything.</li>
+        </ul>
+        <p>
+          This means you can perform calculations without ever touching the mouse.
+        </p>
+
+        <h3>2. Large, Clear Display</h3>
+        <p>
+          The display is oversized and high-contrast, ensuring you never misread a decimal point or a digit. In dark mode, the numbers glow clearly without straining your eyes during late-night calculations.
+        </p>
+
+        <h3>3. Standard Order of Operations (PEMDAS)</h3>
+        <p>
+          Our calculator respects the mathematical rules you learned in school. Multiplication and division are performed before addition and subtraction. This means:
+        </p>
+        <ul>
+          <li><code>2 + 3 × 4</code> equals <strong>14</strong>, not 20.</li>
+          <li><code>10 - 6 ÷ 2</code> equals <strong>7</strong>, not 2.</li>
+        </ul>
+        <p>
+          This is especially important when calculating complex chains like <code>100 + 50 × 2</code> (which equals 200, not 300).
+        </p>
+
+        <h3>4. Decimal Precision</h3>
+        <p>
+          The calculator handles decimal numbers gracefully. It rounds results to avoid JavaScript's floating-point quirks (like <code>0.1 + 0.2</code> equaling <code>0.3000000004</code>), giving you clean, predictable results.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Calculator</h2>
+        <ol>
+          <li><strong>Enter Your First Number:</strong> Click a number button or type it on your keyboard.</li>
+          <li><strong>Choose an Operation:</strong> Click +, −, ×, or ÷ (or type the operator symbol).</li>
+          <li><strong>Enter Your Second Number:</strong> Type or click the next number.</li>
+          <li><strong>Calculate:</strong> Press the `=` button or hit `Enter` to see your result.</li>
+          <li><strong>Continue:</strong> You can chain operations. After a result, click another operator to keep calculating.</li>
+          <li><strong>Clear:</strong> Press `AC` (All Clear) or `Esc` to reset to zero.</li>
+        </ol>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Students</h3>
+        <p>
+          For elementary and middle school students, a basic calculator is perfect for:
+        </p>
+        <ul>
+          <li>Checking arithmetic homework.</li>
+          <li>Practicing multiplication tables.</li>
+          <li>Solving word problems step-by-step.</li>
+        </ul>
+        <p>
+          It reinforces the basics without the distraction of advanced functions they don't need yet.
+        </p>
+
+        <h3>Freelancers & Small Business Owners</h3>
+        <p>
+          When running a business, quick math is constant:
+        </p>
+        <ul>
+          <li><strong>Invoice Totals:</strong> Adding up line items.</li>
+          <li><strong>Hourly Billing:</strong> Calculating <code>hours × rate</code>.</li>
+          <li><strong>Tax Estimates:</strong> Computing percentages (e.g., <code>subtotal × 0.08</code> for 8% tax).</li>
+          <li><strong>Profit Margins:</strong> Subtracting costs from revenue.</li>
+        </ul>
+
+        <h3>Everyday Consumers</h3>
+        <p>
+          Daily life is full of math:
+        </p>
+        <ul>
+          <li><strong>Splitting Bills:</strong> `$85.50 ÷ 3` = how much each person pays.</li>
+          <li><strong>Tips:</strong> `bill × 0.15` = 15% tip amount.</li>
+          <li><strong>Unit Prices:</strong> `$12.99 ÷ 16 oz` = price per ounce.</li>
+          <li><strong>Percentages Off:</strong> `original_price × 0.75` = 25% discount price.</li>
+        </ul>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>No Ads:</strong> Many online calculators plaster banner ads everywhere. Ours is clean and focused solely on calculation.</li>
+          <li><strong>Dark Mode Support:</strong> Easy on your eyes during late-night work sessions.</li>
+          <li><strong>Works Offline:</strong> Once loaded, the page works without an internet connection. Perfect for remote work or travel.</li>
+          <li><strong>Privacy:</strong> No tracking, no cookies, no data collection. Your calculations stay in your browser.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Does it save calculation history?</h3>
+        <p>
+          Currently, this is a session-based calculator. It remembers your current calculation chain but clears when you refresh the page or press `AC`. For history tracking, you could keep a separate note, or we may add a history feature in the future!
+        </p>
+
+        <h3>Can I copy the result?</h3>
+        <p>
+          Yes! Double-click the number in the display area to select it, then press `Ctrl+C` (or `Cmd+C` on Mac) to copy. This is useful if you need to paste the result into a spreadsheet or document.
+        </p>
+
+        <h3>Does it handle negative numbers?</h3>
+        <p>
+          Yes! You can enter negative numbers by starting with a minus sign (e.g., `-5 + 3`). This is useful for calculating losses, deficits, or temperature differences.
+        </p>
+
+        <h3>Can I use it for percentages?</h3>
+        <p>
+          While there isn't a dedicated `%` button, you can calculate percentages manually. For example:
+        </p>
+        <ul>
+          <li>To find 15% of 200: `200 × 0.15 = 30`</li>
+          <li>To find what percent 30 is of 200: `30 ÷ 200 × 100 = 15`</li>
+        </ul>
+        <p>
+          For dedicated percentage calculations, check out our <a href="/tools/percentage-calculator">Percentage Calculator</a>.
+        </p>
+
+        <h3>What happens if I divide by zero?</h3>
+        <p>
+          Division by zero is mathematically undefined. If you try to calculate something like `10 ÷ 0`, the calculator will display "Error" instead of crashing or showing infinity.
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Use Keyboard Shortcuts:</strong> Memorize that `Enter` equals `=`. It makes calculations significantly faster.</li>
+          <li><strong>Chain Operations:</strong> After getting a result, you can immediately click another operator to continue calculating. For example, calculate `100 + 50`, then click `× 2` to get `150 × 2 = 300`.</li>
+          <li><strong>Decimal Accuracy:</strong> For financial calculations, remember that results are rounded. For high-precision needs (like scientific calculations), consider a specialized tool.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Start calculating above. It's fast, free, and reliable. No signup, no fees, no hassles.
+        </p>
+        <p>
+          Need more advanced features? Try our <a href="/tools/percentage-calculator">Percentage Calculator</a> for tips and discounts, or the <a href="/tools/bmi-calculator">BMI Calculator</a> for health metrics.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Basic Calculator</strong> proves that simplicity is power. By focusing on the four essential operations, ToolfolioHub delivers a tool that is fast, reliable, and always available when you need it. Whether you're a student, a professional, or just someone who needs to split a check, this calculator has your back.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -79,8 +318,7 @@
     const display = document.getElementById('calcDisplay');
     const keys = document.getElementById('calcKeys');
     let buffer = '0';
-    let lastKey = '';
-
+    
     const updateDisplay = () => display.textContent = buffer;
 
     const append = (value) => {
@@ -103,20 +341,31 @@
         buffer = buffer.length > 1 ? buffer.slice(0, -1) : '0';
       } else if (key === '=') {
         try {
-          const result = Function(`'use strict'; return (${buffer})`)();
-          buffer = Number.isFinite(result) ? result.toString() : '0';
+          // Safer evaluation than generic eval
+          if (/^[0-9+\-*/. ]+$/.test(buffer)) {
+             const result = Function(`'use strict'; return (${buffer})`)();
+             // Limit decimals to avoid floating point errors
+             buffer = Number.isFinite(result) 
+                ? (Math.round(result * 100000000) / 100000000).toString() 
+                : 'Error';
+          } else {
+             buffer = 'Error';
+          }
         } catch {
-          buffer = '0';
+          buffer = 'Error';
         }
       }
-      lastKey = key;
       updateDisplay();
     };
 
     keys.addEventListener('click', (event) => {
-      const key = event.target.closest('[data-key]');
-      if (!key) return;
-      handleKey(key.dataset.key);
+      const keyBtn = event.target.closest('[data-key]');
+      if (!keyBtn) return;
+      handleKey(keyBtn.dataset.key);
+      
+      // Visual feedback
+      keyBtn.style.transform = "scale(0.95)";
+      setTimeout(() => keyBtn.style.transform = "", 100);
     });
 
     document.addEventListener('keydown', (event) => {
@@ -124,13 +373,19 @@
       if (allowed.includes(event.key)) {
         event.preventDefault();
         handleKey(event.key);
-      } else if (event.key === 'Enter') {
+        const btn = document.querySelector(`button[data-key="${event.key}"]`);
+        if(btn) {
+             btn.style.transform = "scale(0.95)";
+             setTimeout(() => btn.style.transform = "", 100);
+        }
+      } else if (event.key === 'Enter' || event.key === '=') {
         event.preventDefault();
         handleKey('=');
       } else if (event.key === 'Backspace') {
         event.preventDefault();
         handleKey('←');
       } else if (event.key === 'Escape') {
+        event.preventDefault();
         handleKey('C');
       }
     });
@@ -140,4 +395,3 @@
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

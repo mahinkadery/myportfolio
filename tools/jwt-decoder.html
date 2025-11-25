@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JWT Decoder – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>JWT Decoder – Decode & Inspect JWT Tokens Online | ToolfolioHub</title>
+  <meta name="description" content="Decode JWT tokens to view header and payload. Inspect expiration, algorithm, and claims. Note: Signature not verified. Free JWT decoder tool." />
+  <meta name="keywords" content="jwt decoder, decode jwt, jwt inspector, jwt token decoder, jwt payload, jwt header, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="JWT Decoder – Inspect JWT Tokens" />
+  <meta property="og:description" content="Decode and inspect JWT header and payload. Essential for debugging authentication tokens." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/jwt-decoder" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -73,6 +84,81 @@
           </ul>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>JWT Decoder – Inspect and Decode JWT Tokens</h2>
+        
+        <p class="lead">
+          JSON Web Tokens (JWTs) are widely used for authentication and authorization in modern web applications. JWTs contain encoded information in their header and payload that's useful for debugging, testing, and understanding token contents. The <strong>JWT Inspector (Advanced)</strong> by ToolfolioHub decodes JWT tokens to reveal header and payload information, helping developers understand and debug authentication tokens.
+        </p>
+        <p>
+          <strong>Important:</strong> This tool decodes JWTs without verifying signatures. Never trust decoded data without proper server-side signature verification.
+        </p>
+
+        <h2>What is a JWT?</h2>
+        <p>
+          JWTs consist of three parts separated by dots:
+        </p>
+        <ul>
+          <li><strong>Header:</strong> Token metadata (algorithm, type)</li>
+          <li><strong>Payload:</strong> Claims (user ID, expiration, permissions)</li>
+          <li><strong>Signature:</strong> Cryptographic signature for verification</li>
+        </ul>
+        <p>
+          Format: `header.payload.signature`
+        </p>
+
+        <h2>What This Tool Does</h2>
+        <p>
+          The decoder:
+        </p>
+        <ul>
+          <li><strong>Decodes Header:</strong> Shows algorithm and token type</li>
+          <li><strong>Decodes Payload:</strong> Reveals claims (exp, iat, sub, etc.)</li>
+          <li><strong>Analyzes Token:</strong> Checks expiration, algorithm, and structure</li>
+          <li><strong>Does NOT Verify:</strong> Signature verification is not performed</li>
+        </ul>
+
+        <h2>Common JWT Claims</h2>
+        <ul>
+          <li><strong>exp:</strong> Expiration timestamp</li>
+          <li><strong>iat:</strong> Issued at timestamp</li>
+          <li><strong>sub:</strong> Subject (usually user ID)</li>
+          <li><strong>aud:</strong> Audience</li>
+          <li><strong>iss:</strong> Issuer</li>
+        </ul>
+
+        <h2>Security Warning</h2>
+        <p>
+          This tool decodes tokens without signature verification:
+        </p>
+        <ul>
+          <li><strong>Never Trust Decoded Data:</strong> Always verify signatures server-side</li>
+          <li><strong>Use for Debugging Only:</strong> Educational and debugging purposes</li>
+          <li><strong>Do Not Share Tokens:</strong> JWTs may contain sensitive information</li>
+        </ul>
+
+        <h2>Use-Cases</h2>
+        <ul>
+          <li><strong>Debugging:</strong> Inspect token contents during development</li>
+          <li><strong>Testing:</strong> Verify token structure and claims</li>
+          <li><strong>Learning:</strong> Understand JWT structure and claims</li>
+          <li><strong>Troubleshooting:</strong> Check expiration and token validity</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>JWT Decoder</strong> is a valuable debugging tool for developers working with JWT authentication. By decoding tokens and analyzing their contents, it helps troubleshoot authentication issues and understand token structure. Remember: always verify signatures server-side in production.
+        </p>
+      </article>
     </main>
   </div>
 

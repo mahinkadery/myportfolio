@@ -1,24 +1,40 @@
 <!DOCTYPE html>
+<html class="light" lang="en">
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="Free PDF and media conversion tools by Mahin - Convert, edit, and manage your files easily."/>
-<title>Free Tools - toolfoliohub</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
-<link rel="manifest" href="/favicon_io/site.webmanifest">
-<link rel="shortcut icon" href="/favicon_io/favicon.ico">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  
+  <!-- 1. SEO Metadata -->
+  <title>ToolfolioHub | Free Online Tools for Developers, Designers & Creators</title>
+  <meta name="description" content="Access hundreds of free online tools at ToolfolioHub. From PDF editors and image converters to coding utilities and productivity apps—no signup required." />
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="ToolfolioHub | The Ultimate Free Web Tools Directory" />
+  <meta property="og:description" content="Discover a curated collection of free, high-quality tools for developers and creators. Boost your productivity with ToolfolioHub today." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" /> <!-- Placeholder for actual OG image -->
 
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="tailwind-theme.js"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="styles.css" rel="stylesheet"/>
-<style>
+  <!-- Keywords -->
+  <meta name="keywords" content="free online tools, web developer tools, pdf editor online, image converter, productivity apps, coding utilities, free web directory, toolfoliohub, creator tools" />
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="tailwind-theme.js"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
+  <style>
     .material-symbols-outlined {
       font-variation-settings:
         'FILL' 0,
@@ -26,171 +42,465 @@
         'GRAD' 0,
         'opsz' 24
     }
+
     .glassmorphism {
-        background: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(10px);
-        --webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+      --webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
+
     .dark .glassmorphism {
-        background: rgba(30, 30, 30, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(30, 30, 30, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+
     .soft-shadow {
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
     }
+
     .dark .soft-shadow {
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     }
+
     .dotted-bg {
-        background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0);
-        background-size: 20px 20px;
+      background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
+      background-size: 20px 20px;
     }
+
     .dark .dotted-bg {
-        background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+      background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
     }
 
     /* Search Bar with Neon Animation */
     .search-container {
-        position: relative;
-        padding: 2px;
-        border-radius: 1rem;
+      position: relative;
+      padding: 2px;
+      border-radius: 1rem;
     }
 
     .neon-ring {
-        position: absolute;
-        inset: -2px;
-        border-radius: 1rem;
-        background: linear-gradient(45deg, #2b6cee, #00d9ff, #2b6cee);
-        background-size: 300% 300%;
-        opacity: 0.6;
-        filter: blur(8px);
-        animation: neon-glow 3s ease-in-out infinite;
-        z-index: -1;
+      position: absolute;
+      inset: -2px;
+      border-radius: 1rem;
+      background: linear-gradient(45deg, #2b6cee, #00d9ff, #2b6cee);
+      background-size: 300% 300%;
+      opacity: 0.6;
+      filter: blur(8px);
+      animation: neon-glow 3s ease-in-out infinite;
+      z-index: -1;
     }
 
     @keyframes neon-glow {
-        0%, 100% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
     }
 
     /* Open Button Glow Effect */
     .open-btn-glow {
-        transition: all 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .open-btn-glow:hover {
-        box-shadow: 0 0 20px rgba(43, 108, 238, 0.6), 0 0 40px rgba(43, 108, 238, 0.4), 0 0 60px rgba(43, 108, 238, 0.2);
-        transform: translateY(-2px);
-        filter: brightness(1.1);
+      box-shadow: 0 0 20px rgba(43, 108, 238, 0.6), 0 0 40px rgba(43, 108, 238, 0.4), 0 0 60px rgba(43, 108, 238, 0.2);
+      transform: translateY(-2px);
+      filter: brightness(1.1);
     }
 
     .dark .open-btn-glow:hover {
-        box-shadow: 0 0 20px rgba(43, 108, 238, 0.8), 0 0 40px rgba(43, 108, 238, 0.6), 0 0 60px rgba(0, 217, 255, 0.4);
+      box-shadow: 0 0 20px rgba(43, 108, 238, 0.8), 0 0 40px rgba(43, 108, 238, 0.6), 0 0 60px rgba(0, 217, 255, 0.4);
     }
   </style>
 </head>
+
 <body class="bg-background-light dark:bg-background-dark font-display dotted-bg">
-<div class="relative flex min-h-screen w-full flex-col overflow-hidden">
-<div class="absolute top-0 left-0 h-96 w-96 rounded-full bg-primary/20 blur-[100px] -translate-x-1/2 -translate-y-1/2 dark:bg-primary/10"></div>
-<div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-primary/20 blur-[100px] translate-x-1/2 translate-y-1/2 dark:bg-primary/10"></div>
-<!-- Navigation Header -->
-<div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
-<header class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg mx-4">
-<a href="/" class="flex items-center gap-3">
-<div class="flex items-center">
-<img src="website-logos/headerlogoTFB.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain dark:hidden">
-<img src="website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-8 md:h-10 w-auto object-contain hidden dark:block">
-</div>
-<span class="brand-title text-[10px] sm:text-xs md:text-sm text-text-light dark:text-text-dark whitespace-nowrap">toolfoliohub</span>
-</a>
-<div class="hidden sm:flex items-center justify-end gap-6">
-<a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="/">Home</a>
-<a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="/about">About</a>
-<a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="/Studies">Studies</a>
-<a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="/projects">Projects</a>
-<div class="relative" data-dropdown>
-<button type="button" class="flex items-center gap-1 text-primary text-sm font-bold transition-colors" data-dropdown-toggle>
-<span>Tools</span>
-<span class="material-symbols-outlined text-xs transition-transform duration-200" data-dropdown-icon>expand_more</span>
-</button>
-<div data-dropdown-menu class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
-<a class="block px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="/tools">All Tools</a>
+  <div class="relative flex min-h-screen w-full flex-col overflow-hidden">
+    <div
+      class="absolute top-0 left-0 h-96 w-96 rounded-full bg-primary/20 blur-[100px] -translate-x-1/2 -translate-y-1/2 dark:bg-primary/10">
+    </div>
+    <div
+      class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-primary/20 blur-[100px] translate-x-1/2 translate-y-1/2 dark:bg-primary/10">
+    </div>
 
-<div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu></div>
-</div>
-</div>
-<a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors" href="/contact">Contact</a>
-<button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-<span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
-</button>
-</div>
-<button id="mobileMenuBtn" class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-<span class="material-symbols-outlined text-text-light dark:text-text-dark">menu</span>
-</button>
-</header>
-</div>
-<!-- Mobile Menu -->
-<div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
-<div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
-<div class="flex justify-end">
-<button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
-<span class="material-symbols-outlined text-text-light dark:text-text-dark">close</span>
-</button>
-</div>
-<nav class="flex flex-col gap-4">
-<a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="/">Home</a>
-<a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="/about">About</a>
-<a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="/Studies">Studies</a>
-<a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="/projects">Projects</a>
-<a class="text-primary text-base font-bold" href="/tools">Tools</a>
-<a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors" href="/contact">Contact</a>
-<div class="pt-4 border-t border-black/10 dark:border-white/10">
-<p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">PDF Suite tools</p>
-<div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
-</div>
-</nav>
-<button id="darkModeToggleMobile" class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-<span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
-<span class="text-text-light dark:text-text-dark text-sm font-medium">Toggle Theme</span>
-</button>
-</div>
-</div>
-<main class="flex h-full grow flex-col pt-24">
-<section class="flex flex-1 items-center justify-center p-4 sm:p-6 lg:p-8">
-<div class="flex w-full max-w-4xl flex-col items-center gap-12 text-center">
-<!-- Page Heading -->
-<div class="flex flex-col gap-3">
-<h1 class="text-4xl font-bold tracking-tighter text-text-light dark:text-text-dark sm:text-5xl md:text-6xl">Free Tools</h1>
-<p class="text-base text-text-muted-light dark:text-text-muted-dark md:text-lg">Browse mini apps by category—writing helpers, converters, developer utilities, and more.</p>
-</div>
+    <!-- Navigation Header -->
+    <div class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6">
+      <header
+        class="w-full max-w-5xl items-center justify-between rounded-full border border-solid border-white/20 dark:border-white/10 px-6 py-3 flex glass-effect shadow-lg mx-4">
+        <a href="/" class="flex items-center gap-3">
+          <div class="flex items-center">
+            <img src="website-logos/headerlogoTFB.png" alt="toolfoliohub"
+              class="h-8 md:h-10 w-auto object-contain dark:hidden">
+            <img src="website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub"
+              class="h-8 md:h-10 w-auto object-contain hidden dark:block">
+          </div>
+          <span
+            class="brand-title text-[10px] sm:text-xs md:text-sm text-text-light dark:text-text-dark whitespace-nowrap">toolfoliohub</span>
+        </a>
+        <div class="hidden sm:flex items-center justify-end gap-6">
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors"
+            href="/">Home</a>
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors"
+            href="/about">About</a>
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors"
+            href="/Studies">Studies</a>
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors"
+            href="/projects">Projects</a>
+          <div class="relative" data-dropdown>
+            <button type="button" class="flex items-center gap-1 text-primary text-sm font-bold transition-colors"
+              data-dropdown-toggle>
+              <span>Tools</span>
+              <span class="material-symbols-outlined text-xs transition-transform duration-200"
+                data-dropdown-icon>expand_more</span>
+            </button>
+            <div data-dropdown-menu
+              class="dropdown-menu hidden absolute right-0 mt-3 border border-white/30 dark:border-white/10 bg-white dark:bg-background-dark shadow-xl p-3 flex-col gap-2">
+              <a class="block px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+                href="/tools">All Tools</a>
 
-    <!-- Search Bar -->
-    <div class="relative w-full max-w-2xl">
-      <div class="search-container relative">
-        <div class="neon-ring"></div>
-        <input 
-          type="text" 
-          id="searchInput" 
-          placeholder="Search tools by name or description..." 
-          class="search-input w-full rounded-2xl border border-white/40 bg-white/70 dark:border-white/10 dark:bg-background-dark/60 px-6 py-4 text-sm text-text-light dark:text-text-dark placeholder:text-muted-light dark:placeholder:text-muted-dark focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-        />
-        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-muted-light dark:text-muted-dark pointer-events-none">search</span>
+              <div class="mt-2 border-t border-black/10 dark:border-white/10 pt-2 flex flex-col gap-1" data-tools-menu>
+              </div>
+            </div>
+          </div>
+          <a class="text-text-light dark:text-text-dark text-sm font-medium hover:text-primary transition-colors"
+            href="/contact">Contact</a>
+          <button id="darkModeToggle"
+            class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+          </button>
+        </div>
+        <button id="mobileMenuBtn"
+          class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">menu</span>
+        </button>
+      </header>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+      <div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+        <div class="flex justify-end">
+          <button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+            <span class="material-symbols-outlined text-text-light dark:text-text-dark">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-4">
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors"
+            href="/">Home</a>
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors"
+            href="/about">About</a>
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors"
+            href="/Studies">Studies</a>
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors"
+            href="/projects">Projects</a>
+          <a class="text-primary text-base font-bold" href="/tools">Tools</a>
+          <a class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors"
+            href="/contact">Contact</a>
+          <div class="pt-4 border-t border-black/10 dark:border-white/10">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">PDF Suite tools</p>
+            <div class="mt-2 flex flex-col gap-2" data-tools-menu-mobile></div>
+          </div>
+        </nav>
+        <button id="darkModeToggleMobile"
+          class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+          <span class="text-text-light dark:text-text-dark text-sm font-medium">Toggle Theme</span>
+        </button>
       </div>
     </div>
 
-    <!-- Filters -->
-    <div id="toolsFilters" class="flex w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/40 bg-white/70 px-4 py-3 text-sm font-semibold shadow-inner dark:border-white/10 dark:bg-background-dark/60"></div>
+    <main class="flex h-full grow flex-col pt-24">
+      <section class="flex flex-1 items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div class="flex w-full max-w-6xl flex-col items-center gap-12 text-center">
+          
+          <!-- 2. Hero Section -->
+          <div class="flex flex-col gap-6 max-w-3xl mx-auto">
+            <h1 class="text-4xl font-bold tracking-tighter text-text-light dark:text-text-dark sm:text-5xl md:text-6xl leading-tight">
+              The Ultimate Free Web Tools Directory for Creators & Developers
+            </h1>
+            <p class="text-lg text-text-muted-light dark:text-text-muted-dark md:text-xl">
+              Streamline your workflow with our hand-picked collection of powerful, privacy-focused tools. From PDF editing to code formatting—everything you need, completely free.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 mt-2">
+              <a href="#tool-directory" class="rounded-full bg-primary text-white px-8 py-3 text-base font-semibold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                Browse All Tools
+              </a>
+              <a href="/contact" class="rounded-full border border-gray-300 dark:border-gray-600 px-8 py-3 text-base font-medium text-text-light dark:text-text-dark hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                Submit Your Tool
+              </a>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400">100% Free. No Signups. No Hidden Fees.</p>
+          </div>
 
-    <!-- Text Grid -->
-      <div id="toolsHubGrid" class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
-</div>
-</section>
-</main>
-</div>
-<script src="script.js"></script>
-</body></html>
+          <!-- 3. Content Modal / Engagement Section -->
+          <div class="w-full max-w-4xl glassmorphism rounded-3xl p-8 md:p-10 border border-white/20 dark:border-white/10 shadow-xl">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-left">
+              <div class="flex-1">
+                <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-3">Why ToolfolioHub?</h2>
+                <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                  We know how frustrating it is to search for "free pdf merger" or "json formatter" only to hit paywalls and signup forms. 
+                  ToolfolioHub is a community-driven directory updated weekly with high-quality, completely free tools. 
+                  Whether you're debugging code, designing assets, or managing files, we've got a simple, instant solution for you.
+                </p>
+              </div>
+              <div class="flex-1 w-full">
+                <ul class="space-y-4">
+                  <li class="flex items-center gap-3 text-text-light dark:text-text-dark">
+                    <span class="material-symbols-outlined text-primary">verified</span>
+                    <span class="font-medium">100+ tools across 10+ categories</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-text-light dark:text-text-dark">
+                    <span class="material-symbols-outlined text-primary">code</span>
+                    <span class="font-medium">Hand-picked by creators & devs</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-text-light dark:text-text-dark">
+                    <span class="material-symbols-outlined text-primary">bolt</span>
+                    <span class="font-medium">Instant access, no signup required</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-text-light dark:text-text-dark">
+                    <span class="material-symbols-outlined text-primary">savings</span>
+                    <span class="font-medium">Free forever, no hidden fees</span>
+                  </li>
+                </ul>
+                <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                  <span class="material-symbols-outlined text-yellow-500 text-lg">star</span>
+                  Trusted by thousands of creators worldwide
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="relative w-full max-w-2xl mt-4">
+            <div class="search-container relative">
+              <div class="neon-ring"></div>
+              <input type="text" id="searchInput" placeholder="Search tools by name (e.g., 'PDF', 'Color', 'JSON')..."
+                class="search-input w-full rounded-2xl border border-white/40 bg-white/70 dark:border-white/10 dark:bg-background-dark/60 px-6 py-4 text-sm text-text-light dark:text-text-dark placeholder:text-muted-light dark:placeholder:text-muted-dark focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+              <span
+                class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-muted-light dark:text-muted-dark pointer-events-none">search</span>
+            </div>
+          </div>
+
+          <!-- 4. Tool Listing Section (Static Categorized) -->
+          <div id="tool-directory" class="w-full text-left space-y-12">
+            
+            <!-- Text & Writing -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">Text & Writing</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <!-- Tools populated by script.js but fallback/SEO content here -->
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/word-character-counter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Word & Character Counter</h3></a></li>
+                  <li><a href="/tools/case-converter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Case Converter</h3></a></li>
+                  <li><a href="/tools/whitespace-cleaner" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Whitespace Cleaner</h3></a></li>
+                  <li><a href="/tools/text-reverser" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Text Reverser</h3></a></li>
+                  <li><a href="/tools/duplicate-line-remover" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Duplicate Line Remover</h3></a></li>
+                  <li><a href="/tools/find-replace-tool" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Find & Replace Tool</h3></a></li>
+                  <li><a href="/tools/url-encoder-decoder" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">URL Encoder / Decoder</h3></a></li>
+                  <li><a href="/tools/base64-encoder-decoder" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Base64 Encoder / Decoder</h3></a></li>
+                  <li><a href="/tools/markdown-previewer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Markdown Previewer</h3></a></li>
+                  <li><a href="/tools/text-comparator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Text Comparator</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Calculators & Converters -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">Calculators & Converters</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/basic-calculator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Basic Calculator</h3></a></li>
+                  <li><a href="/tools/percentage-calculator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Percentage Calculator</h3></a></li>
+                  <li><a href="/tools/discount-calculator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Discount / Sale Price Calculator</h3></a></li>
+                  <li><a href="/tools/tip-calculator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Tip Calculator</h3></a></li>
+                  <li><a href="/tools/loan-emi-calculator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Loan / EMI Calculator</h3></a></li>
+                  <li><a href="/tools/bmi-calculator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">BMI Calculator</h3></a></li>
+                  <li><a href="/tools/unit-converter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Unit Converter</h3></a></li>
+                  <li><a href="/tools/age-calculator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Age Calculator</h3></a></li>
+                  <li><a href="/tools/timezone-difference" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Time Zone Difference Helper</h3></a></li>
+                  <li><a href="/tools/gpa-calculator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">GPA / Grade Calculator</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Productivity -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">Productivity</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/pomodoro-timer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Pomodoro Timer</h3></a></li>
+                  <li><a href="/tools/countdown-timer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Countdown Timer</h3></a></li>
+                  <li><a href="/tools/stopwatch" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Stopwatch</h3></a></li>
+                  <li><a href="/tools/daily-todo-list" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Daily To-Do List</h3></a></li>
+                  <li><a href="/tools/habit-tracker" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Habit Tracker</h3></a></li>
+                  <li><a href="/tools/goal-progress-tracker" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Goal Progress Tracker</h3></a></li>
+                  <li><a href="/tools/random-decision-picker" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Random Decision Picker</h3></a></li>
+                  <li><a href="/tools/meeting-time-helper" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Meeting Time Helper</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Developer Tools -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">Developer Tools</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/json-formatter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">JSON Formatter & Validator</h3></a></li>
+                  <li><a href="/tools/regex-tester" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Regex Tester</h3></a></li>
+                  <li><a href="/tools/uuid-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">UUID / Random ID Generator</h3></a></li>
+                  <li><a href="/tools/base64-file-tool" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Base64 ↔ File Tool</h3></a></li>
+                  <li><a href="/tools/color-converter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Color Converter</h3></a></li>
+                  <li><a href="/tools/jwt-decoder" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">JWT Decoder</h3></a></li>
+                  <li><a href="/tools/html-escape-tool" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">HTML Escape / Unescape</h3></a></li>
+                  <li><a href="/tools/css-box-shadow" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">CSS Box Shadow Generator</h3></a></li>
+                  <li><a href="/tools/css-border-radius" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">CSS Border Radius Previewer</h3></a></li>
+                  <li><a href="/tools/responsive-preview" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Responsive Breakpoint Preview</h3></a></li>
+                  <li><a href="/tools/http-status-explorer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">HTTP Status Code Explorer</h3></a></li>
+                  <li><a href="/tools/rest-api-builder" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">REST API Request Builder</h3></a></li>
+                  <li><a href="/tools/url-parser" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">URL Parser & Inspector</h3></a></li>
+                  <li><a href="/tools/code-highlighter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Code Snippet Highlighter</h3></a></li>
+                  <li><a href="/tools/json-schema-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">JSON Schema Generator</h3></a></li>
+                  <li><a href="/tools/json-csv-converter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">JSON ↔ CSV Converter</h3></a></li>
+                  <li><a href="/tools/git-cheatsheet" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Git Command Cheat Sheet</h3></a></li>
+                  <li><a href="/tools/http-headers-explainer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">HTTP Headers Explainer</h3></a></li>
+                  <li><a href="/tools/json-path-tester" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">JSON Path Tester</h3></a></li>
+                  <li><a href="/tools/video-downloader" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Download Videos in 4K</h3></a></li>
+                  <li><a href="/tools/hash-calculator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Hash Calculator</h3></a></li>
+                  <li><a href="/tools/hashing-demo" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Hashing Demo (Avalanche Effect)</h3></a></li>
+                  <li><a href="/tools/password-strength" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Password Strength Estimator</h3></a></li>
+                  <li><a href="/tools/secure-url-demo" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Secure vs Insecure URL Demo</h3></a></li>
+                  <li><a href="/tools/owasp-top10" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">OWASP Top 10 Learning Cards</h3></a></li>
+                  <li><a href="/tools/input-validation-playground" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Input Validation Playground</h3></a></li>
+                  <li><a href="/tools/csp-visualizer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">CSP (Content Security Policy) Visualizer</h3></a></li>
+                  <li><a href="/tools/secret-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Strong Secret Generator</h3></a></li>
+                  <li><a href="/tools/phishing-checklist" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Phishing URL Checklist Tool</h3></a></li>
+                  <li><a href="/tools/viewport-tester" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Viewport & Breakpoint Tester</h3></a></li>
+                  <li><a href="/tools/responsive-image-helper" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Responsive Image Helper</h3></a></li>
+                  <li><a href="/tools/localstorage-inspector" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">LocalStorage Inspector</h3></a></li>
+                  <li><a href="/tools/color-blindness-preview" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Color Blindness Preview</h3></a></li>
+                  <li><a href="/tools/accessibility-helper" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Accessibility Contrast & Font Size Helper</h3></a></li>
+                  <li><a href="/tools/cron-explainer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Cron Expression Explainer</h3></a></li>
+                  <li><a href="/tools/env-builder" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Environment Variable Template Builder</h3></a></li>
+                  <li><a href="/tools/api-error-catalog" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">API Error Message Catalog</h3></a></li>
+                  <li><a href="/tools/dockerfile-visualizer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Dockerfile Layer Visualizer</h3></a></li>
+                  <li><a href="/tools/yaml-json-formatter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">YAML/JSON Formatter & Linter</h3></a></li>
+                  <li><a href="/tools/json-to-typescript" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">JSON → TypeScript Interface Generator</h3></a></li>
+                  <li><a href="/tools/typescript-to-jsdoc" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">TypeScript to JSDoc Converter</h3></a></li>
+                  <li><a href="/tools/regex-to-english" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Regex to Plain English Helper</h3></a></li>
+                  <li><a href="/tools/slug-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Slug Generator for URLs</h3></a></li>
+                  <li><a href="/tools/commit-message-helper" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Commit Message Template Helper</h3></a></li>
+                  <li><a href="/tools/multi-clipboard" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Multi-Snippet Clipboard Manager</h3></a></li>
+                  <li><a href="/tools/utm-builder" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">URL Builder for UTM Tags</h3></a></li>
+                  <li><a href="/tools/curl-builder" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Curl Command Builder</h3></a></li>
+                  <li><a href="/tools/qr-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">QR Code Generator</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Design & Color -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">Design & Color</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/color-palette-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Color Palette Generator</h3></a></li>
+                  <li><a href="/tools/gradient-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Gradient Generator</h3></a></li>
+                  <li><a href="/tools/contrast-checker" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Contrast Checker</h3></a></li>
+                  <li><a href="/tools/favicon-previewer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Favicon Previewer</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Image Tools -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">Image Tools</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/image-resizer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Image Resizer</h3></a></li>
+                  <li><a href="/tools/image-converter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Image Converter</h3></a></li>
+                  <li><a href="/tools/image-compressor" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Image Compressor</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- PDF Suite -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">PDF Suite</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/pdf-merger" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">PDF Merger</h3></a></li>
+                  <li><a href="/tools/pdf-splitter" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">PDF Splitter</h3></a></li>
+                  <li><a href="/tools/pdf-rotator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">PDF Rotator</h3></a></li>
+                  <li><a href="/tools/pdf-watermark" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">PDF Watermark</h3></a></li>
+                  <li><a href="/tools/pdf-encrypt" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">PDF Encrypt/Protect</h3></a></li>
+                  <li><a href="/tools/pdf-page-numbers" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">PDF Page Numbers</h3></a></li>
+                  <li><a href="/tools/images-to-pdf" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Images to PDF</h3></a></li>
+                  <li><a href="/tools/pdf-to-jpg" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">PDF to JPG</h3></a></li>
+                  <li><a href="/tools/pdf-editor" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">PDF Editor</h3></a></li>
+                  <li><a href="/tools/excel-to-pdf" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Excel to PDF</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Fun & Games -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">Fun & Games</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/random-quote-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Random Quote Generator</h3></a></li>
+                  <li><a href="/tools/password-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Password Generator</h3></a></li>
+                  <li><a href="/tools/rock-paper-scissors" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Rock–Paper–Scissors</h3></a></li>
+                  <li><a href="/tools/guess-number-game" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Guess the Number</h3></a></li>
+                  <li><a href="/tools/typing-speed-test" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Typing Speed Test</h3></a></li>
+                  <li><a href="/tools/memory-card-game" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Memory Card Game</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Study Tools -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">Study Tools</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/flashcard-app" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Flashcard App</h3></a></li>
+                  <li><a href="/tools/arithmetic-practice" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Arithmetic Practice</h3></a></li>
+                  <li><a href="/tools/unit-circle-visualizer" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Unit Circle Visualizer</h3></a></li>
+                  <li><a href="/tools/html-tag-cheatsheet" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">HTML Tag Cheat Sheet</h3></a></li>
+                  <li><a href="/tools/keyboard-shortcut-cheatsheet" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Keyboard Shortcut Cheat Sheet</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Portfolio Tools -->
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary">Portfolio Tools</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <ul class="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <li><a href="/tools/tech-stack-quiz" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Tech Stack Quiz</h3></a></li>
+                  <li><a href="/tools/project-idea-generator" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Project Idea Generator</h3></a></li>
+                  <li><a href="/tools/resume-checklist" class="block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1"><h3 class="font-semibold text-text-light dark:text-text-dark">Resume Score Checklist</h3></a></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script src="script.js"></script>
+  
+  <!-- 
+    Implementation Note:
+    Ensure each tool page (linked from the grid above) meets the 2,000-word article requirement per tool.
+    Each page should include: What the tool does, How to use it, Key benefits, User scenarios, and FAQs.
+  -->
+</body>
+
+</html>

@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HTML Escape / Unescape – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>HTML Escape Tool – Escape & Unescape HTML Entities Online | ToolfolioHub</title>
+  <meta name="description" content="Convert HTML special characters to entities (&lt;, &gt;, &amp;) and vice versa. Safe HTML encoding and decoding for web development." />
+  <meta name="keywords" content="html escape, html entities, html encode, html decode, html escape tool, xss prevention, developer tool, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="HTML Escape Tool – Encode & Decode HTML Entities" />
+  <meta property="og:description" content="Safely escape and unescape HTML special characters. Essential tool for preventing XSS attacks and displaying HTML as text." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/html-escape-tool" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -48,6 +59,84 @@
 
         <textarea id="escapeOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/60 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[200px]" placeholder="Result"></textarea>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>HTML Escape Tool – Prevent XSS Attacks</h2>
+        
+        <p class="lead">
+          When displaying user-generated content or HTML code as text on a webpage, special characters like `<`, `>`, and `&` must be converted to HTML entities to prevent them from being interpreted as HTML tags. This is essential for security, preventing XSS (Cross-Site Scripting) attacks, and correctly displaying code examples. The <strong>HTML Escape / Unescape Tool</strong> by ToolfolioHub makes this conversion quick and safe.
+        </p>
+        <p>
+          Whether you're building web applications, documenting code, or creating safe content displays, this tool ensures HTML special characters are properly encoded or decoded.
+        </p>
+
+        <h2>What are HTML Entities?</h2>
+        <p>
+          HTML entities are special codes that represent characters that have special meaning in HTML:
+        </p>
+        <ul>
+          <li><strong>&lt;</strong> → `&lt;` (less-than sign)</li>
+          <li><strong>&gt;</strong> → `&gt;` (greater-than sign)</li>
+          <li><strong>&amp;</strong> → `&amp;` (ampersand)</li>
+          <li><strong>"</strong> → `&quot;` (double quote)</li>
+          <li><strong>'</strong> → `&#39;` (single quote/apostrophe)</li>
+        </ul>
+        <p>
+          Escaping converts special characters to entities; unescaping reverses the process.
+        </p>
+
+        <h2>Key Features</h2>
+        
+        <h3>1. Bidirectional Conversion</h3>
+        <p>
+          Convert in both directions:
+        </p>
+        <ul>
+          <li><strong>Escape:</strong> Convert special characters to HTML entities</li>
+          <li><strong>Unescape:</strong> Convert HTML entities back to regular characters</li>
+        </ul>
+
+        <h3>2. Instant Processing</h3>
+        <p>
+          Conversion happens instantly as you click the buttons. No server requests, completely client-side.
+        </p>
+
+        <h3>3. Secure XSS Prevention</h3>
+        <p>
+          Escaping user input prevents malicious scripts from executing, protecting against XSS attacks.
+        </p>
+
+        <h2>Common Use-Cases</h2>
+        <ul>
+          <li><strong>XSS Prevention:</strong> Escape user-generated content before displaying</li>
+          <li><strong>Code Documentation:</strong> Display HTML/XML code examples as text</li>
+          <li><strong>Content Management:</strong> Safely store and display HTML in databases</li>
+          <li><strong>API Responses:</strong> Properly encode HTML in JSON responses</li>
+        </ul>
+
+        <h2>Security Importance</h2>
+        <p>
+          Escaping HTML is critical for security:
+        </p>
+        <ul>
+          <li><strong>Prevents XSS:</strong> Stops malicious scripts from executing in browsers</li>
+          <li><strong>Protects Users:</strong> Prevents cookie theft, session hijacking, and data theft</li>
+          <li><strong>Best Practice:</strong> Industry standard for handling user-generated content</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>HTML Escape Tool</strong> is essential for web developers building secure applications. By properly escaping and unescaping HTML entities, it prevents XSS attacks and ensures content displays correctly.
+        </p>
+      </article>
     </main>
   </div>
 

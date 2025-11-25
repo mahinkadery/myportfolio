@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Regex Tester – toolfoliohub</title>
+  <title>Regex Tester – Test Regular Expressions Online | toolfoliohub</title>
+  <meta name="description" content="Test regular expressions with live matches and flag toggles. Free regex tester tool for testing patterns, flags, and debugging regular expressions in real-time.">
+  <meta name="keywords" content="regex tester, regular expression tester, regex test tool, regex debugger, pattern tester, regex matcher">
+  <meta property="og:title" content="Regex Tester – Test Regular Expressions Online | toolfoliohub">
+  <meta property="og:description" content="Test and debug regular expressions instantly. Free regex tester with live matching, flag support, and pattern library.">
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -58,6 +62,84 @@
           <p class="text-muted-light dark:text-muted-dark">Matches will appear here.</p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>Regex Tester – Test and Debug Regular Expressions</h2>
+        
+        <p class="lead">
+          Regular expressions are powerful but can be tricky to get right. The <strong>Regex Tester</strong> provides an interactive environment to test regular expressions against sample text, see matches in real-time, and experiment with different flags. Perfect for learning regex, debugging patterns, or validating expressions before using them in your code.
+        </p>
+        <p>
+          With support for regex flags, live matching, and a pattern library, this tool helps you build, test, and refine regular expressions quickly and easily.
+        </p>
+
+        <h2>How Regular Expressions Work</h2>
+        <p>
+          Regular expressions (regex) are pattern-matching strings that describe search patterns in text. They use special characters and syntax to match specific text patterns, making them powerful tools for:
+        </p>
+        <ul>
+          <li>Text validation</li>
+          <li>Search and replace operations</li>
+          <li>Data extraction</li>
+          <li>Input parsing</li>
+        </ul>
+
+        <h2>Regex Flags Explained</h2>
+        
+        <h3>Global (g)</h3>
+        <p>
+          Find all matches, not just the first one. Without this flag, regex stops after finding the first match.
+        </p>
+
+        <h3>Case Insensitive (i)</h3>
+        <p>
+          Makes the pattern case-insensitive. "ABC" will match "abc", "Abc", "ABC", etc.
+        </p>
+
+        <h3>Multiline (m)</h3>
+        <p>
+          Allows ^ and $ to match line breaks. Treats each line as a separate string.
+        </p>
+
+        <h3>Unicode (u)</h3>
+        <p>
+          Enables Unicode matching, allowing matching of Unicode characters.
+        </p>
+
+        <h3>Sticky (y)</h3>
+        <p>
+          Matches only from the position indicated by the lastIndex property.
+        </p>
+
+        <h2>Common Regex Patterns</h2>
+        <ul>
+          <li><strong>Email:</strong> <code>^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</code></li>
+          <li><strong>URL:</strong> <code>^https?://[^\s/$.?#].[^\s]*$</code></li>
+          <li><strong>Phone:</strong> <code>^\+?[\d\s\-\(\)]+$</code></li>
+          <li><strong>Numbers Only:</strong> <code>^\d+$</code></li>
+        </ul>
+
+        <h2>Testing Best Practices</h2>
+        <ul>
+          <li><strong>Test Edge Cases:</strong> Test with various inputs, including edge cases</li>
+          <li><strong>Use Flags Appropriately:</strong> Understand what each flag does</li>
+          <li><strong>Validate Matches:</strong> Ensure matches are what you expect</li>
+          <li><strong>Test Negatives:</strong> Verify patterns reject unwanted matches</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Regex Tester</strong> is an essential tool for working with regular expressions. By providing live matching, flag support, and instant feedback, it helps you build and debug regex patterns efficiently.
+        </p>
+      </article>
     </main>
   </div>
 

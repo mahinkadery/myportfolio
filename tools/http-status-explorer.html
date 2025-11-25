@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HTTP Status Code Explorer – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>HTTP Status Code Explorer – Complete Reference Guide | ToolfolioHub</title>
+  <meta name="description" content="Browse and search HTTP status codes (1xx-5xx) with explanations. Find status codes by number, name, or description. Essential reference for developers." />
+  <meta name="keywords" content="http status codes, status code reference, http status guide, 404, 500, status codes list, web development, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="HTTP Status Code Explorer – Complete Reference" />
+  <meta property="og:description" content="Search and browse HTTP status codes with clear explanations. Essential tool for API development and debugging." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/http-status-explorer" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -54,6 +65,100 @@
           <!-- Status codes will be injected here -->
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>HTTP Status Code Explorer – Complete Reference Guide</h2>
+        
+        <p class="lead">
+          HTTP status codes are three-digit numbers returned by servers to indicate the result of a request. They tell browsers, APIs, and developers whether a request succeeded, failed, or needs special handling. Understanding status codes is essential for web development, API design, and debugging. The <strong>HTTP Status Code Explorer</strong> by ToolfolioHub provides a comprehensive, searchable reference of status codes from 1xx to 5xx with clear explanations.
+        </p>
+        <p>
+          Whether you're building APIs, debugging errors, or learning web development, this tool helps you understand and use HTTP status codes correctly.
+        </p>
+
+        <h2>HTTP Status Code Ranges</h2>
+        
+        <h3>1xx Informational</h3>
+        <p>
+          Provisional responses indicating the request was received and is being processed:
+        </p>
+        <ul>
+          <li><strong>100 Continue:</strong> Request headers received, continue with body</li>
+          <li><strong>101 Switching Protocols:</strong> Server switching protocols (e.g., HTTP to WebSocket)</li>
+        </ul>
+
+        <h3>2xx Success</h3>
+        <p>
+          Request was successfully received, understood, and accepted:
+        </p>
+        <ul>
+          <li><strong>200 OK:</strong> Request succeeded</li>
+          <li><strong>201 Created:</strong> New resource created</li>
+          <li><strong>204 No Content:</strong> Success but no content to return</li>
+        </ul>
+
+        <h3>3xx Redirection</h3>
+        <p>
+          Client must take additional action to complete the request:
+        </p>
+        <ul>
+          <li><strong>301 Moved Permanently:</strong> URL changed permanently</li>
+          <li><strong>302 Found:</strong> URL changed temporarily</li>
+          <li><strong>304 Not Modified:</strong> Resource unchanged (used with caching)</li>
+        </ul>
+
+        <h3>4xx Client Error</h3>
+        <p>
+          Request contains bad syntax or cannot be fulfilled by the server:
+        </p>
+        <ul>
+          <li><strong>400 Bad Request:</strong> Invalid request syntax</li>
+          <li><strong>401 Unauthorized:</strong> Authentication required</li>
+          <li><strong>403 Forbidden:</strong> Server refuses to authorize</li>
+          <li><strong>404 Not Found:</strong> Resource not found</li>
+          <li><strong>429 Too Many Requests:</strong> Rate limit exceeded</li>
+        </ul>
+
+        <h3>5xx Server Error</h3>
+        <p>
+          Server failed to fulfill a valid request:
+        </p>
+        <ul>
+          <li><strong>500 Internal Server Error:</strong> Server encountered an error</li>
+          <li><strong>502 Bad Gateway:</strong> Invalid response from upstream server</li>
+          <li><strong>503 Service Unavailable:</strong> Server temporarily unavailable</li>
+          <li><strong>504 Gateway Timeout:</strong> Upstream server didn't respond in time</li>
+        </ul>
+
+        <h2>Common Use-Cases</h2>
+        <ul>
+          <li><strong>API Development:</strong> Return appropriate status codes for different scenarios</li>
+          <li><strong>Error Handling:</strong> Understand what status codes mean when debugging</li>
+          <li><strong>Web Development:</strong> Handle different response types correctly</li>
+          <li><strong>Learning:</strong> Build understanding of HTTP protocol</li>
+        </ul>
+
+        <h2>Status Code Best Practices</h2>
+        <ul>
+          <li><strong>Use Appropriate Codes:</strong> Choose codes that accurately reflect the situation</li>
+          <li><strong>Be Consistent:</strong> Use the same codes for the same scenarios across your API</li>
+          <li><strong>Include Error Details:</strong> Provide helpful error messages in response body</li>
+          <li><strong>Document Your Codes:</strong> Document which codes your API returns and when</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>HTTP Status Code Explorer</strong> is an essential reference for web developers. With searchable codes, clear explanations, and category filtering, it helps you understand and use status codes correctly in your projects.
+        </p>
+      </article>
     </main>
   </div>
 

@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Input Validation Playground – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>Input Validation Playground – Learn XSS Prevention | ToolfolioHub</title>
+  <meta name="description" content="Learn why input validation and HTML escaping matters. Compare safe vs unsafe input handling to understand XSS attack prevention." />
+  <meta name="keywords" content="input validation, xss prevention, html escaping, security playground, web security learning, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Input Validation Playground – XSS Prevention Demo" />
+  <meta property="og:description" content="Educational tool demonstrating safe vs unsafe input handling. Learn XSS prevention." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/input-validation-playground" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -89,6 +100,87 @@
           </ul>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>Input Validation Playground – Learn XSS Prevention</h2>
+        
+        <p class="lead">
+          Cross-Site Scripting (XSS) is one of the most common web security vulnerabilities. It occurs when malicious scripts are injected into web pages and executed in users' browsers. Understanding how to prevent XSS attacks is crucial for web developers. The <strong>Input Validation Playground</strong> by ToolfolioHub demonstrates safe versus unsafe input handling, showing exactly why proper validation and encoding matter.
+        </p>
+        <p>
+          This educational tool compares `innerHTML` (unsafe) with `textContent` (safe) side-by-side, making it clear why input validation is essential for web security.
+        </p>
+
+        <h2>What is XSS (Cross-Site Scripting)?</h2>
+        <p>
+          XSS attacks occur when attackers inject malicious scripts into web pages:
+        </p>
+        <ul>
+          <li><strong>Stored XSS:</strong> Malicious scripts stored in database and displayed to users</li>
+          <li><strong>Reflected XSS:</strong> Scripts reflected in URL parameters or form submissions</li>
+          <li><strong>DOM-based XSS:</strong> Scripts executed through DOM manipulation</li>
+        </ul>
+        <p>
+          These attacks can steal cookies, hijack sessions, deface websites, or redirect users to malicious sites.
+        </p>
+
+        <h2>Safe vs Unsafe Input Handling</h2>
+        
+        <h3>Unsafe: innerHTML</h3>
+        <p>
+          Using `innerHTML` directly renders HTML and executes JavaScript:
+        </p>
+        <ul>
+          <li>HTML tags are interpreted as markup</li>
+          <li>JavaScript in `<script>` tags executes</li>
+          <li>Event handlers like `onclick` trigger</li>
+          <li><strong>Result:</strong> XSS vulnerability</li>
+        </ul>
+
+        <h3>Safe: textContent</h3>
+        <p>
+          Using `textContent` escapes HTML and prevents script execution:
+        </p>
+        <ul>
+          <li>All HTML is treated as plain text</li>
+          <li>Special characters are escaped automatically</li>
+          <li>No JavaScript execution possible</li>
+          <li><strong>Result:</strong> Safe display</li>
+        </ul>
+
+        <h2>Best Practices for Input Validation</h2>
+        <ul>
+          <li><strong>Use textContent:</strong> For user-generated text, always use `textContent` instead of `innerHTML`</li>
+          <li><strong>Escape HTML:</strong> If HTML is required, escape special characters (`&lt;`, `&gt;`, `&amp;`, `&quot;`, `&#39;`)</li>
+          <li><strong>Validate Input:</strong> Validate and sanitize all user input on both client and server side</li>
+          <li><strong>Use Trusted Libraries:</strong> Libraries like DOMPurify sanitize HTML safely</li>
+          <li><strong>Content Security Policy:</strong> Implement CSP headers to prevent XSS at the browser level</li>
+        </ul>
+
+        <h2>Why This Matters</h2>
+        <p>
+          Proper input validation prevents:
+        </p>
+        <ul>
+          <li>Cookie theft and session hijacking</li>
+          <li>Identity theft and data breaches</li>
+          <li>Website defacement</li>
+          <li>Malware distribution</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Input Validation Playground</strong> makes XSS vulnerabilities tangible by demonstrating safe versus unsafe input handling. By seeing the difference side-by-side, developers understand why proper validation is essential for web security.
+        </p>
+      </article>
     </main>
   </div>
 

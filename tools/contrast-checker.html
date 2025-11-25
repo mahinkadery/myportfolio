@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contrast Checker – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>Contrast Checker – WCAG Accessibility Color Contrast Tool | ToolfolioHub</title>
+  <meta name="description" content="Check color contrast ratios and WCAG compliance instantly. Test text readability with foreground and background colors. Free accessibility tool." />
+  <meta name="keywords" content="contrast checker, wcag contrast, color contrast ratio, accessibility checker, aa contrast, aaa contrast, text readability, design tool, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contrast Checker – WCAG Color Contrast Calculator" />
+  <meta property="og:description" content="Verify color contrast ratios and WCAG compliance for accessible design. Essential tool for web accessibility." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/contrast-checker" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -67,6 +78,198 @@
           </div>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>Contrast Checker – Ensure Accessible Color Contrast for Web Accessibility</h2>
+        
+        <p class="lead">
+          Web accessibility isn't optional—it's a legal requirement in many jurisdictions and a moral imperative for inclusive design. One of the most fundamental aspects of accessible design is color contrast: the difference in brightness between text and its background. Poor contrast makes text difficult or impossible to read for users with visual impairments, color blindness, or those viewing screens in bright sunlight.
+        </p>
+        <p>
+          The <strong>Contrast Checker</strong> by ToolfolioHub helps you verify that your color combinations meet WCAG (Web Content Accessibility Guidelines) standards. Enter your foreground and background colors, and instantly see the contrast ratio and whether your design passes accessibility requirements for normal and large text.
+        </p>
+
+        <h2>What is Color Contrast?</h2>
+        <p>
+          Color contrast is the difference in perceived brightness (luminance) between two colors. When text color and background color are too similar, text becomes hard to read. Contrast is measured as a ratio:
+        </p>
+        <ul>
+          <li><strong>1:1:</strong> Same color (completely unreadable—white text on white background).</li>
+          <li><strong>4.5:1:</strong> WCAG AA standard minimum for normal text.</li>
+          <li><strong>7:1:</strong> WCAG AAA standard for normal text (enhanced accessibility).</li>
+          <li><strong>21:1:</strong> Maximum contrast (black text on white background).</li>
+        </ul>
+        <p>
+          Higher ratios mean better contrast and improved readability. WCAG guidelines specify minimum ratios to ensure text is readable by users with various visual abilities.
+        </p>
+
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. WCAG Compliance Checking</h3>
+        <p>
+          Our tool automatically checks your color combination against WCAG 2.1 standards:
+        </p>
+        <ul>
+          <li><strong>Normal Text (AA):</strong> Requires 4.5:1 contrast ratio minimum.</li>
+          <li><strong>Large Text (AA):</strong> Requires 3:1 contrast ratio minimum (text 18pt+ or 14pt+ bold).</li>
+          <li><strong>Enhanced (AAA):</strong> Requires 7:1 for normal text, 4.5:1 for large text.</li>
+        </ul>
+        <p>
+          Clear "Pass" or "Fail" indicators show whether your combination meets accessibility standards.
+        </p>
+
+        <h3>2. Live Preview</h3>
+        <p>
+          See exactly how your color combination looks in a preview box. This visual feedback helps you understand the readability of your design choices before implementing them.
+        </p>
+
+        <h3>3. Precise Contrast Ratio</h3>
+        <p>
+          The tool calculates the exact contrast ratio using the WCAG formula, displayed to 2 decimal places. This precision helps you:
+        </p>
+        <ul>
+          <li>Understand how close you are to passing/failing.</li>
+          <li>Fine-tune colors to meet minimum requirements.</li>
+          <li>Document contrast ratios for accessibility audits.</li>
+        </ul>
+
+        <h2>How to Use the Contrast Checker</h2>
+        <ol>
+          <li><strong>Enter Foreground Color:</strong> Type the text color in HEX format (e.g., `#111111` for dark gray text).</li>
+          <li><strong>Enter Background Color:</strong> Type the background color in HEX format (e.g., `#f5f5f5` for light gray background).</li>
+          <li><strong>Click "Check contrast":</strong> The tool calculates the contrast ratio and shows WCAG compliance.</li>
+          <li><strong>Review Results:</strong>
+            <ul>
+              <li>Check the contrast ratio (higher is better).</li>
+              <li>See if it passes for "Normal text" (needs 4.5:1).</li>
+              <li>See if it passes for "Large text" (needs 3:1).</li>
+              <li>View the preview to see how readable it looks.</li>
+            </ul>
+          </li>
+        </ol>
+        <p>
+          <strong>Example:</strong>
+          <br>You want to use dark gray text (`#333333`) on a white background (`#ffffff`):
+          <br>1. Enter `#333333` in Foreground HEX.
+          <br>2. Enter `#ffffff` in Background HEX.
+          <br>3. Click "Check contrast."
+          <br>4. Result: Contrast ratio 12.63:1 - Passes for both normal and large text.
+        </p>
+
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Web Designers & UI/UX Professionals</h3>
+        <p>
+          Designers use contrast checkers to:
+        </p>
+        <ul>
+          <li><strong>Design Accessible Interfaces:</strong> Ensure all text is readable before finalizing designs.</li>
+          <li><strong>Brand Guidelines:</strong> Verify that brand colors work well together while meeting accessibility standards.</li>
+          <li><strong>Dark Mode Design:</strong> Check contrast ratios for both light and dark themes.</li>
+        </ul>
+
+        <h3>Web Developers</h3>
+        <p>
+          Developers use contrast checkers for:
+        </p>
+        <ul>
+          <li><strong>Implementation Verification:</strong> Check that implemented colors match accessibility requirements.</li>
+          <li><strong>Accessibility Audits:</strong> Document contrast ratios for compliance reporting.</li>
+          <li><strong>Theme Development:</strong> Ensure custom color themes meet WCAG standards.</li>
+        </ul>
+
+        <h3>Accessibility Specialists</h3>
+        <p>
+          Accessibility professionals use contrast checkers to:
+        </p>
+        <ul>
+          <li><strong>Audit Websites:</strong> Test existing sites for WCAG compliance.</li>
+          <li><strong>Documentation:</strong> Generate contrast ratio reports for stakeholders.</li>
+          <li><strong>Training:</strong> Educate teams about accessible color choices.</li>
+        </ul>
+
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>WCAG Compliant:</strong> Uses official WCAG 2.1 contrast calculation formulas.</li>
+          <li><strong>Instant Results:</strong> No waiting—results appear immediately.</li>
+          <li><strong>Clear Pass/Fail:</strong> Easy to understand whether your colors meet standards.</li>
+          <li><strong>Visual Preview:</strong> See exactly how the color combination looks.</li>
+        </ul>
+
+        <h2>FAQs</h2>
+        
+        <h3>What contrast ratio do I need?</h3>
+        <p>
+          WCAG 2.1 Level AA (minimum compliance):
+        </p>
+        <ul>
+          <li><strong>Normal Text:</strong> 4.5:1 minimum.</li>
+          <li><strong>Large Text:</strong> 3:1 minimum (18pt+ regular or 14pt+ bold).</li>
+        </ul>
+        <p>
+          WCAG 2.1 Level AAA (enhanced):
+        </p>
+        <ul>
+          <li><strong>Normal Text:</strong> 7:1 minimum.</li>
+          <li><strong>Large Text:</strong> 4.5:1 minimum.</li>
+        </ul>
+        <p>
+          Most websites aim for Level AA compliance, which is legally sufficient in many jurisdictions.
+        </p>
+
+        <h3>What counts as "large text"?</h3>
+        <p>
+          According to WCAG:
+        </p>
+        <ul>
+          <li><strong>18pt (24px) or larger:</strong> Regular weight text.</li>
+          <li><strong>14pt (18.67px) or larger:</strong> Bold text.</li>
+        </ul>
+        <p>
+          Large text has lower contrast requirements because it's easier to read even with less contrast.
+        </p>
+
+        <h3>Does this check all WCAG requirements?</h3>
+        <p>
+          No. This tool only checks color contrast. WCAG has many other requirements:
+        </p>
+        <ul>
+          <li>Keyboard navigation.</li>
+          <li>Screen reader compatibility.</li>
+          <li>Alternative text for images.</li>
+          <li>Form labels and error messages.</li>
+          <li>And many more.</li>
+        </ul>
+        <p>
+          Color contrast is just one aspect of accessibility, but it's one of the most important for readability.
+        </p>
+
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Check During Design:</strong> Test contrast ratios early in the design process, not after implementation.</li>
+          <li><strong>Test Both Themes:</strong> If your site has light and dark modes, check contrast for both.</li>
+          <li><strong>Aim for AAA When Possible:</strong> While AA is the minimum, AAA provides better accessibility for more users.</li>
+          <li><strong>Consider Color Blindness:</strong> High contrast helps users with color vision deficiencies, not just low vision.</li>
+        </ul>
+
+        <h2>Get Started Now</h2>
+        <p>
+          Enter your foreground and background colors above to check contrast and ensure your design is accessible.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Contrast Checker</strong> is an essential tool for creating accessible web experiences. By ensuring your color combinations meet WCAG standards, you make your content readable for all users, comply with legal requirements, and demonstrate a commitment to inclusive design.
+        </p>
+      </article>
     </main>
   </div>
 

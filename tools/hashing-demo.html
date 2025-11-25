@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hashing Demo – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>Hashing Demo – Understand the Avalanche Effect in Cryptography | ToolfolioHub</title>
+  <meta name="description" content="Compare SHA-256 hashes side-by-side to see the avalanche effect. Learn how tiny input changes produce completely different hash outputs." />
+  <meta name="keywords" content="hashing demo, avalanche effect, sha-256 demo, cryptographic hash, hash comparison, security learning, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hashing Demo – Learn the Avalanche Effect" />
+  <meta property="og:description" content="Compare hashes side-by-side to understand how cryptographic hashing works. Educational tool for learning security concepts." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/hashing-demo" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -69,6 +80,85 @@
           <div id="comparisonResult" class="space-y-2"></div>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>Hashing Demo – Understanding the Avalanche Effect</h2>
+        
+        <p class="lead">
+          The avalanche effect is one of the most important properties of cryptographic hash functions. It means that changing even a single character in the input produces a completely different hash output—seemingly random but actually deterministic. The <strong>Hashing Demo: Avalanche Effect</strong> by ToolfolioHub lets you see this property in action by comparing two inputs side-by-side and observing how their SHA-256 hashes differ.
+        </p>
+        <p>
+          This tool is perfect for learning about cryptography, understanding why hashes are secure, and demonstrating the avalanche effect to students or colleagues.
+        </p>
+
+        <h2>What is the Avalanche Effect?</h2>
+        <p>
+          The avalanche effect ensures that:
+        </p>
+        <ul>
+          <li><strong>Small Input Changes:</strong> Tiny changes (like one character) produce dramatically different hashes</li>
+          <li><strong>Unpredictability:</strong> Hash outputs appear random (even though they're deterministic)</li>
+          <li><strong>Security:</strong> Prevents attackers from predicting hash values or finding patterns</li>
+        </ul>
+        <p>
+          Example: "Hello" and "hello" (capitalization change) produce completely different hashes.
+        </p>
+
+        <h2>Key Features</h2>
+        
+        <h3>1. Side-by-Side Comparison</h3>
+        <p>
+          Enter two different inputs and see their SHA-256 hashes calculated side-by-side for easy comparison.
+        </p>
+
+        <h3>2. Real-Time Hash Calculation</h3>
+        <p>
+          Hashes are calculated instantly as you type using the browser's Web Crypto API. No server requests, completely private.
+        </p>
+
+        <h3>3. Visual Comparison</h3>
+        <p>
+          The tool shows:
+        </p>
+        <ul>
+          <li>Whether hashes are identical or different</li>
+          <li>Number of different characters between hashes</li>
+          <li>Percentage difference</li>
+        </ul>
+
+        <h2>Why the Avalanche Effect Matters</h2>
+        <p>
+          This property is crucial for:
+        </p>
+        <ul>
+          <li><strong>Password Security:</strong> Similar passwords produce different hashes, preventing rainbow table attacks</li>
+          <li><strong>Data Integrity:</strong> Even small corruption produces a different hash, enabling tamper detection</li>
+          <li><strong>Digital Signatures:</strong> Prevents attackers from creating valid signatures for modified documents</li>
+        </ul>
+
+        <h2>Try These Examples</h2>
+        <ul>
+          <li>Input 1: "password" | Input 2: "Password" (capitalization change)</li>
+          <li>Input 1: "Hello World" | Input 2: "Hello World " (extra space)</li>
+          <li>Input 1: "abc" | Input 2: "abcd" (one character difference)</li>
+        </ul>
+        <p>
+          Notice how tiny changes produce completely different hashes!
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Hashing Demo</strong> makes the avalanche effect tangible and understandable. By comparing inputs side-by-side, it demonstrates why cryptographic hashes are secure and effective for password storage, data integrity, and digital signatures.
+        </p>
+      </article>
     </main>
   </div>
 

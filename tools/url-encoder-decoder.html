@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>URL Encoder / Decoder – toolfoliohub</title>
+  
+  <!-- 1. SEO Metadata -->
+  <title>URL Encoder / Decoder – Free Online Percent-Encoding Tool | ToolfolioHub</title>
+  <meta name="description" content="Convert text to safe URL formats instantly. Encode special characters or decode %20 strings back to readable text. Free, secure, and developer-friendly." />
+  <meta name="keywords" content="url encoder, url decoder, percent encoding, decodeURI, encodeURI, url parser, escape url, unescape url, web developer tools, toolfoliohub, utm builder helper" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="URL Encoder / Decoder – Make Your Links Safe" />
+  <meta property="og:description" content="Convert text to URL-safe formats instantly. Perfect for debugging query parameters, APIs, and UTM tags. Free and browser-based." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/url-encoder-decoder" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+  <style>
+    .tool-shell { max-width: 960px; margin: 0 auto; }
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,23 +53,160 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
-          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer helper</p>
-          <h1 class="mt-2 text-3xl font-bold">URL Encoder / Decoder</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Convert text using encodeURIComponent and decodeURIComponent.</p>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer Helper</p>
+          <h1 class="mt-2 text-3xl font-bold">URL Encoder / Decoder – Percent-Encoding Utility</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Safely encode text for URLs or decode %20 sequences back to readable strings.</p>
         </div>
 
-        <textarea id="urlInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[200px]" placeholder="Enter raw text here"></textarea>
+        <textarea id="urlInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[200px] focus:ring-2 focus:ring-primary outline-none transition-all font-mono text-sm" placeholder="Enter text to encode (e.g. 'Hello World!') or decode (e.g. 'Hello%20World%21')..."></textarea>
 
-        <div class="flex gap-3 flex-wrap">
-          <button data-action="encode" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Encode</button>
-          <button data-action="decode" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold">Decode</button>
-          <button id="swapBtn" class="rounded-full border border-primary text-primary px-6 py-2 text-sm font-semibold">Swap fields</button>
+        <div class="flex gap-3 flex-wrap justify-center sm:justify-start">
+          <button data-action="encode" class="rounded-full bg-primary text-white px-8 py-3 text-sm font-semibold hover:brightness-110 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Encode URL</button>
+          <button data-action="decode" class="rounded-full border border-primary text-primary px-8 py-3 text-sm font-semibold hover:bg-primary/5 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5">Decode URL</button>
+          <button id="swapBtn" class="rounded-full border border-gray-400/50 px-6 py-3 text-sm font-semibold text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/5 transition-all ml-auto">Swap Fields ⇅</button>
         </div>
 
-        <textarea id="urlOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/60 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[200px]" placeholder="Result"></textarea>
+        <div>
+            <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark mb-2 mt-6">Result</p>
+            <textarea id="urlOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[200px] focus:ring-2 focus:ring-primary/50 outline-none transition-all font-mono text-sm" placeholder="Your encoded or decoded text will appear here..."></textarea>
+        </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>URL Encoder / Decoder – Make Your Links Web-Safe Instantly</h2>
+        
+        <!-- 3. Intro -->
+        <p class="lead">
+          Have you ever copied a link and seen it turn into a mess of `%20`, `%3F`, and other weird codes? That is <strong>URL encoding</strong> in action. While it looks like gibberish to humans, it is the language that keeps the web running smoothly.
+        </p>
+        <p>
+          The <strong>URL Encoder / Decoder</strong> by ToolfolioHub is a free utility that bridges the gap between human-readable text and machine-readable URLs. Whether you are a developer debugging an API, a marketer building tracking links, or just curious about what those codes mean, this tool converts your data instantly.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is URL Encoding?</h2>
+        <p>
+          URL Encoding (officially known as <strong>Percent-Encoding</strong>) is a mechanism for translating characters that are not allowed in a URL into a format that is safe for transmission over the internet.
+        </p>
+        <p>
+          URLs can only be sent using the ASCII character set. If you want to include a space, a special symbol (like `&` or `=`), or non-English characters in a URL, they must be converted.
+        </p>
+        <ul>
+          <li><strong>Plain Text:</strong> `Hello World!`</li>
+          <li><strong>Encoded:</strong> `Hello%20World%21`</li>
+        </ul>
+        <p>
+          The browser interprets `%20` as a space and `%21` as an exclamation mark.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Standard Compliance (RFC 3986)</h3>
+        <p>
+          We use industry-standard JavaScript functions (`encodeURIComponent` and `decodeURIComponent`) to ensure compatibility with all modern browsers and servers. You can trust that the output is valid.
+        </p>
+
+        <h3>2. Bidirectional Conversion</h3>
+        <p>
+          Our tool works both ways:
+        </p>
+        <ul>
+          <li><strong>Encode:</strong> Transforms special characters into percent codes. Ideal for preparing query parameters.</li>
+          <li><strong>Decode:</strong> Reverts percent codes back to plain text. Perfect for reading messy URLs.</li>
+        </ul>
+
+        <h3>3. Workflow Efficiency</h3>
+        <p>
+          With features like "Swap Fields," you can quickly toggle between encoded and decoded states to verify your data. This rapid feedback loop is a favorite among developers.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Tool</h2>
+        <ol>
+          <li><strong>Input Your Data:</strong> Paste your text or URL into the top input box.</li>
+          <li><strong>Choose Your Action:</strong>
+            <ul>
+              <li>Click <strong>Encode URL</strong> if you have plain text (e.g., "Summer Sale 2024") and need a safe URL slug.</li>
+              <li>Click <strong>Decode URL</strong> if you have a messy string (e.g., "Summer%20Sale%202024") and want to read it.</li>
+            </ul>
+          </li>
+          <li><strong>Get the Result:</strong> The processed text appears in the bottom box.</li>
+          <li><strong>Swap & Test:</strong> Use the swap button to move the result back to the input for further testing.</li>
+        </ol>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Web Developers</h3>
+        <p>
+          If your API request fails with a `400 Bad Request`, it is often because a query parameter wasn't encoded. For example, sending `name=John & Doe` breaks because the `&` starts a new parameter. Encoding it to `name=John%20%26%20Doe` fixes the issue.
+        </p>
+
+        <h3>Digital Marketers</h3>
+        <p>
+          Creating UTM tracking links for campaigns? You cannot have spaces in your `utm_campaign` tag.
+          <br>Wrong: `utm_campaign=Summer Sale`
+          <br>Right: `utm_campaign=Summer%20Sale`
+          <br>Use this tool to ensure your analytics data tracks correctly.
+        </p>
+
+        <h3>SEO Professionals</h3>
+        <p>
+          Analyzing competitor URLs? Sometimes they contain encoded keywords. Decode the URL to reveal the underlying structure and keyword strategy hidden behind the percent signs.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Privacy First:</strong> We do not send your URLs to a server. This is crucial if you are decoding URLs that contain sensitive API keys, session tokens, or personal identifiable information (PII). It all stays in your browser.</li>
+          <li><strong>Smart Error Handling:</strong> If you paste an invalid sequence (like `%2`), many tools crash. Ours alerts you to the specific error so you can fix the input.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>What does %20 mean?</h3>
+        <p>
+          `%20` is the hex code for a <strong>Space</strong> character. It is the most common code you will see.
+        </p>
+
+        <h3>Why are some characters not encoded?</h3>
+        <p>
+          Characters like `A-Z`, `a-z`, `0-9`, `-`, `_`, `.`, and `~` are considered "unreserved" characters. They are safe to use in URLs as-is and do not need encoding.
+        </p>
+
+        <h3>What is the difference between encodeURI and encodeURIComponent?</h3>
+        <p>
+          `encodeURI` is used for a full URL (it preserves scheme characters like `://`). `encodeURIComponent` is used for values <em>within</em> a URL (like query parameters) because it encodes everything, including slashes. Our tool uses `encodeURIComponent` logic for maximum safety when encoding text strings.
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Encode Values, Not the Whole URL:</strong> If you encode `https://google.com`, it becomes `https%3A%2F%2Fgoogle.com`, which is not a valid link. Only encode the parts <em>after</em> the question mark `?` (the query parameters).</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Stop guessing with special characters. Paste your string above and make it web-ready in milliseconds.
+        </p>
+        <p>
+          Need to check the status of a link? Try our <a href="/tools/http-status-explorer">HTTP Status Code Explorer</a> next.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>URL Encoder / Decoder</strong> is an essential utility for the modern web. By ensuring your data is formatted correctly for transmission, you prevent broken links and API errors. ToolfolioHub provides this critical function securely and freely, right in your browser.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -58,21 +216,28 @@
 
     document.querySelectorAll('button[data-action]').forEach(button => {
       button.addEventListener('click', () => {
+        const val = input.value;
+        if (!val) return;
+
         try {
-          output.value = button.dataset.action === 'encode'
-            ? encodeURIComponent(input.value)
-            : decodeURIComponent(input.value);
+          if (button.dataset.action === 'encode') {
+            // encodeURIComponent allows encoding special chars that might be in query params
+            output.value = encodeURIComponent(val);
+          } else {
+            output.value = decodeURIComponent(val);
+          }
         } catch (error) {
-          output.value = 'Error: ' + error.message;
+          output.value = 'Error: Invalid URL encoding sequence. ' + error.message;
         }
       });
     });
 
     document.getElementById('swapBtn').addEventListener('click', () => {
-      [input.value, output.value] = [output.value, input.value];
+      const temp = input.value;
+      input.value = output.value;
+      output.value = temp;
     });
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

@@ -3,22 +3,70 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Text Comparator – toolfoliohub</title>
+  
+  <!-- 1. SEO Metadata -->
+  <title>Text Comparator – Free Online Diff Checker Tool | ToolfolioHub</title>
+  <meta name="description" content="Compare two blocks of text side-by-side and instantly spot the differences. Free online diff tool for developers, writers, and editors. Highlights added and removed lines." />
+  <meta name="keywords" content="text comparator, diff checker, compare text online, diff tool, text difference finder, file compare, code diff, text comparison tool, toolfoliohub, document compare" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Text Comparator – Online Diff Checker" />
+  <meta property="og:description" content="Instantly spot changes, additions, and deletions between two text files. Free, privacy-focused text comparison." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/text-comparator" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <style>
-    .tool-shell{max-width:1200px;margin:0 auto;}
-    .diff-line{padding:0.35rem 0.75rem;border-radius:0.75rem;margin-bottom:0.3rem;}
-    .diff-line.added{background:#34d39920;color:#10b981;}
-    .diff-line.removed{background:#f8717120;color:#ef4444;}
-    .diff-line.same{opacity:0.6;}
+    .tool-shell { max-width: 1200px; margin: 0 auto; }
+    .diff-line {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 0.2rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.875rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .diff-line.added {
+      background: rgba(16, 185, 129, 0.2);
+      color: #047857;
+    }
+    .dark .diff-line.added {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+    }
+    
+    .diff-line.removed {
+      background: rgba(239, 68, 68, 0.2);
+      color: #b91c1c;
+    }
+    .dark .diff-line.removed {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+    }
+    
+    .diff-line.same {
+      opacity: 0.6;
+      color: inherit;
+    }
+    
+    /* Prose tweaks */
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
   </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
@@ -38,24 +86,166 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
           <h1 class="mt-2 text-3xl font-bold">Text Comparator</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Compare two blocks of text and highlight line differences.</p>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Paste two versions of text below to see differences highlighted instantly.</p>
         </div>
 
         <div class="grid gap-6 lg:grid-cols-2">
-          <textarea id="textA" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[260px]" placeholder="Original text"></textarea>
-          <textarea id="textB" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[260px]" placeholder="Modified text"></textarea>
+          <div class="flex flex-col gap-2">
+             <label class="text-sm font-bold text-muted-light dark:text-muted-dark ml-1">Original Text (Version A)</label>
+             <textarea id="textA" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[260px] focus:ring-2 focus:ring-primary outline-none transition-all font-mono text-sm" placeholder="Paste the original text here..."></textarea>
+          </div>
+          <div class="flex flex-col gap-2">
+             <label class="text-sm font-bold text-muted-light dark:text-muted-dark ml-1">Modified Text (Version B)</label>
+             <textarea id="textB" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[260px] focus:ring-2 focus:ring-primary outline-none transition-all font-mono text-sm" placeholder="Paste the modified text here..."></textarea>
+          </div>
         </div>
 
-        <button id="compareBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Compare</button>
+        <button id="compareBtn" class="rounded-full bg-primary text-white px-8 py-3 text-sm font-semibold hover:brightness-110 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 w-full sm:w-auto">Run Comparison</button>
 
-        <div id="diffOutput" class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 min-h-[180px]">
-          <p class="text-sm text-muted-light dark:text-muted-dark">Differences will appear here.</p>
+        <div id="diffOutput" class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 min-h-[180px] border border-white/20 dark:border-white/5 shadow-inner max-h-[600px] overflow-y-auto">
+          <p class="text-sm text-muted-light dark:text-muted-dark text-center italic mt-10">Click "Run Comparison" to see the differences.</p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Text Comparator – The Ultimate Online Diff Checker</h2>
+        
+        <!-- 3. Intro -->
+        <p class="lead">
+          Trying to find a single changed word in a 10-page document is like searching for a needle in a haystack. Did you add a comma? Did you delete a crucial clause? Staring at two screens and manually checking line by line is exhausting and error-prone.
+        </p>
+        <p>
+          The <strong>Text Comparator</strong> by ToolfolioHub acts as your digital magnet. It instantly analyzes two blocks of text and highlights every difference, addition, and deletion in vivid color. It turns hours of proofreading into seconds of clarity.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is a Text Comparator?</h2>
+        <p>
+          Often called a "Diff Tool" (short for difference), a text comparator is a utility that algorithmically compares two inputs to find discrepancies.
+        </p>
+        <p>
+          It doesn't just tell you <em>that</em> the texts are different; it tells you <em>where</em> and <em>how</em>. It identifies:
+        </p>
+        <ul>
+          <li><strong>Additions:</strong> Content present in the new version but not the old.</li>
+          <li><strong>Deletions:</strong> Content present in the old version but missing from the new.</li>
+          <li><strong>Modifications:</strong> Lines that have been altered.</li>
+        </ul>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Intuitive Visual Diffing</h3>
+        <p>
+          We use a clear, industry-standard color-coding system:
+        </p>
+        <ul>
+          <li><span class="text-red-500 font-bold">Red Background</span> marks text that was removed.</li>
+          <li><span class="text-green-500 font-bold">Green Background</span> marks text that was added.</li>
+          <li><span class="opacity-60">Neutral/Grey</span> marks text that is identical in both versions.</li>
+        </ul>
+        <p>
+          This lets you scan a document and focus only on the parts that matter—the changes.
+        </p>
+
+        <h3>2. Side-by-Side Comparison</h3>
+        <p>
+          We provide two separate input boxes ("Version A" and "Version B"). This mimics the workflow of comparing an "Original" draft against a "Revised" copy, making it easy to paste from different sources without mixing them up.
+        </p>
+
+        <h3>3. Privacy & Security</h3>
+        <p>
+          Checking sensitive legal contracts? Reviewing proprietary code? You can trust ToolfolioHub. The comparison logic runs entirely in your web browser using JavaScript. Your text is never uploaded to our servers or stored in any database.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Comparator</h2>
+        <ol>
+          <li><strong>Paste Original:</strong> Copy your baseline text (the "before" version) into the left box.</li>
+          <li><strong>Paste Modified:</strong> Copy your updated text (the "after" version) into the right box.</li>
+          <li><strong>Click "Run Comparison":</strong> The tool processes the text instantly.</li>
+          <li><strong>Review Results:</strong> Scroll down to the results area.
+            <ul>
+              <li>Look for <strong>Green</strong> lines to see what's new.</li>
+              <li>Look for <strong>Red</strong> lines to see what's gone.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Software Developers</h3>
+        <p>
+          This is an essential tool for code reviews. If you are working on a machine without Git access or need to quickly check a snippet from Stack Overflow against your local version, paste them here. You'll spot missing semicolons or changed variable names instantly.
+        </p>
+
+        <h3>Writers & Editors</h3>
+        <p>
+          Sometimes you create multiple versions of a draft (v1, v2, v2_final). If you forget to turn on "Track Changes" in Word, you might lose track of what you edited. Our tool restores that history by showing you exactly what changed between drafts.
+        </p>
+
+        <h3>Legal & Administrative Pros</h3>
+        <p>
+          Comparing terms and conditions? Ensuring a contract hasn't been tampered with? Paste the original agreed-upon text against the document you received for signature. Any subtle alteration—like a changed date or fee—will light up in red and green.
+        </p>
+
+        <h3>Students</h3>
+        <p>
+          Check your essay against a friend's notes, or verify that you have correctly quoted a source text without accidental alteration.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Zero Install:</strong> Why download a 500MB IDE just to compare two paragraphs? Our tool loads instantly in your browser.</li>
+          <li><strong>Distraction-Free:</strong> We focus purely on the text. No complex menus, no "merge conflict" resolution buttons—just a clear view of the differences.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Does it compare word-by-word or line-by-line?</h3>
+        <p>
+          Our tool primarily uses a <strong>line-by-line</strong> comparison algorithm. This is generally the most useful method for code and documents, as it preserves the context of the change. If a single word in a sentence is changed, the whole line is typically flagged as a modification (old line removed, new line added).
+        </p>
+
+        <h3>Is there a limit to how much text I can compare?</h3>
+        <p>
+          The only limit is your computer's memory. Modern browsers can easily handle comparing thousands of lines of text without lagging.
+        </p>
+
+        <h3>Can I compare files?</h3>
+        <p>
+          Currently, this is a text-based tool. You need to open your files (Word, PDF, TXT), copy the content, and paste it here. We may add direct file upload support in the future!
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Clean Formatting First:</strong> If your text has inconsistent spacing (e.g., tabs vs spaces), the comparator might flag lines as different even if they look the same. Use our <a href="/tools/whitespace-cleaner">Whitespace Cleaner</a> on both texts before comparing to ignore formatting noise.</li>
+          <li><strong>Use for Plagiarism Checks:</strong> If you suspect text has been copied with minor edits, comparing them here will reveal the identical structures instantly.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Stop squinting at your screen. Paste your texts above and let the algorithm do the hard work for you.
+        </p>
+        
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Text Comparator</strong> is more than just a utility; it is a guarantee of accuracy. By visualizing the differences between two inputs, it empowers you to control your content, verify your code, and secure your agreements. ToolfolioHub provides this powerful capability for free, anytime you need it.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -64,40 +254,57 @@
     const diffOutput = document.getElementById('diffOutput');
 
     btn.addEventListener('click', () => {
-      const linesA = document.getElementById('textA').value.split('\n');
-      const linesB = document.getElementById('textB').value.split('\n');
-      const max = Math.max(linesA.length, linesB.length);
-      diffOutput.innerHTML = '';
-
-      for (let i = 0; i < max; i++) {
-        const a = linesA[i] ?? '';
-        const b = linesB[i] ?? '';
-        const line = document.createElement('div');
-        line.classList.add('diff-line');
-
-        if (a === b) {
-          line.classList.add('same');
-          line.textContent = `Line ${i + 1}: ${a || '—'}`;
-        } else {
-          if (a) {
-            const removed = document.createElement('div');
-            removed.className = 'diff-line removed';
-            removed.textContent = `− Line ${i + 1}: ${a}`;
-            diffOutput.appendChild(removed);
-          }
-          if (b) {
-            const added = document.createElement('div');
-            added.className = 'diff-line added';
-            added.textContent = `+ Line ${i + 1}: ${b}`;
-            diffOutput.appendChild(added);
-          }
-          continue;
-        }
-        diffOutput.appendChild(line);
+      const valA = document.getElementById('textA').value;
+      const valB = document.getElementById('textB').value;
+      
+      if (!valA && !valB) {
+        diffOutput.innerHTML = '<p class="text-sm text-red-500 text-center">Please enter text in both boxes to compare.</p>';
+        return;
       }
+
+      const linesA = valA.split('\n');
+      const linesB = valB.split('\n');
+      const max = Math.max(linesA.length, linesB.length);
+      
+      let html = '';
+      
+      // A simplified visual diff logic
+      // Iterates through lines. 
+      // Note: Real Myers diff algorithm is more complex to implement from scratch without a library.
+      // This simple index-based comparison works well for structured text/code that hasn't been heavily reordered.
+      
+      for (let i = 0; i < max; i++) {
+        const a = linesA[i];
+        const b = linesB[i];
+        
+        // Case 1: Lines match
+        if (a !== undefined && b !== undefined && a === b) {
+           html += `<div class="diff-line same"><span class="opacity-50 select-none w-8 inline-block text-right mr-2 select-none">${i+1}</span>${escapeHtml(a || '')}</div>`;
+        } 
+        // Case 2: Lines differ
+        else {
+           if (a !== undefined) {
+             html += `<div class="diff-line removed"><span class="opacity-50 select-none w-8 inline-block text-right mr-2 select-none">-</span>${escapeHtml(a)}</div>`;
+           }
+           if (b !== undefined) {
+             html += `<div class="diff-line added"><span class="opacity-50 select-none w-8 inline-block text-right mr-2 select-none">+</span>${escapeHtml(b)}</div>`;
+           }
+        }
+      }
+      
+      diffOutput.innerHTML = html || '<p class="text-center text-green-500 font-bold mt-10">Texts are identical!</p>';
     });
+    
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

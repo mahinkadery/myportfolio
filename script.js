@@ -1108,16 +1108,44 @@ function populateToolsHub() {
 // Search functionality
 function initSearch() {
     const searchInput = document.getElementById('searchInput');
-    if (!searchInput) return;
+    if (!searchInput) {
+        console.log('Search input not found');
+        return;
+    }
+
+    // Check if we're on tools.html with static category sections
+    const toolDirectory = document.getElementById('tool-directory');
+    const toolsHubGrid = document.getElementById('toolsHubGrid');
 
     // Search on input with debounce
     let searchTimeout;
     searchInput.addEventListener('input', (e) => {
         clearTimeout(searchTimeout);
+        const value = e.target.value || '';
         searchTimeout = setTimeout(() => {
-            searchQuery = e.target.value;
+            searchQuery = value;
+            
+            // If toolsHubGrid exists, use the dynamic grid approach
+            if (toolsHubGrid) {
+                populateToolsHub();
+            } 
+            // Otherwise, filter static category sections (tools.html)
+            else if (toolDirectory) {
+                filterStaticTools(value);
+            }
+        }, 200); // Reduced debounce for faster response
+    });
+
+    // Also handle on keyup for immediate feedback
+    searchInput.addEventListener('keyup', (e) => {
+        const value = e.target.value || '';
+        searchQuery = value;
+        
+        if (toolsHubGrid) {
             populateToolsHub();
-        }, 300);
+        } else if (toolDirectory) {
+            filterStaticTools(value);
+        }
     });
 
     // Clear search when pressing Escape
@@ -1125,10 +1153,128 @@ function initSearch() {
         if (e.key === 'Escape') {
             searchInput.value = '';
             searchQuery = '';
-            populateToolsHub();
+            
+            if (toolsHubGrid) {
+                populateToolsHub();
+            } else if (toolDirectory) {
+                filterStaticTools('');
+            }
+            
             searchInput.blur();
         }
     });
+}
+
+// Filter static tools in category sections (for tools.html)
+function filterStaticTools(query) {
+    const toolDirectory = document.getElementById('tool-directory');
+    if (!toolDirectory) {
+        console.log('Tool directory not found');
+        return;
+    }
+
+    const queryLower = (query || '').toLowerCase().trim();
+    
+    // Build a map of tool hrefs to their full searchable text and details from TOOL_LINKS
+    const toolLinksMap = {};
+    if (Array.isArray(TOOL_LINKS)) {
+        TOOL_LINKS.forEach(tool => {
+            const searchableText = `${tool.label || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
+            toolLinksMap[tool.href] = {
+                label: tool.label || '',
+                description: tool.description || '',
+                category: tool.category || '',
+                searchableText: searchableText
+            };
+        });
+    }
+
+    // Get all category sections (divs that contain h2 headings)
+    const categorySections = Array.from(toolDirectory.children).filter(child => 
+        child.tagName === 'DIV' && child.querySelector('h2') && !child.hasAttribute('data-search-results')
+    );
+
+    // Remove existing search results section
+    const existingSearchResults = toolDirectory.querySelector('[data-search-results]');
+    if (existingSearchResults) {
+        existingSearchResults.remove();
+    }
+
+    // If search is empty, show all categories and return
+    if (queryLower === '') {
+        categorySections.forEach(section => {
+            section.style.display = '';
+        });
+        return;
+    }
+
+    // Hide all category sections when searching
+    categorySections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Find matching tools from TOOL_LINKS array
+    const matchingTools = [];
+    
+    if (Array.isArray(TOOL_LINKS)) {
+        TOOL_LINKS.forEach(tool => {
+            const searchableText = `${tool.label || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
+            
+            if (searchableText.includes(queryLower)) {
+                matchingTools.push({
+                    href: tool.href,
+                    label: tool.label || '',
+                    description: tool.description || '',
+                    category: tool.category || ''
+                });
+            }
+        });
+    }
+
+    // Create search results section
+    const searchResultsSection = document.createElement('div');
+    searchResultsSection.setAttribute('data-search-results', 'true');
+    searchResultsSection.className = 'w-full text-left space-y-6';
+    
+    if (matchingTools.length > 0) {
+        const heading = document.createElement('h2');
+        heading.className = 'text-2xl font-bold text-text-light dark:text-text-dark mb-6 pl-2 border-l-4 border-primary';
+        heading.textContent = `Search Results (${matchingTools.length})`;
+        searchResultsSection.appendChild(heading);
+        
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4';
+        
+        const ul = document.createElement('ul');
+        ul.className = 'col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4';
+        
+        matchingTools.forEach(tool => {
+            const li = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = tool.href;
+            link.className = 'block p-4 rounded-xl glassmorphism hover:shadow-lg transition-all hover:-translate-y-1';
+            
+            const h3 = document.createElement('h3');
+            h3.className = 'font-semibold text-text-light dark:text-text-dark';
+            h3.textContent = tool.label;
+            link.appendChild(h3);
+            
+            li.appendChild(link);
+            ul.appendChild(li);
+        });
+        
+        gridContainer.appendChild(ul);
+        searchResultsSection.appendChild(gridContainer);
+    } else {
+        // Show empty state
+        const emptyState = document.createElement('div');
+        emptyState.className = 'rounded-3xl border border-dashed border-white/40 bg-white/70 dark:border-white/10 dark:bg-background-dark/60 p-8 text-center text-sm text-muted-light dark:text-muted-dark';
+        emptyState.textContent = `No tools found matching "${query}". Try a different search term.`;
+        searchResultsSection.appendChild(emptyState);
+    }
+    
+    // Insert at the top of tool directory
+    toolDirectory.insertBefore(searchResultsSection, toolDirectory.firstChild);
 }
 
 // Initialize everything when DOM is ready

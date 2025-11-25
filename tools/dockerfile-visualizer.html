@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dockerfile Layer Visualizer – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>Dockerfile Visualizer – Parse & Understand Docker Build Layers | ToolfolioHub</title>
+  <meta name="description" content="Visualize Dockerfile layers and build order. Understand how Docker builds images layer by layer for optimization." />
+  <meta name="keywords" content="dockerfile visualizer, docker layers, dockerfile parser, docker build, containerization, devops tool, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dockerfile Visualizer – Understand Docker Build Layers" />
+  <meta property="og:description" content="Parse Dockerfiles and visualize build layers. Perfect for optimizing Docker image builds." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/dockerfile-visualizer" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -79,6 +90,86 @@
           </p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>Dockerfile Visualizer – Understand Docker Build Layers</h2>
+        
+        <p class="lead">
+          Docker builds images layer by layer, and understanding these layers is crucial for optimization, debugging, and efficient container creation. The <strong>Dockerfile Layer Visualizer</strong> by ToolfolioHub parses your Dockerfile and presents a clear, color-coded visualization of each layer, making it easy to understand build order, layer types, and optimization opportunities.
+        </p>
+        <p>
+          Whether you're optimizing Docker builds for faster deployment, learning Docker, or debugging container issues, this tool helps you see exactly how your Dockerfile will be processed during the build.
+        </p>
+
+        <h2>What are Docker Layers?</h2>
+        <p>
+          Docker images are built from layers—each instruction in a Dockerfile typically creates a new layer:
+        </p>
+        <ul>
+          <li><strong>FROM:</strong> Base image layer—starting point for your container</li>
+          <li><strong>RUN:</strong> Executes commands and creates a new layer</li>
+          <li><strong>COPY/ADD:</strong> Adds files and creates a new layer</li>
+          <li><strong>ENV:</strong> Sets environment variables (creates a layer)</li>
+          <li><strong>WORKDIR:</strong> Sets working directory</li>
+          <li><strong>EXPOSE:</strong> Documents ports (metadata, no layer)</li>
+          <li><strong>CMD/ENTRYPOINT:</strong> Defines default command</li>
+        </ul>
+        <p>
+          Understanding layers helps optimize Dockerfiles by minimizing layer count and maximizing cache efficiency.
+        </p>
+
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Layer-by-Layer Visualization</h3>
+        <p>
+          See each instruction parsed and displayed as a distinct layer with:
+        </p>
+        <ul>
+          <li>Layer number (build order)</li>
+          <li>Instruction type (FROM, RUN, COPY, etc.)</li>
+          <li>Arguments and content</li>
+          <li>Original line number from Dockerfile</li>
+        </ul>
+
+        <h3>2. Color-Coded Instruction Types</h3>
+        <p>
+          Different instruction types are color-coded for quick visual identification, making it easy to scan and understand Dockerfile structure.
+        </p>
+
+        <h3>3. Build Order Clarity</h3>
+        <p>
+          Layers are displayed in build order (top to bottom), showing exactly how Docker will process your Dockerfile.
+        </p>
+
+        <h2>Dockerfile Optimization Tips</h2>
+        <ul>
+          <li><strong>Order Matters:</strong> Place frequently changing layers (like COPY .) near the end</li>
+          <li><strong>Combine RUN Commands:</strong> Use `&&` to combine multiple RUN instructions and reduce layers</li>
+          <li><strong>Cache Dependencies:</strong> Copy dependency files (package.json, requirements.txt) before copying all code</li>
+          <li><strong>Use .dockerignore:</strong> Exclude unnecessary files to reduce COPY layer size</li>
+        </ul>
+
+        <h2>How to Use the Dockerfile Visualizer</h2>
+        <ol>
+          <li><strong>Paste Dockerfile:</strong> Copy your Dockerfile content into the textarea.</li>
+          <li><strong>Parse:</strong> Click "Parse Dockerfile" to analyze the layers.</li>
+          <li><strong>Review Layers:</strong> Examine each layer to understand build structure.</li>
+          <li><strong>Optimize:</strong> Use the visualization to identify optimization opportunities.</li>
+        </ol>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Dockerfile Layer Visualizer</strong> makes Docker builds transparent and understandable. By visualizing layers, it helps developers optimize Dockerfiles, debug build issues, and create more efficient container images.
+        </p>
+      </article>
     </main>
   </div>
 

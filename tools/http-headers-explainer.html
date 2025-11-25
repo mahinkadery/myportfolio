@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HTTP Headers Explainer – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>HTTP Headers Explainer – Learn Common HTTP Headers | ToolfolioHub</title>
+  <meta name="description" content="Searchable reference for HTTP headers with descriptions and examples. Learn about Content-Type, CORS, Cache-Control, and more. Essential for web developers." />
+  <meta name="keywords" content="http headers, http headers reference, http headers guide, content-type, cors headers, cache-control, web development, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="HTTP Headers Explainer – Header Reference Guide" />
+  <meta property="og:description" content="Learn about HTTP headers with searchable reference, examples, and explanations. Essential for API development." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/http-headers-explainer" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -45,6 +56,103 @@
           <!-- Headers will be injected here -->
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>HTTP Headers Explainer – Complete Header Reference</h2>
+        
+        <p class="lead">
+          HTTP headers are metadata sent between clients and servers with every HTTP request and response. They control caching, authentication, content negotiation, CORS, security, and much more. Understanding HTTP headers is essential for web development, API design, and debugging. The <strong>HTTP Headers Explainer</strong> by ToolfolioHub provides a comprehensive, searchable reference of common HTTP headers with descriptions and examples.
+        </p>
+        <p>
+          Whether you're debugging API issues, configuring web servers, or learning web protocols, this tool helps you understand and use HTTP headers effectively.
+        </p>
+
+        <h2>What are HTTP Headers?</h2>
+        <p>
+          HTTP headers are key-value pairs sent with requests and responses:
+        </p>
+        <ul>
+          <li><strong>Request Headers:</strong> Sent by the client (browser) to the server</li>
+          <li><strong>Response Headers:</strong> Sent by the server back to the client</li>
+          <li><strong>Metadata:</strong> Provide information about the request/response, not the actual content</li>
+        </ul>
+        <p>
+          Headers control how browsers and servers handle requests and responses.
+        </p>
+
+        <h2>Header Categories</h2>
+        
+        <h3>1. Content Headers</h3>
+        <p>
+          Control content type, encoding, and length:
+        </p>
+        <ul>
+          <li><strong>Content-Type:</strong> Media type (e.g., `application/json`, `text/html`)</li>
+          <li><strong>Content-Length:</strong> Size of the body in bytes</li>
+          <li><strong>Content-Encoding:</strong> Compression format (e.g., `gzip`, `deflate`)</li>
+        </ul>
+
+        <h3>2. Request Headers</h3>
+        <p>
+          Tell the server what the client accepts:
+        </p>
+        <ul>
+          <li><strong>Accept:</strong> Preferred media types for response</li>
+          <li><strong>Accept-Encoding:</strong> Preferred compression formats</li>
+          <li><strong>Accept-Language:</strong> Preferred languages</li>
+        </ul>
+
+        <h3>3. Security Headers</h3>
+        <p>
+          Protect against attacks:
+        </p>
+        <ul>
+          <li><strong>Authorization:</strong> Credentials for authentication</li>
+          <li><strong>X-Frame-Options:</strong> Prevents clickjacking</li>
+          <li><strong>Strict-Transport-Security:</strong> Forces HTTPS connections</li>
+        </ul>
+
+        <h3>4. CORS Headers</h3>
+        <p>
+          Control cross-origin resource sharing:
+        </p>
+        <ul>
+          <li><strong>Access-Control-Allow-Origin:</strong> Which origins can access resources</li>
+          <li><strong>Access-Control-Allow-Methods:</strong> Allowed HTTP methods</li>
+          <li><strong>Access-Control-Allow-Headers:</strong> Allowed request headers</li>
+        </ul>
+
+        <h3>5. Caching Headers</h3>
+        <p>
+          Control browser and proxy caching:
+        </p>
+        <ul>
+          <li><strong>Cache-Control:</strong> Caching directives</li>
+          <li><strong>ETag:</strong> Entity tag for cache validation</li>
+          <li><strong>If-None-Match:</strong> Conditional request using ETag</li>
+        </ul>
+
+        <h2>Common Use-Cases</h2>
+        <ul>
+          <li><strong>API Development:</strong> Set Content-Type, handle CORS, manage authentication</li>
+          <li><strong>Web Security:</strong> Configure security headers to prevent attacks</li>
+          <li><strong>Performance:</strong> Control caching and compression</li>
+          <li><strong>Debugging:</strong> Inspect headers to troubleshoot issues</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>HTTP Headers Explainer</strong> is an essential reference for web developers working with HTTP protocols. With searchable headers, clear descriptions, and practical examples, it helps you understand and use headers effectively in your projects.
+        </p>
+      </article>
     </main>
   </div>
 

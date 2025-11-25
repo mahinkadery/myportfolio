@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>REST API Request Builder – toolfoliohub</title>
+  <title>REST API Builder – Build & Test HTTP Requests Online | toolfoliohub</title>
+  <meta name="description" content="Build and test HTTP requests for REST APIs. Free REST API builder tool with support for multiple methods, headers, query parameters, and request bodies.">
+  <meta name="keywords" content="REST API builder, API tester, HTTP request builder, API testing tool, REST client, API request builder">
+  <meta property="og:title" content="REST API Builder – Build & Test HTTP Requests Online | toolfoliohub">
+  <meta property="og:description" content="Build and test REST API requests with custom methods, headers, and bodies. Free tool for API development and testing.">
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -74,6 +78,64 @@
           <p class="text-muted-light dark:text-muted-dark">Response will appear here.</p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>REST API Request Builder – Test HTTP Requests</h2>
+        
+        <p class="lead">
+          The <strong>REST API Request Builder</strong> helps you build and test HTTP requests for REST APIs. This tool allows you to construct custom HTTP requests with different methods, headers, query parameters, and request bodies, making it perfect for API development, testing, and debugging.
+        </p>
+        <p>
+          <strong>Note:</strong> Many APIs block browser requests due to CORS policies. This tool works best with APIs that allow CORS or educational purposes.
+        </p>
+
+        <h2>Understanding REST APIs</h2>
+        <p>
+          REST (Representational State Transfer) APIs use HTTP methods to interact with resources. Understanding HTTP methods and request structure is essential for API development and integration.
+        </p>
+
+        <h2>HTTP Methods</h2>
+        <ul>
+          <li><strong>GET:</strong> Retrieve data from the server</li>
+          <li><strong>POST:</strong> Create new resources</li>
+          <li><strong>PUT:</strong> Update entire resources</li>
+          <li><strong>PATCH:</strong> Partially update resources</li>
+          <li><strong>DELETE:</strong> Remove resources</li>
+          <li><strong>HEAD:</strong> Get headers without body</li>
+          <li><strong>OPTIONS:</strong> Check allowed methods</li>
+        </ul>
+
+        <h2>Request Components</h2>
+        <ul>
+          <li><strong>URL:</strong> The API endpoint</li>
+          <li><strong>Headers:</strong> Metadata like Content-Type, Authorization</li>
+          <li><strong>Query Parameters:</strong> URL parameters for filtering/searching</li>
+          <li><strong>Body:</strong> Data sent with POST, PUT, PATCH requests</li>
+        </ul>
+
+        <h2>CORS Considerations</h2>
+        <p>
+          Cross-Origin Resource Sharing (CORS) policies may prevent browser-based requests. For production API testing, consider using:
+        </p>
+        <ul>
+          <li>Dedicated API testing tools (Postman, Insomnia)</li>
+          <li>Server-side proxies</li>
+          <li>Browser extensions with CORS bypass</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>REST API Request Builder</strong> provides a convenient way to construct and test HTTP requests, though CORS limitations may affect some APIs. Use this tool for learning API concepts and testing APIs that support CORS.
+        </p>
+      </article>
     </main>
   </div>
 

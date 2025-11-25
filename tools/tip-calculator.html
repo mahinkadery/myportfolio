@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tip Calculator – toolfoliohub</title>
+  
+  <!-- SEO Metadata -->
+  <title>Tip Calculator – Split Bill & Calculate Gratuity</title>
+  <meta name="description" content="Calculate tip amount and split the bill between friends instantly. Easy, fair, and free tip calculator for dining out." />
+  <meta name="keywords" content="tip calculator, bill splitter, gratuity calculator, restaurant tip calculator, split check, tip per person, dining calculator, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tip Calculator – Split Bills Fairly" />
+  <meta property="og:description" content="Stop arguing over the check. Calculate tips and split totals instantly." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/tip-calculator" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:720px;margin:0 auto;}</style>
+  <style>
+    .tool-shell{max-width:720px;margin:0 auto;}
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,32 +53,280 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Calculator</p>
           <h1 class="mt-2 text-3xl font-bold">Tip Calculator</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Split bills fairly with per-person tip and total amounts.</p>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Calculate gratuity and split the bill evenly among friends.</p>
         </div>
 
-        <div class="grid gap-4 sm:grid-cols-2">
-          <input id="billAmount" type="number" placeholder="Bill amount" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-          <input id="tipPercent" type="number" placeholder="Tip %" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-          <input id="peopleCount" type="number" placeholder="People" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div class="space-y-1">
+            <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">Bill Total ($)</label>
+            <input id="billAmount" type="number" placeholder="e.g. 120.50" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+          </div>
+          <div class="space-y-1">
+            <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">Tip (%)</label>
+            <input id="tipPercent" type="number" placeholder="e.g. 18" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+          </div>
+          <div class="space-y-1">
+            <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">People</label>
+            <input id="peopleCount" type="number" placeholder="e.g. 4" value="1" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+          </div>
         </div>
 
-        <button id="tipBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Calculate</button>
+        <button id="tipBtn" class="rounded-full bg-primary text-white px-8 py-3 text-sm font-semibold hover:brightness-110 transition-all w-full shadow hover:shadow-md transform hover:-translate-y-0.5">Calculate Split</button>
 
         <div class="grid gap-4 sm:grid-cols-2">
-          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-5">
-            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Tip per person</p>
-            <p id="tipPerPerson" class="text-2xl font-semibold">—</p>
+          <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 border border-white/20 dark:border-white/10 text-center">
+            <p class="text-xs uppercase tracking-widest text-muted-light dark:text-muted-dark font-bold mb-1">Tip Per Person</p>
+            <p id="tipPerPerson" class="text-2xl font-bold text-primary">—</p>
           </div>
-          <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-5">
-            <p class="text-xs uppercase tracking-[0.3em] text-muted-light dark:text-muted-dark">Total per person</p>
-            <p id="totalPerPerson" class="text-2xl font-semibold">—</p>
+          <div class="rounded-3xl bg-green-100/50 dark:bg-green-900/20 p-6 border border-green-200 dark:border-green-900/50 text-center">
+            <p class="text-xs uppercase tracking-widest text-green-800 dark:text-green-400 font-bold mb-1">Total Per Person</p>
+            <p id="totalPerPerson" class="text-3xl font-bold text-green-700 dark:text-green-400">—</p>
           </div>
+        </div>
+        
+        <div id="summary" class="text-center text-sm text-muted-light dark:text-muted-dark hidden">
+            <p>Total Tip: <span id="totalTip" class="font-bold">$0.00</span> • Grand Total: <span id="grandTotal" class="font-bold">$0.00</span></p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Tip Calculator – Split Bills Fairly & Calculate Gratuity Like a Pro</h2>
+        
+        <!-- 3. Introduction -->
+        <p class="lead">
+          Dining out with friends should be relaxing, but when the check arrives, it often becomes a stressful math problem. "What's 18% of $127.50?" "How do we split this four ways?" "Does the tip go on the pre-tax or post-tax amount?" These questions can turn a pleasant meal into an awkward debate.
+        </p>
+        <p>
+          The <strong>Tip Calculator</strong> by ToolfolioHub eliminates this friction entirely. It is a fast, accurate utility designed to calculate gratuity and split bills evenly among any number of people. Whether you are celebrating a birthday dinner for 10 or having a quiet date night for two, this tool ensures everyone pays their fair share without the mental math.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is a Tip Calculator?</h2>
+        <p>
+          A tip calculator (also called a "gratuity calculator" or "bill splitter") is a specialized financial utility that automates the process of calculating restaurant tips and dividing shared expenses.
+        </p>
+        <p>
+          It handles three main calculations:
+        </p>
+        <ol>
+          <li><strong>Tip Amount:</strong> Calculates the gratuity based on a percentage of the bill total.</li>
+          <li><strong>Total Per Person:</strong> Divides the bill + tip evenly among all diners.</li>
+          <li><strong>Tip Per Person:</strong> Shows how much each person is contributing to the tip.</li>
+        </ol>
+        <p>
+          While this math is straightforward (Tip = Bill × Percentage, then Total = Bill + Tip, then Per Person = Total ÷ People), doing it mentally while sitting at a restaurant table is error-prone and stressful. Our calculator handles it instantly and accurately.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Fair & Accurate Bill Splitting</h3>
+        <p>
+          Splitting a bill isn't just about dividing the total. You need to:
+        </p>
+        <ul>
+          <li>Calculate the tip on the full amount.</li>
+          <li>Add the tip to the bill.</li>
+          <li>Divide that grand total evenly among everyone.</li>
+        </ul>
+        <p>
+          Our calculator does all three steps automatically. If four people share a $120 bill with a 20% tip, each person pays exactly $36.00—no guesswork, no rounding errors.
+        </p>
+
+        <h3>2. Customizable Tip Percentages</h3>
+        <p>
+          While most restaurants suggest 18%, 20%, or 22% on receipts, you might want to tip:
+        </p>
+        <ul>
+          <li><strong>Less (15%):</strong> For below-average service.</li>
+          <li><strong>More (25%+):</strong> For exceptional service or special occasions.</li>
+          <li><strong>Custom amounts:</strong> Maybe 19.5% is your lucky number.</li>
+        </ul>
+        <p>
+          Our tool accepts any percentage you enter, giving you complete control over your gratuity.
+        </p>
+
+        <h3>3. Mobile-Optimized Design</h3>
+        <p>
+          This calculator is designed for use at the table. The interface is large, touch-friendly, and readable even in dim restaurant lighting. It loads instantly on mobile devices, so you don't have to wait for a heavy app to open.
+        </p>
+
+        <h3>4. Comprehensive Summary Display</h3>
+        <p>
+          We show you:
+        </p>
+        <ul>
+          <li><strong>Tip Per Person:</strong> How much each person contributes to the tip.</li>
+          <li><strong>Total Per Person:</strong> The final amount each person pays (bill + tip).</li>
+          <li><strong>Summary Stats:</strong> Total tip amount and grand total for the whole bill.</li>
+        </ul>
+        <p>
+          This transparency prevents confusion and ensures everyone understands the breakdown.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Tip Calculator</h2>
+        <p>
+          The process is simple and takes seconds:
+        </p>
+        <ol>
+          <li><strong>Enter the Bill Amount:</strong> Look at your receipt and type the total into the "Bill Total ($)" field. This is typically the subtotal before tax (though you can use the post-tax amount if you prefer—the difference is usually minimal).</li>
+          <li><strong>Enter the Tip Percentage:</strong> Type the percentage you want to tip (without the % symbol). For example, for a 20% tip, just enter `20`.</li>
+          <li><strong>Enter the Number of People:</strong> How many people are splitting the bill? Enter that number in the "People" field. If it's just you, leave it at 1.</li>
+          <li><strong>Click "Calculate Split":</strong> The results appear instantly, showing exactly what each person owes.</li>
+        </ol>
+        <p>
+          <strong>Example Walkthrough:</strong>
+          <br>You had dinner with three friends. The bill is $95.00. You want to leave a 20% tip and split it four ways.
+          <br>1. Enter `95` in Bill Total.
+          <br>2. Enter `20` in Tip (%).
+          <br>3. Enter `4` in People.
+          <br>4. Click Calculate.
+          <br>5. Result: Each person pays $28.50 ($4.75 tip + $23.75 bill portion each).
+        </p>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Diners & Food Enthusiasts</h3>
+        <p>
+          Whether it is an intimate date night, a family celebration, or a large group gathering, calculating tips and splitting bills is a universal need. This tool makes the process effortless:
+        </p>
+        <ul>
+          <li><strong>Date Nights:</strong> Quick calculation for two people ensures you leave the right amount without awkwardly pulling out your phone for long calculations.</li>
+          <li><strong>Birthday Dinners:</strong> Large groups can split bills fairly. No one person gets stuck with a disproportionate share.</li>
+          <li><strong>Business Meals:</strong> Calculate expenses accurately for reimbursement or expense reports.</li>
+        </ul>
+
+        <h3>Travelers & Tourists</h3>
+        <p>
+          Tipping customs vary dramatically by country. In the United States, 15-20% is standard for restaurants. In many European countries, service charges are included, and additional tipping is optional. Our tool helps you:
+        </p>
+        <ul>
+          <li>Avoid under-tipping (which can be seen as rude).</li>
+          <li>Avoid over-tipping (which wastes money).</li>
+          <li>Calculate tips quickly in unfamiliar currencies or dining situations.</li>
+        </ul>
+
+        <h3>Waitstaff & Service Industry Workers</h3>
+        <p>
+          If you work in the service industry, you can use this tool to:
+        </p>
+        <ul>
+          <li>Verify that customers calculated tips correctly on credit card receipts.</li>
+          <li>Calculate expected earnings based on sales volume.</li>
+          <li>Split tips among multiple servers or bartenders fairly.</li>
+        </ul>
+
+        <h3>Group Event Organizers</h3>
+        <p>
+          This tool is useful beyond restaurants:
+        </p>
+        <ul>
+          <li><strong>Uber/Lyft Rides:</strong> Split a large vehicle ride among friends (set tip to 0 or the app's suggested amount).</li>
+          <li><strong>Group Gifts:</strong> Divide the cost of a shared purchase.</li>
+          <li><strong>Party Planning:</strong> Calculate per-person costs for catering, decorations, or venue rentals.</li>
+        </ul>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>No App Required:</strong> Many tip calculators require downloading an app that takes up storage space and requires updates. Ours works instantly in any web browser.</li>
+          <li><strong>Privacy-Focused:</strong> We don't track your bills or location. Your dining habits remain private.</li>
+          <li><strong>Works Offline:</strong> Once the page loads, you can use it without an internet connection (as long as you don't refresh). Perfect for restaurants with spotty Wi-Fi.</li>
+          <li><strong>Clear, Large Display:</strong> The results are displayed in large, easy-to-read numbers. No squinting in dim lighting.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>How much should I tip at a restaurant?</h3>
+        <p>
+          Tipping customs vary by location, but in the United States, standard guidelines are:
+        </p>
+        <ul>
+          <li><strong>15-18%:</strong> Good, satisfactory service.</li>
+          <li><strong>20%:</strong> Great service. This is considered the modern standard for good service.</li>
+          <li><strong>22-25%:</strong> Exceptional service, special occasions, or fine dining.</li>
+          <li><strong>Less than 15%:</strong> Only if service was noticeably poor. Consider speaking to a manager instead.</li>
+        </ul>
+        <p>
+          <strong>Note:</strong> Some restaurants automatically add gratuity (usually 18-20%) for parties of 6 or more. Check your receipt before adding an additional tip.
+        </p>
+
+        <h3>Should I tip on the pre-tax or post-tax amount?</h3>
+        <p>
+          This is a common debate. The traditional rule is to tip on the <strong>pre-tax subtotal</strong>, as tax is not a service you received—it goes to the government. However, many people tip on the post-tax amount for simplicity, and this is also widely accepted.
+        </p>
+        <p>
+          Our calculator works with whichever amount you enter. If your bill shows a subtotal of $100 and tax of $8 (total $108), you can:
+        </p>
+        <ul>
+          <li>Tip on $100 (traditional): Enter `100` as the bill amount.</li>
+          <li>Tip on $108 (simple): Enter `108` as the bill amount.</li>
+        </ul>
+        <p>
+          The difference is minimal (20% of $100 = $20 vs. 20% of $108 = $21.60), so choose whichever method you prefer.
+        </p>
+
+        <h3>How do I split a bill when people ordered different amounts?</h3>
+        <p>
+          Our calculator assumes an even split (everyone pays the same amount). If people ordered different items:
+        </p>
+        <ul>
+          <li><strong>Option 1 (Fair but Complex):</strong> Each person calculates their own portion + tip separately.</li>
+          <li><strong>Option 2 (Simple but Rough):</strong> Use our calculator to see the "per person" amount as a baseline, then let people adjust based on what they ordered.</li>
+          <li><strong>Option 3 (Common Practice):</strong> Split evenly anyway. The convenience often outweighs the small cost difference.</li>
+        </ul>
+
+        <h3>Can I use this for delivery or takeout orders?</h3>
+        <p>
+          Yes! For delivery services (DoorDash, Uber Eats, etc.), tipping is usually done through the app. However, if you're picking up food yourself and want to tip the staff:
+        </p>
+        <ul>
+          <li>10-15% is common for takeout/counter service.</li>
+          <li>Enter your order total and desired tip percentage in our calculator.</li>
+        </ul>
+
+        <h3>Does the calculator round the results?</h3>
+        <p>
+          We show results to two decimal places (the standard for currency). You can choose to round up when writing the tip on the receipt (e.g., if the calculator shows $18.47, you might write $19.00 to make it a round number).
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Bookmark for Quick Access:</strong> Save this page to your phone's home screen or bookmarks for instant access when dining out.</li>
+          <li><strong>Double-Check Receipts:</strong> Some restaurants automatically add gratuity for large parties. Always review your receipt before adding an extra tip to avoid double-tipping.</li>
+          <li><strong>Consider Service Quality:</strong> While 20% is standard, adjust based on service. Exceptional service deserves more; poor service might warrant less (though consider speaking to management first).</li>
+          <li><strong>Cash vs. Card:</strong> If you tip in cash, the server often receives it immediately. Tips on credit cards may be processed later. Both methods are acceptable.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Stop struggling with mental math at the dinner table. Enter your bill details above and get accurate, fair split calculations instantly.
+        </p>
+        <p>
+          Need to calculate discounts before you eat? Check out our <a href="/tools/discount-calculator">Discount Calculator</a>. Want to calculate percentages for other scenarios? Try our <a href="/tools/percentage-calculator">Percentage Calculator</a>.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Tip Calculator</strong> transforms a stressful end-of-meal moment into a quick, accurate transaction. By automating the math behind gratuity and bill splitting, ToolfolioHub ensures that dining out remains a pleasant experience from appetizer to final calculation.
+        </p>
+        <p>
+          Whether you are a frequent diner, a traveler navigating foreign customs, or someone who just wants to avoid awkward math conversations, this tool provides the accuracy and ease you need. Bookmark it today and make every meal a stress-free experience.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -67,23 +336,48 @@
     const peopleCount = document.getElementById('peopleCount');
     const tipPerPerson = document.getElementById('tipPerPerson');
     const totalPerPerson = document.getElementById('totalPerPerson');
+    const summary = document.getElementById('summary');
+    const totalTipEl = document.getElementById('totalTip');
+    const grandTotalEl = document.getElementById('grandTotal');
 
-    document.getElementById('tipBtn').addEventListener('click', () => {
+    // Formatter
+    const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+
+    const calculate = () => {
       const bill = parseFloat(billAmount.value);
       const tip = parseFloat(tipPercent.value);
       const people = parseInt(peopleCount.value, 10);
-      if (isNaN(bill) || isNaN(tip) || isNaN(people) || people <= 0) {
-        tipPerPerson.textContent = totalPerPerson.textContent = 'Enter valid numbers.';
+
+      if (isNaN(bill) || isNaN(tip) || isNaN(people) || people <= 0 || bill < 0) {
+        tipPerPerson.innerHTML = '<span class="text-sm text-red-500 font-normal">Invalid input</span>';
+        totalPerPerson.innerHTML = '<span class="text-sm text-red-500 font-normal">Check numbers</span>';
+        summary.classList.add('hidden');
         return;
       }
+
       const totalTip = bill * (tip / 100);
+      const grandTotal = bill + totalTip;
+      
       const tipEach = totalTip / people;
-      const totalEach = (bill + totalTip) / people;
-      tipPerPerson.textContent = tipEach.toFixed(2);
-      totalPerPerson.textContent = totalEach.toFixed(2);
+      const totalEach = grandTotal / people;
+
+      tipPerPerson.textContent = fmt.format(tipEach);
+      totalPerPerson.textContent = fmt.format(totalEach);
+      
+      totalTipEl.textContent = fmt.format(totalTip);
+      grandTotalEl.textContent = fmt.format(grandTotal);
+      summary.classList.remove('hidden');
+    };
+
+    document.getElementById('tipBtn').addEventListener('click', calculate);
+    
+    // Allow Enter to submit
+    [billAmount, tipPercent, peopleCount].forEach(input => {
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') calculate();
+        });
     });
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

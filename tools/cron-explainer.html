@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cron Expression Explainer – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>Cron Explainer – Parse & Understand Cron Expressions | ToolfolioHub</title>
+  <meta name="description" content="Parse cron expressions and get human-readable explanations. See next run times and understand cron syntax easily." />
+  <meta name="keywords" content="cron explainer, cron parser, cron expression, cron schedule, cron syntax, scheduled tasks, developer tool, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cron Explainer – Cron Expression Parser" />
+  <meta property="og:description" content="Convert cryptic cron expressions into human-readable schedules. Perfect for understanding and debugging cron jobs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/cron-explainer" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -58,6 +69,149 @@
           <p class="text-muted-light dark:text-muted-dark">Explanation and next run times will appear here.</p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>Cron Explainer – Understand Cron Expressions</h2>
+        
+        <p class="lead">
+          Cron expressions are powerful but cryptic. Strings like `*/5 * * * *` or `0 9 * * 1-5` determine when scheduled tasks run, but they're not immediately intuitive. The <strong>Cron Expression Explainer</strong> by ToolfolioHub translates these cryptic expressions into human-readable descriptions and shows approximate next run times.
+        </p>
+        <p>
+          Whether you're setting up scheduled jobs, debugging cron tasks, or learning how cron expressions work, this tool helps you understand exactly when your tasks will execute.
+        </p>
+
+        <h2>What is Cron?</h2>
+        <p>
+          Cron is a time-based job scheduler in Unix-like operating systems. Cron expressions (or "cron jobs") define schedules using five fields representing minute, hour, day of month, month, and day of week. These expressions are used by:
+        </p>
+        <ul>
+          <li>Unix/Linux cron daemons</li>
+          <li>Cloud platforms (AWS EventBridge, Google Cloud Scheduler)</li>
+          <li>CI/CD systems (GitHub Actions, GitLab CI)</li>
+          <li>Task schedulers and automation tools</li>
+        </ul>
+        <p>
+          Understanding cron syntax is essential for scheduling automated tasks like backups, data processing, cleanup jobs, and scheduled reports.
+        </p>
+
+        <h2>Cron Expression Format</h2>
+        <p>
+          A standard cron expression has five fields, separated by spaces:
+        </p>
+        <pre><code>* * * * *
+│ │ │ │ │
+│ │ │ │ └─── Day of week (0-7, where 0 and 7 = Sunday)
+│ │ │ └───── Month (1-12)
+│ │ └─────── Day of month (1-31)
+│ └───────── Hour (0-23)
+└─────────── Minute (0-59)</code></pre>
+        <p>
+          Special characters add flexibility:
+        </p>
+        <ul>
+          <li><strong>*</strong>: Matches any value</li>
+          <li><strong>,</strong>: Separates list values (e.g., `1,3,5`)</li>
+          <li><strong>-</strong>: Specifies ranges (e.g., `1-5`)</li>
+          <li><strong>/</strong>: Specifies step values (e.g., `*/5` = every 5 units)</li>
+        </ul>
+
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Human-Readable Explanations</h3>
+        <p>
+          Convert cryptic cron expressions into plain English descriptions like "Every 5 minutes" or "Weekdays at 9 AM".
+        </p>
+
+        <h3>2. Next Run Times</h3>
+        <p>
+          See approximate next run times for your cron expression, helping you verify schedules before deploying.
+        </p>
+
+        <h3>3. Common Examples</h3>
+        <p>
+          Quick access to common cron patterns:
+        </p>
+        <ul>
+          <li>Every 5 minutes: `*/5 * * * *`</li>
+          <li>Every hour: `0 * * * *`</li>
+          <li>Daily at midnight: `0 0 * * *`</li>
+          <li>Weekdays at 9 AM: `0 9 * * 1-5`</li>
+          <li>Monthly on 1st: `0 0 1 * *`</li>
+        </ul>
+
+        <h3>4. Field-by-Field Breakdown</h3>
+        <p>
+          Understand what each field in the expression means and how they combine to create the schedule.
+        </p>
+
+        <h2>How to Use the Cron Explainer</h2>
+        <ol>
+          <li><strong>Enter Cron Expression:</strong> Type a cron expression (e.g., `*/5 * * * *`) into the input field.</li>
+          <li><strong>Use Examples (Optional):</strong> Click a common example button to quickly test patterns.</li>
+          <li><strong>Explain:</strong> Click "Explain Cron Expression" to get the human-readable description.</li>
+          <li><strong>Review:</strong> Read the explanation and check next run times to verify the schedule.</li>
+        </ol>
+
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>DevOps Engineers</h3>
+        <p>
+          DevOps engineers use this tool to:
+        </p>
+        <ul>
+          <li>Verify cron job schedules before deployment.</li>
+          <li>Debug scheduling issues.</li>
+          <li>Document cron expressions for team members.</li>
+        </ul>
+
+        <h3>Developers</h3>
+        <p>
+          Developers use this tool to:
+        </p>
+        <ul>
+          <li>Set up scheduled tasks in applications.</li>
+          <li>Understand cron expressions in existing codebases.</li>
+          <li>Create correct schedules for background jobs.</li>
+        </ul>
+
+        <h2>Common Cron Patterns</h2>
+        <ul>
+          <li><strong>Every minute:</strong> `* * * * *`</li>
+          <li><strong>Every 5 minutes:</strong> `*/5 * * * *`</li>
+          <li><strong>Every hour:</strong> `0 * * * *`</li>
+          <li><strong>Daily at midnight:</strong> `0 0 * * *`</li>
+          <li><strong>Daily at 9 AM:</strong> `0 9 * * *`</li>
+          <li><strong>Weekdays at 9 AM:</strong> `0 9 * * 1-5`</li>
+          <li><strong>Monthly on 1st:</strong> `0 0 1 * *`</li>
+          <li><strong>Weekly on Monday:</strong> `0 0 * * 1`</li>
+        </ul>
+
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Test First:</strong> Use this tool to verify cron expressions before deploying.</li>
+          <li><strong>Be Specific:</strong> Avoid overly frequent schedules that may cause performance issues.</li>
+          <li><strong>Document:</strong> Add comments explaining complex cron expressions in your code.</li>
+          <li><strong>Consider Time Zones:</strong> Be aware that cron uses the server's time zone.</li>
+        </ul>
+
+        <h2>Get Started Now</h2>
+        <p>
+          Enter a cron expression above or click a common example to see how it translates to human-readable text.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Cron Expression Explainer</strong> makes cron scheduling accessible and understandable. By translating cryptic expressions into clear descriptions, it helps developers and DevOps engineers create, verify, and maintain scheduled tasks with confidence.
+        </p>
+      </article>
     </main>
   </div>
 

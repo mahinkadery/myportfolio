@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Age Calculator – toolfoliohub</title>
+  
+  <!-- SEO Metadata -->
+  <title>Age Calculator – Calculate Your Exact Age Online</title>
+  <meta name="description" content="Find out exactly how old you are in years, months, days, and even minutes. Enter your date of birth for an instant calculation. Free and private." />
+  <meta name="keywords" content="age calculator, calculate age, date of birth calculator, how old am i, chronological age, birthday calculator, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Age Calculator – How Old Are You?" />
+  <meta property="og:description" content="Calculate your exact age in years, months, and days instantly." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/age-calculator" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:640px;margin:0 auto;}</style>
+  <style>
+    .tool-shell{max-width:640px;margin:0 auto;}
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,21 +53,288 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Calculator</p>
           <h1 class="mt-2 text-3xl font-bold">Age Calculator</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Enter your birthdate to see the age in years, months, and days.</p>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Enter your date of birth to see your precise age.</p>
         </div>
 
-        <input type="date" id="dobInput" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-        <button id="ageBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Calculate Age</button>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex-1">
+                <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark mb-1 block">Date of Birth</label>
+                <input type="date" id="dobInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+            </div>
+            <button id="ageBtn" class="rounded-full bg-primary text-white px-8 py-3 text-sm font-semibold hover:brightness-110 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5 sm:self-end">Calculate</button>
+        </div>
 
-        <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-5 space-y-2">
-          <p id="ageResult" class="text-lg font-semibold">Age: —</p>
-          <p id="ageDetail" class="text-sm text-muted-light dark:text-muted-dark">Details: —</p>
+        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4 border border-white/20 dark:border-white/10 text-center">
+          <div>
+              <p class="text-xs uppercase tracking-widest text-muted-light dark:text-muted-dark font-bold mb-1">You are</p>
+              <p id="ageResult" class="text-4xl font-bold text-primary">—</p>
+          </div>
+          <div class="border-t border-white/20 dark:border-white/5 pt-4">
+              <p class="text-xs uppercase tracking-widest text-muted-light dark:text-muted-dark font-bold mb-1">Full Breakdown</p>
+              <p id="ageDetail" class="text-lg font-medium text-text-light dark:text-text-dark">—</p>
+          </div>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Age Calculator – Discover Your Exact Age in Years, Months & Days</h2>
+        
+        <!-- 3. Introduction -->
+        <p class="lead">
+          "I'm 25 years old" sounds simple, but do you know exactly how many days you've been alive? Or how many months until your next milestone birthday? Age isn't just a number—it's a precise measurement of time that can be broken down into years, months, weeks, and even days.
+        </p>
+        <p>
+          Calculating your exact age manually is surprisingly complex. Months have different lengths (28, 29, 30, or 31 days), leap years add an extra day every four years, and determining precise age requires accounting for whether your birthday has occurred this year. The <strong>Age Calculator</strong> by ToolfolioHub handles all this complexity instantly, giving you an accurate chronological breakdown of your life.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is an Age Calculator?</h2>
+        <p>
+          An age calculator is a date-based utility that computes the time difference between a specific start date (typically your date of birth) and today's date. It breaks down the difference into meaningful units: years, months, and days.
+        </p>
+        <p>
+          Unlike simply subtracting years (which doesn't account for whether your birthday has passed this year), an age calculator:
+        </p>
+        <ul>
+          <li>Calculates the exact number of full years that have elapsed.</li>
+          <li>Determines remaining months within the current year.</li>
+          <li>Counts the exact number of days since the last month anniversary.</li>
+        </ul>
+        <p>
+          This precision is essential for legal requirements (age verification), milestone tracking (10,000 days alive!), and personal curiosity about your chronological journey through life.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Calendar-Accurate Calculation</h3>
+        <p>
+          Our calculator doesn't estimate or round—it performs precise calendar calculations:
+        </p>
+        <ul>
+          <li><strong>Accounts for Leap Years:</strong> Correctly includes February 29th when calculating age spans that cross leap years (2000, 2004, 2008, 2012, 2016, 2020, 2024, etc.).</li>
+          <li><strong>Handles Month Length Variations:</strong> Recognizes that months have 28, 29, 30, or 31 days and calculates accordingly.</li>
+          <li><strong>Precise Day Counting:</strong> Determines exactly how many days have passed since your last month anniversary, down to the day.</li>
+        </ul>
+
+        <h3>2. Comprehensive Age Breakdown</h3>
+        <p>
+          Instead of just "25 years old," you get a complete breakdown:
+        </p>
+        <ul>
+          <li><strong>Total Age:</strong> "25 years old" (quick reference).</li>
+          <li><strong>Full Breakdown:</strong> "25 years, 3 months, and 12 days" (detailed precision).</li>
+        </ul>
+        <p>
+          This detailed breakdown is perfect for:
+        </p>
+        <ul>
+          <li>Celebrating unique milestones (like "exactly 10,000 days old").</li>
+          <li>Tracking progress toward age-related goals.</li>
+          <li>Satisfying curiosity about your precise chronological age.</li>
+        </ul>
+
+        <h3>3. Privacy-First Design</h3>
+        <p>
+          Your date of birth is sensitive personal information. Our calculator:
+        </p>
+        <ul>
+          <li><strong>Runs Locally:</strong> All calculations happen in your browser—nothing is sent to any server.</li>
+          <li><strong>No Data Storage:</strong> We never save, store, or transmit your birth date.</li>
+          <li><strong>No Tracking:</strong> No cookies, no analytics tracking of your personal data.</li>
+        </ul>
+        <p>
+          You can use this tool with complete confidence that your private information remains private.
+        </p>
+
+        <h3>4. Simple, Intuitive Interface</h3>
+        <p>
+          The tool uses a standard date picker that works on all devices:
+        </p>
+        <ul>
+          <li><strong>Desktop:</strong> Click the calendar icon to open a visual date picker.</li>
+          <li><strong>Mobile:</strong> Native date picker opens, making date selection quick and easy.</li>
+          <li><strong>Keyboard-Friendly:</strong> Type dates manually in YYYY-MM-DD format if preferred.</li>
+        </ul>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Age Calculator</h2>
+        <p>
+          Calculating your age is a simple two-step process:
+        </p>
+        <ol>
+          <li><strong>Select Your Date of Birth:</strong>
+            <ul>
+              <li>Click on the "Date of Birth" input field.</li>
+              <li>A calendar picker will appear (or your device's native date picker on mobile).</li>
+              <li>Navigate to your birth year and select your birth date.</li>
+              <li>Alternatively, you can type the date manually in YYYY-MM-DD format.</li>
+            </ul>
+          </li>
+          <li><strong>Click "Calculate":</strong>
+            <ul>
+              <li>Your precise age appears instantly in the result box.</li>
+              <li>You'll see both your age in years and the detailed breakdown (years, months, days).</li>
+            </ul>
+          </li>
+        </ol>
+        <p>
+          <strong>Example:</strong>
+          <br>If your birthday is March 15, 1995, and today is June 27, 2024:
+          <br>1. Select "1995-03-15" in the date picker.
+          <br>2. Click Calculate.
+          <br>3. Result: "29 years old" with full breakdown showing "29 years, 3 months, 12 days"
+        </p>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Personal Milestone Tracking</h3>
+        <p>
+          Many people celebrate unique age milestones:
+        </p>
+        <ul>
+          <li><strong>10,000 Days:</strong> You've been alive for exactly 10,000 days (happens around age 27).</li>
+          <li><strong>18,250 Days:</strong> Exactly 50 years of life (50 × 365 days, plus leap years).</li>
+          <li><strong>Quarter-Century:</strong> Calculating exactly how many days until you turn 25, 30, 40, etc.</li>
+        </ul>
+        <p>
+          Our calculator helps you find these exact dates for celebration planning.
+        </p>
+
+        <h3>HR & Administrative Professionals</h3>
+        <p>
+          Human resources departments often need precise age calculations for:
+        </p>
+        <ul>
+          <li><strong>Eligibility Verification:</strong> Confirming if an applicant meets minimum/maximum age requirements for positions or programs.</li>
+          <li><strong>Benefits Administration:</strong> Determining age-based benefits eligibility (senior discounts, retirement plans, etc.).</li>
+          <li><strong>Legal Compliance:</strong> Verifying age for employment law requirements (minimum working age, etc.).</li>
+        </ul>
+
+        <h3>Event Planning & Special Occasions</h3>
+        <p>
+          Event planners and individuals planning celebrations use age calculations for:
+        </p>
+        <ul>
+          <li><strong>Birthday Parties:</strong> Ensuring you celebrate on the exact day or confirming someone's precise age for party themes.</li>
+          <li><strong>Anniversaries:</strong> Calculating how long a couple has been married (enter anniversary date instead of birth date).</li>
+          <li><strong>Relationship Milestones:</strong> Finding out exactly how long you've been together.</li>
+        </ul>
+
+        <h3>Legal & Government Applications</h3>
+        <p>
+          Age verification is critical for:
+        </p>
+        <ul>
+          <li><strong>Driving License Eligibility:</strong> Verifying if someone meets the minimum age requirement.</li>
+          <li><strong>Voting Eligibility:</strong> Confirming age for voter registration (typically 18+ in most countries).</li>
+          <li><strong>Age-Based Regulations:</strong> Various legal requirements depend on precise age calculations.</li>
+        </ul>
+
+        <h3>Educational Use</h3>
+        <p>
+          Students and educators use age calculators for:
+        </p>
+        <ul>
+          <li><strong>Math Problems:</strong> Date arithmetic and calendar calculations.</li>
+          <li><strong>History Projects:</strong> Calculating how old historical figures were at specific events.</li>
+          <li><strong>Science Projects:</strong> Age-related data analysis and statistics.</li>
+        </ul>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Complete Privacy:</strong> Unlike many online age calculators that may log your data, ours runs entirely locally in your browser with zero data transmission.</li>
+          <li><strong>Leap Year Accuracy:</strong> Many simple calculators ignore leap years, leading to inaccurate results. Ours accounts for every leap year correctly.</li>
+          <li><strong>Detailed Breakdown:</strong> Instead of just showing years, we break it down into years, months, and days for complete precision.</li>
+          <li><strong>No Signup Required:</strong> Use it instantly without creating an account or providing an email address.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>How does the calculator handle leap years?</h3>
+        <p>
+          <strong>Perfectly!</strong> Leap years occur every 4 years (with some exceptions for century years). Our calculator correctly accounts for February 29th in all leap years. For example, if you were born on February 28, 2000 (a leap year), and today is February 29, 2024 (another leap year), the calculator correctly includes that extra day in its calculations.
+        </p>
+        <p>
+          <strong>Recent leap years include:</strong> 2000, 2004, 2008, 2012, 2016, 2020, 2024, 2028, etc.
+        </p>
+
+        <h3>Can I calculate someone's age on a specific past or future date?</h3>
+        <p>
+          Currently, our calculator compares the input date to <strong>today's date</strong>. However, you can:
+        </p>
+        <ul>
+          <li><strong>Calculate Past Ages:</strong> Enter a past birth date to see how old someone is today.</li>
+          <li><strong>Historical Calculations:</strong> To find someone's age on a specific past date, you would need to manually adjust for the time difference, or use the tool multiple times (though this feature may be added in future updates).</li>
+        </ul>
+        <p>
+          For future date calculations, the tool will indicate if the birth date is in the future (which would be an error).
+        </p>
+
+        <h3>Does the calculator account for time zones?</h3>
+        <p>
+          Our calculator uses UTC (Coordinated Universal Time) for date calculations to avoid timezone-related discrepancies. This ensures that someone born at 11:30 PM in one timezone and someone born at 1:30 AM the next day in another timezone will have their ages calculated based on the calendar date, not the exact time.
+        </p>
+        <p>
+          For most practical purposes (birthday celebrations, age verification, etc.), this date-based approach is exactly what you need.
+        </p>
+
+        <h3>Why does my age show "X years, Y months, Z days" instead of just years?</h3>
+        <p>
+          We provide both formats for maximum usefulness:
+        </p>
+        <ul>
+          <li><strong>"X years old":</strong> Quick reference for your age in years.</li>
+          <li><strong>"X years, Y months, Z days":</strong> Precise breakdown for exact chronological age.</li>
+        </ul>
+        <p>
+          The detailed breakdown is valuable for milestone tracking (e.g., "I've been alive for exactly 10,000 days"), precise age verification, and personal curiosity.
+        </p>
+
+        <h3>Can I use this to calculate my pet's age?</h3>
+        <p>
+          <strong>Yes, for chronological age!</strong> Enter your pet's birth date (or approximate birth date) and you'll get their exact chronological age in years, months, and days.
+        </p>
+        <p>
+          <strong>Note:</strong> Converting pet age to "human years" requires a different calculation (dogs age faster in their first year, then the ratio changes). Our tool shows the actual chronological age, which you can then convert using pet-specific formulas if desired.
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Use for Milestone Planning:</strong> Calculate exactly when you'll hit interesting milestones like 10,000 days old, or your 25th birthday down to the hour (by calculating days remaining).</li>
+          <li><strong>Verify Important Dates:</strong> For legal or administrative purposes, always verify the calculated age matches official records to ensure accuracy.</li>
+          <li><strong>Celebrate Unique Ages:</strong> Find out exactly how many days old you are—many people celebrate these unique chronological milestones!</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Ready to discover your precise age? Enter your date of birth above and get an instant, accurate calculation. It's free, private, and takes just seconds.
+        </p>
+        <p>
+          Need to calculate other date-related information? Check out our full suite of <a href="/tools">date and time tools</a>.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Age Calculator</strong> transforms a seemingly simple question—"How old am I?"—into a precise, detailed answer. By accounting for leap years, variable month lengths, and exact day counting, it provides accuracy that manual calculations can't match.
+        </p>
+        <p>
+          Whether you're planning a milestone celebration, verifying age for legal purposes, or simply satisfying curiosity about your chronological journey, this tool delivers instant, accurate results with complete privacy. ToolfolioHub is committed to providing free, high-quality utilities that make everyday calculations simple and secure.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -58,30 +346,43 @@
     document.getElementById('ageBtn').addEventListener('click', () => {
       const dob = dobInput.valueAsDate;
       if (!dob) {
-        ageResult.textContent = 'Age: please pick a date.';
-        ageDetail.textContent = 'Details: —';
+        ageResult.innerHTML = '<span class="text-sm text-red-500 font-normal">Please pick a date.</span>';
+        ageDetail.textContent = '—';
         return;
       }
+      
+      // Use UTC to avoid timezone shifts affecting the date
       const today = new Date();
-      let years = today.getFullYear() - dob.getFullYear();
-      let months = today.getMonth() - dob.getMonth();
-      let days = today.getDate() - dob.getDate();
+      const birthDate = new Date(dob.getUTCFullYear(), dob.getUTCMonth(), dob.getUTCDate());
+      
+      // Calculate age
+      let years = today.getFullYear() - birthDate.getFullYear();
+      let months = today.getMonth() - birthDate.getMonth();
+      let days = today.getDate() - birthDate.getDate();
 
+      // Adjust if month/day is negative (birthday hasn't happened yet this year/month)
       if (days < 0) {
-        months -= 1;
-        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        months--;
+        // Get days in previous month
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0); 
         days += prevMonth.getDate();
       }
+      
       if (months < 0) {
-        years -= 1;
+        years--;
         months += 12;
       }
+      
+      if (years < 0) {
+         ageResult.innerHTML = '<span class="text-sm text-red-500 font-normal">Date is in the future!</span>';
+         ageDetail.textContent = '—';
+         return;
+      }
 
-      ageResult.textContent = `Age: ${years} years`;
-      ageDetail.textContent = `Details: ${years} years, ${months} months, ${days} days`;
+      ageResult.textContent = `${years} years old`;
+      ageDetail.textContent = `${years} years, ${months} months, ${days} days`;
     });
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

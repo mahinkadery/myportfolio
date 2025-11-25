@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JSON Path Tester – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>JSON Path Tester – Test JSONPath & Dot Notation | ToolfolioHub</title>
+  <meta name="description" content="Test JSONPath expressions and dot notation on JSON data. Extract values from nested JSON structures. Free JSON path testing tool." />
+  <meta name="keywords" content="json path, jsonpath tester, dot notation, json query, json extractor, json path tool, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="JSON Path Tester – Query JSON with Path Expressions" />
+  <meta property="og:description" content="Test JSONPath and dot notation to extract values from JSON. Perfect for API testing." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/json-path-tester" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -61,6 +72,70 @@
           <p class="text-muted-light dark:text-muted-dark">Matched values will appear here.</p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>JSON Path Tester – Query JSON with Path Expressions</h2>
+        
+        <p class="lead">
+          Extracting specific values from complex, nested JSON structures can be challenging. JSONPath is a query language (similar to XPath for XML) that allows you to navigate and extract data from JSON. The <strong>JSON Path Tester</strong> by ToolfolioHub lets you test JSONPath expressions and dot notation on JSON data, making it easy to query and extract values from nested structures.
+        </p>
+        <p>
+          Whether you're working with API responses, configuration files, or complex data structures, this tool helps you write and test JSONPath expressions before implementing them in your code.
+        </p>
+
+        <h2>What is JSONPath?</h2>
+        <p>
+          JSONPath is a query language for JSON that allows you to:
+        </p>
+        <ul>
+          <li><strong>Navigate Structures:</strong> Access nested objects and arrays</li>
+          <li><strong>Extract Values:</strong> Get specific fields or collections</li>
+          <li><strong>Filter Data:</strong> Find items matching conditions</li>
+          <li><strong>Query Complex Data:</strong> Handle deeply nested structures</li>
+        </ul>
+
+        <h2>Supported Path Formats</h2>
+        
+        <h3>Dot Notation</h3>
+        <p>
+          Simple property access:
+        </p>
+        <ul>
+          <li>`users.0.name` - First user's name</li>
+          <li>`data.config.theme` - Nested property access</li>
+        </ul>
+
+        <h3>JSONPath Format</h3>
+        <p>
+          Standard JSONPath syntax:
+        </p>
+        <ul>
+          <li>`$.users[0].name` - First user's name (with $ root)</li>
+          <li>`$.users[*].name` - All users' names (wildcard)</li>
+          <li>`$.data.items[0]` - First item in array</li>
+        </ul>
+
+        <h2>Use-Cases</h2>
+        <ul>
+          <li><strong>API Testing:</strong> Extract specific fields from API responses</li>
+          <li><strong>Data Transformation:</strong> Query JSON before transforming</li>
+          <li><strong>Debugging:</strong> Quickly find values in large JSON structures</li>
+          <li><strong>Documentation:</strong> Demonstrate JSON structure navigation</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>JSON Path Tester</strong> simplifies querying JSON data with path expressions. By supporting both dot notation and JSONPath syntax, it's perfect for developers working with complex JSON structures and APIs.
+        </p>
+      </article>
     </main>
   </div>
 

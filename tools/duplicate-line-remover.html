@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Duplicate Line Remover – toolfoliohub</title>
+  
+  <!-- 1. SEO Metadata -->
+  <title>Duplicate Line Remover – Remove Duplicate Text Lines Online | ToolfolioHub</title>
+  <meta name="description" content="Instantly remove duplicate lines from text lists. Preserve original order, ignore case sensitive duplicates, and clean up data sets for free. Ideal for emails and logs." />
+  <meta name="keywords" content="duplicate line remover, remove duplicates from list, deduplicate text, unique line extractor, list cleaner, remove duplicate emails, clean csv online, toolfoliohub, text dedup" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Duplicate Line Remover – Deduplicate Lists Instantly" />
+  <meta property="og:description" content="Clean up email lists, data sets, and text files by removing duplicate entries in seconds. Free, secure, and preserves list order." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/duplicate-line-remover" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+  <style>
+    .tool-shell { max-width: 960px; margin: 0 auto; }
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,22 +53,160 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
-          <h1 class="mt-2 text-3xl font-bold">Duplicate Line Remover</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Paste multi-line text—duplicate lines are removed while preserving order.</p>
+          <h1 class="mt-2 text-3xl font-bold">Duplicate Line Remover – Deduplicate Your Lists</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Paste a list below to instantly find and remove duplicate entries.</p>
         </div>
 
-        <textarea id="dupInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px]" placeholder="Line 1&#10;Line 2&#10;Line 1"></textarea>
-        <div class="flex items-center justify-between flex-wrap gap-3">
-          <label class="flex items-center gap-2 text-sm">
-            <input type="checkbox" id="ignoreCase"> Ignore case differences
+        <textarea id="dupInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px] focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Paste your list here...&#10;Example:&#10;Apple&#10;Banana&#10;Apple (duplicate)&#10;Orange"></textarea>
+        
+        <div class="flex items-center justify-between flex-wrap gap-3 border-b border-white/20 dark:border-white/10 pb-4">
+          <label class="flex items-center gap-2 text-sm cursor-pointer bg-white/50 dark:bg-white/5 px-4 py-2 rounded-full hover:bg-white/80 dark:hover:bg-white/10 transition-colors">
+            <input type="checkbox" id="ignoreCase" class="rounded border-gray-300 text-primary focus:ring-primary"> 
+            <span class="font-medium text-text-light dark:text-text-dark">Ignore case (e.g., "Apple" == "apple")</span>
           </label>
-          <button id="removeBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Remove duplicates</button>
+          <button id="removeBtn" class="rounded-full bg-primary text-white px-8 py-2 text-sm font-semibold hover:brightness-110 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5">Remove Duplicates</button>
         </div>
-        <textarea id="dupOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[200px]" placeholder="Unique lines appear here"></textarea>
+
+        <div>
+            <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark mb-2">Clean List (Unique Items)</p>
+            <textarea id="dupOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[200px] focus:ring-2 focus:ring-primary/50 outline-none transition-all font-mono text-sm" placeholder="Your clean, unique list will appear here..."></textarea>
+        </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 for content flow -->
+        <h2>Duplicate Line Remover – The Fastest Way to Clean Lists & Data</h2>
+        
+        <!-- 3. Introduction -->
+        <p class="lead">
+          Managing data lists can be a logistical headache. Whether you are compiling an email subscriber list, analyzing server logs for errors, or organizing keywords for an SEO campaign, duplicate entries inevitably sneak in. These duplicates clutter your data, skew your analytics, and waste your time.
+        </p>
+        <p>
+          The <strong>Duplicate Line Remover</strong> by ToolfolioHub scrubs your text clean in an instant. It ensures every entry in your list is unique, allowing you to work with accurate, high-quality data. Forget about complex Excel formulas or manual scanning—just paste, click, and copy.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is the Duplicate Line Remover?</h2>
+        <p>
+          This is a specialized text processing utility designed to "deduplicate" (remove duplicates from) a list. It scans your input text line by line, keeping track of every unique entry it encounters. If it sees a line that has already appeared, it discards it.
+        </p>
+        <p>
+          The result is a streamlined list containing only the first instance of each item. This is essential for database hygiene, email marketing compliance, and general organization.
+        </p>
+
+        <!-- 5. Key Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Order Preservation</h3>
+        <p>
+          Many deduplication tools force you to sort your list alphabetically to find duplicates. Ours does not. We respect your data's integrity.
+        </p>
+        <p>
+          <strong>Example:</strong> If your list is ["Banana", "Apple", "Banana", "Carrot"], our tool returns ["Banana", "Apple", "Carrot"]. The original order of the first occurrences remains untouched.
+        </p>
+
+        <h3>2. Case Insensitivity Option</h3>
+        <p>
+          Data is often messy. "User@Example.com" and "user@example.com" are technically different strings, but usually represent the same email address.
+        </p>
+        <p>
+          By checking the <strong>"Ignore Case"</strong> option, you tell the tool to treat these as identical. This smart filtering prevents "near-duplicates" from slipping through the cracks.
+        </p>
+
+        <h3>3. Lightning Fast Processing</h3>
+        <p>
+          Processing a list with 10,000 lines? No problem. Our efficient JavaScript algorithm handles large datasets smoothly right in your browser, without the lag of uploading files to a server.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Duplicate Remover</h2>
+        <p>
+          Cleaning your data is a simple 4-step process:
+        </p>
+        <ol>
+          <li><strong>Paste Your List:</strong> Copy your column from Excel, a text file, or a website and paste it into the top input box.</li>
+          <li><strong>Configure Options:</strong> Tick the <strong>"Ignore Case"</strong> box if you want capitalization to be ignored when checking for uniqueness.</li>
+          <li><strong>Click "Remove Duplicates":</strong> The tool instantly processes your list.</li>
+          <li><strong>Copy the Result:</strong> The bottom box now contains your clean list. Click inside and copy it to your clipboard.</li>
+        </ol>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Marketers & Sales Teams</h3>
+        <p>
+          Merging lead lists from multiple sources (e.g., LinkedIn, conference signups, website forms) often results in duplicate emails. Sending the same marketing email twice to the same person looks unprofessional and increases spam complaints. Use this tool to ensure your mailing list is 100% unique before you hit send.
+        </p>
+
+        <h3>Software Developers</h3>
+        <p>
+          When analyzing server logs, you might see the same error message repeated thousands of times. This noise makes it hard to see the big picture. Paste the log file here to reduce it to a list of <em>unique</em> error types, making debugging significantly faster.
+        </p>
+
+        <h3>SEO Specialists</h3>
+        <p>
+          Building a master keyword strategy often involves exporting lists from Google Search Console, Ahrefs, and SEMrush. Combine them all into one giant text block and run them through the Duplicate Line Remover to get a definitive, non-repetitive set of target keywords.
+        </p>
+
+        <h3>Event Planners</h3>
+        <p>
+          Managing guest lists? Ensure you haven't accidentally invited "John Smith" twice just because he registered via two different forms.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Privacy & Security:</strong> Your customer lists, emails, and proprietary data never leave your computer. It is safer than uploading a CSV to a cloud-based tool where you don't know who can see it.</li>
+          <li><strong>No "Excel Hell":</strong> removing duplicates in Excel involves navigating ribbons, selecting columns, and dealing with potential freezing. Here, it's one click.</li>
+          <li><strong>Free Forever:</strong> No subscriptions, no limits on list size.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Does it remove blank lines?</h3>
+        <p>
+          The tool treats a blank line as a "line". This means the first blank line is kept, and all subsequent blank lines are removed (because they are duplicates of the first one). If you want to remove <em>all</em> blank lines, we recommend running your list through our <a href="/tools/whitespace-cleaner">Whitespace Cleaner</a> first.
+        </p>
+
+        <h3>Can I paste CSV data?</h3>
+        <p>
+          Yes, but remember that the tool treats each <em>row</em> (line) as a single item. It does not look at individual cells within a row. If two rows are identical, one gets removed. If they differ by even one character (e.g., a timestamp), they are both kept.
+        </p>
+
+        <h3>Will this sort my list?</h3>
+        <p>
+          No. As mentioned in the features section, we preserve your original order. If you need an alphabetized list, you can easily sort it in your spreadsheet software after cleaning it here.
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Clean First, Then Sort:</strong> If you plan to alphabetize your list, remove duplicates first. Sorting a smaller list is faster and easier to visually verify.</li>
+          <li><strong>Verify Case Sensitivity:</strong> For things like usernames or emails, it is usually safer to use "Ignore Case". For passwords, product codes, or case-sensitive IDs, keep it unchecked to be safe.</li>
+          <li><strong>Combine Tools:</strong> Use the <a href="/tools/case-converter">Case Converter</a> to normalize your list (e.g., make everything lowercase) <em>before</em> removing duplicates for the most aggressive cleaning.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Stop wasting time hunting for duplicates manually. Paste your list above and get a clean version in milliseconds.
+        </p>
+        <p>
+          Need to clean up the formatting of your unique list? Check out the <a href="/tools/whitespace-cleaner">Whitespace Cleaner</a> next.
+        </p>
+        
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Duplicate Line Remover</strong> is an essential utility for anyone who works with lists. By automating the deduplication process, ToolfolioHub helps you maintain clean, reliable data without the hassle. Bookmark this page and keep your data distinct.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -62,7 +221,11 @@
       const unique = [];
 
       lines.forEach(line => {
+        // If ignoreCase is checked, we track the lowercase version in the Set
+        // but we push the ORIGINAL line to the unique array (first occurrence wins)
         const key = ignoreCase.checked ? line.toLowerCase() : line;
+        
+        // Simple logic: checking strict equality based on key
         if (!seen.has(key)) {
           seen.add(key);
           unique.push(line);
@@ -75,4 +238,3 @@
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

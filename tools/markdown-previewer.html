@@ -3,19 +3,52 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Markdown Previewer – toolfoliohub</title>
+  
+  <!-- 1. SEO Metadata -->
+  <title>Markdown Previewer – Free Online Markdown Editor & Viewer | ToolfolioHub</title>
+  <meta name="description" content="Write Markdown and see a real-time HTML preview instantly. A free online Markdown editor with live rendering, perfect for READMEs, blogs, and notes." />
+  <meta name="keywords" content="markdown previewer, markdown editor online, markdown to html, live markdown, readme editor, github markdown, web markdown tool, toolfoliohub, md viewer" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Markdown Previewer – Live HTML Editor" />
+  <meta property="og:description" content="Draft, edit, and preview Markdown in real-time. The fastest way to write READMEs and docs online." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/markdown-previewer" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <style>
-    .tool-shell{max-width:1200px;margin:0 auto;}
-    .preview-box{min-height:300px;border:1px solid rgba(255,255,255,0.2);border-radius:1.5rem;padding:1.5rem;background:rgba(255,255,255,0.75);}
+    .tool-shell { max-width: 1200px; margin: 0 auto; }
+    .preview-box {
+      min-height: 400px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.75);
+    }
+    .dark .preview-box {
+      background: rgba(30, 30, 30, 0.6);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    /* Prose tweaks */
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+    .dark .prose code { color: #e2e8f0; background-color: #1e293b; padding: 0.2em 0.4em; border-radius: 0.25rem; }
+    .dark .prose pre { background-color: #1e293b; }
+    .dark .prose blockquote { border-left-color: #4b5563; color: #9ca3af; }
   </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
@@ -35,18 +68,161 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
-          <h1 class="mt-2 text-3xl font-bold">Markdown → HTML Previewer</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Live preview markdown on the right while typing on the left.</p>
+          <h1 class="mt-2 text-3xl font-bold">Markdown Previewer – Live Editor</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Type Markdown on the left, see the rendered HTML preview on the right instantly.</p>
         </div>
 
-        <div class="grid gap-6 lg:grid-cols-2">
-          <textarea id="mdInput" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[320px]" placeholder="# Hello World&#10;Write Markdown here..."></textarea>
-          <div id="mdPreview" class="preview-box prose prose-slate dark:prose-invert max-w-none bg-white/70 dark:bg-background-dark/70"></div>
+        <div class="grid gap-6 lg:grid-cols-2 h-[600px]">
+          <div class="flex flex-col h-full">
+             <label class="mb-2 text-sm font-bold text-muted-light dark:text-muted-dark ml-1">Markdown Input</label>
+             <textarea id="mdInput" class="flex-1 w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 resize-none focus:ring-2 focus:ring-primary outline-none transition-all font-mono text-sm leading-relaxed" placeholder="# Hello World&#10;&#10;Start typing here..."></textarea>
+          </div>
+          <div class="flex flex-col h-full">
+             <label class="mb-2 text-sm font-bold text-muted-light dark:text-muted-dark ml-1">Live Preview</label>
+             <div id="mdPreview" class="flex-1 w-full preview-box prose prose-slate dark:prose-invert overflow-y-auto shadow-inner custom-scrollbar"></div>
+          </div>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Markdown Previewer – The Real-Time Editor for GitHub & Web</h2>
+        
+        <!-- 3. Intro -->
+        <p class="lead">
+          Markdown has quietly become the universal language of the internet. From README files on GitHub and documentation on Notion to messages on Discord and Slack, this lightweight syntax is everywhere. But writing it without seeing the final result can be tricky.
+        </p>
+        <p>
+          The <strong>Markdown Previewer</strong> by ToolfolioHub solves this problem by giving you a powerful split-screen editor. On one side, you write your raw code. On the other, you see the beautiful, rendered HTML instantly. No compiling, no saving, just live creation.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is Markdown?</h2>
+        <p>
+          Markdown is a markup language created by John Gruber in 2004. Unlike bulky word processors (like Microsoft Word) that hide formatting behind menus, Markdown uses simple plain-text characters to format words.
+        </p>
+        <p>
+          For example, wrapping a word in `**asterisks**` makes it <strong>bold</strong>. Starting a line with `#` makes it a Heading. Because it is just plain text, it is portable, clean, and works on any device or operating system in the world.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Live Real-Time Rendering</h3>
+        <p>
+          Speed is creativity's best friend. Our tool renders your changes the millisecond you type them. This immediate feedback loop allows you to experiment with formatting, fix broken links, and adjust table layouts without breaking your flow.
+        </p>
+
+        <h3>2. GitHub Flavored Markdown (GFM)</h3>
+        <p>
+          We support the standard syntax you are used to. Whether you are writing a `code block` with backticks or creating a bulleted list, our previewer renders it exactly how it will appear on platforms like GitHub.
+        </p>
+
+        <h3>3. Browser-Based Privacy</h3>
+        <p>
+          Your drafts are your own. We do not store your text on our servers. You can draft sensitive internal documentation or personal notes here knowing that once you close the tab, the data is wiped from memory.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Previewer</h2>
+        <ol>
+          <li><strong>Write in the Left Pane:</strong> Click into the "Markdown Input" box and start typing. Try `# Hello World` to see a header.</li>
+          <li><strong>Watch the Right Pane:</strong> The "Live Preview" box updates instantly to show the rendered HTML.</li>
+          <li><strong>Copy Your Work:</strong>
+            <ul>
+              <li>Copy from the <strong>Left</strong> if you need the raw Markdown code (for GitHub/Reddit).</li>
+              <li>Copy from the <strong>Right</strong> if you want to paste rich text into an email or document.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Developers</h3>
+        <p>
+          The `README.md` file is the face of your project. Use our tool to draft it perfectly. Check that your code blocks are highlighted and your images load correctly before you commit your changes to Git.
+        </p>
+
+        <h3>Writers & Bloggers</h3>
+        <p>
+          Many modern Content Management Systems (CMS) like Ghost, Hugo, and Jekyll use Markdown. Use ToolfolioHub as a distraction-free writing environment. The clean interface helps you focus on words, not widgets.
+        </p>
+
+        <h3>Students & Note-Takers</h3>
+        <p>
+          Markdown is the fastest way to take structured notes during a lecture. You can create headers, lists, and bold key terms without ever lifting your hands from the keyboard to touch a mouse.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Instant Load:</strong> VS Code and Obsidian are great, but they take time to open. Our tool loads in your browser instantly.</li>
+          <li><strong>Zero Setup:</strong> No extensions to install, no config files to tweak. It just works.</li>
+          <li><strong>Mobile Friendly:</strong> Need to check a Markdown file on your iPad? It works perfectly there too.</li>
+        </ul>
+
+        <!-- 9. Cheat Sheet -->
+        <h2>Markdown Cheat Sheet</h2>
+        <p>New to Markdown? Here are the basics to get you started:</p>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+            <div>
+                <h3>Headers</h3>
+                <pre><code># H1 - Main Title
+## H2 - Subtitle
+### H3 - Section Header</code></pre>
+            </div>
+            <div>
+                <h3>Emphasis</h3>
+                <pre><code>**Bold Text**
+*Italic Text*
+~~Strikethrough~~</code></pre>
+            </div>
+            <div>
+                <h3>Lists</h3>
+                <pre><code>- Unordered Item 1
+- Unordered Item 2
+
+1. Ordered Item 1
+2. Ordered Item 2</code></pre>
+            </div>
+            <div>
+                <h3>Code & Links</h3>
+                <pre><code>`Inline Code`
+
+```
+Block of Code
+```
+
+[Link Title](https://example.com)</code></pre>
+            </div>
+        </div>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+            <li><strong>Use Code Blocks for Syntax:</strong> If you are sharing code, wrap it in triple backticks (` ``` `). This makes it monospaced and easier to read.</li>
+            <li><strong>Keep it Simple:</strong> Markdown is designed to be readable as-is. Don't over-complicate it with raw HTML tags unless absolutely necessary.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Stop guessing how your text will look. Start typing in the editor above and become a Markdown master today.
+        </p>
+        
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Markdown Previewer</strong> is the ultimate utility for modern writers and coders. It combines the simplicity of plain text with the visual power of HTML. Whether you are documenting a codebase or writing a novel, ToolfolioHub provides the perfect canvas for your ideas.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -54,13 +230,49 @@
   <script>
     const input = document.getElementById('mdInput');
     const preview = document.getElementById('mdPreview');
+    
+    // Demo text to show capabilities
+    const demoText = `# Welcome to Markdown!
+
+This is a **live editor**. Start typing on the left to see your changes here.
+
+## What can you do?
+
+1. Create lists
+2. Add **bold** and *italic* text
+3. Share code snippets
+
+\`\`\`javascript
+function hello() {
+  console.log("Hello ToolfolioHub!");
+}
+\`\`\`
+
+> "Markdown is the fastest way to write for the web."
+
+[Learn more about Markdown](https://www.markdownguide.org)
+`;
+
+    // Load demo text if empty
+    if (!input.value) {
+        input.value = demoText;
+    }
+
     const render = () => {
-      preview.innerHTML = marked.parse(input.value || '# Start typing Markdown...');
+      if (typeof marked !== 'undefined') {
+        try {
+          preview.innerHTML = marked.parse(input.value);
+        } catch (e) {
+          preview.innerHTML = '<p class="text-red-500">Error rendering Markdown. Please check your syntax.</p>';
+        }
+      }
     };
+    
     input.addEventListener('input', render);
-    render();
+    
+    // Wait for library to load
+    window.onload = render;
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

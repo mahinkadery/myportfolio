@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Find & Replace Tool – toolfoliohub</title>
+  
+  <!-- 1. SEO Metadata -->
+  <title>Find & Replace Tool – Free Online Text Editor | ToolfolioHub</title>
+  <meta name="description" content="Quickly find and replace text online. Replace specific words, fix typos, or update code across massive text blocks instantly. Free, secure, and case-sensitive options available." />
+  <meta name="keywords" content="find and replace online, text replacer, search replace, replace string, mass text editor, remove words, substitute text, toolfoliohub, replace all tool" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Find & Replace Tool – Edit Text in Bulk Instantly" />
+  <meta property="og:description" content="Replace words, fix typos, or update code across your entire document instantly. No complex regex needed. Free and privacy-focused." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/find-replace-tool" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+  <style>
+    .tool-shell { max-width: 960px; margin: 0 auto; }
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,28 +53,154 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
-          <h1 class="mt-2 text-3xl font-bold">Find &amp; Replace</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Quickly replace all occurrences of a string in your text.</p>
+          <h1 class="mt-2 text-3xl font-bold">Find &amp; Replace – Mass Text Editor</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Instantly search for text and replace all occurrences in your document.</p>
         </div>
 
-        <textarea id="frInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px]" placeholder="Input text"></textarea>
+        <textarea id="frInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px] focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Paste your text here..."></textarea>
 
         <div class="grid gap-4 sm:grid-cols-2">
-          <input id="findText" type="text" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3" placeholder="Find…">
-          <input id="replaceText" type="text" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3" placeholder="Replace with…">
+          <input id="findText" type="text" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Find what? (e.g. 'colour')">
+          <input id="replaceText" type="text" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Replace with? (e.g. 'color')">
         </div>
 
-        <div class="flex items-center gap-3 flex-wrap">
-          <label class="flex items-center gap-2 text-sm">
-            <input type="checkbox" id="matchCase"> Match case
+        <div class="flex items-center gap-4 flex-wrap border-t border-white/20 dark:border-white/10 pt-4">
+          <label class="flex items-center gap-2 text-sm cursor-pointer hover:bg-white/50 dark:hover:bg-white/5 px-3 py-1 rounded-full transition-colors">
+            <input type="checkbox" id="matchCase" class="rounded border-gray-300 text-primary focus:ring-primary"> 
+            <span class="font-medium text-text-light dark:text-text-dark">Match Case</span>
           </label>
-          <button id="replaceBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Replace All</button>
-          <button id="copyBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold">Copy result</button>
+          <div class="flex gap-3 ml-auto">
+            <button id="replaceBtn" class="rounded-full bg-primary text-white px-8 py-3 text-sm font-semibold hover:brightness-110 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Replace All</button>
+            <button id="copyBtn" class="rounded-full border border-gray-400/50 px-6 py-3 text-sm font-semibold text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/5 transition-all">Copy Result</button>
+          </div>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Find & Replace Tool – Update Text in Bulk Faster Than Ever</h2>
+        
+        <!-- 3. Intro -->
+        <p class="lead">
+          Updating a document manually is a recipe for disaster. Whether you are correcting a misspelled name in a 10-page contract, updating a CSS variable across 500 lines of code, or simply changing "2023" to "2024" in a report, finding each instance one by one is slow and prone to error.
+        </p>
+        <p>
+          The <strong>Find & Replace Tool</strong> by ToolfolioHub automates this process. It is a lightweight, browser-based utility that lets you perform global "Replace All" operations instantly. No need to open heavy word processors or confusing code editors—just paste, type, and fix.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is the Find & Replace Tool?</h2>
+        <p>
+          This tool is a text processing engine that scans your input for a specific sequence of characters (the "Find" string) and swaps every occurrence with a new sequence (the "Replace" string).
+        </p>
+        <p>
+          While every text editor has this feature, our online version is optimized for quick, ad-hoc tasks. It strips away the complexity of file handling and software loading times, giving you a pure text manipulation environment that works on any device.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Global "Replace All"</h3>
+        <p>
+          We prioritize efficiency. Instead of asking you to confirm every single change (which takes forever), our tool defaults to "Replace All". One click updates the entire document, whether it's 10 words or 10,000 words.
+        </p>
+
+        <h3>2. Case Sensitivity Control</h3>
+        <p>
+          Precision matters. By default, our search is <strong>case-insensitive</strong>. Searching for "apple" will match "Apple", "APPLE", and "apple".
+        </p>
+        <p>
+          However, sometimes context is key. If you want to change the variable `id` but not the word `Idea`, simply check the <strong>"Match Case"</strong> box. The tool will then only target exact casing matches, ensuring you don't break your text.
+        </p>
+
+        <h3>3. Special Character Support</h3>
+        <p>
+          Many advanced find-and-replace tools require you to know Regular Expressions (Regex) to handle symbols like `(`, `)`, `.` or `*`. Our tool is designed for humans. We automatically "escape" special characters, so if you search for `(example)`, we find exactly that—no coding knowledge required.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use Find & Replace</h2>
+        <ol>
+          <li><strong>Paste Your Content:</strong> Copy text from your document, code file, or email and paste it into the large input box.</li>
+          <li><strong>Find What:</strong> Type the word, phrase, or symbol you want to remove in the "Find what?" field.</li>
+          <li><strong>Replace With:</strong> Type the new text in the "Replace with?" field. (Leave this blank to delete the text).</li>
+          <li><strong>Click "Replace All":</strong> Watch your text transform instantly.</li>
+          <li><strong>Copy Output:</strong> Click "Copy Result" to grab your updated text.</li>
+        </ol>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Coders & Developers</h3>
+        <p>
+          Refactoring code on the fly? Use this tool to rename variables, update class names, or change file paths across a snippet.
+          <br><em>Find:</em> `var old_config`
+          <br><em>Replace:</em> `const newConfig`
+        </p>
+
+        <h3>Content Creators & Editors</h3>
+        <p>
+          Localization is a common task. If you are converting a UK English article to US English, you can quickly swap "colour" for "color", "optimise" for "optimize", and "centre" for "center". It ensures consistency across your piece.
+        </p>
+
+        <h3>Data Analysts</h3>
+        <p>
+          Cleaning up CSVs or data exports? You might need to change the delimiter. Use this tool to find all commas `,` and replace them with pipes `|` or tabs. Or replace "N/A" values with "0" to prepare data for calculation.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Regex-Free Simplicity:</strong> You don't need to be a programmer to use it. It works exactly as you expect a word processor to work.</li>
+          <li><strong>Privacy & Speed:</strong> All processing happens in your browser. Your text is never uploaded to our servers, making it safe for confidential documents and proprietary code.</li>
+          <li><strong>Mobile Ready:</strong> Need to fix a text on your phone? Our responsive design makes it easy to perform bulk edits on a touchscreen.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Can I use this to delete words?</h3>
+        <p>
+          Yes! This is a very common use case. Simply enter the word you want to remove in the "Find" box and leave the "Replace with" box <strong>completely empty</strong>. When you click Replace, the tool will delete every instance of that word from your text.
+        </p>
+
+        <h3>Can I undo a replacement?</h3>
+        <p>
+          Because this is a web form, most browsers support the native `Ctrl+Z` (Cmd+Z) undo function inside the text box. If you make a mistake, try pressing that shortcut immediately to revert the change. Alternatively, you can just click "Reset" (refresh) and paste your original text again.
+        </p>
+
+        <h3>Does it support wildcards?</h3>
+        <p>
+          Currently, this tool performs literal string matching for simplicity. If you need advanced pattern matching (like "find all emails"), check out our <a href="/tools/regex-tester">Regex Tester</a> tool.
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Watch Out for Substrings:</strong> Be careful when replacing short words. If you replace "cat" with "dog", the word "catalog" will become "dogalog". To avoid this, try including spaces in your search string (e.g., " cat ") if possible, though this won't catch punctuation. (For strict whole-word replacement, a Regex tool is better).</li>
+          <li><strong>Check "Match Case" for Acronyms:</strong> Replacing "US" (United States) with "USA"? Turn on "Match Case". Otherwise, you might accidentally change the word "us" (as in "us and them") to "USA".</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Paste your text above and experience the speed of bulk editing. It’s the fastest way to fix mistakes without the manual drudgery.
+        </p>
+        <p>
+          Need to clean up spacing after your edits? Run your text through our <a href="/tools/whitespace-cleaner">Whitespace Cleaner</a> next.
+        </p>
+        
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Find & Replace Tool</strong> is a fundamental utility for anyone who works with text. By offering a fast, secure, and accessible way to manipulate strings, ToolfolioHub empowers you to maintain accuracy and consistency in your writing and coding. Bookmark this page for your next big editing task.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -65,18 +212,32 @@
 
     document.getElementById('replaceBtn').addEventListener('click', () => {
       const findValue = findText.value;
-      if (!findValue) return;
+      if (!findValue) {
+          alert("Please enter text to find.");
+          return;
+      }
+      
+      // Construct regex with global flag.
+      // We escape special regex characters so user input is treated literally.
       const flags = matchCase.checked ? 'g' : 'gi';
       const escaped = findValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      
       input.value = input.value.replace(new RegExp(escaped, flags), replaceText.value);
     });
 
     document.getElementById('copyBtn').addEventListener('click', async () => {
-      await navigator.clipboard.writeText(input.value);
-      alert('Copied!');
+      if (!input.value) return;
+      try {
+        await navigator.clipboard.writeText(input.value);
+        const btn = document.getElementById('copyBtn');
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = originalText, 2000);
+      } catch (err) {
+        console.error('Failed to copy!', err);
+      }
     });
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

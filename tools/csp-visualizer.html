@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CSP Visualizer – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>CSP Visualizer – Parse & Understand Content Security Policies | ToolfolioHub</title>
+  <meta name="description" content="Parse Content Security Policy headers and understand how they mitigate XSS attacks. Visualize CSP directives for better security." />
+  <meta name="keywords" content="csp parser, content security policy, csp visualizer, xss protection, security headers, web security, developer tool, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="CSP Visualizer – Content Security Policy Parser" />
+  <meta property="og:description" content="Parse and understand Content Security Policy headers. Essential tool for web security and XSS mitigation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/csp-visualizer" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -58,6 +69,146 @@
           </ul>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>CSP Visualizer – Understand Content Security Policies</h2>
+        
+        <p class="lead">
+          Content Security Policy (CSP) is a crucial web security standard that helps prevent Cross-Site Scripting (XSS) attacks, data injection, and other security vulnerabilities. However, CSP headers can be complex and difficult to parse. The <strong>CSP Visualizer</strong> by ToolfolioHub parses CSP headers and presents them in a clear, organized format, making it easy to understand how your security policies work.
+        </p>
+        <p>
+          Whether you're implementing CSP for the first time, debugging CSP violations, or reviewing existing policies, this tool helps you understand exactly what each directive allows or restricts.
+        </p>
+
+        <h2>What is Content Security Policy (CSP)?</h2>
+        <p>
+          Content Security Policy is an HTTP header that tells browsers which sources are allowed to load resources on your website. It helps prevent:
+        </p>
+        <ul>
+          <li><strong>XSS Attacks:</strong> Prevents malicious scripts from executing by controlling script sources.</li>
+          <li><strong>Data Injection:</strong> Restricts where data can be sent (form submissions, AJAX requests).</li>
+          <li><strong>Clickjacking:</strong> Controls which sites can embed your pages in iframes.</li>
+          <li><strong>Mixed Content:</strong> Prevents insecure HTTP resources on HTTPS pages.</li>
+        </ul>
+        <p>
+          A CSP header looks like this:
+        </p>
+        <pre><code>Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.example.com; style-src 'self';</code></pre>
+        <p>
+          This policy restricts resources to the same origin (`'self'`) by default, allows scripts from the same origin and a CDN, and restricts styles to the same origin.
+        </p>
+
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Parse CSP Directives</h3>
+        <p>
+          Break down complex CSP strings into individual directives with clear explanations:
+        </p>
+        <ul>
+          <li><strong>default-src:</strong> Fallback for other fetch directives</li>
+          <li><strong>script-src:</strong> Controls script execution sources</li>
+          <li><strong>style-src:</strong> Controls stylesheet sources</li>
+          <li><strong>img-src:</strong> Controls image sources</li>
+          <li><strong>font-src:</strong> Controls font sources</li>
+          <li><strong>connect-src:</strong> Controls fetch, XMLHttpRequest, WebSocket, EventSource</li>
+          <li><strong>And more:</strong> frame-src, media-src, object-src, etc.</li>
+        </ul>
+
+        <h3>2. Visual Organization</h3>
+        <p>
+          Each directive is displayed with:
+        </p>
+        <ul>
+          <li>Directive name (e.g., `script-src`)</li>
+          <li>Description of what it controls</li>
+          <li>List of allowed sources</li>
+        </ul>
+
+        <h3>3. Educational Context</h3>
+        <p>
+          Learn how CSP mitigates XSS attacks and improves web security with built-in explanations and tips.
+        </p>
+
+        <h2>How CSP Helps Mitigate XSS</h2>
+        <p>
+          XSS (Cross-Site Scripting) attacks occur when malicious scripts are injected into web pages. CSP prevents XSS by:
+        </p>
+        <ul>
+          <li><strong>Restricting Script Sources:</strong> Only scripts from allowed sources can execute, preventing injected scripts from running.</li>
+          <li><strong>Blocking Inline Scripts:</strong> By default, CSP blocks inline scripts and event handlers, forcing attackers to load scripts from external sources (which CSP can block).</li>
+          <li><strong>Controlling Data Flow:</strong> Restricts where data can be sent, preventing exfiltration of sensitive information.</li>
+        </ul>
+
+        <h2>How to Use the CSP Visualizer</h2>
+        <ol>
+          <li><strong>Paste CSP Header:</strong> Copy your Content-Security-Policy header and paste it into the textarea.</li>
+          <li><strong>Parse:</strong> Click "Parse CSP" to break down the policy into individual directives.</li>
+          <li><strong>Review:</strong> Examine each directive to understand what it allows or restricts.</li>
+          <li><strong>Learn:</strong> Read the descriptions to understand how each directive contributes to security.</li>
+        </ol>
+        <p>
+          <strong>Example CSP:</strong>
+        </p>
+        <pre><code>default-src 'self'; script-src 'self' https://cdn.example.com; style-src 'self'; img-src * data:;</code></pre>
+
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Security Engineers</h3>
+        <p>
+          Security professionals use this tool to:
+        </p>
+        <ul>
+          <li>Review and audit existing CSP policies.</li>
+          <li>Verify that CSP directives are correctly configured.</li>
+          <li>Educate developers about CSP implementation.</li>
+        </ul>
+
+        <h3>Web Developers</h3>
+        <p>
+          Developers use this tool to:
+        </p>
+        <ul>
+          <li>Understand CSP headers in existing applications.</li>
+          <li>Debug CSP violations by understanding what's allowed.</li>
+          <li>Learn how to implement CSP correctly.</li>
+        </ul>
+
+        <h2>Common CSP Directives Explained</h2>
+        <ul>
+          <li><strong>default-src:</strong> Fallback for other directives. If a specific directive isn't set, the browser uses this.</li>
+          <li><strong>script-src:</strong> Controls which sources can execute JavaScript. Critical for XSS prevention.</li>
+          <li><strong>style-src:</strong> Controls stylesheet sources. Prevents CSS injection attacks.</li>
+          <li><strong>img-src:</strong> Controls image sources. Can prevent data exfiltration via image URLs.</li>
+          <li><strong>frame-ancestors:</strong> Controls which sites can embed your page in iframes. Prevents clickjacking.</li>
+          <li><strong>report-uri:</strong> URL where CSP violation reports are sent for monitoring.</li>
+        </ul>
+
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Start Restrictive:</strong> Begin with a restrictive policy and relax as needed.</li>
+          <li><strong>Use Report-Only Mode:</strong> Test policies with `Content-Security-Policy-Report-Only` before enforcing.</li>
+          <li><strong>Monitor Violations:</strong> Set up `report-uri` to receive violation reports and refine policies.</li>
+          <li><strong>Avoid 'unsafe-inline':</strong> Minimize use of `'unsafe-inline'` which weakens XSS protection.</li>
+        </ul>
+
+        <h2>Get Started Now</h2>
+        <p>
+          Paste a CSP header above and click "Parse CSP" to see how your security policy is structured.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>CSP Visualizer</strong> makes Content Security Policy headers accessible and understandable. By parsing complex CSP strings into clear, organized directives, it helps security engineers and developers implement, review, and maintain effective security policies that protect against XSS and other web vulnerabilities.
+        </p>
+      </article>
     </main>
   </div>
 

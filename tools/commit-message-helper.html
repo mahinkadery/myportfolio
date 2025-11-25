@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Commit Message Template Helper – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>Commit Message Helper – Generate Conventional Commit Messages | ToolfolioHub</title>
+  <meta name="description" content="Generate conventional commit messages with proper formatting. Supports feat, fix, docs, and all standard commit types. Free Git commit helper." />
+  <meta name="keywords" content="commit message generator, conventional commits, git commit helper, commit message template, git commits, developer tool, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Commit Message Helper – Conventional Commit Generator" />
+  <meta property="og:description" content="Generate properly formatted commit messages following conventional commit standards. Essential for clean Git history." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/commit-message-helper" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -86,6 +97,135 @@
 
         <button id="copyBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Copy Commit Message</button>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>Commit Message Helper – Generate Conventional Commit Messages</h2>
+        
+        <p class="lead">
+          Clean, consistent commit messages are essential for maintaining readable Git history and enabling effective collaboration. The <strong>Commit Message Template Helper</strong> by ToolfolioHub generates properly formatted commit messages following the Conventional Commits specification—a widely adopted standard that makes commit history more meaningful and searchable.
+        </p>
+        <p>
+          Whether you're working solo or in a team, following conventional commit standards helps create a clear, navigable Git history. This tool guides you through creating structured commit messages with type, scope, description, body, and footer sections.
+        </p>
+
+        <h2>What are Conventional Commits?</h2>
+        <p>
+          Conventional Commits is a specification that provides a simple set of rules for creating clear and meaningful commit messages. A conventional commit message follows this format:
+        </p>
+        <pre><code>&lt;type&gt;(&lt;scope&gt;): &lt;description&gt;
+
+[optional body]
+
+[optional footer]</code></pre>
+        <p>
+          Benefits of conventional commits include:
+        </p>
+        <ul>
+          <li><strong>Readable History:</strong> Commit messages clearly communicate what changed and why.</li>
+          <li><strong>Automated Tooling:</strong> Tools can parse commits to generate changelogs, determine version bumps, and trigger CI/CD pipelines.</li>
+          <li><strong>Better Collaboration:</strong> Team members can quickly understand changes without reading code.</li>
+          <li><strong>Searchable:</strong> Easy to search Git history by commit type or scope.</li>
+        </ul>
+
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Standard Commit Types</h3>
+        <p>
+          Select from standard commit types:
+        </p>
+        <ul>
+          <li><strong>feat:</strong> New feature</li>
+          <li><strong>fix:</strong> Bug fix</li>
+          <li><strong>docs:</strong> Documentation changes</li>
+          <li><strong>style:</strong> Code style changes (formatting, whitespace)</li>
+          <li><strong>refactor:</strong> Code refactoring (no feature change or bug fix)</li>
+          <li><strong>perf:</strong> Performance improvements</li>
+          <li><strong>test:</strong> Adding or updating tests</li>
+          <li><strong>chore:</strong> Maintenance tasks</li>
+          <li><strong>ci:</strong> CI/CD changes</li>
+          <li><strong>build:</strong> Build system changes</li>
+          <li><strong>revert:</strong> Revert previous commit</li>
+        </ul>
+
+        <h3>2. Optional Scope</h3>
+        <p>
+          Specify the scope (component, module, or area) affected by the commit (e.g., `auth`, `api`, `ui`). This helps organize commits and makes history more searchable.
+        </p>
+
+        <h3>3. Description, Body, and Footer</h3>
+        <p>
+          Structure your commit message with:
+        </p>
+        <ul>
+          <li><strong>Description:</strong> Brief summary of the change (required).</li>
+          <li><strong>Body:</strong> Detailed explanation of what and why (optional).</li>
+          <li><strong>Footer:</strong> Reference issues, breaking changes, etc. (optional).</li>
+        </ul>
+
+        <h3>4. One-Click Copy</h3>
+        <p>
+          Copy the generated commit message directly to your clipboard for instant use in Git commands.
+        </p>
+
+        <h2>How to Use the Commit Message Helper</h2>
+        <ol>
+          <li><strong>Select Type:</strong> Choose the commit type from the dropdown (feat, fix, docs, etc.).</li>
+          <li><strong>Add Scope (Optional):</strong> Enter the scope/component affected (e.g., `auth`, `api`).</li>
+          <li><strong>Write Description:</strong> Enter a brief description of the change (required).</li>
+          <li><strong>Add Body (Optional):</strong> Provide detailed explanation if needed.</li>
+          <li><strong>Add Footer (Optional):</strong> Reference issues (e.g., "Fixes #123") or note breaking changes.</li>
+          <li><strong>Generate:</strong> Click "Generate Commit Message" to create the formatted message.</li>
+          <li><strong>Copy:</strong> Click "Copy Commit Message" and paste into your Git commit command.</li>
+        </ol>
+
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Developers</h3>
+        <p>
+          Developers use this tool to:
+        </p>
+        <ul>
+          <li>Create consistent commit messages across projects.</li>
+          <li>Learn conventional commit standards.</li>
+          <li>Save time formatting commit messages correctly.</li>
+        </ul>
+
+        <h3>Development Teams</h3>
+        <p>
+          Teams use this tool to:
+        </p>
+        <ul>
+          <li>Establish consistent commit message standards.</li>
+          <li>Improve Git history readability.</li>
+          <li>Enable automated tooling (changelog generation, versioning).</li>
+        </ul>
+
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Keep Descriptions Concise:</strong> Use imperative mood (e.g., "Add feature" not "Added feature" or "Adds feature").</li>
+          <li><strong>Use Scopes:</strong> Specify scope for clarity, especially in large projects.</li>
+          <li><strong>Reference Issues:</strong> Use footer to link commits to issue trackers (e.g., "Fixes #123").</li>
+          <li><strong>Be Consistent:</strong> Follow the same format across all commits for predictable history.</li>
+        </ul>
+
+        <h2>Get Started Now</h2>
+        <p>
+          Fill in the fields above to generate a properly formatted conventional commit message.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Commit Message Template Helper</strong> simplifies creating clear, consistent commit messages that follow industry standards. By generating properly formatted commits, it helps maintain readable Git history and enables better collaboration and tooling integration.
+        </p>
+      </article>
     </main>
   </div>
 

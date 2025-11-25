@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Discount / Sale Price Calculator – toolfoliohub</title>
+  
+  <!-- SEO Metadata -->
+  <title>Discount Calculator – Calculate Sale Prices & Savings</title>
+  <meta name="description" content="Quickly find the sale price and total savings of any item. Enter the original price and discount percentage. Free online discount calculator." />
+  <meta name="keywords" content="discount calculator, sale price calculator, shopping calculator, discount percentage, calculate savings, price off calculator, retail calculator, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Discount Calculator – Find Sale Price" />
+  <meta property="og:description" content="How much is 30% off? Find out instantly with our free discount calculator." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/discount-calculator" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:720px;margin:0 auto;}</style>
+  <style>
+    .tool-shell{max-width:720px;margin:0 auto;}
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,27 +53,261 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Calculator</p>
-          <h1 class="mt-2 text-3xl font-bold">Discount / Sale Price Calculator</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Enter original price and discount percentage to see the savings.</p>
+          <h1 class="mt-2 text-3xl font-bold">Discount Calculator</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Enter the original price and the discount percentage to see exactly how much you'll pay.</p>
         </div>
 
         <div class="grid gap-4 sm:grid-cols-2">
-          <input id="originalPrice" type="number" placeholder="Original price" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-          <input id="discountPercent" type="number" placeholder="Discount %" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          <div class="space-y-1">
+            <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">Original Price ($)</label>
+            <input id="originalPrice" type="number" placeholder="e.g. 50.00" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+          </div>
+          <div class="space-y-1">
+            <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">Discount (%)</label>
+            <input id="discountPercent" type="number" placeholder="e.g. 25" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+          </div>
         </div>
+        
         <div class="flex gap-3 flex-wrap">
-          <button id="discountBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Calculate</button>
-          <button id="discountReset" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold">Reset</button>
+          <button id="discountBtn" class="rounded-full bg-primary text-white px-8 py-2 text-sm font-semibold hover:brightness-110 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5">Calculate Savings</button>
+          <button id="discountReset" class="rounded-full border border-gray-400/50 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/5 transition-all">Reset</button>
         </div>
 
-        <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-5 space-y-2">
-          <p id="finalPrice" class="text-lg font-semibold">Final price: —</p>
-          <p id="amountSaved" class="text-sm text-muted-light dark:text-muted-dark">You save: —</p>
+        <div class="grid gap-4 sm:grid-cols-2">
+            <div class="rounded-3xl bg-green-100/50 dark:bg-green-900/20 p-5 border border-green-200 dark:border-green-900/50 text-center">
+              <p class="text-xs uppercase tracking-widest text-green-800 dark:text-green-400 font-bold mb-1">Final Price</p>
+              <p id="finalPrice" class="text-3xl font-bold text-green-700 dark:text-green-400">—</p>
+            </div>
+            <div class="rounded-3xl bg-white/50 dark:bg-white/5 p-5 border border-white/20 dark:border-white/10 text-center">
+              <p class="text-xs uppercase tracking-widest text-muted-light dark:text-muted-dark font-bold mb-1">You Save</p>
+              <p id="amountSaved" class="text-3xl font-bold text-text-light dark:text-text-dark">—</p>
+            </div>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Discount Calculator – Never Overpay Again. Calculate Sale Prices Instantly</h2>
+        
+        <!-- 3. Introduction -->
+        <p class="lead">
+          "50% OFF!" screams the store window. But when you get to the register, will you actually save that much? Sales tags can be misleading, and mental math at checkout is stressful. The <strong>Discount Calculator</strong> by ToolfolioHub eliminates this anxiety by instantly showing you the exact final price and total savings before you commit to a purchase.
+        </p>
+        <p>
+          Whether you are shopping Black Friday deals, browsing seasonal clearances, or trying to maximize a coupon code, this tool ensures you know exactly what you'll pay. No surprises at checkout, no buyer's remorse, just smart shopping decisions backed by accurate math.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is a Discount Calculator?</h2>
+        <p>
+          A discount calculator is a financial utility that automates the process of calculating sale prices and savings. It takes two inputs:
+        </p>
+        <ol>
+          <li><strong>Original Price:</strong> The item's full retail price (before any discount).</li>
+          <li><strong>Discount Percentage:</strong> The percentage reduction (e.g., 25% off).</li>
+        </ol>
+        <p>
+          From these two numbers, it calculates:
+        </p>
+        <ul>
+          <li><strong>Final Price:</strong> What you actually pay after the discount.</li>
+          <li><strong>Amount Saved:</strong> The dollar amount you save by buying on sale.</li>
+        </ul>
+        <p>
+          While this math is simple (Discount Amount = Original Price × (Discount% ÷ 100), then Final Price = Original Price - Discount Amount), doing it mentally while shopping is error-prone and time-consuming. Our calculator does it instantly and accurately.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Dual Output Display</h3>
+        <p>
+          We show you both critical numbers at once:
+        </p>
+        <ul>
+          <li><strong>Final Price (in green):</strong> The amount you'll pay at checkout. This is highlighted prominently so you can see it at a glance.</li>
+          <li><strong>Amount Saved:</strong> The money you're keeping in your wallet. This helps you justify the purchase (or decide it's not worth it).</li>
+        </ul>
+        <p>
+          Having both numbers visible helps you make informed decisions. A $100 item with 10% off saves you $10, but a $50 item with 20% off saves you the same $10 at half the total cost.
+        </p>
+
+        <h3>2. Currency Formatting</h3>
+        <p>
+          All results are displayed in proper currency format ($XX.XX), making them easy to read and compare. No more wondering if "37.5" means $37.50 or $0.375.
+        </p>
+
+        <h3>3. Instant Calculation</h3>
+        <p>
+          There is no submit button delay or page reload. Click "Calculate Savings" and the results appear immediately. On mobile devices, you can quickly check prices while standing in store aisles without missing a beat.
+        </p>
+
+        <h3>4. Keyboard-Friendly</h3>
+        <p>
+          Press `Enter` in either input field to calculate instantly. This speeds up the workflow for rapid price comparisons.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Discount Calculator</h2>
+        <p>
+          Using the calculator is a simple 3-step process:
+        </p>
+        <ol>
+          <li><strong>Enter the Original Price:</strong> Look at the price tag or website listing. Type that number into the "Original Price" field. For example, if an item costs $79.99, enter `79.99`.</li>
+          <li><strong>Enter the Discount Percentage:</strong> Check the sale sign or coupon. If it says "25% OFF", enter `25` (without the % symbol) in the "Discount (%)" field.</li>
+          <li><strong>Click "Calculate Savings":</strong> The tool instantly displays your final price and savings amount. You can also press `Enter` on your keyboard for faster calculation.</li>
+        </ol>
+        <p>
+          <strong>Example Walkthrough:</strong>
+          <br>You see a jacket with a price tag of $120. The store has a "30% OFF" sale.
+          <br>1. Enter `120` in the Original Price field.
+          <br>2. Enter `30` in the Discount field.
+          <br>3. Click Calculate.
+          <br>4. Result: Final Price = $84.00, You Save = $36.00 (30%)
+        </p>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Smart Shoppers & Consumers</h3>
+        <p>
+          Comparing multiple deals is where this tool shines. You might see:
+        </p>
+        <ul>
+          <li>Item A: $100 with 15% off</li>
+          <li>Item B: $85 with 5% off</li>
+        </ul>
+        <p>
+          Which is cheaper? Item A costs $85.00 after discount. Item B costs $80.75 after discount. The calculator makes this comparison instant and clear.
+        </p>
+
+        <h3>Online Shoppers</h3>
+        <p>
+          E-commerce sites often show confusing pricing ("Was $200, Now $149.99"). Our calculator helps you verify:
+        </p>
+        <ul>
+          <li>What percentage discount you're actually getting.</li>
+          <li>Whether the "sale" price is truly a good deal.</li>
+        </ul>
+        <p>
+          You can reverse-engineer discounts: If an item was $200 and is now $150, that's a 25% discount. Use this to compare deals across different websites.
+        </p>
+
+        <h3>Small Business Owners & Retailers</h3>
+        <p>
+          If you run a store, you need to:
+        </p>
+        <ul>
+          <li><strong>Plan Sales:</strong> If you want a $50 item to sell for $35, what discount percentage is that? (30%)</li>
+          <li><strong>Check Competitor Prices:</strong> If a competitor lists a "40% off" sale, calculate what that means for your pricing strategy.</li>
+          <li><strong>Set Markup/Discount Strategies:</strong> Calculate the impact of various discount levels on your profit margins.</li>
+        </ul>
+
+        <h3>Budget-Conscious Shoppers</h3>
+        <p>
+          When shopping on a tight budget, knowing the exact final price helps you:
+        </p>
+        <ul>
+          <li>Avoid overspending at checkout.</li>
+          <li>Prioritize which items to buy if you can't afford everything.</li>
+          <li>Calculate if buying multiple items with a bulk discount saves more money than buying individually on sale.</li>
+        </ul>
+
+        <h3>Students Learning Math</h3>
+        <p>
+          Teachers can use this tool to create real-world math problems. Students can verify their manual calculations and see practical applications of percentage math.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Visual Clarity:</strong> The final price is displayed in a prominent green box, making it impossible to miss. This prevents confusion at checkout.</li>
+          <li><strong>No Ads:</strong> Many discount calculators are cluttered with distracting advertisements. Ours is clean and focused.</li>
+          <li><strong>Mobile Optimized:</strong> The interface works perfectly on phones and tablets. You can use it while shopping in-store without squinting at tiny buttons.</li>
+          <li><strong>Currency Formatting:</strong> Results are properly formatted as currency ($XX.XX), eliminating any ambiguity about decimal placement.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Does this calculator include sales tax?</h3>
+        <p>
+          <strong>No.</strong> This calculator shows the price <em>before</em> sales tax. Sales tax (which varies by location, typically 5-10% in the US) is usually calculated by the store's point-of-sale system and added to the final discounted price.
+        </p>
+        <p>
+          <strong>To estimate total with tax:</strong> Take the final price from our calculator, then multiply by your local tax rate (e.g., 1.08 for 8% tax). Or use a basic calculator to add the tax amount.
+        </p>
+
+        <h3>How do I calculate "Buy One Get One 50% Off" deals?</h3>
+        <p>
+          BOGO deals can be tricky. Here's how to think about them:
+        </p>
+        <ul>
+          <li><strong>BOGO 50% Off:</strong> You pay full price for the first item and half price for the second. This is effectively a 25% discount on the total purchase of two identical items.</li>
+          <li><strong>Example:</strong> Two $20 items. First item = $20, second item = $10 (50% off). Total = $30. Original total = $40. Savings = $10, which is 25% of $40.</li>
+        </ul>
+        <p>
+          You can use our calculator: Enter the price of one item and calculate a 25% discount to see the effective per-item price in a BOGO 50% scenario.
+        </p>
+
+        <h3>Can I use this for "additional X% off" stacked discounts?</h3>
+        <p>
+          Stacked discounts (e.g., "20% off, plus an additional 15% off") require multiple calculations:
+        </p>
+        <ol>
+          <li>First, calculate the price after the first discount.</li>
+          <li>Then, use that result as the "original price" and calculate the second discount.</li>
+        </ol>
+        <p>
+          <strong>Example:</strong> $100 item with 20% off = $80. Then $80 with an additional 15% off = $68. The combined discount is 32% (not 35%, as discounts don't simply add).
+        </p>
+
+        <h3>What if the discount is shown as a dollar amount instead of a percentage?</h3>
+        <p>
+          If a sale says "$20 OFF" instead of a percentage, you can:
+        </p>
+        <ul>
+          <li>Simply subtract: Original Price - $20 = Final Price.</li>
+          <li>Or calculate what percentage $20 represents: Use our <a href="/tools/percentage-calculator">Percentage Calculator</a> to find what percent $20 is of the original price.</li>
+        </ul>
+
+        <h3>Can discounts be over 100%?</h3>
+        <p>
+          No. A 100% discount means the item is free. Anything over 100% would mean the store pays you to take the item, which doesn't happen in real retail scenarios. If you enter a discount over 100%, our calculator will show a negative final price (which indicates an error in your input).
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Compare Unit Prices:</strong> When buying in bulk, calculate the discount per unit. A 20% off sale on a 6-pack might be better than 15% off individual items, but you need to do the math.</li>
+          <li><strong>Watch for Minimum Purchase Requirements:</strong> Some stores require buying multiple items to get the discount. Make sure the "per-item" savings still makes sense.</li>
+          <li><strong>Check Return Policies:</strong> A great discount is useless if you can't return a defective item. Factor in risk when evaluating deals.</li>
+          <li><strong>Stack with Coupons:</strong> Many stores allow you to combine sale prices with additional coupon codes. Use our calculator twice: first for the sale price, then for the coupon discount on that reduced price.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Stop guessing at checkout. Enter the price and discount above to see exactly what you'll pay and how much you'll save. It's free, instant, and accurate.
+        </p>
+        <p>
+          Need to calculate tips after your purchase? Try our <a href="/tools/tip-calculator">Tip Calculator</a>. Want to see the percentage change over time? Use our <a href="/tools/percentage-calculator">Percentage Calculator</a>.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Discount Calculator</strong> is an essential tool for modern shoppers. In an era of complex pricing strategies and marketing tactics, having a reliable way to verify sale prices ensures you get real value for your money. ToolfolioHub provides this utility free of charge, helping you shop smarter and save more.
+        </p>
+        <p>
+          Whether you are a bargain hunter, a small business owner, or just someone who wants to avoid checkout surprises, this calculator gives you the confidence to make informed purchasing decisions. Bookmark it today and never overpay again.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -65,26 +320,48 @@
     const compute = () => {
       const price = parseFloat(originalPrice.value);
       const discount = parseFloat(discountPercent.value);
+      
       if (isNaN(price) || isNaN(discount)) {
-        finalPrice.textContent = 'Final price: enter valid numbers.';
-        amountSaved.textContent = 'You save: —';
+        finalPrice.innerHTML = '<span class="text-sm text-red-500 font-normal">Enter valid numbers</span>';
+        amountSaved.textContent = '—';
         return;
       }
+      
+      if (price < 0 || discount < 0) {
+        finalPrice.innerHTML = '<span class="text-sm text-red-500 font-normal">Positive numbers only</span>';
+        return;
+      }
+
       const saved = price * (discount / 100);
       const total = price - saved;
-      finalPrice.textContent = `Final price: ${total.toFixed(2)}`;
-      amountSaved.textContent = `You save: ${saved.toFixed(2)} (${discount.toFixed(2)}%)`;
+      
+      // Currency formatting
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
+
+      finalPrice.textContent = formatter.format(total);
+      amountSaved.textContent = `${formatter.format(saved)} (${discount}%)`;
     };
 
     document.getElementById('discountBtn').addEventListener('click', compute);
+    
+    // Allow Enter key to submit
+    [originalPrice, discountPercent].forEach(input => {
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') compute();
+        });
+    });
+
     document.getElementById('discountReset').addEventListener('click', () => {
       originalPrice.value = '';
       discountPercent.value = '';
-      finalPrice.textContent = 'Final price: —';
-      amountSaved.textContent = 'You save: —';
+      finalPrice.textContent = '—';
+      amountSaved.textContent = '—';
+      originalPrice.focus();
     });
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Unit Converter – toolfoliohub</title>
+  
+  <!-- SEO Metadata -->
+  <title>Unit Converter – Convert Length, Weight & Temperature</title>
+  <meta name="description" content="Convert metric to imperial units instantly. Calculator for Length (km, m, cm), Weight (kg, g), and Temperature (Celsius, Fahrenheit). Free online tool." />
+  <meta name="keywords" content="unit converter, metric converter, length converter, weight converter, temperature converter, celsius to fahrenheit, kg to lbs, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Unit Converter – All-in-One Conversion Tool" />
+  <meta property="og:description" content="Convert miles to kilometers, celsius to fahrenheit, and more in seconds." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/unit-converter" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:860px;margin:0 auto;}</style>
+  <style>
+    .tool-shell{max-width:860px;margin:0 auto;}
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,44 +53,310 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-8">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-8 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Converter</p>
           <h1 class="mt-2 text-3xl font-bold">Unit Converter</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Length, weight, and temperature conversions in one place.</p>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Convert length, weight, and temperature values instantly.</p>
         </div>
 
-        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4">
-          <div class="grid gap-4 sm:grid-cols-3">
-            <select id="unitCategory" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-              <option value="length">Length (km ↔ m ↔ cm)</option>
-              <option value="weight">Weight (kg ↔ g)</option>
-              <option value="temperature">Temperature (°C ↔ °F)</option>
-            </select>
-            <input id="unitValue" type="number" placeholder="Value" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-            <select id="unitFrom" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3"></select>
+        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4 border border-white/20 dark:border-white/10">
+          <div class="flex flex-col sm:flex-row gap-4">
+             <div class="flex-1">
+                <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark mb-1 block">Category</label>
+                <select id="unitCategory" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+                  <option value="length">Length (km, m, cm)</option>
+                  <option value="weight">Weight (kg, g)</option>
+                  <option value="temperature">Temperature (°C, °F)</option>
+                </select>
+             </div>
+             <div class="flex-1">
+                <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark mb-1 block">Value</label>
+                <input id="unitValue" type="number" placeholder="Enter number" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+             </div>
           </div>
-          <div class="grid gap-4 sm:grid-cols-[auto_auto_1fr] items-center">
-            <span class="text-center">→</span>
-            <select id="unitTo" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3"></select>
-            <input id="unitResult" readonly class="rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-3" placeholder="Result">
+
+          <div class="grid gap-4 sm:grid-cols-[1fr_auto_1fr] items-center">
+            <div>
+                <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark mb-1 block">From</label>
+                <select id="unitFrom" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all"></select>
+            </div>
+            
+            <span class="text-center text-muted-light dark:text-muted-dark material-symbols-outlined mt-5">arrow_forward</span>
+            
+            <div>
+                <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark mb-1 block">To</label>
+                <select id="unitTo" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all"></select>
+            </div>
           </div>
-          <button id="unitConvertBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Convert</button>
+
+          <button id="unitConvertBtn" class="rounded-full bg-primary text-white px-8 py-3 text-sm font-semibold hover:brightness-110 transition-all w-full shadow hover:shadow-md transform hover:-translate-y-0.5">Convert</button>
+          
+          <div class="relative">
+             <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark mb-1 block">Result</label>
+             <input id="unitResult" readonly class="w-full rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-3 font-bold text-lg text-primary" placeholder="—">
+          </div>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Unit Converter – Master Metric & Imperial Conversions Instantly</h2>
+        
+        <!-- 3. Introduction -->
+        <p class="lead">
+          The world operates on different measurement systems. If you've ever tried to follow a European recipe that calls for 250 grams of flour when your kitchen scale only shows ounces, or wondered if you need a sweater when the weather app says 15°C, you know the frustration. Unit conversions shouldn't require a calculator, a conversion chart, and mental math.
+        </p>
+        <p>
+          The <strong>Unit Converter</strong> by ToolfolioHub eliminates this hassle entirely. It is a fast, accurate, all-in-one conversion tool that handles length, weight, and temperature conversions instantly. No formulas to remember, no multiplication errors—just select your units and get the answer.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is a Unit Converter?</h2>
+        <p>
+          A unit converter is a tool that translates a quantity from one unit of measurement to another within the same category. For example, it can convert 5 kilometers to meters (5,000 m) or 25°C to Fahrenheit (77°F).
+        </p>
+        <p>
+          The world primarily uses two measurement systems:
+        </p>
+        <ul>
+          <li><strong>Metric System (SI):</strong> Used by most countries worldwide. Based on powers of 10 (kilometers, meters, centimeters; kilograms, grams).</li>
+          <li><strong>Imperial System:</strong> Used primarily in the United States and a few other countries. Based on historical units (miles, feet, inches; pounds, ounces).</li>
+        </ul>
+        <p>
+          Our converter focuses on the most common metric conversions (km, m, cm for length; kg, g for weight) and the universal temperature conversion (Celsius ↔ Fahrenheit), as these are the conversions people need most frequently.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Multi-Category Support</h3>
+        <p>
+          Instead of needing separate tools for length, weight, and temperature, our converter handles all three in one interface. Switch between categories seamlessly without leaving the page.
+        </p>
+
+        <h3>2. Bidirectional Conversion</h3>
+        <p>
+          Convert in either direction instantly. Need to convert kilometers to meters? Easy. Need to go the other way? Just swap the "From" and "To" units. The tool works both ways without any special settings.
+        </p>
+
+        <h3>3. Accurate Scientific Formulas</h3>
+        <p>
+          We use standard, internationally recognized conversion factors:
+        </p>
+        <ul>
+          <li><strong>Length:</strong> 1 km = 1,000 m; 1 m = 100 cm</li>
+          <li><strong>Weight:</strong> 1 kg = 1,000 g</li>
+          <li><strong>Temperature:</strong> °F = (°C × 9/5) + 32; °C = (°F - 32) × 5/9</li>
+        </ul>
+        <p>
+          Results are calculated precisely and displayed with appropriate decimal precision for readability.
+        </p>
+
+        <h3>4. Instant Results</h3>
+        <p>
+          No page reloads, no waiting. Enter your value and click convert—the result appears immediately. This speed is especially valuable when you need quick conversions while cooking, traveling, or working on a project.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Unit Converter</h2>
+        <p>
+          The conversion process is straightforward:
+        </p>
+        <ol>
+          <li><strong>Select a Category:</strong> Choose "Length," "Weight," or "Temperature" from the Category dropdown. This determines which unit options appear in the "From" and "To" dropdowns.</li>
+          <li><strong>Enter Your Value:</strong> Type the number you want to convert into the "Value" field. You can enter whole numbers or decimals (e.g., `5`, `3.5`, `100.25`).</li>
+          <li><strong>Choose Your Units:</strong>
+            <ul>
+              <li>Select the unit you're starting from in the "From" dropdown.</li>
+              <li>Select the unit you want to convert to in the "To" dropdown.</li>
+            </ul>
+          </li>
+          <li><strong>Click "Convert":</strong> The converted value appears instantly in the Result field. You can also press `Enter` in the value field for faster conversion.</li>
+        </ol>
+        <p>
+          <strong>Example Walkthrough:</strong>
+          <br>You want to convert 2.5 kilometers to meters.
+          <br>1. Select "Length" from Category.
+          <br>2. Enter `2.5` in Value.
+          <br>3. Select "Kilometers (km)" in From dropdown.
+          <br>4. Select "Meters (m)" in To dropdown.
+          <br>5. Click Convert.
+          <br>6. Result: 2,500 m
+        </p>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Home Cooks & Professional Bakers</h3>
+        <p>
+          Precision matters in baking. A European recipe calling for 200g of butter requires exact measurement. If your scale is broken and you only have volume measurements, converting to grams helps you find equivalent amounts. Even when using a scale, understanding metric weights helps you follow international recipes confidently.
+        </p>
+        <p>
+          <strong>Common conversions:</strong>
+        </p>
+        <ul>
+          <li>Recipe calls for 500g flour → need to measure by weight accurately.</li>
+          <li>Package says 1 kg chicken → equals 1,000g for portion planning.</li>
+        </ul>
+
+        <h3>Travelers & Expats</h3>
+        <p>
+          When traveling internationally, unit differences are everywhere:
+        </p>
+        <ul>
+          <li><strong>Temperature:</strong> Weather forecast shows 20°C—is that warm or cold? (Answer: pleasant, about 68°F).</li>
+          <li><strong>Distance:</strong> Hotel is 3 km from the airport—how far is that in miles? (Answer: about 1.86 miles, though our tool focuses on metric length conversions).</li>
+          <li><strong>Shopping:</strong> Buying produce at a market where everything is in kilograms—quick conversions help you estimate costs in familiar units.</li>
+        </ul>
+
+        <h3>Students & Educators</h3>
+        <p>
+          Science and math classes constantly require unit conversions:
+        </p>
+        <ul>
+          <li><strong>Physics:</strong> Problems often mix units. Converting 5 km to meters before calculating velocity ensures consistent units.</li>
+          <li><strong>Chemistry:</strong> Lab measurements need precise conversions (grams to kilograms when calculating molar mass).</li>
+          <li><strong>Geography:</strong> Understanding scale on maps requires converting between kilometers and meters.</li>
+        </ul>
+        <p>
+          Our tool helps students verify their manual calculations and catch errors before submitting assignments.
+        </p>
+
+        <h3>DIY Enthusiasts & Construction Workers</h3>
+        <p>
+          Home improvement projects often involve measurements:
+        </p>
+        <ul>
+          <li>Converting room dimensions from meters to centimeters for precise cutting.</li>
+          <li>Understanding material weights (converting kg to grams for small quantities).</li>
+        </ul>
+
+        <h3>Online Shoppers</h3>
+        <p>
+          International e-commerce often lists product specifications in metric units:
+        </p>
+        <ul>
+          <li>Product description says "500g package"—convert to understand the actual size.</li>
+          <li>Shipping dimensions in centimeters—convert to get a sense of scale.</li>
+        </ul>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>All-in-One Convenience:</strong> Most unit converters only handle one category. Ours combines length, weight, and temperature in one tool, reducing the need to bookmark multiple pages.</li>
+          <li><strong>No Ads, No Clutter:</strong> Many conversion websites are cluttered with advertisements and pop-ups. Ours is clean and focused solely on conversion.</li>
+          <li><strong>Works Offline:</strong> Once the page loads, all calculations happen locally in your browser. Perfect for use in areas with poor internet connectivity.</li>
+          <li><strong>Mobile Optimized:</strong> The interface is touch-friendly and works perfectly on phones and tablets, making it ideal for quick conversions on the go.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Why don't you include imperial units like miles, feet, inches, or pounds?</h3>
+        <p>
+          Our current converter focuses on the most common metric conversions that people use daily. We prioritize:
+        </p>
+        <ul>
+          <li>Metric-to-metric conversions (km, m, cm; kg, g) which are universal.</li>
+          <li>Temperature conversion (Celsius ↔ Fahrenheit) which everyone needs when traveling or checking weather.</li>
+        </ul>
+        <p>
+          We may add imperial units (miles, feet, inches, pounds, ounces) in future updates. For now, focusing on metric ensures accuracy and simplicity.
+        </p>
+
+        <h3>Is 0°C the same as 0°F?</h3>
+        <p>
+          <strong>No!</strong> These are completely different temperatures:
+        </p>
+        <ul>
+          <li><strong>0°C:</strong> The freezing point of water (32°F). This is a comfortable reference point.</li>
+          <li><strong>0°F:</strong> Much colder, approximately -17.78°C. This would feel extremely cold in most climates.</li>
+        </ul>
+        <p>
+          The Celsius and Fahrenheit scales have different zero points and different interval sizes, which is why simple multiplication doesn't work. You need the proper conversion formula, which our tool handles automatically.
+        </p>
+
+        <h3>How accurate are the conversions?</h3>
+        <p>
+          We use internationally standardized conversion factors, ensuring scientific accuracy:
+        </p>
+        <ul>
+          <li><strong>Length:</strong> Based on the official meter definition (1 km = 1,000 m exactly).</li>
+          <li><strong>Weight:</strong> Based on the official kilogram definition (1 kg = 1,000 g exactly).</li>
+          <li><strong>Temperature:</strong> Based on the standard Celsius-Fahrenheit conversion formula used by scientists worldwide.</li>
+        </ul>
+        <p>
+          Results are displayed with up to 4 decimal places for precision, then automatically cleaned (trailing zeros removed) for readability. This is more than accurate enough for any practical use case.
+        </p>
+
+        <h3>Can I convert negative temperatures?</h3>
+        <p>
+          <strong>Yes!</strong> Our converter handles negative temperatures correctly. For example:
+        </p>
+        <ul>
+          <li>-10°C = 14°F</li>
+          <li>-40°C = -40°F (the point where both scales meet)</li>
+          <li>0°F = -17.78°C</li>
+        </ul>
+        <p>
+          Negative temperatures are common in winter weather forecasts, scientific calculations, and freezer temperature settings.
+        </p>
+
+        <h3>Why does the converter round the results?</h3>
+        <p>
+          For practical use, displaying 15 decimal places (like `2.500000000000000`) is unnecessary and hard to read. Our converter:
+        </p>
+        <ul>
+          <li>Calculates with full precision internally.</li>
+          <li>Displays results with up to 4 decimal places.</li>
+          <li>Automatically removes trailing zeros for cleaner display (e.g., `2500` instead of `2500.0000`).</li>
+        </ul>
+        <p>
+          If you need more precision for scientific purposes, the underlying calculation is accurate—you could manually extract more digits if needed (though 4 decimal places is usually more than sufficient).
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Double-Check Critical Conversions:</strong> For important measurements (like medication dosages or construction projects), verify the conversion matches your expectations. Use common reference points (e.g., 100°C = 212°F, 1 km = 1,000 m) to spot-check accuracy.</li>
+          <li><strong>Use Consistent Units in Calculations:</strong> When solving math problems, convert all values to the same unit system before calculating. Our tool helps you standardize units quickly.</li>
+          <li><strong>Bookmark for Quick Access:</strong> Save this page to your browser bookmarks or home screen for instant access when you need conversions on the go.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Stop guessing unit conversions. Select a category above and start converting instantly. It's free, fast, and accurate.
+        </p>
+        <p>
+          Need to calculate other measurements? Check out our <a href="/tools/percentage-calculator">Percentage Calculator</a> for discounts and tips, or our <a href="/tools/bmi-calculator">BMI Calculator</a> for health metrics.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Unit Converter</strong> simplifies one of the most common tasks in daily life: translating between measurement systems. Whether you are cooking an international recipe, planning a trip abroad, or solving a science problem, having quick, accurate conversions at your fingertips eliminates frustration and prevents errors.
+        </p>
+        <p>
+          ToolfolioHub provides this essential utility free of charge, ensuring that unit conversions are never a barrier to getting things done. Bookmark this page and convert with confidence.
+        </p>
+      </article>
     </main>
   </div>
 
   <script>
     const CATEGORY_UNITS = {
       length: [
-        { label: 'Kilometers', value: 'km' },
-        { label: 'Meters', value: 'm' },
-        { label: 'Centimeters', value: 'cm' }
+        { label: 'Kilometers (km)', value: 'km' },
+        { label: 'Meters (m)', value: 'm' },
+        { label: 'Centimeters (cm)', value: 'cm' }
       ],
       weight: [
-        { label: 'Kilograms', value: 'kg' },
-        { label: 'Grams', value: 'g' }
+        { label: 'Kilograms (kg)', value: 'kg' },
+        { label: 'Grams (g)', value: 'g' }
       ],
       temperature: [
         { label: 'Celsius (°C)', value: 'C' },
@@ -85,9 +372,20 @@
 
     const populateUnits = () => {
       const units = CATEGORY_UNITS[categorySelect.value];
+      // Save previous selections if possible, or default
+      const prevFrom = fromSelect.value;
+      const prevTo = toSelect.value;
+      
       fromSelect.innerHTML = units.map(u => `<option value="${u.value}">${u.label}</option>`).join('');
       toSelect.innerHTML = units.map(u => `<option value="${u.value}">${u.label}</option>`).join('');
-      if (units.length > 1) toSelect.selectedIndex = 1;
+      
+      // Try to restore or smart default
+      if (units.some(u => u.value === prevFrom)) fromSelect.value = prevFrom;
+      if (units.some(u => u.value === prevTo)) toSelect.value = prevTo;
+      else if (units.length > 1) toSelect.selectedIndex = 1;
+      
+      // Clear result on category change to avoid confusion
+      resultInput.value = '';
     };
 
     const convert = () => {
@@ -95,10 +393,13 @@
       const from = fromSelect.value;
       const to = toSelect.value;
       const value = parseFloat(valueInput.value);
+      
       if (isNaN(value)) {
-        resultInput.value = 'Enter a number';
+        resultInput.value = '';
+        resultInput.placeholder = 'Enter a number';
         return;
       }
+      
       let result = value;
 
       if (category === 'length') {
@@ -108,19 +409,25 @@
         const toGrams = from === 'kg' ? value * 1000 : value;
         result = to === 'kg' ? toGrams / 1000 : toGrams;
       } else if (category === 'temperature') {
-        result = from === to ? value
-          : from === 'C' ? (value * 9/5) + 32
-          : (value - 32) * 5/9;
+        if (from === to) result = value;
+        else if (from === 'C' && to === 'F') result = (value * 9/5) + 32;
+        else if (from === 'F' && to === 'C') result = (value - 32) * 5/9;
       }
 
-      resultInput.value = Number.isFinite(result) ? result.toFixed(4).replace(/\.?0+$/, '') : 'NaN';
+      resultInput.value = Number.isFinite(result) ? result.toFixed(4).replace(/\.?0+$/, '') : 'Error';
     };
 
     categorySelect.addEventListener('change', populateUnits);
     document.getElementById('unitConvertBtn').addEventListener('click', convert);
+    
+    // Enter key support
+    valueInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') convert();
+    });
+
+    // Initial population
     populateUnits();
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

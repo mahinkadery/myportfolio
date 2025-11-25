@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Text Reverser – toolfoliohub</title>
+  
+  <!-- 1. SEO Metadata -->
+  <title>Text Reverser – Flip Words & Sentences Online | ToolfolioHub</title>
+  <meta name="description" content="Instantly flip text backwards, reverse individual words, or mirror entire paragraphs with our free Text Reverser. Perfect for social media, puzzles, and design." />
+  <meta name="keywords" content="text reverser, backwards text generator, mirror text, reverse words, flip text online, text flipper, reverse string, backwards font, toolfoliohub, reverse sentence" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Text Reverser – Flip Words & Sentences Instantly" />
+  <meta property="og:description" content="Create backwards text instantly. Perfect for social media, puzzles, and fun. Free, fast, and secure text reversal tool." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/text-reverser" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+  <style>
+    .tool-shell { max-width: 960px; margin: 0 auto; }
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,27 +53,184 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
-          <h1 class="mt-2 text-3xl font-bold">Text Reverser</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Reverse the entire text or each word individually.</p>
+          <h1 class="mt-2 text-3xl font-bold">Text Reverser – Flip Words & Sentences Instantly</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Reverse entire paragraphs or just flip individual words with a single click.</p>
         </div>
 
-        <textarea id="reverseInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[200px]" placeholder="Enter text to reverse"></textarea>
+        <textarea id="reverseInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[200px] focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Type or paste your text here to see it flipped..."></textarea>
 
-        <div class="flex gap-4 flex-wrap">
-          <label class="flex items-center gap-2 text-sm">
-            <input type="radio" name="reverseMode" value="text" checked> Reverse whole text
-          </label>
-          <label class="flex items-center gap-2 text-sm">
-            <input type="radio" name="reverseMode" value="word"> Reverse each word
-          </label>
+        <div class="flex flex-col sm:flex-row gap-4 sm:items-center justify-between border-b border-white/20 dark:border-white/10 pb-4">
+            <div class="flex gap-4 flex-wrap">
+              <label class="flex items-center gap-2 text-sm cursor-pointer hover:bg-white/50 dark:hover:bg-white/5 px-3 py-1.5 rounded-lg transition-colors">
+                <input type="radio" name="reverseMode" value="text" checked class="text-primary focus:ring-primary"> 
+                <span class="font-medium text-text-light dark:text-text-dark">Reverse Whole Text</span>
+              </label>
+              <label class="flex items-center gap-2 text-sm cursor-pointer hover:bg-white/50 dark:hover:bg-white/5 px-3 py-1.5 rounded-lg transition-colors">
+                <input type="radio" name="reverseMode" value="word" class="text-primary focus:ring-primary"> 
+                <span class="font-medium text-text-light dark:text-text-dark">Reverse Each Word</span>
+              </label>
+            </div>
+            <button id="reverseBtn" class="rounded-full bg-primary text-white px-8 py-2 text-sm font-semibold hover:brightness-110 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5 self-start sm:self-auto">Reverse Text</button>
         </div>
 
-        <button id="reverseBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Reverse</button>
-        <textarea id="reverseOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[180px]" placeholder="Result appears here"></textarea>
+        <div>
+            <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark mb-2">Result</p>
+            <textarea id="reverseOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[180px] focus:ring-2 focus:ring-primary/50 outline-none transition-all font-mono text-sm" placeholder="Your reversed text will appear here..."></textarea>
+        </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 for content flow -->
+        <h2>Text Reverser – Create Backwards Text, Mirror Messages & More</h2>
+        
+        <!-- 3. Introduction -->
+        <p class="lead">
+          Have you ever wondered what your name looks like spelled backward? Maybe you are trying to create a cryptic message for a social media post, or perhaps you need to simulate a mirror effect for a design project. Whatever the reason, flipping text manually is tedious and prone to errors.
+        </p>
+        <p>
+          The <strong>Text Reverser</strong> by ToolfolioHub is a fun, fast, and free utility designed to handle this exact task. With powerful modes that allow you to reverse an entire string or just the letters within words, it is the ultimate tool for playing with language, encoding simple secrets, or debugging text processing algorithms.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is a Text Reverser?</h2>
+        <p>
+          A Text Reverser is a digital tool that takes an input string of characters and rearranges them in reverse order. It transforms "Hello World" into "dlroW olleH".
+        </p>
+        <p>
+          While it may seem like a simple novelty, text reversal has practical applications in computer science (checking for palindromes), cryptography (simple ciphers), and graphic design (mirroring text for print transfers). Our tool simplifies this process, running the logic instantly in your browser without the need for complex software.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Reverse Whole Text Mode</h3>
+        <p>
+          This is the classic "mirror" mode. It takes the very last character of your input and makes it the first, continuing until the entire string is flipped.
+        </p>
+        <ul>
+          <li><strong>Input:</strong> "The quick brown fox"</li>
+          <li><strong>Output:</strong> "xof nworb kciuq ehT"</li>
+        </ul>
+        <p>
+          This effectively renders the text unreadable to the casual glance, making it perfect for simple obfuscation.
+        </p>
+
+        <h3>2. Reverse Each Word Mode</h3>
+        <p>
+          This intelligent mode preserves the order of the words in the sentence but flips the letters within each word. The result is a strange "alien language" that is still syntactically structured like English.
+        </p>
+        <ul>
+          <li><strong>Input:</strong> "The quick brown fox"</li>
+          <li><strong>Output:</strong> "ehT kciuq nworb xof"</li>
+        </ul>
+        <p>
+          This is excellent for puzzles or creating unique usernames that are still pronounceable.
+        </p>
+
+        <h3>3. Emoji & Symbol Support</h3>
+        <p>
+          Modern communication isn't just letters. Our tool is built to handle emojis and special characters correctly. While some older tools break emojis into garbage characters, we use advanced string handling to keep your 😊 intact (though keep in mind complex emoji sequences can be tricky!).
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Text Reverser</h2>
+        <p>
+          Flipping your text takes just seconds:
+        </p>
+        <ol>
+          <li><strong>Enter Your Text:</strong> Type or paste your message into the top input box.</li>
+          <li><strong>Choose Your Mode:</strong>
+            <ul>
+              <li>Select <strong>Reverse Whole Text</strong> if you want a complete flip.</li>
+              <li>Select <strong>Reverse Each Word</strong> if you want to keep the sentence structure.</li>
+            </ul>
+          </li>
+          <li><strong>Click "Reverse Text":</strong> The result will instantly appear in the bottom box.</li>
+          <li><strong>Copy and Share:</strong> Select the output text and use it in your chat, email, or design.</li>
+        </ol>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Social Media Users</h3>
+        <p>
+          Want to stop the scroll? Posting a status update or tweet in reverse text forces people to pause and decode it. It's a great way to grab attention or share "secret" messages with your friends.
+          <br><em>Example:</em> "?yadrutaS no ytrap eht ot gnimoc uoy erA"
+        </p>
+
+        <h3>Graphic Designers</h3>
+        <p>
+          When preparing designs for physical printing—especially for things like iron-on T-shirt transfers or window decals—text often needs to be mirrored so it reads correctly when applied. While design software can do this, our tool provides a quick way to verify the spelling of reversed text before you print.
+        </p>
+
+        <h3>Developers & QA Testers</h3>
+        <p>
+          If you are building an app, you need to ensure it handles text processing correctly. "Edge cases" often involve reversed strings or palindromes. Use our tool to quickly generate test data to see if your search algorithms or string comparison functions break.
+        </p>
+
+        <h3>Puzzle Lovers</h3>
+        <p>
+          Creating a scavenger hunt or an escape room? Use reversed text as a simple cipher. It's easy enough to solve without a key but hard enough to require a moment of thought.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Dual Functionality:</strong> Most reversers only offer one mode. We give you the flexibility to reverse structure or just content.</li>
+          <li><strong>Privacy Guaranteed:</strong> Your secrets stay safe. Because the reversal happens in your browser using JavaScript, your input is never sent to a server. You can reverse passwords or personal notes without fear.</li>
+          <li><strong>Zero Clutter:</strong> We don't bombard you with ads or confusing layouts. Get in, flip your text, and get out.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Does this work with other languages?</h3>
+        <p>
+          Yes! It works with any language that uses standard characters, including Spanish, French, German, and more. For languages like Arabic or Hebrew which are already Right-to-Left (RTL), reversing them might produce interesting (or confusing) results depending on your device's rendering.
+        </p>
+
+        <h3>What happens to numbers?</h3>
+        <p>
+          Numbers are treated just like letters. "12345" becomes "54321". This is useful if you are trying to reverse a numerical sequence or check if a number is a palindrome.
+        </p>
+
+        <h3>Is the output text formatted?</h3>
+        <p>
+          The tool outputs plain text. This means you can paste it anywhere—Facebook, WhatsApp, Notepad, or your code editor—and it will retain the characters exactly as shown.
+        </p>
+
+        <h3>What is a palindrome?</h3>
+        <p>
+          A palindrome is a word or phrase that reads the same backward as forward, like "racecar" or "madam". You can use this tool to check if a word is a palindrome: if the result is identical to the input, it's a match!
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Create Secure Passwords:</strong> Take a memorable phrase, reverse it, and add a number. "I love coffee" becomes "eeffoc evol I". Add "2024" and you get "eeffoc evol I 2024"—a password that is easy to type but hard to dictionary-attack.</li>
+          <li><strong>Mirror Writing Challenge:</strong> Leonardo da Vinci wrote his notes in reverse mirror writing. Challenge yourself to read your favorite poem backward using our tool!</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Ready to see the world from a different angle? Scroll up and type something in. It’s fast, free, and fun.
+        </p>
+        <p>
+          If you enjoyed this, check out our <a href="/tools/word-character-counter">Word Counter</a> to analyze your text length or the <a href="/tools/case-converter">Case Converter</a> to fix capitalization errors.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Text Reverser</strong> proves that simple tools can be surprisingly versatile. Whether for fun, functionality, or testing, flipping text offers a unique perspective on language. ToolfolioHub brings you this utility with a commitment to speed, ease of use, and user privacy.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -61,16 +239,33 @@
     const output = document.getElementById('reverseOutput');
     const reverseBtn = document.getElementById('reverseBtn');
 
-    const reverseString = (str) => str.split('').reverse().join('');
-    const reverseWords = (str) => str.split(/\s+/).map(word => reverseString(word)).join(' ');
+    // Helper to reverse string handling surrogate pairs (for emojis) better than split('')
+    // Array.from splits by code point, keeping simple emojis intact.
+    const reverseString = (str) => Array.from(str).reverse().join('');
+    
+    const reverseWords = (str) => {
+        // Split by space but preserve the whitespace structure if possible? 
+        // For simplicity, we split by whitespace groups to keep formatting
+        return str.split(/(\s+)/).map(part => {
+            if (part.trim().length === 0) return part; // preserve whitespace
+            return reverseString(part);
+        }).join('');
+    };
 
     reverseBtn.addEventListener('click', () => {
-      const mode = document.querySelector('input[name="reverseMode"]:checked').value;
+      // Get selected radio button value
+      const modeRadio = document.querySelector('input[name="reverseMode"]:checked');
+      const mode = modeRadio ? modeRadio.value : 'text';
+      
       const value = input.value;
+      if (!value) {
+        output.value = "";
+        return;
+      }
+      
       output.value = mode === 'word' ? reverseWords(value) : reverseString(value);
     });
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

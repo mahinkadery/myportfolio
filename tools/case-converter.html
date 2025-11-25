@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Case Converter – toolfoliohub</title>
+  
+  <!-- SEO Metadata -->
+  <title>Case Converter – Free Online Text Transformation Tool</title>
+  <meta name="description" content="Easily convert text between Uppercase, Lowercase, Title Case, and Sentence Case. Free, instant, and secure online case converter tool." />
+  <meta name="keywords" content="case converter, text converter, uppercase to lowercase, title case generator, sentence case converter, capitalization tool, online text formatter, free case switch, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Case Converter – Free Online Text Transformation Tool" />
+  <meta property="og:description" content="Fix accidental caps lock, format titles, and standardise text case instantly. Free and runs in your browser." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/case-converter" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+  <style>
+    .tool-shell { max-width: 960px; margin: 0 auto; }
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,22 +53,130 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Text Utility</p>
-          <h1 class="mt-2 text-3xl font-bold">Case Converter</h1>
+          <h1 class="mt-2 text-3xl font-bold">Case Converter – Instantly Transform Text Capitalization</h1>
           <p class="mt-2 text-muted-light dark:text-muted-dark">Convert text to upper, lower, title, or sentence case with a click.</p>
         </div>
 
-        <textarea id="caseInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px]" placeholder="Paste your text here..."></textarea>
+        <textarea id="caseInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[220px] focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Paste your text here... e.g. i forgot to turn off caps lock"></textarea>
 
         <div class="flex flex-wrap gap-3">
-          <button data-action="upper" class="rounded-full bg-primary text-white px-4 py-2 text-sm font-semibold">UPPERCASE</button>
-          <button data-action="lower" class="rounded-full border border-primary text-primary px-4 py-2 text-sm font-semibold">lowercase</button>
-          <button data-action="title" class="rounded-full bg-primary text-white px-4 py-2 text-sm font-semibold">Title Case</button>
-          <button data-action="sentence" class="rounded-full border border-primary text-primary px-4 py-2 text-sm font-semibold">Sentence case</button>
+          <button data-action="upper" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold hover:brightness-110 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5">UPPERCASE</button>
+          <button data-action="lower" class="rounded-full border border-primary text-primary px-6 py-2 text-sm font-semibold hover:bg-primary/5 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5">lowercase</button>
+          <button data-action="title" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold hover:brightness-110 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5">Title Case</button>
+          <button data-action="sentence" class="rounded-full border border-primary text-primary px-6 py-2 text-sm font-semibold hover:bg-primary/5 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5">Sentence case</button>
+          <button data-action="clear" class="rounded-full border border-red-500 text-red-500 px-6 py-2 text-sm font-semibold hover:bg-red-50 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5 ml-auto">Clear</button>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <h2>Case Converter – Fix Your Text Formatting in Seconds</h2>
+        
+        <p class="lead">
+          We've all been there: you type out a long paragraph only to realize you left Caps Lock on. Or maybe you're formatting blog headlines and need them to be perfect Title Case. Instead of retyping everything manually, use the <strong>Case Converter</strong> by ToolfolioHub to transform your text instantly.
+        </p>
+
+        <p>
+          Proper text capitalization is crucial for readability, professionalism, and style. Whether you are cleaning up a messy data export, preparing a list for a presentation, or simply fixing an email draft, our Case Converter is the Swiss Army knife for your text formatting needs.
+        </p>
+
+        <h2>What is the Case Converter?</h2>
+        <p>
+          The Case Converter is a web-based utility designed to change the letter case of any text you input. It handles the tedious task of converting characters from one style to another, ensuring consistency and saving you valuable time.
+        </p>
+        <p>
+          Like all tools on <strong>ToolfolioHub</strong>, it runs entirely in your browser. This means your text—whether it's a confidential report or a personal message—remains private and secure on your device.
+        </p>
+
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>Multiple Conversion Modes</h3>
+        <p>We support the most essential text transformations:</p>
+        <ul>
+          <li><strong>UPPERCASE:</strong> Converts all letters to capitals. Great for headers or emphasizing warnings.</li>
+          <li><strong>lowercase:</strong> Converts all letters to small caps. Useful for normalising data or fixing accidental Caps Lock.</li>
+          <li><strong>Title Case:</strong> Capitalizes the first letter of every word. Perfect for blog titles, names, and headings.</li>
+          <li><strong>Sentence case:</strong> Capitalizes only the first letter of the first word (and after punctuation). Ideal for turning messy text into readable prose.</li>
+        </ul>
+
+        <h3>Instant & Accurate</h3>
+        <p>
+          The conversion happens the moment you click a button. Our algorithms handle punctuation and spacing intelligently, so your text comes out looking professional and clean.
+        </p>
+
+        <h2>How to Use the Case Converter</h2>
+        <ol>
+          <li><strong>Paste Your Text:</strong> Copy the text you want to convert from your document, email, or website and paste it into the large input box above.</li>
+          <li><strong>Choose a Format:</strong> Click one of the buttons below the text box:
+            <ul>
+              <li>Click <strong>UPPERCASE</strong> to shout.</li>
+              <li>Click <strong>lowercase</strong> to whisper.</li>
+              <li>Click <strong>Title Case</strong> for headlines.</li>
+              <li>Click <strong>Sentence case</strong> for standard sentences.</li>
+            </ul>
+          </li>
+          <li><strong>Copy the Result:</strong> Once the text transforms, simply select it and copy it back to your original location.</li>
+        </ol>
+
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Writers and Editors</h3>
+        <p>
+          Headlines follow specific style guides. Converting a sentence to Title Case manually is prone to error (missing a word here or there). Our tool ensures every word gets the capitalization it needs instantly.
+        </p>
+
+        <h3>Data Analysts & Developers</h3>
+        <p>
+          Data often comes in messy. You might have a CSV file where names are mixed: "JOHN DOE", "jane smith", "Bob Jones". Using our tool, you can normalize everything to <strong>Title Case</strong> (John Doe, Jane Smith, Bob Jones) or <strong>lowercase</strong> for database consistency in seconds.
+        </p>
+
+        <h3>Everyday Users</h3>
+        <p>
+          Accidentally hit Caps Lock while looking at your keyboard? Don't delete and retype. Paste it here, hit <strong>Sentence case</strong>, and your email is saved.
+        </p>
+
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Privacy Focused:</strong> No server-side processing. Your data stays with you.</li>
+          <li><strong>Clean Interface:</strong> No cluttered ads or confusing menus. Just the tool.</li>
+          <li><strong>Free Forever:</strong> No premium tiers or paywalls for basic text utilities.</li>
+        </ul>
+
+        <h2>FAQs</h2>
+        
+        <h3>Does Sentence Case handle punctuation?</h3>
+        <p>
+          Yes! Our Sentence Case logic looks for periods, exclamation marks, and question marks to determine where a new sentence begins, ensuring proper capitalization after each one.
+        </p>
+
+        <h3>What happens to numbers and symbols?</h3>
+        <p>
+          Numbers and special characters (like @, #, $) are left unchanged, as they do not have upper or lower case variants. Only alphabetic characters are affected.
+        </p>
+
+        <h3>Can I convert code variable names?</h3>
+        <p>
+          While this tool is designed for natural text, you can use "lowercase" to normalize variable names. For specific code casing like `camelCase` or `snake_case`, check out our developer-focused tools.
+        </p>
+
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Use Title Case for Impact:</strong> Studies show that headlines in Title Case draw more attention than those in sentence case.</li>
+          <li><strong>Don't Abuse Uppercase:</strong> WRITING IN ALL CAPS IS OFTEN PERCEIVED AS YELLING. Use it sparingly for emphasis, not for entire paragraphs.</li>
+        </ul>
+
+        <h2>Get Started Now</h2>
+        <p>
+          Stop retyping and start converting. Paste your text above and fix your formatting instantly.
+        </p>
+        <p>
+          Need to count your words after formatting? Use our <a href="/tools/word-character-counter">Word & Character Counter</a> next.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -67,7 +196,13 @@
       btn.addEventListener('click', () => {
         const action = btn.dataset.action;
         let value = input.value;
+        // Allow clear even if empty, but for others check value
+        if (action === 'clear') {
+            input.value = '';
+            return;
+        }
         if (!value) return;
+
         switch (action) {
           case 'upper':
             value = value.toUpperCase();
@@ -89,4 +224,3 @@
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

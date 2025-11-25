@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Responsive Image Helper – toolfoliohub</title>
+  <title>Responsive Image Helper – Generate srcset & Picture Tags | toolfoliohub</title>
+  <meta name="description" content="Generate srcset and picture element code for responsive images. Free tool that creates HTML code for responsive images with multiple sizes and formats.">
+  <meta name="keywords" content="responsive images, srcset generator, picture element generator, responsive image helper, image srcset, HTML picture tag">
+  <meta property="og:title" content="Responsive Image Helper – Generate srcset & Picture Tags | toolfoliohub">
+  <meta property="og:description" content="Generate HTML code for responsive images. Free tool for creating srcset attributes and picture elements with multiple image sizes.">
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -64,6 +68,92 @@
           <p class="text-muted-light dark:text-muted-dark">Generated code will appear here.</p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>Responsive Image Helper – Generate Responsive Image Code</h2>
+        
+        <p class="lead">
+          Responsive images ensure optimal performance and user experience across all devices. The <strong>Responsive Image Helper</strong> generates HTML code for responsive images using the <code>srcset</code> attribute and <code>&lt;picture&gt;</code> element, making it easy to serve appropriately-sized images to different devices.
+        </p>
+        <p>
+          Whether you're implementing responsive images for the first time or need to generate code quickly, this tool creates properly formatted HTML that follows responsive image best practices.
+        </p>
+
+        <h2>Why Responsive Images Matter</h2>
+        <p>
+          Serving appropriately-sized images provides several benefits:
+        </p>
+        <ul>
+          <li><strong>Performance:</strong> Smaller images load faster, especially on mobile devices</li>
+          <li><strong>Bandwidth:</strong> Reduces data usage for mobile users</li>
+          <li><strong>User Experience:</strong> Faster page loads improve user satisfaction</li>
+          <li><strong>SEO:</strong> Faster pages rank better in search engines</li>
+        </ul>
+
+        <h2>Responsive Image Techniques</h2>
+        
+        <h3>1. srcset Attribute</h3>
+        <p>
+          The <code>srcset</code> attribute allows browsers to choose the best image size based on the device's screen size and pixel density:
+        </p>
+        <code>
+          &lt;img srcset="image-320w.jpg 320w, image-640w.jpg 640w, image-1024w.jpg 1024w" src="image-320w.jpg" alt="Description"&gt;
+        </code>
+        <p>
+          Browsers automatically select the most appropriate image from the set based on viewport width.
+        </p>
+
+        <h3>2. Picture Element</h3>
+        <p>
+          The <code>&lt;picture&gt;</code> element provides more control, allowing different images for different conditions:
+        </p>
+        <code>
+          &lt;picture&gt;<br/>
+          &nbsp;&nbsp;&lt;source media="(min-width: 800px)" srcset="large.jpg"&gt;<br/>
+          &nbsp;&nbsp;&lt;source media="(min-width: 400px)" srcset="medium.jpg"&gt;<br/>
+          &nbsp;&nbsp;&lt;img src="small.jpg" alt="Description"&gt;<br/>
+          &lt;/picture&gt;
+        </code>
+        <p>
+          Useful for art direction (showing different crops/compositions) or format selection (WebP, AVIF).
+        </p>
+
+        <h2>Image Size Guidelines</h2>
+        <p>
+          Common responsive image sizes:
+        </p>
+        <ul>
+          <li><strong>320px:</strong> Mobile phones (small screens)</li>
+          <li><strong>640px:</strong> Mobile phones (retina displays)</li>
+          <li><strong>1024px:</strong> Tablets and small laptops</li>
+          <li><strong>1920px:</strong> Desktop displays and large screens</li>
+        </ul>
+        <p>
+          Adjust sizes based on your content and typical image display sizes.
+        </p>
+
+        <h2>Best Practices</h2>
+        <ul>
+          <li><strong>Provide Fallback:</strong> Always include a <code>src</code> attribute for older browsers</li>
+          <li><strong>Alt Text:</strong> Include descriptive alt text for accessibility</li>
+          <li><strong>Lazy Loading:</strong> Use <code>loading="lazy"</code> for images below the fold</li>
+          <li><strong>Optimize Images:</strong> Compress images for web before generating multiple sizes</li>
+          <li><strong>Modern Formats:</strong> Consider WebP or AVIF with picture element for better compression</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Responsive Image Helper</strong> simplifies creating responsive image code, ensuring your images load efficiently across all devices and improving your website's performance and user experience.
+        </p>
+      </article>
     </main>
   </div>
 

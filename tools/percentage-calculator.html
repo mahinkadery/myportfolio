@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Percentage Calculator – toolfoliohub</title>
+  
+  <!-- SEO Metadata -->
+  <title>Percentage Calculator – Calculate % Change & Value</title>
+  <meta name="description" content="Easily calculate percentages, percentage increase/decrease, and find X% of any number. Free online math tool for students and finance." />
+  <meta name="keywords" content="percentage calculator, percentage increase calculator, percentage decrease, percent change, find percentage of number, math helper, free calculator, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Percentage Calculator – Solve Math Problems" />
+  <meta property="og:description" content="Find X% of Y or calculate percentage growth instantly. No math required." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/percentage-calculator" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:720px;margin:0 auto;}</style>
+  <style>
+    .tool-shell{max-width:720px;margin:0 auto;}
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,34 +53,290 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-8">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-8 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Calculator</p>
           <h1 class="mt-2 text-3xl font-bold">Percentage Calculator</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Figure out X% of a number and the percentage change between two values.</p>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Find X% of a number or calculate the percentage change between two values.</p>
         </div>
 
-        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4">
-          <h2 class="text-xl font-semibold">X% of a number</h2>
-          <div class="grid gap-4 sm:grid-cols-[1fr_auto] items-center">
-            <input id="pctValue" type="number" placeholder="Percentage (e.g. 15)" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-            <span class="hidden sm:block text-muted-light dark:text-muted-dark text-sm text-center">of</span>
-            <input id="pctBase" type="number" placeholder="Base number" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4 shadow-inner border border-white/20 dark:border-white/5">
+          <h2 class="text-xl font-semibold flex items-center gap-2"><span class="material-symbols-outlined text-primary">percent</span> Find Percentage</h2>
+          <p class="text-sm text-muted-light dark:text-muted-dark">What is <strong>X%</strong> of <strong>Y</strong>?</p>
+          <div class="grid gap-4 sm:grid-cols-[1fr_auto_1fr] items-center">
+            <input id="pctValue" type="number" placeholder="Percentage (e.g. 20)" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+            <span class="text-muted-light dark:text-muted-dark text-sm text-center font-bold">% of</span>
+            <input id="pctBase" type="number" placeholder="Base number (e.g. 500)" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
           </div>
-          <button id="pctCompute" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Calculate</button>
-          <p id="pctResult" class="text-lg font-semibold text-primary">Result: —</p>
+          <button id="pctCompute" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold hover:brightness-110 transition-all w-full sm:w-auto shadow hover:shadow-md transform hover:-translate-y-0.5">Calculate</button>
+          <p id="pctResult" class="text-lg font-semibold text-primary bg-white/50 dark:bg-black/20 p-3 rounded-xl text-center border border-primary/20">Result: —</p>
         </div>
 
-        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4">
-          <h2 class="text-xl font-semibold">% increase / decrease</h2>
+        <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-6 space-y-4 shadow-inner border border-white/20 dark:border-white/5">
+          <h2 class="text-xl font-semibold flex items-center gap-2"><span class="material-symbols-outlined text-primary">trending_up</span> Percentage Change</h2>
+          <p class="text-sm text-muted-light dark:text-muted-dark">Calculate increase or decrease from <strong>Value A</strong> to <strong>Value B</strong>.</p>
           <div class="grid gap-4 sm:grid-cols-2">
-            <input id="changeStart" type="number" placeholder="Starting value" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-            <input id="changeEnd" type="number" placeholder="Ending value" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+            <div class="space-y-1">
+                <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">Start Value</label>
+                <input id="changeStart" type="number" placeholder="e.g. 100" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+            </div>
+            <div class="space-y-1">
+                <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">End Value</label>
+                <input id="changeEnd" type="number" placeholder="e.g. 150" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+            </div>
           </div>
-          <button id="changeCompute" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Compute change</button>
-          <p id="changeResult" class="text-lg font-semibold text-primary">Change: —</p>
+          <button id="changeCompute" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold hover:brightness-110 transition-all w-full sm:w-auto shadow hover:shadow-md transform hover:-translate-y-0.5">Compute Change</button>
+          <p id="changeResult" class="text-lg font-semibold text-primary bg-white/50 dark:bg-black/20 p-3 rounded-xl text-center border border-primary/20">Change: —</p>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Percentage Calculator – Master Percentages with Zero Math Stress</h2>
+        
+        <!-- 3. Introduction -->
+        <p class="lead">
+          Percentages are the universal language of discounts, tips, taxes, interest rates, and growth metrics. They appear in every store window ("50% OFF!"), every restaurant bill (tip calculation), and every financial report (revenue growth). Yet, despite their ubiquity, calculating percentages can be confusing. Do you multiply or divide? Which number goes first?
+        </p>
+        <p>
+          The <strong>Percentage Calculator</strong> by ToolfolioHub eliminates this confusion. It is a dual-purpose utility that solves the two most common percentage problems instantly: finding what percentage one number is of another, and calculating the percentage change between two values. No formulas to memorize, no division mistakes—just accurate answers in seconds.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is a Percentage Calculator?</h2>
+        <p>
+          A percentage calculator is a specialized math tool designed to handle percentage-based calculations automatically. Unlike a basic calculator (which requires you to remember formulas), a percentage calculator understands the context of percentage problems.
+        </p>
+        <p>
+          Our tool solves two fundamental types of problems:
+        </p>
+        <ol>
+          <li><strong>Finding a Percentage of a Number:</strong> "What is 20% of 500?" This is useful for calculating tips, discounts, taxes, or commissions.</li>
+          <li><strong>Calculating Percentage Change:</strong> "My salary went from $50,000 to $55,000. What's the percentage increase?" This is essential for tracking growth, inflation, or performance metrics.</li>
+        </ol>
+        <p>
+          These operations are so common in daily life and business that having a dedicated tool saves significant time and prevents calculation errors.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Find X% of Y (Percentage of a Number)</h3>
+        <p>
+          This mode answers questions like "What is 15% of $80?" or "How much is 8% sales tax on $250?"
+        </p>
+        <p>
+          The formula behind the scenes is: <code>Result = (Percentage ÷ 100) × Base Number</code>. While this is simple math, entering it manually on a basic calculator is error-prone (forgetting to divide by 100, misplacing the decimal point, etc.). Our tool handles the formula automatically.
+        </p>
+        <p>
+          <strong>Real-world examples:</strong>
+        </p>
+        <ul>
+          <li><strong>Tips:</strong> 18% tip on a $45 dinner bill = $8.10</li>
+          <li><strong>Discounts:</strong> 25% off a $120 jacket = $30 savings</li>
+          <li><strong>Commissions:</strong> 5% commission on a $2,000 sale = $100</li>
+        </ul>
+
+        <h3>2. Percentage Change (Increase/Decrease)</h3>
+        <p>
+          This mode calculates how much a value has changed from one point to another, expressed as a percentage. It answers questions like "What percentage did my stock portfolio increase this year?" or "How much did the price drop during the sale?"
+        </p>
+        <p>
+          The formula is: <code>Percentage Change = ((New Value - Old Value) ÷ Old Value) × 100</code>
+        </p>
+        <p>
+          What sets our tool apart is that it automatically tells you if the change is an <strong>increase</strong> or a <strong>decrease</strong>. Many calculators just show a negative number, forcing you to interpret the sign. We make it crystal clear with color-coded labels.
+        </p>
+        <p>
+          <strong>Real-world examples:</strong>
+        </p>
+        <ul>
+          <li><strong>Salary Raises:</strong> From $60,000 to $66,000 = 10% increase</li>
+          <li><strong>Price Drops:</strong> From $200 to $150 = 25% decrease</li>
+          <li><strong>Growth Metrics:</strong> Revenue from $100K to $125K = 25% increase</li>
+        </ul>
+
+        <h3>3. Clean, Intuitive Interface</h3>
+        <p>
+          We've designed two separate, clearly labeled sections. There is no confusion about which mode to use. Large input fields make it easy to enter numbers, even on mobile devices.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Percentage Calculator</h2>
+        <p>
+          Using the calculator is straightforward. Here's a step-by-step guide for both modes:
+        </p>
+        
+        <h3>Mode 1: Find X% of Y</h3>
+        <ol>
+          <li><strong>Locate the "Find Percentage" Section:</strong> It's the first calculator box at the top of the tool interface.</li>
+          <li><strong>Enter the Percentage:</strong> Type the percentage number (without the % symbol). For example, for 15%, just type `15`.</li>
+          <li><strong>Enter the Base Number:</strong> Type the total amount or whole number you want to find a percentage of.</li>
+          <li><strong>Click "Calculate":</strong> The result appears instantly below the button.</li>
+        </ol>
+        <p>
+          <strong>Example Walkthrough:</strong> To calculate a 20% tip on a $75 bill:
+          <br>1. Enter `20` in the "Percentage" field.
+          <br>2. Enter `75` in the "Base number" field.
+          <br>3. Click "Calculate".
+          <br>4. Result: $15.00
+        </p>
+
+        <h3>Mode 2: Percentage Change</h3>
+        <ol>
+          <li><strong>Locate the "Percentage Change" Section:</strong> It's the second calculator box below the first one.</li>
+          <li><strong>Enter the Start Value:</strong> This is your original or "before" number (e.g., last year's price).</li>
+          <li><strong>Enter the End Value:</strong> This is your new or "after" number (e.g., this year's price).</li>
+          <li><strong>Click "Compute Change":</strong> The result shows the percentage change with a clear "Increase" or "Decrease" label.</li>
+        </ol>
+        <p>
+          <strong>Example Walkthrough:</strong> To find the percentage increase when a price goes from $100 to $125:
+          <br>1. Enter `100` in the "Start Value" field.
+          <br>2. Enter `125` in the "End Value" field.
+          <br>3. Click "Compute Change".
+          <br>4. Result: "Increase of 25.00% (+25.00)"
+        </p>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Retail Shoppers & Consumers</h3>
+        <p>
+          When you see "30% OFF" in a store window, how much money are you actually saving? Instead of pulling out your phone's calculator app (which might take forever to load), use our tool to instantly see the dollar amount.
+        </p>
+        <p>
+          <strong>Practical Example:</strong> A $299.99 item is on sale for 30% off. Using our calculator, you quickly discover the discount is $90.00, so you'll pay $209.99. This helps you decide if the sale is actually a good deal or just marketing hype.
+        </p>
+
+        <h3>Restaurant Diners</h3>
+        <p>
+          Calculating tips is one of the most common percentage calculations. Different countries have different tipping customs (15% in Canada, 18-20% in the US), and mental math can be stressful after a meal.
+        </p>
+        <p>
+          <strong>Practical Example:</strong> Your bill is $68.50 and you want to leave a 20% tip. Enter `20` and `68.50`, and you'll see the tip amount is $13.70. Total to pay: $82.20.
+        </p>
+
+        <h3>Investors & Financial Analysts</h3>
+        <p>
+          Tracking portfolio performance, stock price movements, or revenue growth requires accurate percentage change calculations. A small error can lead to incorrect investment decisions.
+        </p>
+        <p>
+          <strong>Practical Example:</strong> Your investment portfolio was worth $50,000 last year and is now worth $57,500. Using the "Percentage Change" calculator, you discover you've gained 15%. This helps you compare your performance against market benchmarks.
+        </p>
+
+        <h3>Small Business Owners</h3>
+        <p>
+          Business owners constantly calculate percentages: markup on products, commission rates for sales teams, discount strategies, and year-over-year growth. Having a reliable, always-available calculator is essential.
+        </p>
+        <p>
+          <strong>Practical Example:</strong> You want to offer a "Buy 2, Get 20% Off" promotion. If each item costs $30, the calculator helps you quickly determine the discount per item ($6) and the total revenue impact.
+        </p>
+
+        <h3>Students & Educators</h3>
+        <p>
+          Math students learning percentages can use this tool to verify their manual calculations. It serves as both a learning aid (showing correct answers) and a verification tool (double-checking homework).
+        </p>
+
+        <h3>Real Estate Professionals</h3>
+        <p>
+          Calculating down payments (often a percentage of the home price), commission rates, and price appreciation/depreciation all rely on percentage math.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Clarity Over Confusion:</strong> Many percentage calculators just show you a number. Ours explicitly states "Increase" or "Decrease" with color coding (green for growth, red for decline), eliminating any ambiguity.</li>
+          <li><strong>Dual Functionality:</strong> Most tools only do one type of calculation. Ours handles both "X% of Y" and "percentage change" problems in one interface.</li>
+          <li><strong>Mobile Optimized:</strong> Perfect for quick calculations while shopping or dining. The interface is touch-friendly and loads instantly.</li>
+          <li><strong>Privacy Focused:</strong> Your financial calculations never leave your browser. No data tracking, no cookies storing your numbers.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>How do I calculate a final price after a discount?</h3>
+        <p>
+          Use our "Find Percentage" tool in two steps:
+        </p>
+        <ol>
+          <li>First, calculate the discount amount: Enter the discount percentage (e.g., `20`) and the original price (e.g., `100`). Result: `20`.</li>
+          <li>Then, subtract that result from the original price: `$100 - $20 = $80` final price.</li>
+        </ol>
+        <p>
+          <strong>Alternative:</strong> You can also calculate it mentally: If something is 20% off, you pay 80% of the original. So `$100 × 0.80 = $80`.
+        </p>
+
+        <h3>Can percentages be greater than 100%?</h3>
+        <p>
+          <strong>Yes!</strong> Percentages can absolutely exceed 100%. When calculating percentage change, if a value doubles, that's a 100% increase. If it triples, that's a 200% increase. For example:
+        </p>
+        <ul>
+          <li>Stock price goes from $10 to $30: That's a 200% increase.</li>
+          <li>Revenue grows from $50K to $150K: That's a 200% increase.</li>
+        </ul>
+        <p>
+          Our tool handles any percentage value without limitation.
+        </p>
+
+        <h3>How do I calculate reverse percentages?</h3>
+        <p>
+          Sometimes you know the final amount and the percentage, but need to find the original. For example: "I paid $80 after a 20% discount. What was the original price?"
+        </p>
+        <p>
+          <strong>Formula:</strong> Original Price = Final Price ÷ (1 - (Discount% ÷ 100))
+        </p>
+        <p>
+          In this case: `$80 ÷ 0.80 = $100` original price.
+        </p>
+        <p>
+          <em>Note: We may add a "Reverse Percentage" mode in a future update!</em>
+        </p>
+
+        <h3>What's the difference between "percentage of" and "percentage change"?</h3>
+        <p>
+          <strong>"Percentage of":</strong> Finds a portion of a whole number. Example: "What is 25% of 200?" Answer: 50.
+        </p>
+        <p>
+          <strong>"Percentage change":</strong> Compares two different values to see how much they differ. Example: "200 increased to 250. What's the percentage change?" Answer: 25% increase.
+        </p>
+        <p>
+          Think of it this way: "Percentage of" is about finding a piece of one thing. "Percentage change" is about comparing two different things.
+        </p>
+
+        <h3>Why do I get different results on different calculators?</h3>
+        <p>
+          This usually happens due to rounding. Some calculators round to 2 decimal places, others to 4. Our calculator shows precise results (rounded to 4 decimal places) and then formats them cleanly. If you're comparing financial calculations and see tiny discrepancies (like $100.01 vs $100.00), it's likely a rounding difference and both are technically correct.
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Double-Check Your Inputs:</strong> A common mistake is entering the percentage as a decimal (e.g., typing `0.20` instead of `20`). Our tool expects whole numbers for percentages (20, not 0.20).</li>
+          <li><strong>Use for Quick Estimates:</strong> When shopping, you can quickly estimate final prices. If something is 30% off and costs $100, you know you'll pay roughly $70 (the tool gives you the exact $30 discount).</li>
+          <li><strong>Track Growth Over Time:</strong> Use the "Percentage Change" calculator monthly to track salary increases, investment returns, or business metrics. Create a habit of checking your growth percentages regularly.</li>
+          <li><strong>Combine with Other Tools:</strong> After calculating a percentage, you might want to add it to your <a href="/tools/basic-calculator">Basic Calculator</a> for further math, or use our <a href="/tools/discount-calculator">Discount Calculator</a> for more complex pricing scenarios.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Stop second-guessing your percentage math. Enter your numbers above and get accurate answers instantly. It's free, fast, and reliable.
+        </p>
+        <p>
+          Need more advanced calculations? Check out our <a href="/tools/discount-calculator">Discount Calculator</a> for sale price scenarios, or the <a href="/tools/bmi-calculator">BMI Calculator</a> for health-related percentages.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Percentage Calculator</strong> is more than just a math tool; it's a confidence booster. Whether you're negotiating a salary increase, calculating a restaurant tip, or analyzing business growth, having accurate percentage calculations at your fingertips eliminates guesswork and errors.
+        </p>
+        <p>
+          ToolfolioHub is committed to providing free, high-quality utilities that make everyday math simple. Bookmark this page and never struggle with percentages again.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -75,26 +352,40 @@
       const pct = parseFloat(pctValue.value);
       const base = parseFloat(pctBase.value);
       if (isNaN(pct) || isNaN(base)) {
-        pctResult.textContent = 'Result: please enter valid numbers.';
+        pctResult.innerHTML = '<span class="text-red-500">Please enter valid numbers.</span>';
         return;
       }
-      pctResult.textContent = `Result: ${(base * (pct / 100)).toFixed(2)}`;
+      // Math: (Percentage / 100) * Base
+      const val = (base * (pct / 100));
+      // Format to avoid floating point weirdness (e.g. 0.1 + 0.2)
+      const formatted = parseFloat(val.toFixed(4)); 
+      pctResult.innerHTML = `Result: <strong>${formatted}</strong>`;
     });
 
     document.getElementById('changeCompute').addEventListener('click', () => {
       const start = parseFloat(changeStart.value);
       const end = parseFloat(changeEnd.value);
-      if (isNaN(start) || isNaN(end) || start === 0) {
-        changeResult.textContent = 'Change: please enter valid numbers (start cannot be 0).';
+      
+      if (isNaN(start) || isNaN(end)) {
+        changeResult.innerHTML = '<span class="text-red-500">Please enter valid numbers.</span>';
         return;
       }
+      
+      if (start === 0) {
+        changeResult.innerHTML = '<span class="text-red-500">Start value cannot be zero for % change.</span>';
+        return;
+      }
+
       const diff = end - start;
       const percent = (diff / start) * 100;
-      const direction = percent > 0 ? 'increase' : percent < 0 ? 'decrease' : 'no change';
-      changeResult.textContent = `Change: ${direction} of ${Math.abs(percent).toFixed(2)}% (${diff.toFixed(2)})`;
+      
+      const direction = percent > 0 ? '<span class="text-green-600 dark:text-green-400">Increase</span>' 
+                      : percent < 0 ? '<span class="text-red-600 dark:text-red-400">Decrease</span>' 
+                      : 'No Change';
+      
+      changeResult.innerHTML = `${direction} of <strong>${Math.abs(percent).toFixed(2)}%</strong> <span class="text-sm opacity-75">(${diff > 0 ? '+' : ''}${diff.toFixed(2)})</span>`;
     });
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

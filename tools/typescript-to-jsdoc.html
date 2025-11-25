@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TypeScript to JSDoc Converter – toolfoliohub</title>
+  <title>TypeScript to JSDoc Converter – Convert Type Annotations | toolfoliohub</title>
+  <meta name="description" content="Convert TypeScript type annotations into JSDoc comments for JavaScript. Free tool that transforms TypeScript code with types into JavaScript with JSDoc type hints.">
+  <meta name="keywords" content="TypeScript to JSDoc, convert TypeScript to JavaScript, JSDoc generator, TypeScript converter, type annotation converter">
+  <meta property="og:title" content="TypeScript to JSDoc Converter – Convert Type Annotations | toolfoliohub">
+  <meta property="og:description" content="Convert TypeScript code with types into JavaScript with JSDoc comments. Free tool for migrating TypeScript to JavaScript with type hints.">
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -53,6 +57,82 @@
 
         <button id="copyBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Copy Output</button>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>TypeScript to JSDoc Converter – Preserve Type Information in JavaScript</h2>
+        
+        <p class="lead">
+          When migrating from TypeScript to JavaScript or wanting to add type hints to JavaScript code, the <strong>TypeScript to JSDoc Converter</strong> transforms TypeScript type annotations into JSDoc comments. This allows you to preserve type information in plain JavaScript while maintaining compatibility with JavaScript-only projects.
+        </p>
+        <p>
+          JSDoc type annotations provide type checking and IntelliSense support in JavaScript through TypeScript's type checking system, without requiring a TypeScript build step.
+        </p>
+
+        <h2>TypeScript vs JSDoc Types</h2>
+        
+        <h3>TypeScript Types</h3>
+        <p>
+          TypeScript uses inline type annotations with syntax like:
+        </p>
+        <code>
+          function greet(name: string, age: number): string {<br/>
+          &nbsp;&nbsp;return `Hello, ${name}!`;<br/>
+          }
+        </code>
+
+        <h3>JSDoc Type Annotations</h3>
+        <p>
+          JSDoc uses comment-based type annotations:
+        </p>
+        <code>
+          /**<br/>
+          &nbsp;* @param {string} name<br/>
+          &nbsp;* @param {number} age<br/>
+          &nbsp;* @returns {string}<br/>
+          &nbsp;*/<br/>
+          function greet(name, age) {<br/>
+          &nbsp;&nbsp;return `Hello, ${name}!`;<br/>
+          }
+        </code>
+
+        <h2>Benefits of JSDoc Types</h2>
+        <ul>
+          <li><strong>JavaScript Compatibility:</strong> Works in plain JavaScript without compilation</li>
+          <li><strong>Type Checking:</strong> TypeScript can check JSDoc-annotated JavaScript</li>
+          <li><strong>IDE Support:</strong> Provides IntelliSense and autocomplete</li>
+          <li><strong>Documentation:</strong> JSDoc comments serve as inline documentation</li>
+          <li><strong>No Build Step:</strong> No need for TypeScript compiler</li>
+        </ul>
+
+        <h2>Supported Type Conversions</h2>
+        <ul>
+          <li><strong>Primitive Types:</strong> string, number, boolean, null, undefined</li>
+          <li><strong>Complex Types:</strong> object, array, function, union types</li>
+          <li><strong>Optional Parameters:</strong> Converted to JSDoc optional syntax</li>
+          <li><strong>Return Types:</strong> Converted to @returns annotations</li>
+        </ul>
+
+        <h2>Use-Cases</h2>
+        <ul>
+          <li><strong>TypeScript Migration:</strong> Converting TypeScript to JavaScript while preserving types</li>
+          <li><strong>JavaScript Enhancement:</strong> Adding type hints to existing JavaScript</li>
+          <li><strong>Type Safety:</strong> Getting type checking without TypeScript compilation</li>
+          <li><strong>Documentation:</strong> Adding self-documenting type information</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>TypeScript to JSDoc Converter</strong> helps bridge the gap between TypeScript and JavaScript by converting type annotations to JSDoc comments, enabling type checking and IDE support in plain JavaScript files.
+        </p>
+      </article>
     </main>
   </div>
 

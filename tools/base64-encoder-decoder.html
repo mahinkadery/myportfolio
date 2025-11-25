@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Base64 Encoder & Decoder – toolfoliohub</title>
+  
+  <!-- 1. SEO Metadata -->
+  <title>Base64 Encoder / Decoder – Free Online Text Converter | ToolfolioHub</title>
+  <meta name="description" content="Convert text to Base64 format or decode Base64 strings back to plain text. Supports UTF-8 characters, emojis, and data strings. Free, secure, and developer-friendly." />
+  <meta name="keywords" content="base64 encoder, base64 decoder, base64 converter, text to base64, base64 to text, decode base64 online, encode base64, utf8 base64, developer tools, toolfoliohub, basic auth generator" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Base64 Encoder / Decoder – Safe Text Conversion" />
+  <meta property="og:description" content="Encode and decode Base64 strings instantly. Handles Unicode/UTF-8 correctly. Free, secure, and privacy-focused." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/base64-encoder-decoder" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:960px;margin:0 auto;}</style>
+  <style>
+    .tool-shell { max-width: 960px; margin: 0 auto; }
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,22 +53,148 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
-          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer helper</p>
-          <h1 class="mt-2 text-3xl font-bold">Base64 Encoder / Decoder</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Use browser-safe helpers to work with Base64 strings.</p>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Developer Helper</p>
+          <h1 class="mt-2 text-3xl font-bold">Base64 Encoder / Decoder – Text Converter</h1>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Safely encode text to Base64 or decode Base64 strings back to plain text.</p>
         </div>
 
-        <textarea id="baseInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[200px]" placeholder="Enter text or Base64"></textarea>
+        <textarea id="baseInput" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-4 min-h-[200px] focus:ring-2 focus:ring-primary outline-none transition-all font-mono text-sm" placeholder="Enter your text to encode, or paste a Base64 string to decode..."></textarea>
 
         <div class="flex gap-3 flex-wrap">
-          <button data-action="encode" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Encode</button>
-          <button data-action="decode" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold">Decode</button>
+          <button data-action="encode" class="rounded-full bg-primary text-white px-8 py-3 text-sm font-semibold hover:brightness-110 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Encode to Base64</button>
+          <button data-action="decode" class="rounded-full border border-primary text-primary px-8 py-3 text-sm font-semibold hover:bg-primary/5 transition-all shadow hover:shadow-md transform hover:-translate-y-0.5">Decode from Base64</button>
         </div>
 
-        <textarea id="baseOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/60 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[200px]" placeholder="Result"></textarea>
+        <div>
+            <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark mb-2 mt-6">Result</p>
+            <textarea id="baseOutput" readonly class="w-full rounded-2xl border border-white/40 bg-white/50 dark:border-white/10 dark:bg-background-dark/50 p-4 min-h-[200px] focus:ring-2 focus:ring-primary/50 outline-none transition-all font-mono text-sm" placeholder="Result will appear here..."></textarea>
+        </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Base64 Encoder & Decoder – Convert Data Securely and Instantly</h2>
+        
+        <!-- 3. Intro -->
+        <p class="lead">
+          In the digital world, not all systems speak the same language. Binary data, images, and complex characters often break when sent over email or inserted into URLs. <strong>Base64 encoding</strong> is the universal translator that solves this problem.
+        </p>
+        <p>
+          The <strong>Base64 Encoder / Decoder</strong> by ToolfolioHub is a robust utility that lets you convert any string of text into a safe, transportable Base64 format—and revert it back just as easily. It is an indispensable tool for developers, sysadmins, and data analysts.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is Base64?</h2>
+        <p>
+          Base64 is an encoding scheme that represents binary data using an ASCII string format. It translates your data into a set of 64 safe characters: `A-Z`, `a-z`, `0-9`, `+`, and `/`.
+        </p>
+        <p>
+          Why do we need it? Many older protocols (like email) were designed to handle text, not binary files (like images or PDFs). Base64 turns that binary data into text so it can travel through these systems without getting corrupted. It is also widely used in web development for embedding small images (Data URIs) and handling authentication headers.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Full UTF-8 Unicode Support</h3>
+        <p>
+          The standard browser functions (`btoa` and `atob`) are notorious for crashing if you try to encode non-Latin characters (like emojis 🚀 or accented letters é).
+        </p>
+        <p>
+          Our tool is smarter. It automatically handles UTF-8 encoding, meaning you can safely encode text in any language, including emojis and symbols, without errors.
+        </p>
+
+        <h3>2. Instant Client-Side Processing</h3>
+        <p>
+          Speed is key. There is no server upload, no waiting, and no bandwidth usage. Your conversion happens instantly in your browser's JavaScript engine.
+        </p>
+
+        <h3>3. Smart Error Feedback</h3>
+        <p>
+          Pasting a broken string? Instead of failing silently, our tool will alert you if the input is not a valid Base64 string, helping you debug issues faster.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Base64 Tool</h2>
+        <ol>
+          <li><strong>Input Your Data:</strong> Paste the text you want to process into the top box.</li>
+          <li><strong>Select Your Action:</strong>
+            <ul>
+              <li><strong>Encode:</strong> Converts plain text (e.g., "Hello") into a Base64 string (`SGVsbG8=`).</li>
+              <li><strong>Decode:</strong> Converts a Base64 string (`SGVsbG8=`) back into readable text ("Hello").</li>
+            </ul>
+          </li>
+          <li><strong>Copy the Result:</strong> Your converted data appears in the bottom box, ready for use.</li>
+        </ol>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Web Developers & API Engineers</h3>
+        <p>
+          <strong>HTTP Basic Authentication:</strong> Many APIs require an `Authorization` header formatted as `Basic <credentials>`. The credentials part is `username:password` encoded in Base64. Use this tool to generate that string instantly.
+        </p>
+
+        <h3>Email Administrators</h3>
+        <p>
+          Troubleshooting email delivery? Raw email sources often contain Base64 encoded attachments or body text. Paste the gibberish blocks here to decode them and see the actual content.
+        </p>
+
+        <h3>Security Analysts</h3>
+        <p>
+          Malware and phishing scripts often use Base64 to obfuscate (hide) their true intent. Analysts use this tool to decode suspicious strings found in logs or code to reveal malicious URLs or commands.
+        </p>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>Privacy is Paramount:</strong> You should never paste sensitive API keys or passwords into a server-based online converter. Because ToolfolioHub runs locally in your browser, your secrets never leave your machine. It is the safest way to encode sensitive data online.</li>
+          <li><strong>Clean & Ad-Free:</strong> We provide a distraction-free interface focused purely on utility.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Is Base64 a form of encryption?</h3>
+        <p>
+          <strong>No!</strong> This is a common misconception. Base64 is <em>encoding</em>, not encryption. It is like translating a book into another language—anyone who knows the language (or uses a decoder) can read it. It provides <strong>zero security</strong> for protecting data from prying eyes.
+        </p>
+
+        <h3>Why does the output end with equals signs (=)?</h3>
+        <p>
+          Those are padding characters. The Base64 algorithm processes data in 3-byte chunks. If the data length isn't perfectly divisible by 3, it adds `=` or `==` to the end to pad it out. It's a normal part of the standard.
+        </p>
+
+        <h3>Can I decode images with this?</h3>
+        <p>
+          This specific tool is optimized for <strong>text</strong>. While you <em>can</em> decode an image string, the result will be binary gibberish in the text box. For images, you would typically want a "Base64 to Image" viewer (which we may add in the future!).
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Trim Your Input:</strong> When decoding, ensure you don't have extra spaces or line breaks at the start or end of your Base64 string. Our tool tries to handle this, but a clean input ensures the best result.</li>
+          <li><strong>Don't Encode Passwords for Storage:</strong> Never store user passwords in a database as Base64. Always use a strong hashing algorithm like bcrypt or Argon2. (Check our <a href="/tools/hash-calculator">Hash Calculator</a> to learn more).</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Ready to convert? Paste your string above and toggle between formats instantly.
+        </p>
+        <p>
+          Dealing with URL parameters instead? Try our <a href="/tools/url-encoder-decoder">URL Encoder / Decoder</a>.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Base64 Encoder / Decoder</strong> is a simple yet powerful utility that solves complex data transport issues. Whether you are generating auth headers or debugging obscure data strings, ToolfolioHub gives you the power to convert with confidence and privacy.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -55,17 +202,34 @@
     const input = document.getElementById('baseInput');
     const output = document.getElementById('baseOutput');
 
-    const encode = (text) => btoa(unescape(encodeURIComponent(text)));
-    const decode = (text) => decodeURIComponent(escape(atob(text)));
+    // Robust Unicode-safe Base64 functions
+    const encode = (text) => {
+        try {
+            return btoa(unescape(encodeURIComponent(text)));
+        } catch (e) {
+            throw new Error("Unable to encode text. Ensure it is valid text.");
+        }
+    };
+    
+    const decode = (text) => {
+        try {
+            return decodeURIComponent(escape(atob(text)));
+        } catch (e) {
+            throw new Error("Invalid Base64 string. Ensure there are no extra spaces or invalid characters.");
+        }
+    };
 
     document.querySelectorAll('button[data-action]').forEach(button => {
       button.addEventListener('click', () => {
+        const val = input.value;
+        if (!val) return;
+
         try {
           output.value = button.dataset.action === 'encode'
-            ? encode(input.value)
-            : decode(input.value.trim());
+            ? encode(val)
+            : decode(val.trim()); // trim is important for decoding
         } catch (error) {
-          output.value = 'Error: ' + error.message;
+          output.value = error.message;
         }
       });
     });
@@ -73,4 +237,3 @@
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-

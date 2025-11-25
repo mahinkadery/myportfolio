@@ -3,7 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Curl Command Builder – toolfoliohub</title>
+  <!-- SEO Metadata -->
+  <title>cURL Command Builder – Generate cURL Commands for API Testing | ToolfolioHub</title>
+  <meta name="description" content="Build cURL commands from URL, HTTP method, headers, and body. Perfect for API testing and debugging. Copy commands instantly." />
+  <meta name="keywords" content="curl builder, curl command generator, api testing, http client, curl generator, developer tool, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="cURL Command Builder – API Testing Tool" />
+  <meta property="og:description" content="Build cURL commands quickly for API testing and debugging. Supports all HTTP methods and custom headers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/curl-builder" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
@@ -77,6 +88,85 @@
 
         <button id="copyBtn" class="rounded-full border border-white/40 px-6 py-2 text-sm font-semibold text-text-light dark:text-text-dark">Copy Curl Command</button>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        <style>
+          .prose { max-width: none; }
+          .dark .prose { color: #d1d5db; }
+          .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+          .dark .prose a { color: #60a5fa; }
+        </style>
+        
+        <h2>cURL Command Builder – Generate API Testing Commands</h2>
+        
+        <p class="lead">
+          cURL (Client URL) is the most widely used command-line tool for making HTTP requests. It's essential for API testing, debugging, and automation. However, constructing complex cURL commands manually can be error-prone and time-consuming. The <strong>cURL Command Builder</strong> by ToolfolioHub simplifies this process by providing a visual interface to build cURL commands from URL, method, headers, and body—then instantly copy the generated command.
+        </p>
+        <p>
+          Whether you're testing REST APIs, debugging webhooks, or automating HTTP requests, this tool generates accurate, properly formatted cURL commands in seconds.
+        </p>
+
+        <h2>What is cURL?</h2>
+        <p>
+          cURL is a command-line tool for transferring data with URLs. It supports:
+        </p>
+        <ul>
+          <li>All HTTP methods (GET, POST, PUT, DELETE, PATCH, etc.)</li>
+          <li>Custom headers (authentication, content-type, etc.)</li>
+          <li>Request bodies (JSON, form data, etc.)</li>
+          <li>File uploads and downloads</li>
+          <li>Multiple protocols (HTTP, HTTPS, FTP, etc.)</li>
+        </ul>
+        <p>
+          cURL commands are portable, scriptable, and work on all operating systems, making them ideal for API testing, CI/CD pipelines, and automation.
+        </p>
+
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Support for All HTTP Methods</h3>
+        <p>
+          Select from GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS. The tool automatically includes the `-X` flag and request body when appropriate.
+        </p>
+
+        <h3>2. Flexible Header Input</h3>
+        <p>
+          Enter headers as JSON object or line-by-line format. Supports authentication tokens, content types, custom headers, and more.
+        </p>
+
+        <h3>3. JSON Body Support</h3>
+        <p>
+          Add request bodies for POST, PUT, and PATCH requests. The tool properly escapes and formats the body for safe command-line execution.
+        </p>
+
+        <h3>4. Properly Escaped Output</h3>
+        <p>
+          Generated commands use proper escaping for special characters, ensuring they work correctly when pasted into terminals.
+        </p>
+
+        <h2>How to Use the cURL Builder</h2>
+        <ol>
+          <li><strong>Select Method:</strong> Choose HTTP method from dropdown.</li>
+          <li><strong>Enter URL:</strong> Paste or type the API endpoint URL.</li>
+          <li><strong>Add Headers (Optional):</strong> Enter headers as JSON or line-by-line format.</li>
+          <li><strong>Add Body (Optional):</strong> For POST/PUT/PATCH, enter JSON or text body.</li>
+          <li><strong>Build Command:</strong> Click "Build Curl Command" to generate.</li>
+          <li><strong>Copy & Use:</strong> Copy the command and paste into terminal.</li>
+        </ol>
+
+        <h2>Typical Use-Cases</h2>
+        <ul>
+          <li><strong>API Testing:</strong> Quickly test endpoints during development</li>
+          <li><strong>Debugging:</strong> Reproduce API issues for troubleshooting</li>
+          <li><strong>Documentation:</strong> Generate example commands for API docs</li>
+          <li><strong>Automation:</strong> Create cURL commands for scripts and CI/CD</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>cURL Command Builder</strong> accelerates API testing and debugging by generating accurate cURL commands instantly. It's an essential tool for developers working with REST APIs, webhooks, and HTTP services.
+        </p>
+      </article>
     </main>
   </div>
 

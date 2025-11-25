@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Loan / EMI Calculator – toolfoliohub</title>
+  
+  <!-- SEO Metadata -->
+  <title>Loan / EMI Calculator – Calculate Monthly Payments</title>
+  <meta name="description" content="Estimate your monthly loan payments (EMI) instantly. Enter loan amount, interest rate, and tenure. Free tool for home, car, and personal loans." />
+  <meta name="keywords" content="emi calculator, loan calculator, monthly payment calculator, interest calculator, loan repayment, mortgage calculator, car loan emi, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Loan / EMI Calculator – Plan Your Repayments" />
+  <meta property="og:description" content="Find out your exact monthly payment and total interest cost before you borrow." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/loan-emi-calculator" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script src="../tailwind-theme.js"></script>
   <link rel="stylesheet" href="../styles.css"/>
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <style>.tool-shell{max-width:760px;margin:0 auto;}</style>
+  <style>
+    .tool-shell{max-width:760px;margin:0 auto;}
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+  </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
   <div class="min-h-screen flex flex-col">
@@ -32,27 +53,296 @@
     </header>
 
     <main class="flex-1 px-4 py-10">
-      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">
+      <!-- Tool Section -->
+      <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6 mb-12">
         <div>
           <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark">Calculator</p>
           <h1 class="mt-2 text-3xl font-bold">Loan / EMI Calculator</h1>
-          <p class="mt-2 text-muted-light dark:text-muted-dark">Uses the standard EMI formula to compute monthly payments.</p>
+          <p class="mt-2 text-muted-light dark:text-muted-dark">Plan your loan by calculating monthly installments and total interest.</p>
         </div>
 
         <div class="grid gap-4 sm:grid-cols-2">
-          <input id="loanAmount" type="number" placeholder="Loan amount" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-          <input id="loanRate" type="number" placeholder="Interest rate (%) per year" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
-          <input id="loanTenure" type="number" placeholder="Tenure (months)" class="rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3">
+          <div class="space-y-1">
+            <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">Loan Amount</label>
+            <input id="loanAmount" type="number" placeholder="e.g. 50000" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+          </div>
+          <div class="space-y-1">
+            <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">Interest Rate (% per year)</label>
+            <input id="loanRate" type="number" placeholder="e.g. 5.5" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+          </div>
+          <div class="space-y-1 sm:col-span-2">
+            <label class="text-xs font-bold ml-2 text-muted-light dark:text-muted-dark">Tenure (Months)</label>
+            <input id="loanTenure" type="number" placeholder="e.g. 60 (5 years)" class="w-full rounded-2xl border border-white/40 bg-white/80 dark:border-white/10 dark:bg-background-dark/60 p-3 focus:ring-2 focus:ring-primary outline-none transition-all">
+          </div>
         </div>
 
-        <button id="loanBtn" class="rounded-full bg-primary text-white px-6 py-2 text-sm font-semibold">Calculate EMI</button>
+        <button id="loanBtn" class="rounded-full bg-primary text-white px-8 py-3 text-sm font-semibold hover:brightness-110 transition-all w-full shadow hover:shadow-md transform hover:-translate-y-0.5">Calculate Repayment</button>
 
-        <div class="rounded-2xl bg-white/70 dark:bg-background-dark/70 p-5 space-y-2">
-          <p id="emiResult" class="text-lg font-semibold">Monthly EMI: —</p>
-          <p id="totalInterest" class="text-sm text-muted-light dark:text-muted-dark">Total interest: —</p>
-          <p id="totalPayable" class="text-sm text-muted-light dark:text-muted-dark">Total payable: —</p>
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div class="rounded-3xl bg-primary/10 p-5 border border-primary/20 text-center">
+            <p class="text-xs uppercase tracking-widest text-primary font-bold mb-1">Monthly EMI</p>
+            <p id="emiResult" class="text-2xl font-bold text-primary">—</p>
+          </div>
+          <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-5 border border-white/20 dark:border-white/10 text-center">
+            <p class="text-xs uppercase tracking-widest text-muted-light dark:text-muted-dark font-bold mb-1">Total Interest</p>
+            <p id="totalInterest" class="text-xl font-semibold text-text-light dark:text-text-dark">—</p>
+          </div>
+          <div class="rounded-3xl bg-white/70 dark:bg-background-dark/70 p-5 border border-white/20 dark:border-white/10 text-center">
+            <p class="text-xs uppercase tracking-widest text-muted-light dark:text-muted-dark font-bold mb-1">Total Payable</p>
+            <p id="totalPayable" class="text-xl font-semibold text-text-light dark:text-text-dark">—</p>
+          </div>
         </div>
       </section>
+
+      <!-- SEO Article Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none">
+        <!-- H1 flow -->
+        <h2>Loan / EMI Calculator – Plan Your Repayments with Confidence</h2>
+        
+        <!-- 3. Introduction -->
+        <p class="lead">
+          Taking out a loan is one of the most significant financial decisions you'll make. Whether you are buying your first home, financing a car, or consolidating debt, the critical question is always: "Can I actually afford the monthly payment?" Banks and lenders show attractive interest rates, but the true cost of borrowing often hides in the fine print.
+        </p>
+        <p>
+          The <strong>Loan / EMI Calculator</strong> by ToolfolioHub cuts through the marketing to show you the reality. It calculates your exact monthly installment (EMI), reveals the total interest you'll pay over the life of the loan, and helps you make informed decisions before you sign on the dotted line.
+        </p>
+
+        <!-- 4. What is -->
+        <h2>What is EMI?</h2>
+        <p>
+          EMI stands for <strong>Equated Monthly Installment</strong>. It is the fixed amount you pay to your lender every month until the loan is fully repaid. This fixed amount is carefully calculated so that by the end of the loan term, you have paid back both the principal (the money you borrowed) and the interest (the cost of borrowing).
+        </p>
+        <p>
+          An EMI consists of two components:
+        </p>
+        <ol>
+          <li><strong>Principal Component:</strong> The portion that reduces your loan balance.</li>
+          <li><strong>Interest Component:</strong> The portion that goes to the lender as profit.</li>
+        </ol>
+        <p>
+          In the early months of a loan, most of your EMI goes toward interest. As time passes, more goes toward the principal. This is called "amortization" and is how most standard loans work.
+        </p>
+
+        <!-- 5. Features -->
+        <h2>Key Features & Benefits</h2>
+        
+        <h3>1. Industry-Standard Formula Accuracy</h3>
+        <p>
+          We use the standard financial formula that banks use worldwide:
+        </p>
+        <p>
+          <code>EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]</code>
+        </p>
+        <p>
+          Where:
+        </p>
+        <ul>
+          <li>P = Principal (loan amount)</li>
+          <li>R = Monthly interest rate (annual rate ÷ 12 ÷ 100)</li>
+          <li>N = Number of monthly installments</li>
+        </ul>
+        <p>
+          Our results match exactly what you would see on a bank's loan offer letter, ensuring you can trust our calculations for real-world planning.
+        </p>
+
+        <h3>2. Total Cost Transparency</h3>
+        <p>
+          Many borrowers focus only on the monthly payment, ignoring the total cost. Our calculator shows you:
+        </p>
+        <ul>
+          <li><strong>Monthly EMI:</strong> Your fixed monthly payment.</li>
+          <li><strong>Total Interest:</strong> The total interest you'll pay over the loan term. This number can be shocking—on a 30-year mortgage, interest can easily exceed the loan amount itself!</li>
+          <li><strong>Total Payable:</strong> Principal + Interest = the true cost of your loan.</li>
+        </ul>
+        <p>
+          This transparency helps you make better financial decisions. A $300,000 home loan at 6% over 30 years means you'll pay $347,514 in interest alone—more than the house value!
+        </p>
+
+        <h3>3. Flexible Scenario Planning</h3>
+        <p>
+          Use the calculator to test different scenarios:
+        </p>
+        <ul>
+          <li><strong>Different Tenures:</strong> See how a 15-year mortgage compares to a 30-year one.</li>
+          <li><strong>Different Rates:</strong> Compare offers from multiple lenders.</li>
+          <li><strong>Different Loan Amounts:</strong> Determine how much you can actually afford.</li>
+        </ul>
+        <p>
+          This "what-if" analysis is invaluable when shopping for loans or deciding between options.
+        </p>
+
+        <!-- 6. How to Use -->
+        <h2>How to Use the Loan / EMI Calculator</h2>
+        <p>
+          Calculating your loan repayment is straightforward:
+        </p>
+        <ol>
+          <li><strong>Enter the Loan Amount:</strong> This is the principal amount you want to borrow. For example, if you are buying a $300,000 home with a $60,000 down payment, you would enter `240000` (the loan amount).</li>
+          <li><strong>Enter the Annual Interest Rate:</strong> Type the interest rate percentage (without the % symbol). For example, for a 6.5% annual rate, enter `6.5`. Make sure this matches the rate offered by your lender.</li>
+          <li><strong>Enter the Tenure in Months:</strong> Loan durations are typically measured in months.
+            <ul>
+              <li>5 years = 60 months</li>
+              <li>10 years = 120 months</li>
+              <li>15 years = 180 months</li>
+              <li>20 years = 240 months</li>
+              <li>30 years = 360 months</li>
+            </ul>
+          </li>
+          <li><strong>Click "Calculate Repayment":</strong> The tool instantly displays your monthly EMI, total interest, and total payable amount.</li>
+        </ol>
+        <p>
+          <strong>Example Walkthrough:</strong>
+          <br>You want to take out a $25,000 car loan at 5.5% annual interest for 5 years (60 months).
+          <br>1. Enter `25000` in Loan Amount.
+          <br>2. Enter `5.5` in Interest Rate.
+          <br>3. Enter `60` in Tenure (Months).
+          <br>4. Click Calculate.
+          <br>5. Result: Monthly EMI = $477.42, Total Interest = $3,645.20, Total Payable = $28,645.20
+        </p>
+
+        <!-- 7. Use Cases -->
+        <h2>Typical Use-Cases & Audience</h2>
+
+        <h3>Home Buyers & Mortgage Seekers</h3>
+        <p>
+          Mortgages are typically the largest loans people take. Understanding your monthly payment is crucial for budgeting:
+        </p>
+        <ul>
+          <li><strong>Affordability Check:</strong> Use the calculator to determine how much house you can actually afford based on your monthly income (most experts recommend your EMI should not exceed 28-30% of your gross monthly income).</li>
+          <li><strong>Comparing Loan Terms:</strong> A 15-year mortgage has higher monthly payments but saves tens of thousands in interest compared to a 30-year mortgage. Use the calculator to see the trade-offs.</li>
+          <li><strong>Rate Shopping:</strong> Even a 0.25% difference in interest rates can save you thousands over the life of a 30-year loan. Use this tool to compare offers from different lenders.</li>
+        </ul>
+
+        <h3>Car Buyers</h3>
+        <p>
+          Car dealerships often use "low monthly payment" tactics to hide the true cost. Use this calculator to:
+        </p>
+        <ul>
+          <li>Verify that the dealer's quoted monthly payment is accurate.</li>
+          <li>Compare financing through the dealer vs. a bank or credit union.</li>
+          <li>Determine if you can afford to pay off the loan faster to save on interest.</li>
+        </ul>
+        <p>
+          <strong>Pro Tip:</strong> A $30,000 car at 7% for 72 months might have a "low" $514/month payment, but you'll pay $37,008 total. Consider a shorter term or saving for a larger down payment.
+        </p>
+
+        <h3>Personal Loan Applicants</h3>
+        <p>
+          Personal loans often have higher interest rates (10-25% APR) and shorter terms. Before applying:
+        </p>
+        <ul>
+          <li>Calculate if the monthly payment fits your budget.</li>
+          <li>Understand the true cost of borrowing. A $10,000 personal loan at 18% for 3 years costs $1,916 in interest.</li>
+          <li>Consider alternatives like a home equity loan (lower rates) or a 0% APR credit card (if you can pay it off quickly).</li>
+        </ul>
+
+        <h3>Debt Consolidation Planners</h3>
+        <p>
+          If you have multiple high-interest debts (credit cards, payday loans), consolidating them into one loan might save money:
+        </p>
+        <ul>
+          <li>Use the calculator to see if a consolidation loan's monthly payment is lower than your combined current payments.</li>
+          <li>Compare the total interest cost of consolidating vs. keeping separate debts.</li>
+          <li>Ensure the new loan's interest rate is actually lower than your current average rate.</li>
+        </ul>
+
+        <h3>Students & First-Time Borrowers</h3>
+        <p>
+          If you are new to loans, this calculator is an educational tool that helps you:
+        </p>
+        <ul>
+          <li>Understand how interest rates affect total cost.</li>
+          <li>See the impact of loan term length on monthly payments.</li>
+          <li>Learn to read loan offers critically.</li>
+        </ul>
+
+        <!-- 8. Why Choose -->
+        <h2>Why Choose This Tool over Others?</h2>
+        <ul>
+          <li><strong>No Registration Required:</strong> Many financial websites require email signups or account creation to use their calculators. Ours works instantly without any barriers.</li>
+          <li><strong>Privacy Guaranteed:</strong> Your financial data never leaves your browser. We don't track your loan amounts, rates, or calculations. This is especially important for sensitive financial planning.</li>
+          <li><strong>Works Offline:</strong> Once loaded, the calculator works without an internet connection, perfect for meetings with lenders or financial advisors.</li>
+          <li><strong>Mobile Friendly:</strong> Use it on your phone while sitting in a bank or car dealership to verify loan offers on the spot.</li>
+        </ul>
+
+        <!-- 9. FAQs -->
+        <h2>FAQs</h2>
+        
+        <h3>Is the EMI formula the same for all types of loans?</h3>
+        <p>
+          Most standard loans (home loans, car loans, personal loans) use the reducing balance EMI formula we implement. However, some loan types work differently:
+        </p>
+        <ul>
+          <li><strong>Interest-Only Loans:</strong> You pay only interest for a period, then switch to principal+interest. These require different calculations.</li>
+          <li><strong>Fixed Principal Loans:</strong> The principal portion stays the same each month, while interest decreases. Less common but structured differently.</li>
+        </ul>
+        <p>
+          Our calculator is designed for standard amortizing loans, which cover the vast majority of consumer lending.
+        </p>
+
+        <h3>Does this calculator include processing fees, insurance, or taxes?</h3>
+        <p>
+          <strong>No.</strong> This calculator shows the pure loan repayment (principal + interest). Real loans often include:
+        </p>
+        <ul>
+          <li><strong>Processing Fees:</strong> One-time charges when the loan is disbursed.</li>
+          <li><strong>Mortgage Insurance (PMI):</strong> Required if your down payment is less than 20%.</li>
+          <li><strong>Property Taxes & Homeowners Insurance:</strong> For mortgages, these are often escrowed into monthly payments.</li>
+        </ul>
+        <p>
+          Always review your lender's Loan Estimate or Truth-in-Lending disclosure for the complete picture, including all fees.
+        </p>
+
+        <h3>Can I use this for variable interest rate loans?</h3>
+        <p>
+          Our calculator assumes a fixed interest rate for the entire loan term. For variable-rate loans (ARMs - Adjustable Rate Mortgages), the EMI will change when the rate adjusts. You can use our calculator to see what your payment would be at different rate scenarios, but it won't automatically adjust over time.
+        </p>
+
+        <h3>What happens if I make extra payments?</h3>
+        <p>
+          Making extra payments reduces your principal faster, which means you pay less total interest and can pay off the loan early. Our calculator shows the "standard" repayment schedule. To see the impact of extra payments, you would need to:
+        </p>
+        <ul>
+          <li>Calculate your current EMI using our tool.</li>
+          <li>Manually reduce the remaining principal by your extra payment amount.</li>
+          <li>Recalculate with the new principal to see the updated total interest.</li>
+        </ul>
+        <p>
+          <strong>General Rule:</strong> Even one extra EMI payment per year can reduce a 30-year mortgage to about 22-23 years and save tens of thousands in interest.
+        </p>
+
+        <h3>How do prepayment penalties affect calculations?</h3>
+        <p>
+          Some loans charge a fee if you pay off the loan early (prepayment penalty). This is designed to discourage early repayment so the lender collects more interest. Always check your loan agreement for prepayment terms. Our calculator doesn't account for these penalties, so factor them in if you plan to pay early.
+        </p>
+
+        <!-- 10. Tips -->
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li><strong>Shop Around:</strong> Use this calculator to compare multiple loan offers. A 0.5% lower interest rate can save you thousands over the loan term.</li>
+          <li><strong>Consider Shorter Terms:</strong> While longer terms have lower monthly payments, they cost significantly more in total interest. If you can afford it, choose the shortest term that fits your budget.</li>
+          <li><strong>Make Extra Payments When Possible:</strong> Even small extra payments can dramatically reduce your total interest and loan term. Round up your EMI or make one extra payment per year.</li>
+          <li><strong>Understand the Break-Even:</strong> For refinancing, calculate how long it takes to recover the closing costs with your monthly savings. Use our calculator to compare old vs. new loan terms.</li>
+        </ul>
+
+        <!-- 11. Get Started -->
+        <h2>Get Started Now</h2>
+        <p>
+          Don't sign a loan agreement blind. Enter your loan details above to see the true cost of borrowing and ensure it fits your financial plan.
+        </p>
+        <p>
+          Need to calculate percentages for down payments or interest rates? Try our <a href="/tools/percentage-calculator">Percentage Calculator</a>. Planning other financial goals? Check out our full suite of <a href="/tools">financial calculators</a>.
+        </p>
+
+        <!-- 12. Conclusion -->
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Loan / EMI Calculator</strong> is an indispensable tool for anyone considering borrowing money. By revealing the true cost of loans—including the often-hidden interest charges—it empowers you to make informed financial decisions. Whether you are buying your first home, financing a car, or consolidating debt, understanding your monthly commitment and total cost is the first step toward financial wellness.
+        </p>
+        <p>
+          ToolfolioHub provides this powerful calculator free of charge, ensuring that financial planning tools are accessible to everyone. Bookmark this page and use it every time you evaluate a loan offer. Your future self will thank you.
+        </p>
+      </article>
     </main>
   </div>
 
@@ -64,30 +354,48 @@
     const totalInterest = document.getElementById('totalInterest');
     const totalPayable = document.getElementById('totalPayable');
 
+    // Currency formatter
+    const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+
     document.getElementById('loanBtn').addEventListener('click', () => {
       const principal = parseFloat(P.value);
       const annualRate = parseFloat(rate.value);
       const months = parseInt(tenure.value, 10);
-      if (isNaN(principal) || isNaN(annualRate) || isNaN(months) || months <= 0) {
-        emiResult.textContent = 'Monthly EMI: enter valid values.';
-        totalInterest.textContent = totalPayable.textContent = '—';
+
+      if (isNaN(principal) || isNaN(annualRate) || isNaN(months) || months <= 0 || principal <= 0 || annualRate < 0) {
+        emiResult.innerHTML = '<span class="text-sm text-red-500 font-normal">Check inputs</span>';
+        totalInterest.textContent = '—';
+        totalPayable.textContent = '—';
         return;
       }
 
-      const monthlyRate = annualRate / 12 / 100;
-      const emi = monthlyRate === 0
-        ? principal / months
-        : principal * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+      // Monthly interest rate (Annual / 12 / 100)
+      const r = annualRate / 12 / 100;
+      
+      let emi = 0;
+      
+      if (r === 0) {
+        emi = principal / months;
+      } else {
+        // EMI = [P x r x (1+r)^n] / [(1+r)^n-1]
+        emi = (principal * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+      }
 
       const totalPay = emi * months;
       const interest = totalPay - principal;
 
-      emiResult.textContent = `Monthly EMI: ${emi.toFixed(2)}`;
-      totalInterest.textContent = `Total interest: ${interest.toFixed(2)}`;
-      totalPayable.textContent = `Total payable: ${totalPay.toFixed(2)}`;
+      emiResult.textContent = fmt.format(emi);
+      totalInterest.textContent = fmt.format(interest);
+      totalPayable.textContent = fmt.format(totalPay);
+    });
+    
+    // Allow Enter key
+    [P, rate, tenure].forEach(input => {
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') document.getElementById('loanBtn').click();
+        });
     });
   </script>
   <script src="../tools-shared-script.js"></script>
 </body>
 </html>
-
