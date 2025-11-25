@@ -940,10 +940,14 @@ function initContactForm() {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.querySelector('span').textContent;
+            
+            // Get form data using name attributes
             const formData = {
-                name: contactForm.querySelector('input[placeholder*="name"]').value,
-                email: contactForm.querySelector('input[type="email"]').value,
-                message: contactForm.querySelector('textarea').value
+                name: contactForm.querySelector('input[name="name"]').value.trim(),
+                email: contactForm.querySelector('input[name="email"]').value.trim(),
+                message: contactForm.querySelector('textarea[name="message"]').value.trim()
             };
             
             // Basic validation
@@ -959,14 +963,13 @@ function initContactForm() {
                 return;
             }
             
-            // Simulate form submission (replace with actual backend endpoint)
-            showNotification('Message sent successfully! (Demo mode)', 'success');
-            contactForm.reset();
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.querySelector('span').textContent = 'Sending...';
+            submitButton.classList.add('opacity-50', 'cursor-not-allowed');
             
-            // For actual implementation, uncomment and configure:
-            /*
             try {
-                const response = await fetch('YOUR_BACKEND_ENDPOINT', {
+                const response = await fetch('/api/contact', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -978,12 +981,18 @@ function initContactForm() {
                     showNotification('Message sent successfully!', 'success');
                     contactForm.reset();
                 } else {
-                    showNotification('Failed to send message. Please try again.', 'error');
+                    const errorText = await response.text();
+                    showNotification(errorText || 'Failed to send message. Please try again.', 'error');
                 }
             } catch (error) {
+                console.error('Contact form error:', error);
                 showNotification('An error occurred. Please try again later.', 'error');
+            } finally {
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.querySelector('span').textContent = originalButtonText;
+                submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
             }
-            */
         });
     }
 }
