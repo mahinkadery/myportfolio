@@ -935,6 +935,26 @@ function initSmoothScroll() {
 // Form Validation and Handling
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const closeThankYou = document.getElementById('closeThankYou');
+    
+    // Close thank you message
+    if (closeThankYou) {
+        closeThankYou.addEventListener('click', () => {
+            if (thankYouMessage) {
+                thankYouMessage.classList.add('hidden');
+            }
+        });
+        
+        // Close on backdrop click
+        if (thankYouMessage) {
+            thankYouMessage.addEventListener('click', (e) => {
+                if (e.target === thankYouMessage) {
+                    thankYouMessage.classList.add('hidden');
+                }
+            });
+        }
+    }
     
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -969,20 +989,24 @@ function initContactForm() {
             submitButton.classList.add('opacity-50', 'cursor-not-allowed');
             
             try {
-                const response = await fetch('/api/contact', {
+                // Create FormData for Web3Forms
+                const formDataToSend = new FormData(contactForm);
+                
+                const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
+                    body: formDataToSend
                 });
                 
-                if (response.ok) {
-                    showNotification('Message sent successfully!', 'success');
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Show thank you message
+                    if (thankYouMessage) {
+                        thankYouMessage.classList.remove('hidden');
+                    }
                     contactForm.reset();
                 } else {
-                    const errorText = await response.text();
-                    showNotification(errorText || 'Failed to send message. Please try again.', 'error');
+                    showNotification(result.message || 'Failed to send message. Please try again.', 'error');
                 }
             } catch (error) {
                 console.error('Contact form error:', error);

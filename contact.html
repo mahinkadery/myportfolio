@@ -157,6 +157,23 @@
 <p class="text-muted-light dark:text-muted-dark text-lg font-normal leading-normal mt-4">
   <a href="mailto:contact@toolfoliohub.com" class="hover:text-primary transition-colors">contact@toolfoliohub.com</a>
 </p>
+
+<!-- Promotional Lines -->
+<div class="mt-8 space-y-4">
+  <div class="flex items-center gap-3 text-text-light dark:text-text-dark">
+    <span class="material-symbols-outlined text-primary">settings_suggest</span>
+    <p class="text-base font-medium">Do you want n8n automations?</p>
+  </div>
+  <div class="flex items-center gap-3 text-text-light dark:text-text-dark">
+    <span class="material-symbols-outlined text-primary">phone_android</span>
+    <p class="text-base font-medium">Do you want to create an app?</p>
+  </div>
+  <div class="flex items-center gap-3 text-text-light dark:text-text-dark">
+    <span class="material-symbols-outlined text-primary">lightbulb</span>
+    <p class="text-base font-medium">Do you have an idea? Connect me</p>
+  </div>
+</div>
+
 <div class="flex justify-center md:justify-start gap-4 mt-8">
 <a class="flex flex-col items-center gap-2 bg-transparent py-2.5 text-center w-24 group" href="https://github.com/mahinkadery" target="_blank" rel="noopener noreferrer">
 <div class="rounded-full bg-background-light dark:bg-background-dark p-3 border border-border-light dark:border-border-dark group-hover:bg-primary/10 transition-colors duration-200">
@@ -174,12 +191,33 @@
 </div>
 <!-- Right Pane -->
 <div class="p-4 sm:p-8 rounded-xl glassmorphism-light dark:glassmorphism-dark">
+<!-- Thank You Message (Hidden by default) -->
+<div id="thankYouMessage" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+  <div class="bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-xl p-8 max-w-md w-full mx-4 shadow-xl">
+    <div class="flex flex-col items-center text-center gap-4">
+      <div class="w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+        <span class="material-symbols-outlined text-primary text-3xl">check_circle</span>
+      </div>
+      <h3 class="text-2xl font-bold text-text-light dark:text-text-dark">Thank You!</h3>
+      <p class="text-muted-light dark:text-muted-dark text-base">Your message has been sent successfully. I'll get back to you soon!</p>
+      <button
+        id="closeThankYou"
+        class="mt-4 px-6 py-3 rounded-full bg-primary text-white text-base font-bold hover:opacity-90 active:scale-[0.98] transition-all duration-150"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
 <form
   id="contactForm"
   class="flex flex-col gap-6"
-  action="/api/contact"
+  action="https://api.web3forms.com/submit"
   method="POST"
 >
+  <input type="hidden" name="access_key" value="7caaa51d-8100-4050-8d3b-afda328f2113">
+  
   <label class="flex flex-col w-full">
     <p class="text-text-light dark:text-text-dark text-base font-medium leading-normal pb-2">Name</p>
     <input
