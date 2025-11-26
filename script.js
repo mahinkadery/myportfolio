@@ -1312,15 +1312,30 @@ function filterStaticTools(query) {
 
 // Initialize Lenis Smooth Scroll
 function initLenis() {
+    // Detect mobile devices - disable smooth scroll on mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    if (isMobile) {
+        // Skip Lenis initialization on mobile devices
+        return;
+    }
+    
+    // Detect Windows OS for reduced smoothness
+    const isWindows = navigator.platform.indexOf('Win') > -1 || navigator.userAgent.indexOf('Windows') > -1;
+    
+    // Adjust settings based on OS
+    const duration = isWindows ? 0.5 : 0.8; // Faster on Windows
+    const wheelMultiplier = isWindows ? 1.2 : 0.8; // More responsive on Windows
+    
     // Check if Lenis is available (loaded from CDN)
     if (typeof Lenis !== 'undefined') {
         const lenis = new Lenis({
-            duration: 0.8,
+            duration: duration,
             easing: (t) => 1 - Math.pow(1 - t, 3), // Simpler easing for better performance
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 0.8, // Reduced for snappier feel
+            wheelMultiplier: wheelMultiplier,
             smoothTouch: false,
             touchMultiplier: 1.5,
             infinite: false,
