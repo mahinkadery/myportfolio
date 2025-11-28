@@ -28,13 +28,36 @@
         <img src="../website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-8 w-auto hidden dark:block">
         <span class="brand-title text-xs sm:text-sm">toolfoliohub</span>
       </a>
-      <div class="flex items-center gap-4">
+      <div class="hidden sm:flex items-center gap-4">
         <a href="/tools" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
         <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
           <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
         </button>
       </div>
+      <button id="mobileMenuBtn" class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+        <span class="material-symbols-outlined text-text-light dark:text-text-dark">menu</span>
+      </button>
     </header>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+      <div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+        <div class="flex justify-end">
+          <button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+            <span class="material-symbols-outlined text-text-light dark:text-text-dark">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-4">
+          <a href="/tools" class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors">⬅ Back to Tools</a>
+          <a href="/" class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors">Home</a>
+          <a href="/tools" class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors">All Tools</a>
+        </nav>
+        <button id="darkModeToggleMobile" class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+          <span class="text-text-light dark:text-text-dark text-sm font-medium">Toggle Theme</span>
+        </button>
+      </div>
+    </div>
 
     <main class="flex-1 px-4 py-10">
       <section class="tool-shell rounded-3xl glass-effect p-8 shadow-xl space-y-6">

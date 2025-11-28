@@ -28,12 +28,83 @@
 
   function updateDarkModeIcon(theme) {
     const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+    
     if (darkModeToggle) {
       const icon = darkModeToggle.querySelector('.material-symbols-outlined');
       if (icon) {
         icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
       }
     }
+    
+    if (darkModeToggleMobile) {
+      const icon = darkModeToggleMobile.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+      }
+    }
+  }
+  
+  function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const html = document.documentElement;
+
+    if (!mobileMenuBtn || !mobileMenu) return;
+
+    const closeMobileMenuFunc = () => {
+      if (mobileMenu) {
+        mobileMenu.classList.add('hidden');
+      }
+    };
+
+    const openMobileMenuFunc = () => {
+      if (mobileMenu) {
+        mobileMenu.classList.remove('hidden');
+      }
+    };
+
+    // Toggle menu on button click
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        openMobileMenuFunc();
+      } else {
+        closeMobileMenuFunc();
+      }
+    });
+
+    // Close menu on close button
+    if (closeMobileMenu) {
+      closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+    }
+
+    // Dark mode toggle in mobile menu
+    if (darkModeToggleMobile) {
+      darkModeToggleMobile.addEventListener('click', () => {
+        const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
+        html.classList.remove('light', 'dark');
+        html.classList.add(newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateDarkModeIcon(newTheme);
+      });
+    }
+
+    // Close menu when clicking on links
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenuFunc);
+    });
+
+    // Close menu when clicking backdrop
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        closeMobileMenuFunc();
+      }
+    });
   }
 
   // Initialize Lenis Smooth Scroll
@@ -102,6 +173,7 @@
   // Initialize on DOM ready
   function init() {
     initDarkMode();
+    initMobileMenu();
     
     // Wait for Lenis to load if it's not already available
     if (typeof Lenis !== 'undefined') {
