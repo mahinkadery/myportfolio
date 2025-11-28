@@ -183,7 +183,11 @@
 
   <script>
     // --- Configuration ---
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.worker.min.js';
+    // Ensure pdfjsLib is defined
+    const pdfjsLib = window.pdfjsLib;
+    if (pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.worker.min.js';
+    }
     const EDIT_ENDPOINT = 'https://pdf-engine-1wkl.onrender.com/edit';
 
     // --- State ---
@@ -191,6 +195,19 @@
     let currentPdf = null;
     let edits = []; // Array of { pageIndex, oldText, newText, spanRef }
     const SCALE = 1.5; // Render scale for better quality
+
+    // --- Helpers ---
+    // Matrix multiplication helper to replace pdfjsLib.Util.transform
+    function transform(m1, m2) {
+      return [
+        m1[0] * m2[0] + m1[2] * m2[1],
+        m1[1] * m2[0] + m1[3] * m2[1],
+        m1[0] * m2[2] + m1[2] * m2[3],
+        m1[1] * m2[2] + m1[3] * m2[3],
+        m1[0] * m2[4] + m1[2] * m2[5] + m1[4],
+        m1[1] * m2[4] + m1[3] * m2[5] + m1[5]
+      ];
+    }
 
     // --- Elements ---
     const pdfFile = document.getElementById('pdfFile');
@@ -203,9 +220,9 @@
     const editCountBadge = document.getElementById('editCountBadge');
 
     // --- Event Listeners ---
-    pdfFile.addEventListener('change', handleFileSelect);
-    applyBtn.addEventListener('click', handleApply);
-    clearBtn.addEventListener('click', handleClear);
+    if (pdfFile) pdfFile.addEventListener('change', handleFileSelect);
+    if (applyBtn) applyBtn.addEventListener('click', handleApply);
+    if (clearBtn) clearBtn.addEventListener('click', handleClear);
 
     // --- Functions ---
 
@@ -249,6 +266,10 @@
       updateStatus('Rendering PDF...', 'loading');
 
       try {
+        if (!pdfjsLib) {
+          throw new Error('PDF.js library not loaded. Please refresh the page.');
+        }
+
         const arrayBuffer = await file.arrayBuffer();
         const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
         currentPdf = await loadingTask.promise;
@@ -261,7 +282,7 @@
         updateStatus('Ready – click text to edit.', 'success');
       } catch (error) {
         console.error('Error loading PDF:', error);
-        updateStatus('Error loading PDF. Please try another file.', 'error');
+        updateStatus(`Error: ${error.message}`, 'error');
         placeholder.style.display = 'flex';
       }
     }
@@ -298,7 +319,8 @@
       
       // Render text items
       textContent.items.forEach(item => {
-        const tx = pdfjsLib.Util.transform(viewport.transform, item.transform);
+        // Use custom transform helper instead of pdfjsLib.Util.transform
+        const tx = transform(viewport.transform, item.transform);
         
         // Calculate font size based on transform matrix
         // This approximates the font height in canvas pixels
@@ -311,29 +333,16 @@
         span.dataset.pageIndex = pageNum - 1; // 0-based index
         
         // Style positioning
-        // PDF.js coordinates are bottom-left, but the transform matrix handles conversion to top-left canvas coords
-        // However, we often need to adjust for the font baseline.
-        // A simple approximation using the transform array:
-        // tx[4] is x, tx[5] is y (bottom-left of the text baseline usually)
-        
-        // Using CSS transform is often more reliable for rotation/scaling
-        // But direct positioning is easier for simple editing
-        
         span.style.left = `${tx[4]}px`;
         span.style.top = `${tx[5] - fontHeight}px`; // Adjust for baseline (approx)
         span.style.fontSize = `${fontHeight}px`;
         span.style.fontFamily = 'sans-serif'; // Fallback
         
-        // Width scaling if needed
-        if (item.width > 0) {
-             // Calculate width scale factor if rendered width differs from natural width
-             // For simplicity, we'll rely on the browser's font rendering
+        // Only add if text is not empty
+        if (item.str.trim().length > 0) {
+            span.addEventListener('click', handleSpanClick);
+            textLayer.appendChild(span);
         }
-
-        // Make interactive
-        span.addEventListener('click', handleSpanClick);
-
-        textLayer.appendChild(span);
       });
     }
 
