@@ -13,8 +13,13 @@
   <link rel="stylesheet" href="../styles.css"/>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   
-  <!-- PDF.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.min.js"></script>
+  <!-- PDF.js (Stable Version) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    // Define the worker source immediately to ensure it's available
+    // Use a hardcoded version matching the library script
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
@@ -185,9 +190,7 @@
     // --- Configuration ---
     // Ensure pdfjsLib is defined
     const pdfjsLib = window.pdfjsLib;
-    if (pdfjsLib) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.worker.min.js';
-    }
+    // Worker source is already set in the head script
     const EDIT_ENDPOINT = 'https://pdf-engine-1wkl.onrender.com/edit';
 
     // --- State ---
