@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- SEO Metadata -->
+  <title>PDF to Word (DOCX) Converter | Free Online PDF to DOCX Tool | ToolfolioHub</title>
+  <meta name="description" content="Convert PDF to Word (DOCX) online for free. Upload a PDF and get an editable Word document in seconds. No sign-up needed, secure processing, preserves formatting." />
+  <meta name="keywords" content="PDF to Word, PDF to DOCX converter, convert PDF to Word online, PDF to Word free, PDF converter, editable Word document, PDF to DOCX tool, free PDF converter, toolfoliohub" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="PDF to Word (DOCX) Converter | Free Online Tool" />
+  <meta property="og:description" content="Convert PDF files to editable Word documents instantly. Free, secure, and works entirely in your browser. No sign-up required." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://toolfoliohub.com/tools/pdf-to-docx" />
+  <meta property="og:image" content="https://toolfoliohub.com/og-image.jpg" />
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="../tailwind-theme.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <style>
+    .tool-shell { max-width: 960px; margin: 0 auto; }
+    .prose { max-width: none; }
+    .dark .prose { color: #d1d5db; }
+    .dark .prose h2, .dark .prose h3, .dark .prose strong { color: #f3f4f6; }
+    .dark .prose a { color: #60a5fa; }
+    
+    /* Dropzone styles */
+    .dropzone {
+      border: 2px dashed rgba(43, 108, 238, 0.3);
+      transition: all 0.3s ease;
+    }
+    .dropzone.dragover {
+      border-color: #2b6cee;
+      background-color: rgba(43, 108, 238, 0.05);
+    }
+    .dropzone.has-file {
+      border-color: #10b981;
+      border-style: solid;
+    }
+    
+    /* Status message styles */
+    .status-ready { color: #6b7280; }
+    .status-loading { color: #2b6cee; }
+    .status-success { color: #10b981; }
+    .status-error { color: #ef4444; }
+    .dark .status-ready { color: #9ca3af; }
+    .dark .status-loading { color: #60a5fa; }
+    .dark .status-success { color: #34d399; }
+    .dark .status-error { color: #f87171; }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display dotted-bg">
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="w-full max-w-5xl mx-auto mt-6 rounded-full glass-effect px-6 py-3 flex items-center justify-between shadow-lg z-50 relative">
+      <a href="/" class="flex items-center gap-3">
+        <img src="../website-logos/headerlogoTFB.png" alt="toolfoliohub" class="h-8 w-auto dark:hidden">
+        <img src="../website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-8 w-auto hidden dark:block">
+        <span class="brand-title text-xs sm:text-sm">toolfoliohub</span>
+      </a>
+      <div class="hidden sm:flex items-center gap-4">
+        <a href="/tools" class="text-sm font-semibold text-primary">⬅ Back to Tools</a>
+        <button id="darkModeToggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+        </button>
+      </div>
+      <button id="mobileMenuBtn" class="sm:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+        <span class="material-symbols-outlined text-text-light dark:text-text-dark">menu</span>
+      </button>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm sm:hidden">
+      <div class="fixed right-0 top-0 h-full w-64 bg-white dark:bg-background-dark shadow-xl p-6 flex flex-col gap-6">
+        <div class="flex justify-end">
+          <button id="closeMobileMenu" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5">
+            <span class="material-symbols-outlined text-text-light dark:text-text-dark">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-4">
+          <a href="/tools" class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors">⬅ Back to Tools</a>
+          <a href="/" class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors">Home</a>
+          <a href="/tools" class="text-text-light dark:text-text-dark text-base font-medium hover:text-primary transition-colors">All Tools</a>
+        </nav>
+        <button id="darkModeToggleMobile" class="flex items-center gap-2 p-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          <span class="material-symbols-outlined text-text-light dark:text-text-dark">dark_mode</span>
+          <span class="text-text-light dark:text-text-dark text-sm font-medium">Toggle Theme</span>
+        </button>
+      </div>
+    </div>
+
+    <main class="flex-1 px-4 py-10">
+      <!-- Hero Section -->
+      <section class="tool-shell mb-8">
+        <div class="text-center mb-8">
+          <p class="text-xs uppercase tracking-[0.4em] text-muted-light dark:text-muted-dark mb-2">PDF Converter</p>
+          <h1 class="text-3xl md:text-4xl font-bold mb-4">PDF to Word (DOCX) Converter</h1>
+          <p class="text-lg text-muted-light dark:text-muted-dark max-w-2xl mx-auto mb-2">
+            Upload a PDF and get an editable Word document in seconds. Free to use, no sign-up needed.
+          </p>
+          <p class="text-sm text-muted-light dark:text-muted-dark flex items-center justify-center gap-1">
+            <span class="material-symbols-outlined text-base">lock</span>
+            Files are processed securely and not stored permanently.
+          </p>
+        </div>
+      </section>
+
+      <!-- Converter Card -->
+      <section class="tool-shell rounded-3xl glass-effect p-6 md:p-8 shadow-xl space-y-6 mb-12">
+        <!-- File Upload Dropzone -->
+        <div class="dropzone rounded-2xl border-2 p-8 md:p-12 text-center cursor-pointer bg-white/50 dark:bg-background-dark/30" id="dropzone">
+          <input type="file" id="pdfFileInput" accept="application/pdf" class="hidden" aria-label="Choose PDF file">
+          <div id="dropzoneContent">
+            <span class="material-symbols-outlined text-5xl text-primary mb-4 block">upload_file</span>
+            <p class="text-lg font-semibold mb-2">Drop your PDF here or click to browse</p>
+            <p class="text-sm text-muted-light dark:text-muted-dark">Accepts .pdf files only</p>
+          </div>
+          <div id="fileInfo" class="hidden">
+            <span class="material-symbols-outlined text-4xl text-primary mb-3 block">description</span>
+            <p class="font-semibold text-lg mb-1" id="fileName"></p>
+            <p class="text-sm text-muted-light dark:text-muted-dark" id="fileSize"></p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button 
+            id="convertBtn" 
+            disabled
+            class="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-medium text-base hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"
+            aria-label="Convert PDF to DOCX"
+          >
+            <span class="material-symbols-outlined" id="convertIcon">sync</span>
+            <span id="convertText">Convert to DOCX</span>
+          </button>
+          
+          <button 
+            id="clearBtn" 
+            class="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium text-base hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Clear selected file"
+          >
+            Clear File
+          </button>
+        </div>
+
+        <!-- Status / Progress Area -->
+        <div 
+          id="statusArea" 
+          class="rounded-xl bg-white/50 dark:bg-black/20 p-4 text-center"
+          aria-live="polite"
+          role="status"
+        >
+          <p id="statusText" class="status-ready">Ready to convert</p>
+        </div>
+
+        <!-- Optional: File Size Limit Note -->
+        <p class="text-xs text-center text-muted-light dark:text-muted-dark">
+          <!-- TODO: Configure max file size limit text here -->
+          Max file size: 10 MB
+        </p>
+      </section>
+
+      <!-- SEO Content Section -->
+      <article class="tool-shell rounded-3xl glass-effect p-8 md:p-12 shadow-xl prose dark:prose-invert max-w-none mb-12">
+        
+        <!-- Introduction -->
+        <p class="lead">
+          Need to edit text in a PDF file but don't have the original source document? Converting PDF to Word (DOCX) format is the solution. Our <strong>PDF to DOCX Converter</strong> transforms your PDF documents into fully editable Word files that you can modify, reformat, and customize to your needs.
+        </p>
+        <p>
+          Whether you need to fix a typo, update information, extract text for reuse, or repurpose content for a new document, this free online tool makes it quick and easy. No software installation required—everything runs securely in your browser.
+        </p>
+
+        <!-- What is PDF to DOCX conversion -->
+        <h2>What is a PDF to DOCX Converter?</h2>
+        <p>
+          A PDF to DOCX converter is an online tool that transforms Portable Document Format (PDF) files into Microsoft Word Document (DOCX) format. PDFs are designed to preserve document layout and formatting across different devices and platforms, making them ideal for sharing finalized documents. However, PDFs are notoriously difficult to edit directly.
+        </p>
+        <p>
+          DOCX files, on the other hand, are editable word processing documents that you can open and modify in Microsoft Word, Google Docs, LibreOffice, and many other word processors. By converting PDF to DOCX, you unlock the ability to:
+        </p>
+        <ul>
+          <li>Edit text, change fonts, and adjust formatting</li>
+          <li>Add, remove, or rearrange paragraphs and sections</li>
+          <li>Fix typos and update outdated information</li>
+          <li>Extract text and images for use in other documents</li>
+          <li>Collaborate with others by enabling track changes and comments</li>
+        </ul>
+
+        <!-- Why convert PDF to Word -->
+        <h2>Why Convert PDF to Word?</h2>
+        <p>
+          There are numerous practical reasons why someone might need to convert a PDF to Word format:
+        </p>
+
+        <h3>Editing and Corrections</h3>
+        <p>
+          PDFs are essentially "locked" documents designed for viewing and printing, not editing. If you receive a PDF with a mistake, outdated information, or content that needs updating, converting it to DOCX allows you to make changes easily. This is especially useful for:
+        </p>
+        <ul>
+          <li>Business documents that need regular updates (invoices, contracts, reports)</li>
+          <li>Academic papers that require revisions</li>
+          <li>Forms and templates that need customization</li>
+          <li>Marketing materials with changing contact information or prices</li>
+        </ul>
+
+        <h3>Content Reuse and Extraction</h3>
+        <p>
+          Sometimes you need to extract text, images, or entire sections from a PDF to use in a new document. Converting to DOCX makes this process seamless—you can copy, paste, and rearrange content just like any other Word document.
+        </p>
+
+        <h3>Accessibility and Compatibility</h3>
+        <p>
+          While PDFs are widely supported, Word documents offer more flexibility for certain workflows. Word files integrate better with:
+        </p>
+        <ul>
+          <li>Content management systems (CMS)</li>
+          <li>Email clients that prefer editable attachments</li>
+          <li>Collaborative editing platforms (Google Docs, Office 365)</li>
+          <li>Legacy systems that require .doc or .docx format</li>
+        </ul>
+
+        <!-- Advantages of this converter -->
+        <h2>Advantages of Using Our PDF to DOCX Converter</h2>
+        
+        <h3>No Installation Required</h3>
+        <p>
+          Unlike desktop software that requires downloading and installing, our converter runs entirely in your web browser. This means:
+        </p>
+        <ul>
+          <li>Works on any device (Windows, Mac, Linux, mobile)</li>
+          <li>No need to manage software updates</li>
+          <li>No storage space taken up on your computer</li>
+          <li>Accessible from anywhere with an internet connection</li>
+        </ul>
+
+        <h3>Fast and Efficient</h3>
+        <p>
+          Our converter processes files quickly, typically converting standard PDFs to DOCX format in just a few seconds. The streamlined interface means you can go from upload to download with minimal steps.
+        </p>
+
+        <h3>Privacy and Security</h3>
+        <p>
+          We understand that PDF documents often contain sensitive information. That's why we've designed our conversion process with privacy in mind. Files are processed securely and are not stored permanently on our servers. Once the conversion is complete and you download your DOCX file, your original PDF is removed from our system.
+        </p>
+
+        <h3>Format Preservation</h3>
+        <p>
+          While perfect format preservation can be challenging when converting from PDF (which uses a fixed layout model) to DOCX (which uses a flowing document model), our converter strives to maintain:
+        </p>
+        <ul>
+          <li>Text structure and paragraph breaks</li>
+          <li>Basic formatting (bold, italic, headings)</li>
+          <li>List formatting (bullets and numbered lists)</li>
+          <li>Table structures when possible</li>
+        </ul>
+        <p>
+          Note: Complex layouts, custom fonts, images, and advanced formatting may require manual adjustment after conversion. For best results, use PDFs with standard text-based content.
+        </p>
+
+        <!-- How to use -->
+        <h2>How to Convert PDF to Word</h2>
+        <p>
+          Converting your PDF to a Word document is a simple three-step process:
+        </p>
+        <ol>
+          <li>
+            <strong>Upload Your PDF:</strong> Click the upload area or drag and drop your PDF file into the converter. The tool accepts files up to 10 MB in size. You'll see the file name and size displayed once selected.
+          </li>
+          <li>
+            <strong>Convert:</strong> Click the "Convert to DOCX" button. The converter will process your file and show a progress status. This typically takes just a few seconds.
+          </li>
+          <li>
+            <strong>Download:</strong> Once conversion is complete, your DOCX file will automatically download to your device. You can then open it in Microsoft Word, Google Docs, or any compatible word processor to start editing.
+          </li>
+        </ol>
+        <p>
+          That's it! No account creation, no email addresses required, and no hidden fees. The conversion happens entirely in the cloud, and your file is ready for download within seconds.
+        </p>
+
+        <!-- Use cases -->
+        <h2>Common Use Cases</h2>
+        
+        <h3>Students and Educators</h3>
+        <p>
+          Students often receive PDF handouts, lecture notes, or assignment templates that need to be filled out or modified. Converting these to Word format enables:
+        </p>
+        <ul>
+          <li>Completing fillable PDF forms digitally</li>
+          <li>Adding notes and annotations directly in the document</li>
+          <li>Creating study guides by extracting and reorganizing content</li>
+          <li>Submitting assignments that require Word format</li>
+        </ul>
+
+        <h3>Business Professionals</h3>
+        <p>
+          In business environments, document flexibility is crucial. Converting PDFs to Word helps with:
+        </p>
+        <ul>
+          <li>Updating contract templates and legal documents</li>
+          <li>Revising marketing materials and brochures</li>
+          <li>Extracting data from reports for analysis</li>
+          <li>Customizing templates for different clients or projects</li>
+        </ul>
+
+        <h3>Content Creators and Writers</h3>
+        <p>
+          Writers, bloggers, and content creators often need to work with PDFs received from clients or sources. Converting to Word allows them to:
+        </p>
+        <ul>
+          <li>Edit and proofread documents more efficiently</li>
+          <li>Merge content from multiple PDF sources</li>
+          <li>Extract quotes and citations for articles</li>
+          <li>Repurpose content for different formats and platforms</li>
+        </ul>
+
+        <!-- Limitations and Tips -->
+        <h2>Limitations and Tips for Best Results</h2>
+        <p>
+          While our PDF to DOCX converter handles most text-based PDFs well, there are some limitations to be aware of:
+        </p>
+
+        <h3>Scanned PDFs (Image-Based)</h3>
+        <p>
+          If your PDF was created by scanning a physical document, it contains images of text rather than actual text characters. Our converter cannot extract editable text from scanned PDFs. For these files, you would need Optical Character Recognition (OCR) technology, which is a separate process.
+        </p>
+        <p>
+          <strong>Tip:</strong> To check if your PDF is text-based or scanned, try selecting text with your cursor. If you can select individual words, it's text-based. If you can only select the entire page as an image, it's scanned.
+        </p>
+
+        <h3>Complex Layouts</h3>
+        <p>
+          PDFs with complex multi-column layouts, overlapping text boxes, custom graphics, or intricate formatting may not convert perfectly. Tables, charts, and images might require manual repositioning in the Word document.
+        </p>
+
+        <h3>File Size</h3>
+        <p>
+          Large PDF files (over 10 MB) may take longer to process or may not be supported. If your file is too large, consider splitting it into smaller sections or compressing it first.
+        </p>
+
+        <h3>Best Practices</h3>
+        <ul>
+          <li>Use PDFs with standard fonts (Arial, Times New Roman, Calibri, etc.) for better compatibility</li>
+          <li>Ensure your PDF is not password-protected or encrypted</li>
+          <li>For multi-page documents, check all pages after conversion to ensure formatting is preserved</li>
+          <li>Review and edit the converted DOCX file before finalizing your work</li>
+        </ul>
+
+        <!-- FAQ Section -->
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>Is this PDF to Word converter free to use?</h3>
+        <p>
+          Yes, our PDF to DOCX converter is completely free to use. There are no hidden fees, no subscription required, and no need to create an account. Simply upload your PDF, convert it, and download your Word document.
+        </p>
+
+        <h3>Will my formatting be preserved when converting PDF to DOCX?</h3>
+        <p>
+          Our converter strives to preserve basic formatting such as paragraph breaks, headings, bold and italic text, and list formatting. However, perfect format preservation isn't always possible because PDFs and Word documents use different layout models. Complex layouts, custom fonts, images, and advanced formatting may require manual adjustment after conversion. For best results, use PDFs with standard, text-based content.
+        </p>
+
+        <h3>Are my files secure when I upload them?</h3>
+        <p>
+          Yes, we take your privacy and security seriously. Files are processed securely using encrypted connections. We do not store your PDF files permanently on our servers—once the conversion is complete and you download your DOCX file, your original PDF is removed from our system. Your files are never shared with third parties or used for any purpose other than the conversion you requested.
+        </p>
+
+        <h3>Do you support scanned PDFs (OCR)?</h3>
+        <p>
+          No, our current converter does not support OCR (Optical Character Recognition). It works best with text-based PDFs—those that contain actual text characters that can be selected and copied. If your PDF is a scanned image of a document, you'll need an OCR tool first to extract the text before converting to Word format.
+        </p>
+
+        <h3>What is the maximum file size I can convert?</h3>
+        <p>
+          The maximum file size is currently 10 MB. If your PDF is larger than this, you may need to split it into smaller files or compress it before uploading. Large files also take longer to process, so smaller files will convert more quickly.
+        </p>
+
+        <h3>Can I convert password-protected PDFs?</h3>
+        <p>
+          No, password-protected or encrypted PDF files cannot be converted using this tool. You'll need to remove the password protection first using a PDF password remover tool, then convert the unprotected PDF to DOCX.
+        </p>
+
+        <h3>What if my converted Word document doesn't look right?</h3>
+        <p>
+          If the formatting isn't perfect after conversion, this is normal—especially for complex layouts. You can manually adjust the formatting in Word after downloading. For best results, try converting simpler, text-based PDFs with standard formatting. If you continue to experience issues, the PDF may have formatting that's incompatible with Word's layout system.
+        </p>
+
+        <h3>Do I need to have Microsoft Word installed to use the converted file?</h3>
+        <p>
+          No, you don't need Microsoft Word specifically. DOCX files can be opened in many applications, including:
+        </p>
+        <ul>
+          <li>Microsoft Word (Windows, Mac, web)</li>
+          <li>Google Docs (web-based)</li>
+          <li>LibreOffice Writer (free, open-source)</li>
+          <li>Apple Pages (Mac)</li>
+          <li>WPS Office (free alternative)</li>
+          <li>Many other word processors</li>
+        </ul>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 text-gray-500 dark:text-gray-400 bg-background-light dark:bg-background-dark border-t border-gray-200/50 dark:border-gray-700/50">
+      <div class="flex justify-center mb-6">
+        <a href="/" class="flex items-center">
+          <img src="../website-logos/headerlogoTFB.png" alt="toolfoliohub" class="h-12 md:h-14 w-auto object-contain dark:hidden">
+          <img src="../website-logos/Toolfoliohubdarkmodelogo.png" alt="toolfoliohub" class="h-12 md:h-14 w-auto object-contain hidden dark:block">
+        </a>
+      </div>
+      <div class="flex justify-center gap-5 mb-4">
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="mailto:contact@toolfoliohub.com" title="Email">
+          <span class="material-symbols-outlined">alternate_email</span>
+        </a>
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="https://www.linkedin.com/in/mahin-kadery" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <span class="material-symbols-outlined">work</span>
+        </a>
+        <a class="hover:text-primary dark:hover:text-white transition-colors" href="https://github.com/mahinkadery" target="_blank" rel="noopener noreferrer" title="GitHub">
+          <svg aria-hidden="true" class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z" fill-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="flex justify-center gap-4 mb-2">
+        <a href="/privacy" class="text-sm hover:text-primary dark:hover:text-white transition-colors">Privacy Policy</a>
+      </div>
+      <p class="text-sm">© 2025 toolfoliohub. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // ============================================
+    // CONFIGURATION: Replace this with your n8n webhook URL
+    // ============================================
+    const N8N_WEBHOOK_URL = "https://n8n.srv915514.hstgr.cloud/webhook/pdf-to-docx"; // TODO: Replace with your actual n8n webhook URL
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB in bytes
+
+    // DOM Elements
+    const pdfFileInput = document.getElementById('pdfFileInput');
+    const dropzone = document.getElementById('dropzone');
+    const dropzoneContent = document.getElementById('dropzoneContent');
+    const fileInfo = document.getElementById('fileInfo');
+    const fileName = document.getElementById('fileName');
+    const fileSize = document.getElementById('fileSize');
+    const convertBtn = document.getElementById('convertBtn');
+    const convertIcon = document.getElementById('convertIcon');
+    const convertText = document.getElementById('convertText');
+    const clearBtn = document.getElementById('clearBtn');
+    const statusArea = document.getElementById('statusArea');
+    const statusText = document.getElementById('statusText');
+
+    let selectedFile = null;
+
+    // Format file size for display
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+    }
+
+    // Update status message
+    function updateStatus(message, type = 'ready') {
+      statusText.textContent = message;
+      statusText.className = `status-${type}`;
+      
+      // Update status area styling based on type
+      statusArea.className = `rounded-xl bg-white/50 dark:bg-black/20 p-4 text-center`;
+      if (type === 'loading') {
+        statusArea.classList.add('border-2', 'border-primary/30');
+      } else if (type === 'success') {
+        statusArea.classList.add('border-2', 'border-green-500/30');
+      } else if (type === 'error') {
+        statusArea.classList.add('border-2', 'border-red-500/30');
+      }
+    }
+
+    // Validate file
+    function validateFile(file) {
+      // Check if file exists
+      if (!file) {
+        updateStatus('Please select a PDF file first.', 'error');
+        return false;
+      }
+
+      // Check file type
+      if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+        updateStatus('Please select a valid PDF file. Only .pdf files are accepted.', 'error');
+        return false;
+      }
+
+      // Check file size
+      if (file.size > MAX_FILE_SIZE) {
+        updateStatus(`File size exceeds the maximum limit of ${formatFileSize(MAX_FILE_SIZE)}. Please choose a smaller file.`, 'error');
+        return false;
+      }
+
+      return true;
+    }
+
+    // Handle file selection
+    function handleFileSelect(file) {
+      if (!validateFile(file)) {
+        selectedFile = null;
+        resetFileDisplay();
+        convertBtn.disabled = true;
+        return;
+      }
+
+      selectedFile = file;
+      
+      // Update UI
+      fileName.textContent = file.name;
+      fileSize.textContent = formatFileSize(file.size);
+      
+      dropzoneContent.classList.add('hidden');
+      fileInfo.classList.remove('hidden');
+      dropzone.classList.add('has-file');
+      
+      convertBtn.disabled = false;
+      updateStatus('Ready to convert', 'ready');
+    }
+
+    // Reset file display
+    function resetFileDisplay() {
+      selectedFile = null;
+      pdfFileInput.value = '';
+      dropzoneContent.classList.remove('hidden');
+      fileInfo.classList.add('hidden');
+      dropzone.classList.remove('has-file', 'dragover');
+      convertBtn.disabled = true;
+      updateStatus('Ready to convert', 'ready');
+    }
+
+    // File input change handler
+    pdfFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        handleFileSelect(file);
+      }
+    });
+
+    // Dropzone click handler
+    dropzone.addEventListener('click', () => {
+      if (!dropzone.classList.contains('has-file')) {
+        pdfFileInput.click();
+      }
+    });
+
+    // Drag and drop handlers
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.classList.remove('dragover');
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        pdfFileInput.files = e.dataTransfer.files;
+        handleFileSelect(file);
+      }
+    });
+
+    // Convert button handler
+    convertBtn.addEventListener('click', async () => {
+      if (!selectedFile || !validateFile(selectedFile)) {
+        return;
+      }
+
+      // Disable button and show loading state
+      convertBtn.disabled = true;
+      convertIcon.textContent = 'hourglass_empty';
+      convertIcon.classList.add('animate-spin');
+      convertText.textContent = 'Converting...';
+      updateStatus('Uploading and converting...', 'loading');
+
+      try {
+        // Create FormData
+        const formData = new FormData();
+        // IMPORTANT: The field name should be "data" as per your requirement
+        formData.append('data', selectedFile);
+
+        // Send to n8n webhook
+        const response = await fetch(N8N_WEBHOOK_URL, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || `Server error: ${response.status}`);
+        }
+
+        // Get the DOCX blob
+        const blob = await response.blob();
+        
+        // Check if response is actually a DOCX file
+        if (!blob.type.includes('wordprocessingml') && !blob.type.includes('application/vnd.openxmlformats') && blob.type !== 'application/octet-stream') {
+          console.warn('Unexpected content type:', blob.type);
+        }
+
+        // Trigger download
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = selectedFile.name.replace(/\.pdf$/i, '.docx');
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+
+        // Show success message
+        updateStatus('Conversion complete! Your download should start automatically.', 'success');
+        
+        // Re-enable button after a short delay
+        setTimeout(() => {
+          convertBtn.disabled = false;
+          convertIcon.textContent = 'sync';
+          convertIcon.classList.remove('animate-spin');
+          convertText.textContent = 'Convert to DOCX';
+        }, 2000);
+
+      } catch (error) {
+        console.error('Conversion error:', error);
+        updateStatus(`Something went wrong during conversion: ${error.message}. Please try again later.`, 'error');
+        
+        // Re-enable button
+        convertBtn.disabled = false;
+        convertIcon.textContent = 'sync';
+        convertIcon.classList.remove('animate-spin');
+        convertText.textContent = 'Convert to DOCX';
+      }
+    });
+
+    // Clear button handler
+    clearBtn.addEventListener('click', () => {
+      resetFileDisplay();
+    });
+
+    // Keyboard accessibility for dropzone
+    dropzone.setAttribute('tabindex', '0');
+    dropzone.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (!dropzone.classList.contains('has-file')) {
+          pdfFileInput.click();
+        }
+      }
+    });
+  </script>
+  
+  <script src="../tools-shared-script.js"></script>
+</body>
+</html>
