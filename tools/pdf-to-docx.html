@@ -441,9 +441,9 @@
 
   <script>
     // ============================================
-    // CONFIGURATION: Replace this with your n8n webhook URL
+    // API endpoint for the Vercel serverless converter
     // ============================================
-    const N8N_WEBHOOK_URL = "https://n8n.srv915514.hstgr.cloud/webhook/pdf-to-docx"; // TODO: Replace with your actual n8n webhook URL
+    const API_URL = '/api/pdf-to-docx';
     const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB in bytes
 
     // DOM Elements
@@ -596,18 +596,32 @@
       try {
         // Create FormData
         const formData = new FormData();
-        // IMPORTANT: The field name should be "data" as per your requirement
         formData.append('data', selectedFile);
 
-        // Send to n8n webhook
-        const response = await fetch(N8N_WEBHOOK_URL, {
+        // Send to our serverless API which wraps CloudConvert.
+        const response = await fetch(API_URL, {
           method: 'POST',
           body: formData
         });
 
         if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(errorText || `Server error: ${response.status}`);
+          let errorMessage = `Server error: ${response.status}`;
+          try {
+            const bodyText = await response.text();
+            if (bodyText) {
+              try {
+                const parsed = JSON.parse(bodyText);
+                errorMessage = parsed.error || parsed.message || errorMessage;
+              } catch {
+                errorMessage = bodyText;
+              }
+            } else if (response.statusText) {
+              errorMessage = response.statusText;
+            }
+          } catch {
+            errorMessage = response.statusText || errorMessage;
+          }
+          throw new Error(errorMessage);
         }
 
         // Get the DOCX blob

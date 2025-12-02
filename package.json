@@ -1,3 +1,5 @@
+
+
 {
   "name": "toolfoliohub",
   "version": "1.0.0",
@@ -13,5 +15,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "cloudconvert": "^2.3.5",
+    "formidable": "^3.5.0"
+  }
 }
